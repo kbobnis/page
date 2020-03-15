@@ -5,15 +5,17 @@
 layout: home
 ---
 
+## Public repositories
 
-## Krzysztof Bobnis
 
-### My public repositories
-
-{% for repository in site.github.public_repositories %}
-  * [{{ repository.name }} with {{ repository.organization_public_members }}  ]({{ repository.html_url }})
+{% assign sorted_repos = site.github.public_repositories | sort: "updated_at" | reverse %}
+{% for repo in sorted_repos %}
+  * [Updated at {{ repo.updated_at | date: "%F" }}] [{{ repo.name }} ]({{ repo.html_url }})  
 {% endfor %}
 
+
+
 ### FAQ 
-1. I have a problem with large files and they are already commited to my repo. 
-   * clear your history from those files using BFG: https://rtyley.github.io/bfg-repo-cleaner/
+
+1. Github LSF problem:
+	* I have a problem with large files and they are already commited to my repo. Clear your history from those files using BFG: https://rtyley.github.io/bfg-repo-cleaner/

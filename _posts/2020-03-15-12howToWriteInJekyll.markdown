@@ -61,3 +61,33 @@ bundle exec jekyll serve
 ```
 
 Now browse to http://localhost:4000
+
+
+## Faq
+
+3. Installing github-pages jekyll plugin
+	* from (https://stackoverflow.com/questions/58598084/how-does-one-downgrade-jekyll-to-work-with-github-pages)[https://stackoverflow.com/questions/58598084/how-does-one-downgrade-jekyll-to-work-with-github-pages]
+
+	```
+	The current version of github pages requires you set use Jekyll 3.8.5 and github-pages 202. When I set this up, I also had to set a specific version for jekyll feed. Here's the relevant lines you need in your Gemfile:
+
+	gem "jekyll", "~> 3.8.5"
+	gem "github-pages","~> 202" , group: :jekyll_plugins
+	# If you have any plugins, put them here!
+	group :jekyll_plugins do
+	  gem "jekyll-feed", "~> 0.11.0"
+	end
+	After that, try removing your Gemfile.lock and running bundle install.
+	```
+5. Installing github-metadata offline
+	* add `gem "jekyll-github-metadata"` to `<rootOfProject>/Gemfile`
+	* add 
+	```
+	plugins:
+	  - "jekyll-github-metadata"
+	``` to `_config.yml`
+	* https://github.com/jekyll/github-metadata
+	
+	Then write \{\{ site.github \}\} to see what you can use in your site.
+6. Formatting date (https://learn.cloudcannon.com/jekyll/date-formatting/)[https://learn.cloudcannon.com/jekyll/date-formatting/
+7. Jekyll uses Liquid code, here's basics, tags, filters: https://shopify.github.io/liquid/filters/sort/
