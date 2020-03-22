@@ -82,12 +82,15 @@ Now browse to http://localhost:4000
 5. Installing github-metadata offline
 	* add `gem "jekyll-github-metadata"` to `<rootOfProject>/Gemfile`
 	* add 
-	```
-	plugins:
-	  - "jekyll-github-metadata"
-	``` to `_config.yml`
+```
+plugins: 
+  - "jekyll-github-metadata"
+``` 
+	to `_config.yml`
 	* https://github.com/jekyll/github-metadata
 	
-	Then write \{\{ site.github \}\} to see what you can use in your site.
+	Then write {% raw %} `{{ site.github }}` {% endraw %} to see what you can use in your site.
 6. Formatting date (https://learn.cloudcannon.com/jekyll/date-formatting/)[https://learn.cloudcannon.com/jekyll/date-formatting/
-7. Jekyll uses Liquid code, here's basics, tags, filters: https://shopify.github.io/liquid/filters/sort/
+7. Jekyll uses Liquid code, here's basics, tags, filters: 
+	* https://shopify.github.io/liquid/filters/sort/
+	* https://learn.cloudcannon.com/
