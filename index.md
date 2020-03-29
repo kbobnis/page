@@ -5,10 +5,9 @@
 layout: home
 ---
 
-First sentence on a page.
+This blog is part of [kblb](https://kblb.github.io/) group. Every article about tech is cross-posted there.
 
-### Public repositories
-
+## My Public repositories
 
 {% assign sorted_repos = site.github.public_repositories | sort: "name" | reverse %}
 {% for repo in sorted_repos %}
@@ -20,10 +19,3 @@ First sentence on a page.
 
 1. Github LSF problem:
 	* I have a problem with large files and they are already commited to my repo. Clear your history from those files using BFG: https://rtyley.github.io/bfg-repo-cleaner/
-
-
-
-
-Actions to do:
-- create template project in github (for game jams at least)
-- see if github supports metadata fields for repositories (authors, but can be more than just code contributors)

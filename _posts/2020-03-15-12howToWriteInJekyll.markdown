@@ -48,6 +48,17 @@ categories: development
 
 > Too bad I have to remember copying the syntax to the markdown code below to have it updated.
 
+## Override the layout
+
+[https://jekyllrb.com/docs/themes/#overriding-theme-defaults](https://jekyllrb.com/docs/themes/#overriding-theme-defaults)
+
+For me:
+- I had the default layout which is 'minima'
+- Checked in console path to my ruby installation (therefore the layout files): 
+	- git bash here in the project root
+	- `bundle info --path minima`
+	- it said: `C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/minima-2.5.0`
+- I only wanted to modify the home page, so i created `_layouts/` and copied the home.html from the ruby path there.
 
 ## Installation of the whole web page
 
