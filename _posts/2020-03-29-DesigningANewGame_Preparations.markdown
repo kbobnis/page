@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Designing a new game"
-date:   2020-03-26 22:28:00 +0100
+title:  "Designing a new game - Preparations"
+date:   2020-03-29 22:28:00 +0100
 categories: mobile
 ---
 
@@ -56,6 +56,8 @@ I want:
 	>good mental excercise
 - Time of Exploration (played 2h)
 	>great incremental and simple games
+- Reigns (played 4h)
+	>great system of modular plot elements
 
 ### Out of all those games above I think Out There is the one I can borrow.
 
@@ -82,45 +84,6 @@ I want:
 	- Too random
 	- Encounters are too passive
 	- Ship cargo is claustrophobicaly small
-
-## The Design 
-
-### Game views
-
-As in Out There, you will have three views. 
-- Coat view. 
-	- Here you can equip, unequip, drop, craft, use items
-- Street view
-	- Viago will constantly walk to the right 
-
-## Encounters
-
-Only one type of encounter:
-- text interactions where you can select option, example:
-	- use power
-	- hmmm....
-	
-Still thinking about encounters.
-
-### The Design
-
-- Coat
-	- has it's capacity
-	- has special powers
-		- can cocoon and sleep in a specific coat during the day  
-		- different coat will have more storage capabilities, but be louder
-- Stats
-	- blood,
-	- money, 
-	- health, 
-	- power
-- Super powers
-> You have to unlock a power and then activate it when you need it for 1 blood
-	- strong
-	- quiet
-	- invisible
-	- super senses
-	- fast
 
 
 
