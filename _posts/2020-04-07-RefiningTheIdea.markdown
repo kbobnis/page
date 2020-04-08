@@ -7,29 +7,29 @@ categories: design
 
 This post is a wishlist what I want to be able to do in the game. So here there are listed actions, statistics and items. Very raw design.
 
-I still need to put all those things from underneath into the graphical design.
-
 ## Views
-- car view
-	- actions in the car: 
+- car view, actions:
 	> > ![](/assets/designing_a_game/actions_car.png)
-		- cover up windows
-		- hide under blanket
-		- go into sleeping bag
-		- try to fall asleep
+	- try to fall asleep
+	- leave car / observe outside situation
+	> *situation outside is described then*
+		- go to shop
+		- go to gas station
+		- a dark street and wait for a person
+		- (perception) the shop clerk just went to the toilet. quickly run (speed) and steal money from the cash register (manual coordination)
+		- (perception) one of the car is unlocked, open and search it (speed, perception)
+		- (perception) there's one drunk man who passed out on the street (strength)
+	- cardboard: cover up windows
+	- blanket: hide under
+	- sleeping bag: go into
 - neighbourhood view
-	- walk to:
+	- drive to:
 		- shop
 		- gas station
-		- a dark street and wait for a person
-	- drive to
-		- gas station
 		- residential area
-		- industrial area
-	- high perception
-		- the shop clerk just went to the toilet. quickly run (speed) and steal money from the cash register (manual coordination)
-		- one of the car is unlocked, open and search it (speed, perception)
-		- there's one drunk man who passed out on the street (strength)
+		- (perception) industrial area 
+		- (perception) abandonend parking lot
+		- drive around neighbourhood
 - city view (a map with clickable cities, forests, roads, casinos)
 
 
