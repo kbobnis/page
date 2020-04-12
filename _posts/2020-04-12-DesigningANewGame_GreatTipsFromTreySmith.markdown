@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Top 10 Ways To Come Up With Game Ideas"
+title: "Top 5 Ways To Come Up With Game Ideas"
 date: 2020-04-12 11:36:00 +0100
 categories: design
 ---
