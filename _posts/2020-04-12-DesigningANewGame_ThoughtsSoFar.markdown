@@ -48,3 +48,5 @@ What does it mean that the game was too random? It means that the player could d
 Hmmm.... I can now think of the improvements of the desing in those three mentioned above areas or I could try to first create my Viago game based on Out there and go from there. Only when I finish the first prototype, I will see what will work and will not work. 
 
 So, I am starting to develop it and see what will it lead me to.
+
+Do I have an artist to create all those graphics? I can hire someone after the prototype will be finished so that I will know exactly what I need.
