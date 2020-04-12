@@ -46,7 +46,7 @@ Having a good everyday knowledge of what is there is best for knowing trends and
 	- Look for Top games, Top Selling games [https://play.google.com/store/apps/top/category/GAME](https://play.google.com/store/apps/top/category/GAME)
 	- Checkout weekly 'what have you been playing' and 'quick android game reviews' [https://www.reddit.com/r/AndroidGaming/](https://www.reddit.com/r/AndroidGaming/) 
 
-### 1. Participate on game jams
+### 1. Participate in game jams
 This way you will not only know your own possibilities, but also have ideas by your own. This is especially good, because a game jam is actually the easiest way to create a prototype / game in your free time. You can research a new game idea and if you are an indie game developer that means that you make games in your free time, so a game jam really is your best bet to check if a prototype will be fun.
 
 How to apply for a game jam:
