@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "My best naming conventions in Unity development"
+title:  "Best way to keep unity file structure organized"
 date:   2020-03-26 22:28:00 +0100
 categories: development
 ---
