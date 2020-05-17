@@ -1,0 +1,508 @@
+Story cube
+
+Parametry
+	zdr zaczynasz mając 3
+	spr zaczynasz mając 2
+	wyt zaczynasz mając 0
+	samo zaczynasz mając 0
+
+Syt: pok1
+	Materiał ścian wydaje się być wilgotny, lecz to tylko wrażenie. Przyglądając się powierzchniom widzisz, że na przeciwległej ścianie jest prostokątne wcięcie, które bezdźwięcznie unosi się do góry, odsłaniając przejście z wypisanym symbolem ‘1’ ( syt -> pok1.stay)
+		jeśli [Samoświadomość = 0]: 
+			Odp: Gdzie jestem?
+				 () : Rozglądasz się dookoła. Płaskie metalowe ściany i ukryte za mlecznym szkłem oświetlenie nie zdradzają zbyt wiele. Twój wzrok zatrzymuje się dłużej na połyskującej ‘1’ znajdującej się na jednej ze ścian. Podchodzisz do niej bliżej, dotykasz. ‘1’ jest równie płaska jak ściany, ale ma inną teksturę.
+				 (syt -> pok1) : 
+		jeśli [Samoświadomość = 0]: 
+		jeśli [Samoświadomość = 1]: 
+			Odp: Kim jestem?
+				 () : Przez chwilę masz wrażenie, że w twojej głowie mieszka ktoś jeszcze. Jakaś świadomość, która zaznacza swoją obecność. Masujesz sobie skronie, to ci pomaga na ból głowy, pozwala też się skupić.
+				 (syt -> pok1) : 
+		jeśli [Samoświadomość = 1]: 
+		jeśli [Samoświadomość = 2]: 
+			Odp: Dlaczego tu jestem?
+				 () : Byłeś zwykłym... kim byłeś? Ciężko ci sobie cokolwiek przypomnieć o swojej przeszłości, która wydaje się być jakby za mgłą, nie możesz przebić się przez zasłonę.
+				 (syt -> pok1) : 
+		jeśli [Samoświadomość = 2]: 
+			() : Starasz się przypomnieć, co się stało. Niestety nie możesz się przebić przez panującą w twojej głowie czerń, zupełnie jakby ktoś nałożył ci blokadę na wspomnienia.
+		jeśli [Samoświadomość > 0]: 
+			Odp: Popełniam samobójstwo.
+				 (endGame -> SpotEnd) : Wybierasz jedną ze ścian, bierzesz głęboki oddech, rozbiegasz się i z całym impetem uderzasz głową w płaską metalową powierzchnię. Ból promieniuję od czoła, czujesz pewnego rodzaju ulgę. Masz wrażenie, że coś jakby puściło. Podnosisz się i znów biegniesz na ścianę, tym razem było łatwiej. I kilka razy znowu. Gdy już nie miałeś sił, czułeś jakby dusze opuszczały Twoje ciało.
+		Odp: Przechodzę przez przejście.
+			 () : Podchodzisz do drzwi z wyciągniętą przed siebie ręką. Drzwi samoczynnie wsuwają się w górną ścianę, wpuszczając do pokoju oślepiająco białe światło. Przechodzisz.
+			jeśli samo>0 () : Po wejściu w światłość słyszysz szuranie dużych powierzchni w pokoju w którym się znajdowałeś, obracasz się, aby zobaczyć co to jest, ale drzwi już się zamknęły.
+			jeśli samo<1 () : Po przejściu przez światłość drzwi się za tobą zamykają.
+			 (syt -> pok2) : 
+		Odp: Nigdzie się nie ruszam.
+			 () : Odsuwasz się od drzwi na środek pokoju. Siadasz na podłodze.
+
+Syt: pok1.stay
+	Siedząc na podłodze wyczuwasz delikatne wibracje. Przykładasz dłonie do podłoża, które z każdą chwilą się nasilają. Wstajesz, ale wibracje są już na tyle silne, że trudno ci ustać. Oprócz narastających wibracji zza ścian dociera do ciebie przytłumiony dźwięk, którego nie potrafisz zidentyfikować. Coś wewnątrz błaga, abyś uciekł. ( syt -> pok1.stay.2)
+		Odp: Przechodzę przez przejście oznaczone ‘1’.
+			 () : Podbiegasz do drzwi, a te samoczynnie wsuwają się w górną ścianę. Pada na ciebie białe światło, w które wchodzisz.
+			 (syt -> pok2) : 
+		Odp: Zostanę na miejscu.
+			 () : Siadasz na środku pokoju, aby wibrująca podłoga nie zwaliła cię z nóg. Od wibracji szczękają cię zęby, znowu czujesz rozsadzający ból w czaszce. Zbiera ci się na wymioty. Myślisz, że dłużej już nie wytrzymasz i wtedy wibracje ustępują.
+			jeśli samo=0 () : Oddychasz z ulgą, jednak wtedy czujesz bardzo mocne kopnięcie prądu od którego wszystkie twoje mięśnie kurczą się mimowolnie. Przed oczyma robi ci się ciemno.
+			jeśli samo=0 (endGame -> ShockEnd) : Następuje kolejne wyładowanie, jeszcze mocniejsze. Telepiąc się dostrzegasz niebieskie światła wędrujące po ścianach. A potem jest tylko ból i ciemność.
+			jeśli samo>0 () : Czujesz więź z labiryntem.
+
+Syt: pok1.stay.2
+	W twojej głowie pojawiają się myśli, które nie pochodzą od ciebie. Uświadamiasz sobie, że poprzednimi razami coś również na ciebie wpływało, ale dopiero teraz jesteś w stanie to odróżnić.\n\nMyśli sugerują ruszyć dalej. Są na tyle silne, że wstajesz i bezwiednie robisz pierwszy krok ku drzwiom. Wibracje w pokoju zaczynają się znowu nasilać. ( syt -> pok1.stay.3)
+		Odp: Poddaję się temu autopilotowi.
+			 (spr +2) : Doszło Tobą do drzwi. Czujesz się bezpiecznie, tak jakbyś schował się w skorupie swojego ciała, a coś innego musiało za ciebie walczyć o przetrwanie.
+			 (syt -> pok2) : 
+		Odp: Wbrew automatycznym ruchom - staję w miejscu!
+			 () : Po raz pierwszy w życiu obserwujesz jak Twoje ręce i nogi same wykonują ruchy.
+			jeśli samo>1 (spr +1) : Musisz świadomie wykonywać ruchy w drugim kierunku, aby ręka przestała się ruszać. Zaczynasz dostrzegać coraz więcej praw, które rządzą tym labiryntem.
+			jeśli samo>1 () : Po chwili ciało się uspokaja, stoisz dalej w miejscu.
+			jeśli samo<2 (syt -> pok2.return) : Nie byłeś w stanie powstrzymać tego automatycznego ruchu. Twoje ciało przeszło przez wyjście z pokoju.
+		Odp pok1.stay.2.key: Wyciągam wytrych.
+			 (wyt -1) : Metalowa kostka zamienia się w gumowy skafander. Natychmiast go ubierasz i zapinasz szczelnie.
+
+Syt: pok1.stay.3
+	Wibracje osiągają apogeum, by po chwili zupełnie ustać. Nagle ze ścian wychodzą niebieskie błyskawice, które przecinają pokój wzdłuż i szerz. ( syt -> pok2)
+		() : Słyszysz trzaski i buczenie prądu, ale nie jest ci on straszny dzięki gumowemu skafandrowi. Przeczekujesz wyładowania, a kiedy te mijają, ściągasz skafander.
+
+Pokój pachnie jak świeżo po burzy. Światła na chwilę przygasają. Jedna ze ścian otwiera się, a z otworu wysuwa się mechaniczne ramię. Ramię próbuję cię złapać swoimi ogromnymi metalowymi szczypcami.
+		Odp: Uciekam przez drzwi.
+			 () : Podbiegasz do drzwi, które natychmiast się przed tobą otwierają. Chwilę przed tym, jak przechodzisz do następnego pokoju, ramię zaciska się w miejscu w którym stoisz.
+			 (endGame -> pok1.stay.crane) : Czujesz jak zimny metal kruszy ci kości, rozcina organy, przerywa skórę. Żyjesz jeszcze, gdy ramię zamiera, ale nie jesteś w stanie już nic wyksztusić.
+			jeśli samo>1 () : Obserwujesz jak z twojej głowy wylatuje przeźroczysta ameba w której odbijają się gwiazdy. Kształt zaczyna się powiększać i zarazem zjadać sam siebie. Widok oddalonych gwiazd i planet przesłania ci teraz cały widnokręt. Tracisz świadomość.
+			jeśli samo<2 () : Obserwujesz jak z twojej głowy coś wylatuje.
+			jeśli samo<2 (endGame -> observer) : W agonii czujesz tak przeraźliwy ból głowy, że czujesz strużki łez lub krwi cieknące po policzku. Pochylasz głowę, aby oddać ostatnie tchnienie.
+		Odp: Uciekam przez otwór z którego wystaje ramię.
+			 () : Przystajesz na chwilę. Ramię podażą wprost na ciebie, kiedy jest blisko odskakujesz w bok. Próbujesz prześliznąć się pod wysięgnikiem i wleźć do dziury. Ramię szybko opada w dół i ...
+			jeśli spr<2 () : ... przygniata cię do podłoża.
+			jeśli spr<2 (endGame -> CakeEnd) : Po kręgosłubie rozchodzi się trzask Twoich własnych kości. Czujesz, że do płuc i ust napływa wilgotna krew. Tracisz przytomność.
+			jeśli spr>1 (syt -> CiemnyPokoj) : ... udaje ci się przeturlać na bok. Biegniesz na czterech łapach w czarną przestrzeń.
+		jeśli [Samoświadomość > 1]: 
+			Odp: W panice wyciągam wytrych.
+				 (wyt -1) : Z kieszeni wyciągasz metalową kulkę, która natychmiast przeobraża się w kulę światła. Kula ulatuje ci się z ręki i wnika w metalowe ramię. Ścigający cię do tej pory wysięgnik zamiera bez ruchu. Podchodzisz do dziury w ścianie, z której wychodzi wysięgnik. Znajduje się za nią pustą, ale ciemna przestrzeń. Wchodzisz do dziury, natychmiast pochłania się ciemność.
+				 (syt -> CiemnyPokoj) : 
+
+Syt: pok2
+	Znajdujesz się w identycznie pustym pokoju jak przed chwilą. Przed tobą są dwa przejścia, to oznaczone znakiem ‘2’ ma po boku panel z liczbami. Drugie przejście oznaczone ‘1’ jest otwarte. Za tobą przy przejściu którym tu przyszedłeś też jest panel z liczbami. ( syt -> pok1.return)
+		Odp pok2.key: Wyciągam jeden z tych ciężkich kształtów, aby jemu się przyjrzeć.
+			 (wyt -1) : Sięgając wyciągasz jedną chłodną kostkę. Po wynurzeniu z kieszeni, natychmiast zamienia się w karteczkę z napisanym na niej numerem złożonym z czterech cyfr.
+			 (syt -> pok2) : 
+		() : W ręku masz kartkę z wypisanymi czterema cyframi.
+		jeśli [Samoświadomość > 0]: 
+		jeśli [Samoświadomość > 1]: 
+		Odp: Wpisuję kod do panelu przy drzwiach z numerem ‘2’.
+			 () : Wpisujesz numery z kartki do panelu z kodem, zapala się zielona lampka, a drzwi się otwierają. Wchodzisz w tunel.
+			 () : Przechodząc w tunelu widzisz w ścianie światełko. Zbliżasz się do szpary i w oddali zauważasz taki sam panel z liczbami jak ten, którym otworzyłeś to przejście.
+			 (syt -> 1B) : 
+		Odp: Wpisuję kod do panelu za mną.
+			 () : Wpisujesz numery z kartki do panelu z kodem za sobą, zapala się zielona lampka i przejście za tobą się otwieraja. Przechodzisz.
+		Odp: Przechodzę przez drzwi oznaczone ‘1’.
+			 () : Podchodzisz do drzwi, a te otwierają się przed tobą. Przechodzisz do następnego pokoju.
+			 (syt -> 1A) : 
+		Odp: Próbuję wpisać jakiekolwiek numery do panelu przy drzwiach ‘2’
+			 () : Wciskając numery na panelu słyszysz klikanie przycisków, ale nic się nie dzieje.
+			 (syt -> pok2) : 
+
+Syt: pok1.return
+	Ciemność w tym pokoju nie pozwala przyjrzeć się dokładnie sufitowi, ale podłoga i ściany wyglądają tak samo jak poprzednim razem. ( syt -> pok2.return)
+		jeśli [Samoświadomość = 1]: 
+			() : Przysłuchujesz się pozornej ciszy panującej w pokoju. Do twoich uszy dociera ledwie słyszalny szmer jakby świst lub wentylator. Dźwięk jest jednostajny, ale zagłusza go choćby twój głośniejszy oddech.
+		Odp pok1.key: Wyciągam Wytrych.
+			 (wyt -1) : Z kieszeni wyciągasz kostkę, która w mgnieniu oka zmienia się w lampę ultrafioletową.
+			 (syt -> pok1.return) : 
+		Odp: Oświetlam podłogę
+			 () : Widzisz ślady swoich stóp oraz innych wiele innych.
+			 (syt -> pok1.return) : 
+		Odp: Oświetlam sufit
+			 () : Pojawia się coś! Sufit oświetlony ultrafioletem pokazuje ukryte informacje. Głowa zaczęła cię niesamowicie boleć ...
+			jeśli samo<1 () : ... nie jesteś w stanie przeanalizować rysunku na suficie.
+			jeśli samo>0 () : ... pokonujesz ten ból i skupiasz się na szyfrze: 
+
+‘.--- . ... - . --   .- .-. -.-. .... .. - . -.- - . -- --..--   - ---   .--- .-   --.. -... ..- -.. --- .-- .- .-..- . --   - ..-..   -.- --- ... - -.- ..-.. .-.-.-   -- --- --..-. . ... --..   ... - .-.- -..   ..- -.-. .. . -.-. .-.-.-   .-- -.-- - .-. -.-- -.-. .... -.--   ... .-.-   -.- .-.. ..- -.-. --.. . -- --..--   ..- --..-. -.-- .---   .. -.-. ....   .- -... -.--   -.. --- ... - .- -.-..   ... .. ..-..   -.. ---   --- -.- .-. .-.- --. .-..- . --. ---   .--. --- -.- --- .--- ..- .-.-.-   .--. .-. --.. . .--. .-. .- ... --.. .- -- --..--   - -.-- .-.. -.- ---   - .- -.-   -- --- --. ..-..   -.-. ..   .--. --- -- ---. -.-. .-.-.-’
+			 (syt -> pok1.return) : 
+		Odp: Oświetlam ściany
+			 () : Na ścianach jest pełno odcisków palców. Nie tylko twoich.
+			 (syt -> pok1.return) : 
+		Odp: Wracam przez przejście
+			 () : Podchodzisz do drzwi z wyciągniętą przed siebie ręką. Drzwi samoczynnie wsuwają się w górną ścianę, wpuszczając do pokoju oślepiająco białe światło. Przechodzisz. Znowu.
+
+Syt: pok2.return
+	Przed tobą są dwa przejścia oznaczone ‘1’, oraz ‘2’ mające po boku panel z liczbami. ( syt -> 1A)
+		Odp: Przechodzę przez drzwi oznaczone ‘I’.
+			 () : Podchodzisz do drzwi, a te otwierają się przed tobą. Przechodzisz do następnego pokoju.
+		Odp: Próbuję wpisać jakiekolwiek numery do panelu przy drzwiach ‘2’
+			 () : Wciskając numery na panelu słyszysz klikanie przycisków, ale nic się nie dzieje.
+			 (syt -> pok2.return) : 
+
+Syt: 1A
+	Trafiasz do pokoju, pośrodku którego znajduje się stół z czterema fiolkami. Każda wypełniona płynem innego koloru. W pokoju tym znajdują się wyłącznie jedne drzwi. Drzwi nie otwierają się, kiedy się do nich zbliżasz. Nie masz pojęcia co znajduje się w fiolkach, nie czujesz żadnego zapachu, ich konsystencja nie zdradza składników, z których są zrobione. ( syt -> 1A.2)
+		Odp 1A.green: Wypijam zielony płyn.
+			 (zdr -1) : Płyn nie ma smaku, zupełnie jak woda. Z początku nie czujesz żeby po jego wypiciu coś się zmieniło, ale po chwili ogarnia cię nagła słabość, z nosa leci ci krew. Siadasz żeby odpocząć, ale słabość zostaje.
+			 () : Siedząc na podłodze widzisz jak drzwi na końcu pokoju już się otwierają. Wkładasz pustą fiolkę do kieszeni - może się do czegoś przyda.
+		Odp: Wypijam żółty płyn.
+			 (spr -1) : Płyn smakuje jak sok truskawkowy. Z początku nie czujesz żeby po jego wypiciu coś się zmieniło, ale po chwili drętwieją ci kończyny. Uczucie zdrętwienia lekko przechodzi, ale dalej czujesz tysiące igiełek w stopach przy stawianiu kroków.
+		Odp: Wypijam fioletowy płyn.
+			 () : Płyn początkowo nie miał aromatu, ale po ogrzaniu się w Twoich ustach wydaje z siebie woń denaturatu. Zaczyna cię palić w język i ...
+			jeśli wyt>1 (spr +1) : ... wiedząc, że masz jeszcze w kieszeni kilka wytrychów, które mogłyby cię może uratować - opanowujesz odruch wyplucia cieczy i ją połykasz. Twój żołądek rozgrzewa się, umysł rozjaśnia.
+			jeśli wyt<2 () : ... spanikowany wypluwasz płyn na podłogę. Płyn zamienia się w parę i znika nie docierając do podłogi. Nic się nie nie ruszyło, nic cię nie zabiło. Stoisz zdziwiony, nie możesz ruszyć ręką i głową, nogami. Ciało jednak zaczęło się ...
+			jeśli wyt<2 (endGame -> violetDeath) : ... ruszać samo. Zaczynasz powoli tracić jasność umysłu, chowasz się wewnątrz głowy, gdy ktoś inny steruje ciałem. Płaczesz w środku i gaśniesz.
+		Odp: Wypijam czerwony płyn.
+			 (endGame -> HotEnd) : Fiolka jest chłodna w dotyku. Szybki łyk i czujesz płyn buzujący w Twoich ustach. Po ułamku sekundy nadciąga obezwładniający ból powalając cię na kolana. Silny kwas wyżera sobie drogę przez Twoje ciało prowadzony nieubłaganą siłą grawitacji. Każdy oddech to bitwa i nie zamierzasz przegrać żadnej z nich. Pierwsze poddało się serce. Nie zdawałeś sobie sprawy z tego, że czujesz każde jego uderzenie, dopóki nie przestało bić. Znajoma ciemność nadciągała powoli, pozostawiając w zasięgu wzroku pustą fiolkę toczącą się powoli po ziemi.
+		Odp 1A.key: Wyjmuję wytrych.
+			 (wyt -1) : Z kieszeni wyciągasz metalową kostkę, która zmienia się w niewielką czerwoną tabletkę.
+			 (syt -> 1A) : 
+		Odp: Połykam tabletkę i wypijam którąkolwiek fiolkę.
+			 () : Połykasz ją, a następnie wypijasz pierwszą z brzegu fiolkę z płynem. Płyn smakuje jak woda, nie czujesz po jego wypiciu żadnej różnicy.
+		Odp: Wrzucam tabletkę w którąkolwiek fiolkę i wypijam po chwili.
+			 (endGame -> violetKeyDeath) : Tabletka rozpuściła się szybko w fiolce, nie zmieniając nawet koloru roztworu. Sięgasz po fiolkę i jednym przechyleniem wypijasz. Z początku nie czujesz żeby po jego wypiciu coś się zmieniło, ale po chwili drętwieją ci kończyny. Coraz bardziej i bardziej, aż drętwienie opanowuje głowę. Czujesz jakby mroźne igły wbijały ci się w głowę. Łzy zaczynają ci lecieć z oczu. Wycierasz je, patrzysz na rękę, która jest czerwona. Upadasz na podłogę i tracisz przytomność.
+		jeśli [Samoświadomość > 0]: 
+			Odp: Wypijam wszystkie.
+				 () : Podnosisz pierwszą z brzegu fiolkę, nie wypijasz ją jednak, tylko wlewasz jej zawartość do fiolki obok. Pozostałe dwie fiolki również zlewasz do tej jednej. Potrząsasz fiolką, patrząc jak różnokolorowe płyny mieszają się w szarawą breję. Podnosisz fiolkę i wlewasz ją sobie do gardła. Jej konsystencja i smak przywodzi ci na myśl kaszkę dla dzieci. Po opróżnieniu fiolki czujesz się dobrze, jakby nic się nie zmieniło.
+				 (endGame -> MixedEnd) : [Nagle, bez żadnego ostrzeżenia następuje koniec świadomości. - co się dzieje z naszym bohaterem, tego nikt się nie dowie.]
+
+Syt: 1A.2
+	Zamknięte do tej pory drzwi z napisem otwierają się, a za nimi ukazuje się ściana z dwoma kolejnymi przejściami. Drzwi zamiast kresek są oznaczone połyskującymi symbolami. ( syt -> 2A)
+		Odp: Wybieram drzwi z symbolem serca.
+			 () : Drzwi otwierają się przed tobą, a ty przechodzisz dalej.
+		Odp: Wybieram drzwi z symbolem okna.
+			 () : Drzwi otwierają się przed tobą, a ty przechodzisz dalej.
+			 (syt -> 3A) : 
+
+Syt: 2A
+	Na środku pokoju drzemie lew. Zwierzę jest wielkie, jego masywne cielsko unosi się delikatne w rytm powolnych oddechów. ( syt -> 2A.2)
+		Odp 2A.key: Wyjmuję wytrych.
+			 (wyt -1) : 2A.ans1.change1.text.
+			 (syt -> 2A) : 
+		() : W ręku trzymasz strzykawkę.
+		Odp 2A.pastLion: Przemknę po cichu obok lwa.
+			 () : Ostrożnie kładąc stopy przechodzisz obok dzikiej bestii.
+			jeśli spr>1 () : Gdy jesteś obok lwa, ten przestaje na chwilę oddychać, ale nie budzi się. Udaje ci się przemknąć na drugą stronę.
+			jeśli spr<2 () : Widzisz jak lew marszczy pysk, kiedy jesteś obok. Spod jego warg wystają potężne kły. Nie możesz się oprzeć żeby nie zatrzymać na nich wzroku. Niestety gapiąc się na kły nie zauważasz lwiego ogona, na który stajesz.
+			jeśli spr<2 (endGame -> LionEnd) : Lew zrywa się na cztery łapy rycząc. Zanim zdążysz przestraszyć się na dobre, zaciska paszczę na twojej nodze. Szarpiąc głową rozrywa twoje ciało na strzępy, a twoja krew zalewa pomieszczenie. Ból eksploduje w miejscach, w których wbijają się kły i pazury. Lew nie bawi się z tobą długo, rozszarpuje twoje gardło.
+		Odp: Wstrzykuję zawartość strzykawki sobie.
+			 () : Wbijasz strzykawkę w brzuch i opróżniasz pojemniczek. Natychmiast tracisz czucie w nogach i upadasz z hukiem na podłogę.
+			 (endGame -> paralyze.lion.death) : Lew otwiera oczy, zauważa cię. Jego źrenice powiększają się, ostrożnie, po cichu podnosi się z podłogi, jakby się bał, że cie przestraszy. Ty jednak nie jesteś w stanie ruszyć żadną kończyną. Zamykasz oczy i po chwili słyszysz szmer sierści koło siebie. Poczułeś ból w karku i wszystko się skończyło.
+		Odp: Wstrzykuję zawartość strzykawki lwu.
+			 () : Zdobywasz się na odwagę i powoli podchodzisz do bestii, po czym wstrzykujesz zawartość strzykawki w kark lwa. Ta podnosi głowę, wydaje warknięcie i opada jak sparaliżowana. Dalej leży spokojnie oddychając i patrząc na ciebie szeroko otwartymi oczyma.
+		Odp: Atakuję lwa.
+			 (endGame -> EatenEnd) : Starasz się zmiażdżyć pysk lwa o podłogę potężnym ciosem buta. Lew budzi się skomląc i rzuca się na ciebie, z jego pyska leci krew. Próbujesz unikać potężnych łap, ale w wkrótce wielki kot zaciska zęby na twojej szyi. Jeszcze żyjesz, gdy lew zanurza pysk w twoich wnętrznościach wygryzając żołądek.
+
+Syt: 2A.2
+	Przed tobą dwa przejścia. ( syt -> 3A)
+		jeśli [Samoświadomość > 0]: 
+			() : W miejscu, gdzie leży lew, podłoga ma inny kolor, dostrzegasz też półkolistą szparę. Gdzieś z tyłu głowy rozlega się szept, który podpowiada ci, że bezpieczniej wybrać któreś z drzwi i iść dalej.
+		Odp 2A.2.lionPasskey: Przesuwam lwa.
+			 () : Podchodzisz do lwa i kładziesz ręce na jego ciele. Pod palcami czujesz miękką sierść. Na początku pchasz ostrożnie, niemal delikatnie, aby nie zbudzić lwa. Ten jednak...
+			jeśli samo>0 () : ... ani drgnie. Obracasz się do lwa plecami, zapierasz się rękami i nogami, po czym pchasz z całych sił. Kawałek po kawałku udaje ci się przesunąć ciężkie cielsko bestii.
+			jeśli samo<1 () : ... otwiera oczy i cię zauważa.
+			jeśli samo<1 (endGame -> lionMoveDie) : Próbowałeś uciec, później się bronić. Później chciałeś jak najszybciej umrzeć.
+			 (syt -> 2A.2) : 
+		Odp 2A.2.key: Wyciągam wytrych.
+			 (wyt -1) : Z kieszeni wyciągasz metalową kostkę, która samoistnie przeobraża się w kulę światła. Kula wyrywa ci się z ręki i ...
+			jeśli samo=1 () : ... wnika w właz, który po chwili otwiera się.
+			jeśli samo>1 () : ... z twojego oka pociekła łza, która upadła na białą kulę pochłaniając ją.
+			jeśli samo>1 (endGame -> notGood) : Czujesz niesamowity ból głowy, z oczu zaczyna cieknąć coraz więcej łez. Tracisz świadomość, gdy twoje ciało samo wstaje i udaje się w kierunku drzwi.
+			 (syt -> 2A.2) : 
+		() : Lew spoczywa obok, a ty stoisz nad okrągłym kawałkiem metalu w podłodze, który wykonany jest z nieco innego materiału niż reszta ścian pokoju. Nie ma w sobie żadnych otworów, ani znaków.
+		Odp: Wchodzę do przejścia w podłodze.
+			 () : Patrzysz teraz na wejście do metalowej rury, której koniec niknie w ciemnościach. Wahasz się tylko przez chwilę. Wchodzisz do rury, zapierając się o jej ściany. Posuwasz się w dół widząc wnętrze labiryntu
+			 (zdr -1) : Schodząc ześlignąłeś się i spadłeś w ciemność.
+			 (syt -> CiemnyPokoj) : 
+		() : Szpara w podłodze jest otwarta, czujesz z niej lekki powiew wiatru.
+		Odp: Wybieram drzwi z symbolem żarówki.
+			 () : Drzwi otwierają się przed tobą, a ty przechodzisz dalej.
+			 (syt -> 1B) : 
+		Odp: Wybieram drzwi z symbolem okna.
+			 () : Drzwi otwierają się przed tobą, a ty przechodzisz dalej.
+
+Syt: 3A
+	Trafiasz do pokoju, którego podłoga wysypana jest potłuczonym szkłem. Warstwa szkła ma co najmniej kilkanaście centymetrów, nie możesz ominąć jej bokiem. Żeby dotrzeć do drzwi musisz przejść przez szkło. Patrzysz na swoje stopy - są gołe. ( syt -> 3A.2)
+		Odp: Przebiegam przez szkło.
+			 (zdr -1) : Stawiasz długie kroki, dzięki czemu w mig docierasz do drzwi. Jednak przez to, że ciężko stawiałeś stopy, twoje podbicia są całe pocięte i tracisz sporo krwi.
+		Odp: Idę powoli przez szkło.
+			 (spr -1) : Powoli przenosisz ciężar ciała z jednej nogi na drugą, wybierając miejsca gdzie szkło ma najmniej ostrych krawędzi. W końcu docierasz do drzwi, udało ci się uniknąć głębokich zacięć jednak w twoich stopach tkwi wiele ostrych kawałków szkła.
+		Odp: Użyję wytrychu.
+			 (wyt -1) : Z kieszeni wyciągasz metalową kostkę, która w mgnieniu oka zmienia się w kapcie o grubej skórzanej podeszwie. Ubierasz kapcie. Bez problemu przechodzisz na drugą stronę przy dźwiękach miażdżonego szkła.
+		jeśli [Samoświadomość > 0]: 
+			Odp: Zabijam się!
+				 (endGame -> LightOutEnd) : Schylasz się i podnosisz jeden z ostrych kawałków. Przecinasz sobie nim żyły, najpierw na jednym, następnie na drugim nadgarstku. Siadasz pod ścianą i czekasz. Czujesz jak życie powoli z ciebie uchodzi. Masz wrażenie, że jakaś obca siła, która znajduje się w tobie, pchała cię ku drzwiom, chce żebyś szedł dalej. Gdy zaczynasz tracić siłę, czujesz jak Twoje ciało wstaje i idzie przez szkło. Tracisz świadomość idąc.
+
+Syt: 3A.2
+	Po drugiej stronie potłuczonych szkieł czekają na ciebie drzwi, na których połyskują różne symbole. ( syt -> 1B)
+		Odp: Przechodzę przez drzwi z symbolem żarówki.
+			 () : Drzwi otwierają się przed tobą, a ty przechodzisz dalej.
+		Odp: Przechodzę przez drzwi z symbolem dłoni.
+			 () : Drzwi otwierają się przed tobą, a ty przechodzisz dalej.
+			 (syt -> 2B) : 
+
+Syt: 1B
+	Trafiasz do pokoju, w którym jest całkowicie ciemno. Ciemność jest tak gęsta, że nie widzisz nawet własnej ręki przytkniętej do nosa. W oddali widzisz lekkie światło drzwi ( syt -> 1B.2)
+		jeśli [Samoświadomość > 0]: 
+			() : Na twarzy czujesz lekkie ciepło promieniujące z boku pokoju.
+		Odp 1B.key: Wyciągam wytrych.
+			 (wyt -1) : Z kieszeni wyciągasz kawałek metalu, który w mgnieniu oka zamienia się we włączoną latarkę.
+			 () : Na ścianach widzisz panele przy których faluje powietrze oraz dym na środku pokoju.
+			 (syt -> 1B) : 
+		Odp: Korzystając ze światła latarki przechodzę przez pokój.
+			 () : Omijasz w bezpiecznej odległośći chmurę dymu i boczne ściany. Przechodzisz na koniec pokoju.
+		Odp: Idę przed siebie.
+			 (zdr -1) : Ruszasz na wprost wyciągając przed siebie ręce. Stąpasz powoli, sprawdzając stopą czy nie ma przed tobą jakiś kolców, zapadni, albo innego zagrożenia. Idzie ci całkiem nieźle, aż do chwili gdy wciągasz w nos gryzący zapach. Cofasz się, ale nic ci to nie daje. Dławisz się i krztusisz przed dłuższą chwilę. Nie możesz się pozbyć gryzącego uczucia w gardle.
+		Odp: Idę wzdłuż ścian.
+			 (spr -1) : Sięgasz ręką za siebie, aż wyczujesz ścianę. Opierasz na niej dłonie i posuwasz się wzdłuż niej. Masz nadzieję, że ominiesz dzięki temu potencjalne pułapki na środku pokoju. Docierasz mniej więcej do środka ściany, gdy twoje ręce natrafiają na gorący powierzchnię. Jest ona rozgrzana tak mocno, że skóra na twoich dłoniach zostaje spalona.
+		Odp: Poczekam 5 minut.
+			 (endGame -> TostEnd) : Czekasz. Wkrótce do twoich nozdrzy dociera kwaśny, gryzący zapach. Twoje gardło zaciska się i nie możesz złapać oddechu. Desperacko otwierasz usta miotając się po pokoju, kolana się pod tobą uginają i lądujesz na rękach. Wpadasz na coś gorącego, czujesz swąd przypalonej skóry i mięsa. Próbujesz wstać, odsunąć się od żaru, lecz ręką opierasz się o rozgrzany panel i natychmiast puszczasz. W bólu zwijasz się w kłębek.
+
+Syt: 1B.2
+	W pokoju nagle zapala się światło. Masz przed sobą dwoje różnych drzwi. ( syt -> 2B)
+		jeśli [Samoświadomość > 1]: 
+			() : Masz już przejść przez jedne z drzwi, przed tym jednak patrzysz na sufit. Dostrzegasz, że wypisana jest na nim wiadomość: ‘Możesz zatrzymać latarkę - A.’.
+		Odp: Wybieram drzwi z symbolem dłoni.
+			 () : Drzwi otwierają się przed tobą, a ty przechodzisz dalej.
+		Odp: Wybieram drzwi z symbolem domu.
+			 () : Drzwi otwierają się przed tobą, a ty przechodzisz dalej.
+			 (syt -> 3B) : 
+
+Syt: 2B
+	Trafiasz do pokoju, w którym oprócz ciebie stoi nieznany ci mężczyzna. Zanim zdążysz się do niego odezwać, coś uderza cię w tył głowy. Odwracasz się w porę, by powstrzymać kobietę przed zadaniem kolejnego ciosu. Siłując się z nieznaną ci kobietą, gorączkowo myślisz dlaczego cię zaatakowała. Kątem oka dostrzegasz, ze z drugiej strony zmierza ku tobie mężczyzna. ( syt -> 2B.2)
+		Odp: Walczę z mężczyzną.
+			 (zdr -2) : Odpychasz od siebie kobietę. Uchylasz się przed ciosem mężczyzny, sam uderzając go w bok. Mężczyzna nie pozostaje ci dłużny i rzuca się na ciebie, powalając cię na podłogę. Okładacie się pięściami. Próbujesz przejąć kontrolę w walce. Udaje ci uwięzić jego szyję w twoich ramionach, zaciskasz mocno i trzymasz dopóki mężczyzna nie przestanie się ruszać. Wstajesz pośpiesznie, by zająć się kobietą. Ta trzyma w ręku nóż i dźga cię w ramię, wkrótce jednak pada martwa na podłogę.
+		Odp 2B.killWoman: Atakuję kobietę.
+			 (spr -1) : Odpychasz od siebie kobietę. Uchylasz się przed ciosem mężczyzny, sam uderzając go w bok. Doskakujesz szybko do kobiety, która trzyma w dłoni nóż. Wykręcasz jej rękę i odbierasz ostrze. Nie wiele myśląc podcinasz jej gardło i ruszasz na mężczyznę. Ten jest jednak szybszy i jego pięść spada na twoją twarz, trafia tuż przy oku. Sztylet prawie wypada ci z ręki, ale jakoś udaje ci się go utrzymać. Wbijasz go mężczyźnie w klatkę piersiową.
+		Odp 2B.chicken: Próbuję uciec.
+			jeśli zdr>2 () : Odpychasz od siebie kobietę. Odwracasz się od mężczyzny i próbujesz przejść przez drzwi...
+			jeśli zdr>2 (zdr +1) : ... coś uderza cię w głowę i tracisz przytomność. Gdy ją odzyskujesz twój wzrok pada na nieruchome i pokaleczone ciała. Mężczyzna ma przebity sztyletem brzuch, a kobieta rozłupaną czaszkę. Czujesz się lekko wypoczęty.
+			jeśli zdr<3 () : Drzwi ani drgną, a mężczyzna uderza cię pięścią w tył głowy.
+			jeśli zdr<3 (endGame -> ChickenEnd) : Od siły ciosu padasz na kolana, przed oczyma robi ci się ciemno. Mężczyzna na tym nie poprzestaje, uderza cię raz po raz, aż wkrótce krew zalewa ci twarz. Ostatnim co widzisz jest to, jak kobieta zakrada się od tyłu do mężczyzny i wbija sztylet w jego gardło.
+		Odp 2B.crushKeys: Wyciągam wytrych.
+			 (wyt -1) : Odpychasz od siebie kobietę. Z kieszeni wyciągasz metalową kostkę, która w twoich rękach zmienia się w kij baseballowy. Kij jest porządny, ciężki. Widzisz zwątpienie w oczach mężczyzny, ale dla niego jest już za późno. Uderzasz go prosto w skroń. Mężczyzna pada na podłożę, z jego głowy płynie cienka stróżka krwi. Odwracasz się w stronę kobiety, która trzyma w ręku nóż. Kobieta próbuje cię dźgnąć, ale ty masz większy zasięg. Pierwszy cios wytrąca jej z ręki nóż, łamiąc przy tym nadgarstek, drugi trafia w głowę. Kobieta upada niczym szmaciana lalka.
+
+Syt: 2B.2
+	Dysząc stoisz nad ciałami dwójki nieznanych ci ludzi. Zbiera ci się na wymioty, do oczu płyną łzy. ( syt -> 3B)
+		jeśli [Samoświadomość > 0]: 
+			Odp: Przeszukuję kobietę.
+				 () : Pochylasz się nad ciałem zabitej przez ciebie kobiety. Starasz się nie patrzeć na jej zmasakrowaną twarz i wyłamane ręce. Ściągnasz z niej całkowicie ubrania. Nie wiesz dlaczego się do tego posunąłeś, zupełnie jakby kierowała tobą jakaś inna siła.
+				 () : W jej buzi znajdujesz ...
+				jeśli 2B.crushKeys () : ... kawałki rozkruszonego metalu.
+				jeśli 2B.killWoman (wyt +2) : ... dwie metalowe kostki, które wypadły z jej policzków. Chowasz je do kieszeni.
+				jeśli 2B.chicken () : ... nic. Nie jesteś w stanie się przemóc, aby grzebać biednej kobiecie w ustach.
+				 (syt -> 2B.2) : 
+		jeśli [Samoświadomość > 0]: 
+			Odp: Przeszukuję mężczyznę.
+				 () : Pochylasz się nad ciałem zabitego przez ciebie mężczyzny.
+				 (endGame -> sawGlue) : W jego rozłupanej głowie widzisz poruszającą się, przeźroczystą, galaretowatą amebę. Z ameby płynie ciecz w której widzisz zielone światła. Nagle ameba zamiera w bezruchu. Zamienia się powoli w grot skierowany ku tobie. Z twojego nosa szybko wypływa woda i zastyga tworzac skorupę. Nie zdążyła jednak w porę zastynąć, bo grot wystrzelił w twoim kierunku i przebił ci szyję. Chwytasz się za ranę, ale czujesz, że życie z ciebie ucieka. Po chwili tracisz przytomność.
+				 (syt -> 2B.2) : 
+		Odp: Przechodzę przez drzwi z symbolem drzewa.
+			 () : Drzwi otwierają się przed tobą, a ty przechodzisz dalej.
+			 (syt -> 1C) : 
+		Odp: Przechodzę przez drzwi z symbolem domu.
+			 () : Drzwi otwierają się przed tobą, a ty przechodzisz dalej.
+		Odp: Nie mogę już wytrzymać.
+			 (endGame -> SuicideEnd) : Podchodzisz do zwłok kobiety i podnosisz sztylet leżący obok niej. Bierzesz ostatni głęboki oddech i jednym ruchem podcinasz sobie gardło. Do przełyku i płuc napływa ci krew, zaczynasz się topić. Odruchowo próbujesz zatamować krew rękoma, ale rana jest za szeroka i głęboka. Starając się złapać oddech, upadasz na ludzi, których sam zabiłeś.
+
+Syt: 3B
+	Trafiasz do pokoju, w którym znajduje się rój os. Osy kłębią się na całej szerokości pokoju, wydawany przez nie bzyczący dźwięk przyprawia cię o nieprzyjemne dreszcze. Przez chmarę owadów, ledwo co widzisz drzwi po drugiej stronie pokoju. Żeby do nich dotrzeć musisz przedostać się przez owady. ( syt -> 3B.2)
+		jeśli [Samoświadomość = 1]: 
+			() : Przyglądasz się bliżej osom. Im dłużej się im przyglądasz tym bardziej masz wrażenie, że nie poruszają się one chaotycznie, a według ustalonego wzoru. Wydaje ci się, że jesteś już blisko rozwiązania wzoru ich poruszania, ale gdzieś ucieka ci ta myśl i zostajesz z powrotem sam na sam z rojem os.
+		jeśli [Samoświadomość > 1]: 
+			() : Przyglądasz się osom bliżej i bliżej. Wydaje ci się, że są one inne niż te które pamiętasz. Nie potrafisz jednak powiedzieć, co jest z nimi nie tak.
+		Odp: Przebiegnę szybko przez chmarę os.
+			 (zdr -1) : Zasłaniasz sobie oczy łokciem i wciągasz głęboko powietrze. Wbiegasz w chmurę owadów, które od razu kąsają cię w każde nieosłonięte miejsce na ciele. Każde kolejne ugryzienie poraża cię spazmem bólu. W końcu dobiegasz do przeciwległej ściany, gdzie osy zostawiają cię w spokoju.
+		Odp: Pójdę powoli przez chmarę os.
+			 () : Zasłaniasz sobie twarz dłońmi, rozsuwając palce, aby widzieć drogę przed sobą. Wciągasz głęboko powietrze i ruszasz powoli, krok za krokiem przez chmarę owadów. Osy obsiadają twoją skórę, ich małe nóżki łaskoczą cię tak, że ciężko ci nie zacząć się nerwowo śmiać, ale wiesz, że musisz być niewzruszony niczym posąg.
+			jeśli spr>1 () : Najtrudniej przetrwać ci pierwsze ugryzienia, ale zaciskasz zęby i docierasz do przeciwległej ściany. W tym miejscu osy zostawiają cię w spokoju.
+			jeśli spr>2 () : Dobrze ci idzie, ale kiedy parę os jednak decyduje się, by cię ugryźć, wpadasz w panikę i próbujesz odgonić je ręką.
+			jeśli spr>2 (endGame -> VenomEnd) : Osy wpadają w wściekłość, atakują cię ze wszystkich stron. Ich żądła wbijają się w twoją skórę zostawiając bąble. Więcej ugryzień nie zniesiesz, w panice biegniesz przed siebie, lecz osy kąsają nadal. Tracisz przytomność.
+		Odp 3B.key: Wyciągam wytrych.
+			 (wyt -1) : Sięgasz do kieszeni po metalową kostkę, które natychmiast zamienia się w dymiącą kulkę. Dym nie ma dla ciebie zapachu, nie odczuwasz też niczego kiedy go wdychasz.
+			 (syt -> 3B) : 
+		Odp: Rzucam kulę w rój os.
+			 () : Rzucasz kulkę w chmarę os, a te padają jedna po drugiej. Wkrótce wszystkie owady leżą na podłożu, a ty przechodzisz bezpiecznie na drugą stronę pokoju.
+		Odp: Połykam dymiącą kulę.
+			 (endGame -> smoke) : Szybko przełykasz kulę, która prześlignęła ci się szybko przez przełyk. Po chwili dym zaczyna wypalać ci brzuch. Zauważasz jak przez pępek zaczyna wydostawać się mgiełka. Następna i ostatnia rzecz, którą pamiętasz, to silne uderzenie w tył głowy.
+		Odp: Spróbuję rozgonić osy.
+			 () : Ściągasz z siebie koszulkę i machając nią niczym śmigłem próbujesz rozgonić osy na tyle, aby przejść na drugą stronę pokoju. Pierwszy rząd os udaje cię się rozgonić, postępujesz śmiały krok do przodu.
+			jeśli zdr>1 () : Pojedyncze osy gryzą cię, ale z zaciśniętymi zębami wytrzymujesz ból. Idziesz krok za krok, cały czas kręcąc koszulkę. Docierasz na drugą stronę, ale czujesz w sobie pszczeli jad.
+			jeśli zdr<2 () : Z kolejnymi rzędami nie idzie ci tak dobrze. Osy zbierają się wokół ciebie i kąśliwie żądlą. Syczysz z bólu i próbujesz się od nich odgonić. Chcesz dobiec do drzwi, ale w chmarze owadów tracisz orientację.
+			jeśli zdr<2 (endGame -> HelicopterEnd) : Osy gryzą w każde miejsce na ciele, jedna wbija się w twoje oko. Chcesz krzyknąć, ale wtedy owady wlatują w twoje gardło i kąszą od środka. Nic pamiętasz już nic więcej.
+
+Syt: 3B.2
+	Jesteś już przy drzwiach, osy masz za sobą. Które drzwi wybierasz? ( syt -> 1C)
+		Odp: Przechodzę przez drzwi z symbolem drzewa.
+			 () : Drzwi otwierają się przed tobą, a ty przechodzisz dalej.
+		Odp: Przechodzę przez drzwi z symbolem sera.
+			 () : Drzwi otwierają się przed tobą, a ty przechodzisz dalej.
+			 (syt -> 2C) : 
+
+Syt: 1C
+	Wchodzisz do pokoju pełnego pił tarczowych. Piły mają szerokie i długie ząbki, obracają się z olbrzymią prędkością wydając przy tym głośny świst. Metalowe płyty stykają się ze sobą, sypiąc iskry i dzwoniąc donośnie. Przyczepione są do wysięgników, które poruszają się to w przód, to w tył, to na boki.\n\nWydaje ci się, że być może uda ci się przejść pomiędzy piłami, tak żeby wyjść z tego cało. Jak chcesz przez nie przejść? ( syt -> 1C.2)
+		Odp: Powoli.
+			 () : Najpierw przyglądasz się w jaki sposób poruszają się wysięgniki z piłami i dopiero poznając ich schemat decydujesz się ruszyć. Poruszasz się powoli, ostrożnie, omijając kręcące się ostrza ledwie o milimetry.
+			jeśli spr>1 () : Parę razy twoje kończyny znajdują się blisko pił, ale udaje ci się przejść przez na drugą stronę.
+			jeśli spr<2 () : Nieopatrznie nieco za słabo się uginasz i jedna z pił przecina ci plecy - tracisz równowagę, wpadasz na kolejną piłę.
+			jeśli spr<2 (endGame -> MeatEnd) : Wirujące ostrze rozcina ci twarz.
+		Odp: Szybko.
+			 () : Spoglądasz ostatni raz, by spróbować rozgryźć schemat poruszania się pił. Ruszasz szybko mając nadzieje, że ominiesz ostrza. Uchylasz się przed nimi w ostatnich momentach. Piły wirują ci nad uchem, jedna tarcza ścina ci parę włosów, ale idzie ci całkiem nieźle. Tuż przy drzwiach nieuważnie stawiasz stopę i ...
+			jeśli samo>1 () : ... oczami wyobraźni widziałeś jak piła odcina ci wszystkie palce w prawej stopie. Jednak w ostatniej chwili to ostre narzędzie się zatrzymało i nie wyrządziło ci żadnej szkody.
+			jeśli samo<2 (zdr -1) : ... piła odcina ci wszystkie palce w prawej stopie.
+		Odp: Użyję wytrychu.
+			 (wyt -1) : Wyciągasz z kieszeni kostkę metalu, która zmienia się w pilot z jednym przyciskiem. Kiedy wciskasz przycisk, piły przestają się kręcić. Bez złowieszczego brzęczenia ostrza nie są aż tak straszne. I choć wciąż masz obawy, że ostrza znowu ruszą, przechodzisz między nimi. Niezraniony docierasz na drugą stronę pokoju.
+
+Syt: 1C.2
+	Przed tobą para drzwi. ( syt -> 2C)
+		jeśli [Samoświadomość > 0]: 
+			Odp: Wspinam się do koła w suficie.
+				 () : Podchodzisz do wysięgników, na końcu których zamontowane są piły tarczowe. Ostrożnie wspinasz się po wysięgnikach, uważając na ostre kolce pił, gdy twoja ręka ześlizgnęła się z chwytu...
+				jeśli spr>0 (wyt -1) : ... udało ci się utrzymać równowagę. Masz właz na wysięgnięcie ręki, ale ten nie chce się przed tobą otworzyć. Wyciągasz z kieszeni metalową kostkę, która w mgnieniu oka zmienia się kulę światła, która wyrywa ci się z dłoni i wpada w właz. Właz otwiera otwiera się, a ty wspinasz się do ciemnego tunelu nad nim. Posuwasz się wąską rurą w całkowitej ciemności. W końcu wypełzasz na szeroką płaską powierzchnię.
+				jeśli spr<1 () : ... nie udało ci się utrzymać równowagi i spadłeś.
+				jeśli spr<1 (endGame -> climbSaw) : Wylądowałeś brzuchem na ostrym boku piły, który wbił ci się głęboko. Nie chcąc stracić zbyt wiele krwi - nie ruszasz się zmiejsca. Gdy po chwili poziom adrenaliny zaczął spadać, przeszył cie niesamowity ból i straciłeś przytomność.
+				 (syt -> CiemnyPokoj) : 
+		jeśli [Samoświadomość > 0]: 
+			() : Odwracasz się, i zauważasz że na suficie znajduje się koło z innego metalu.
+		Odp: Przechodzę przez drzwi z symbolem kąta prostego.
+			 () : Drzwi otwierają się przed tobą, a ty przechodzisz dalej.
+			 (syt -> 3C) : 
+		Odp: Przechodzę przez drzwi z symbolem sera.
+			 () : Drzwi otwierają się przed tobą, a ty przechodzisz dalej.
+
+Syt: 2C
+	Znajdujesz się w pokoju pełnym gryzoni. Piski są bardzo donośne. Setki tysięcy oczu świecą na czerwono. Szare tułowia kłębią się w niecce obejmującej cały pokój. Ty stoisz w progu wejścia. ( syt -> 2C.2)
+		Odp: Przebiegnę szybko przez pokój.
+			 (zdr -1) : Ruszasz biegiem przez kłębowisko szczurów. Szkodniki boleśne kąsają cię w stopy. Docierasz na drugą stronę.
+		Odp: Przebiegnę długimi susami przez pokój.
+			 (spr -1) : Wybijasz się z głębokiego przysiadu i skaczesz prosto w kłębowisko gryzoni. Zgniatasz pod stopami kilka szkodników i od razu skaczesz znowu. Tym razem jednak poślizgnąłeś się podczas wyskoku i wywracasz się na plecy. Szczury od razu dopadają do ciebie i dotkliwie gryzą.
+			jeśli spr>0 () : Szybko się podnosisz.
+			jeśli spr<1 (zdr -1) : Ciężko ci się podnieść, ukłucia małych zębów pulsują na całym ciele.
+			 () : Docierasz do drzwi.
+		Odp: Użyję wytrychu.
+			 (wyt -1) : Wyciągasz z kieszeni kostkę z metalu, który zamienia się w wielki kawał spleśniałego, zielonego sera. Odruchowo, w geście obrzydzenia upuszczasz ser, a szczury zbierają się wokół niego. Upadając, uciekasz od tego miejsca i bez problemu przechodzisz na drugą stronę.
+		jeśli [Samoświadomość > 0]: 
+			Odp: Zabiję szczury.
+				 (endGame -> RatEnd) : Podchodzisz do kłębowiska szczurów zgniatasz najbliższego szczura pod stopą. Z małego szarego ciała wylatują płyny, pozostałe szczury rzucają się na jego pozostałości oraz na twoją stopę. Jeden z szarych szczurów gryzie cię w nogę. Zgniatasz go drugą stopą, zgniatasz też kilka następnych. Do twojej podeszwy przyczepiają się szczurze wnętrzności. Szczury nie pozostają ci dłużne, podgryzają twoje stopy, jeden uczepia się twojej łydki. Padasz jednak dopiero po tym, kiedy jeden gryzie cię w krocze. Lecisz wprost w kłębowisko szarych ciał. Próbujesz się podnieść, ale szczury są szybsze. Zjadają cię kawałek po kawałku.
+
+Syt: 2C.2
+	Szczury popiskują za twoimi plecami. Przed sobą masz drzwi do wyboru. ( syt -> 3C)
+		Odp: Przechodzę przez drzwi z symbolem kąta prostego.
+			 () : Drzwi otwierają się przed tobą, a ty przechodzisz dalej.
+		Odp: Przechodzę przez drzwi z symbolem zakazu wjazdu.
+			 () : Drzwi otwierają się przed tobą, a ty przechodzisz dalej.
+			 () : Przypomina ci się twoje dzieciństwo. Obraz twojej sypialni dodaje ci otuchy.
+			 (syt -> ExitRoom) : 
+
+Syt: 3C
+	Trafiasz do pustego pokoju, na podłodze wyryty jest wielki napis:\n\n‘Trzy pokoje mają wartość trzydzieści. Pokój i dwa ciała mają wartość osiemnaście. Ciało minus nóż ma wartość dwa. Jaką wartość ma jeden pokój plus jedno ciało plus jeden nóż?’ Troje drzwi przed tobą mają wypisane na sobie liczby. Które drzwi wybierasz? ( syt -> ExitRoom)
+		Odp: Drzwi z liczbą ‘16’.
+			 () : Podchodzisz do drzwi, a te otwierają się przed tobą. Przechodzisz dalej.
+		Odp: Drzwi z liczbą ‘15’.
+			 (endGame -> DrownEnd) : Podchodzisz do drzwi, a te otwierają się przed tobą. Od razu wylewa się na ciebie fala zimnej wody. Woda wpada ci do ust i nosa, krztusisz się, ale udaje ci się oprzeć o ścianę i podnieść. Na niewiele się to jednak zdaje, bo wkrótce woda wypełnia cały pokój. Nurkujesz, ale nigdzie nie ma wyjścia. Czujesz jak woda napiera na twoje płuca. Miotasz się dopóki starcza ci tchu. Na chwilę przed śmiercią, kiedy ostatki tlenu wypełniają twoje żyły, czujesz euforię. Odchodzisz szczęśliwy.
+		Odp 3C.14: Drzwi z liczbą ‘14’.
+			jeśli samo>0 () : Podchodzisz do drzwi, a te otwierają się przed tobą. Z przejścia za drzwiami wylatuje długi metalowy pręt, który pędzi prosto w twoją twarz. W porę odchylasz głowę, pręt jedynie ociera się o twój policzek.
+			jeśli samo>0 () : Wycierasz smużkę krwi z policzka. Albo przejść przez otwarte drzwi z których wyleciał pręt. Za nimi znajduje się tylko ciemność i nie możesz dojrzeć co się tam kryje. Co wybierasz?
+			jeśli samo<1 () : Podchodzisz do drzwi, a te otwierają się przed tobą. Z przejścia za drzwiami wprost na ciebie wylatuje błyszcząca smuga.
+			jeśli samo<1 (endGame -> ShotEnd) : Poczułeś ukłucie na twarzy, a później nie było już nic.
+			 (syt -> 3C) : 
+		Odp: Otwarte drzwi z liczbą '14'.
+			 () : Przechodzisz przez otwarte drzwi i wchodzisz w całkowitą ciemność.
+			 (syt -> CiemnyPokoj) : 
+		Odp: Używam wytrychu.
+			 (wyt -1) : Z kieszeni wyciągasz metalową kostkę, która zmienia się w kartkę z napisem ‘16’.
+			 (syt -> 3C) : 
+
+Syt: ExitRoom
+	W tym pokoju ściany są białe, a światło ma ciepłą barwę. Na drugim końcu widnieje białe przejście. ( syt -> CiemnyPokoj)
+		jeśli [Samoświadomość = 0]: 
+			() : Nie możesz odpędzić od siebie wrażenia, że jest jeszcze inne wyjście.
+		jeśli [Samoświadomość > 0]: 
+			() : Do twoich uszu dociera ledwie co słyszalny szum - przywodzi ci na myśl pracujące maszyny.
+		jeśli [Samoświadomość = 2]: 
+			Odp ExitRoom.key: Wyciągam wytrych
+				 (wyt -1) : Wyciągasz z kieszeni metalową kostkę, która zamienia się kulę światła. Kula wyrywa się z twojej dłoni i uderza w jedną ze ścian, w której pojawiaja się ciemny otwór wielkości dużego psa.
+				 (wyt +1) : Kula odbija się od ściany i wraca do twojej kieszeni zamieniając się spowrotem w zimny metalowy przedmiot.
+				 (syt -> ExitRoom) : 
+		Odp: Wchodzę w ciemny otwór.
+			 () : Otwór jest niski, więc przechodzisz na czworakach.
+			 () : Przechodząc na czworakach poczułeś pod rękami kawałki szkła, spanikowany ...
+			jeśli spr>0 () : ... szybko przystanąłeś i delikatnie, po omacku odsunąłeś większe kawałki.
+			jeśli spr<1 (zdr -1) : ... szybko podskoczyłeś - uderzając się głową w niski sufit. Lądując spowrotem, szkło wbiło ci się głęboko w kolana.
+		Odp ExitRoom.key2: Wyjmuję wytrych jeszcze raz.
+			 (wyt -1) : Znowu sięgasz do kieszeni i wyjmujesz z niej metalową kostkę, która momentalnie zmienia się kulę światła o zielonym kolorze. Wpada w ścianę i odsłania inne przejście, z którego wydostaje się zielona mgła.
+			 (syt -> ExitRoom) : 
+		Odp: Przechodzę przez przejście z zielonej mgły.
+		Odp: Przechodzę przez świetlisto białe przejście.
+			 () : Wchodzisz w plamę jasnego światła. Tracisz poczucie grawitacji, rozmywasz się w bieli.
+			 (samo +1) : Czujesz, że rozumiesz labirynt lepiej.
+			 (endGame -> white) : Jesteś wolny, ale bez żadnych odpowiedzi.
+
+Syt: CiemnyPokoj
+	Wilgotność jest inna niż w pozostałych pokojach. Podłoga nie jest tak zakurzona jak w pozostałych. Twoje nogi same zaczynają cię prowadzić. Odbierasz nieprzyjemne uczucie - niezmożoną chęć wydostania się z tego pokoju. ( syt -> CiemnyPokoj.2)
+		Odp ciemny.key: Wyciągam wytrych.
+			 (wyt -1) : Z kieszeni wyciągasz metalową kostkę, która zmienia się latarkę.
+			 () : Oświetlasz latarką pomieszczenie. Widzisz metalowe wysięgniki z zamontowanymi piłami tarczowymi. Widzisz wielkie czarne kolce zwisające z sufitu. Na wysokości twarzy, przy ścianie zauważasz kryształową kulę, która po oświetleniu gromadzi światło. Docierasz do przeciwległej ściany, snop światła z latarki pada na panel z różnymi guzikami.
+			 (syt -> CiemnyPokoj) : 
+		() : W pokoju jest zupełnie ciemno.
+		() : Za sobą widzisz metalowe wysięgniki z zamontowanymi piłami tarczowymi, czarne kolce zwisające z sufitu. Gdzieś przy ścianie jest kryształowa kula. Snop światła z latarki pada na panel z różnymi guzikami.
+		Odp: Podchodzę do panelu.
+		Odp ciemny.explore: Badam pokój po ciemku.
+			 () : Wyciągasz przed siebie ręce i powoli posuwasz się do przodu. Skóra na rękach cię łaskocze, bo wydaje ci się, że mijasz jakieś kształty. Ostrożnie starasz się je badać dłońmi, pod palcami czujesz metalowe powierzchnie. Twój palec natrafia na jakiś przycisk.
+			 (syt -> CiemnyPokoj) : 
+		Odp: Wciskam przycisk.
+			 (endGame -> HalfEnd) : Ciszę przecina chroboczący dźwięk, który coś ci przypomina. Natychmiast czujesz zimny metal na twarzy, którzy przechodzi przez Twoją głowę bez żadnego oporu, wyrywając płaty Twojej skóry.
+		Odp CiemnyPokoj.back: CiemnyPokoj.ans6.text.
+			 () : Twoje ciało samo chętnie wychodzi z tego pokoju przez przejście.
+			 (syt -> ExitRoom) : 
+		Odp: Zawracam.
+			 () : Twoje ciało samo chętnie wychodzi z tego pokoju przez przejście.
+			 (syt -> ExitRoom) : 
+
+Syt: CiemnyPokoj.2
+	Stoisz przed panelem. Znajdują się na nim cztery przyciski oraz dziurka. Głowa zaczyna cię boleć, w strachu rośnie coraz większa ochota opuszczczenia tego pokoju. ( syt -> OkraglyPokoj)
+		Odp: Odchodzę od panelu.
+			 (syt -> CiemnyPokoj) : 
+		Odp: Naciskam którykolwiek przycisk.
+			 (endGame -> infractEnd) : Z panelu wydobywa się seria dźwięków, po których po panelu przebiegają wyładowania elektryczne. Zanim zdążysz odsunąć się od panelu, kolejne z wyładowań przeskakuje na ciebie. Twoje serce staje. Kończysz będąc tak blisko odpowiedzi.
+		Odp ciemnyPokoj.2.key: Wyciągam wytrych.
+			 (wyt -1) : Z kieszeni wyciągasz metalową kulkę, która zamienia się mały kluczyk.
+			 (syt -> CiemnyPokoj.2) : 
+		Odp: Wkładam kluczyk do dziurki w panelu.
+			 () : Kluczyk wkładasz do dziurki w panelu i przekręcasz. Wstrzymujesz oddech. Przyciski na panelu zaczynają się świecić, ale nie wszystkie naraz, tylko po kolei. Przyglądasz się im i naciskasz je w tej kolejności. Po wcisnięciu ostatniego przycisku w jednej ze ścian pojawiają się drzwi przez które przechodzisz.
+		jeśli [Samoświadomość > 0]: 
+			Odp CiemnyPokoj.2.pattern: Naciskam przyciski według wzoru.
+				 () : Ułożenie przycisków na panelu o czymś ci przypomina. Nie jesteś sobie w stanie przypomnieć co, ale masz wrażenie, że już kiedyś widziałeś ten panel. Że wciskałeś te przyciski. Pozwalasz, aby twoje palce same znalazły odpowiednie guziki. Po naciśnięciu ostatniego ...
+				 () : ... w jednej ze ścian pojawiają się drzwi.
+				jeśli samo>1 () : Czujesz, że to właśnie to. W tym samym czasie czujesz wzmożony ból głowy na myśl o przejściu przez drzwi.
+				jeśli samo<2 () : Czujesz wzmożony ból głowy na myśl o przejściu przez drzwi.
+				 (syt -> CiemnyPokoj.2) : 
+		Odp: Przechodzę przez otwarte przejście.
+			 () : Wchodzisz w przejście. Gdy stoisz w świetle, kilka smug leci w twoim kierunku. Jedyne co zdążasz zrobić, to zmrużyć oczy.
+			jeśli samo>1 () : Z twojej głowy wystrzeliło kilka kropel wody, które pochłonęły 'smugi'. Przechodzisz dalej.
+			jeśli samo<2 () : Smugi przebijają twoje ciało.
+			jeśli samo<2 (endGame -> Okragly.Smooth) : Czujesz ciepłą wilgoć na twarzy, koszuli. Padasz na kolana.
+			jeśli samo<2 (samo +1) : Rozumiesz lepiej zasady działania labiryntu.
+
+Syt: OkraglyPokoj
+	Wchodzisz do pokoju, który jest okrągły. A właściwie kulisty. Co jeszcze dziwniejsze, wszystkie ściany w pokoju są przezroczyste. Twoje czoło eksploduje bólem. Padasz na kolana, łapiesz się za głowę. Próbujesz zagłuszyć ból. Wydaje ci się, że coś próbuje cię zgładzić bardziej niż wcześniej. ( syt -> OkraglyPokoj.2)
+		Odp: Nie mam już siły.
+			 (endGame -> flesh) : Dociera do ciebie, że trafiłeś tu zbyt wcześnie. Twoje myśli mieszają się ze sobą, przed oczami dosłownie przelatuje ci całe twoje życie. Czujesz niesamowity ból głowy, wydaje ci się, że słyszysz trzaskanie kości własnej czaszki. To ostatnie co pamiętasz.
+		jeśli [Samoświadomość = 2]: 
+			Odp: Myślę o wyjściu.
+				 (endGame -> NearEnd) : Skupiasz swoje myśli na tym, że chcesz się stąd wydostać. Poświęcasz tej myśli wszystkie swoje siły, ale ból jest nie do wytrzymania. Nie możesz go znieść. Mieszają ci się od niego myśli. Poddajesz się, a twoja czaszka dosłownie eksploduje.
+		jeśli [Samoświadomość = 2]: 
+			Odp: Myślę o labiryncie.
+				 () : Skupiasz swoje myśli na labiryncie. Widzisz labirynt inny niż sobie wcześniej wyobrażałeś. Wyobrażasz sobie pokoje, których nigdy nie widziałeś. Ta myśl nie pochodzi od ciebie, ale uczepiasz się jej z całych sił. Ból narasta, ale podnosisz się z kolan.
+
+Syt: OkraglyPokoj.2
+	 ( syt -> <nic>)
+		Odp okragly.key: Wyciągam wytrych
+			 (wyt -1) : Z kieszeni wyciągasz metalowe kostki, które samoistnie zamieniają się w kule światła. Kule wnikają w twoją głowę. I po chwili z niej wylatuje przeźroczysta ameba. Patrzysz się na ten twór. Nie widzisz jednak zza niego ścian pomieszenia, lecz gwiazdy. Obchodzisz dookoła lewitującą amebę.
+			 (syt -> OkraglyPokoj.2) : 
+		() : Coś w tobie zaczyna krzyczeć, napływają myśli, które nie pochodzą od ciebie. Oczami wyobraźni widzisz hiperkostkę. Widzisz srebrne żyłki pomiędzy planetami rozpościerające się na miliony kilometrów. Widzisz swój labirynt lewitujący w przestrzeni. Ta świadomość coraz bardziej oddziela się od twoich myśli. Opanowuje sobie prawą stronę głowy. Czujesz jednak w sobie, że jest niezadowolona, a nawet przerażona. Jej nacisk jednak nie słabnie i wiesz, że długo nie wytrzymasz.
+		() : Na środku pokoju lewituje ten przeźroczysty stwór. Widzisz gorejącą gwiazdę w jej ciele, czujesz ciepło od niej bijące.
+		Odp okragly.key.2: Wyciągam kolejny wytrych.
+			 (wyt -1) : Z kieszeni wyciągasz ...
+			jeśli 1A.green (wyt +1) : ... fiolkę, którą wcześniej zabrałeś z pokoju. Ameba rozbiła ci przedmiot w dłoni i zaczyna się powiększać.
+			jeśli 1A.green () : ... wytrych. Ameba wyrzuca kroplę z siebie, która pochłonęła kostkę zanim ta zdążyła się przeobrazić.
+			jeśli 1A.green (endGame -> amebaKill) : Ten galaretowaty stwór zaczyna się powiększać, aż zajmuje cały pokój. Nie widzisz już labiryntu. Masz wrażenie jakbyś stał na niewidzialnej podłodze pośrodku kosmosu. Nie czujesz zimna ani ciepła... Przez chwilę marzysz, patrząc się na gorejącą gwiazdę. Gdy bierzesz oddech... nie jesteś w stanie wziąć oddechu, zaczynasz panicznie otwierać usta... tracisz przytomność w najwspanialszym możliwym kosmicznym krajobrazie.
+			 (syt -> OkraglyPokoj.2) : 
+		Odp: Szybko sięgam do kieszeni po wytrych.
+			 () : Krwawiącą ręką sięgasz szybko do kieszeni po prawdziwy wytrych. Wytrącona z równowagi ameba tym razem nie ma czasu na reakcję.
+			 (wyt -1) : Wytrych zamienia się w świetlistą literę A. Ta litera wnika w amebę i zaczyna ona wibrować i jaśnieć. W pomieszczeniu nagle rozlega się przeraźliwy świst - jakby cały labirynt leciał z niesamowitą prędkością przez galaktykę. Pokój zaczyna wirować, ściany przysuwają się do ciebie. Słyszysz trzaski z zewnątrz, rój pszczół, pojękiwania szczurów. Ściany zaczynają się rozpadać i ukazują niesamowity obraz kosmosu. Cały labirynt znajdował się w czeluści innego wszechświata. Natychmiast robi ci się zimno, czujesz jak Twoje wewnętrzne ciśnienie wypycha ci oczy, zaczynasz puchnąć. Opuszczasz swoje ciało. Płyniesz w czerni i widzisz rozpadającego się człowieka otoczonego milionami 'soczewkowatych ameb'. Labirynt rozpadł się i rozstrzelił po całej nebuli. Ciało zniknęło zamieniło się w czerwoną mgłę.
+			 (endGame -> win) : Mrugasz swoimi nieistniejącymi oczami. Czy to się stało naprawdę?
+		Odp: Padam na kolana z płaczem.
+			 (endGame -> okragly.lose) : Twoje ciało zaznało zbyt wiele ran, czujesz jak odpływa z ciebie życie. Padasz na kolana, a następnie padasz twarzą na podłogę. To twój koniec.

@@ -1,0 +1,634 @@
+Story postwro
+
+Parametry
+	prze zaczynasz mając 0
+	atak zaczynasz mając 0
+	zap zaczynasz mając 3
+	ene zaczynasz mając 3
+	UKRYTY chapter zaczynasz mając 0
+
+Syt: selection
+	Wybierz rozdział. ( syt -> 1)
+		Odp: Wyznawcy.
+		Odp: Podróż.
+			 (syt -> 7) : 
+		Odp: Miasto.
+			 (syt -> 20) : 
+		Odp: Laboratorium. 
+			 (syt -> 36) : 
+
+Syt: 1
+	Urodziłem się już po “apokalipsie”, jak niektórzy zwykli nazywać wybuch zarazy, która zdziesiątkowała ludzkość i była początkiem końca świata rządzonego przez ludzi.\n\nW swoich wizjach widziałem jednak niewyraźne strzępki początku zarazy. Widziałem: ( syt -> 2)
+		Odp: Laboratorium.
+			 () : Widziałem ludzi w kitlach odskakujących od człowieka, z którego wyciekały płyny ustrojowe.
+			 (ene +1) : Od tamtej pory unikałem zbliżenia z innymi, dzięki czemu choroba obeszła się ze mną delikatnie.
+		Odp 1.military: Ciężarówkę wojskową.
+			 () : Widziałem ciężarówki z niezrozumiałym dla mnie znakiem uciekające w popłochu z miasta.
+		Odp 1/cup: Kielich pełen krwi.
+			 () : Widziałem świetlisty kielich, a w nim gęstą, szkarłatną krew.
+			 (prze +1) : Wizja prorocza.
+
+Syt: 2
+	Zyskałem grupkę wyznawców, którzy widzieli we mnie zbawiciela. Nie było nam jednak łatwo przetrwać. W zniszczonym przez zarazę świecie czaiło się mnóstwo niebezpieczeństw.\n\nPoleciłem swoim ludziom, aby skupili się na:  ( syt -> quest)
+		Odp 2/food: Pożywieniu.
+			 (zap +1) : Moi wyznawcy niestrudzenie przeszukiwali gruzowiska w poszukiwaniu rzeczy zdatnych do jedzenia. Udało nam się znaleźć dużo zapasów.
+			 (syt -> 3) : 
+		Odp: Przetrwaniu.
+			 (ene +1) : Moi wyznawcy za wszelką cenę unikali niebezpieczeństw, robiąc wszystko po trochu, aby przetrwać. Od tamtej pory potrafię lepiej oszczędzać zapasy.
+			 (syt -> 3) : 
+		Odp: Analizowaniu sytuacji.
+			 () : Moi wyznawcy trenowali nie tylko ciało, ale też umysł.
+		Odp: Obronie.
+			 (atak +1) : Moi wyznawcy sami wykonywali prowizoryczną broń, która dawała złudzenie bezpieczeństwa. Nauczyliśmy się wtedy posługiwania tym, co było pod ręką.
+			 (syt -> 3) : 
+
+Syt: quest
+	Zagadka: Zapas pożywienia wystarczyłby dla jednego mężczyzny na 9 dni, dla jednej kobiety na 12 dni, a dla jednego dziecka na 18 dni. Na ile czasu wystarczyłyby zapasy dla wszystkich trzech osób? ( syt -> 3)
+		Odp: 3 dni
+			 () : Źle.
+		Odp: 5 dni
+			 () : Źle.
+		Odp: 8 dni
+			 () : Źle.
+		Odp: 4 dni
+			 (endGame -> quest1) : Dobrze, ale i tak wszyscy umarliśmy, co za różnica, że matematyka się zgadzała.
+		Odp: 9 dni
+			 () : Nie, ale...
+			 (ene +1) : Gdy umierałem z głodu przyszli oni. Zobaczyli, że jeszcze oddycham, pomogli mi, nakarmili. Nie patrzyłem się wstecz, musiałem zostać sam.
+
+Syt: 3
+	Wyznawcy często prosili mnie o przytoczenie moich  wizji. Jedną z nich lubiłem powtarzać szczególnie często.  ( syt -> 4)
+		Odp: Kazałem skupić się na szkoleniach.
+			 (ene +1) : Cwiczyliśmy całe dnie technik radzenia sobie z szaleńcami. Do teraz czuję dreszcz ze strachu o spotkaniach z tymi najgroźniejszymi istotami.
+		Odp 3/path: Mówiłem o drodze, która mnie wzywa.
+			 (zap +1) : Dominowało we mnie uczucie konieczności podążania ścieżką wytyczoną przez byty, które kierowały moimi krokami. Nie mogłem się jej oprzeć, czułem jak mnie wzywa i nakazuje iść.
+		Odp: Mowiłem, że to tylko wada mojego mózgu.
+			 (ene -1) : Nie czułem w sobie nic nadprzyrodzonego. Niezależnie jak wiele razy im to powtarzałem, oni i tak we mnie wierzyli
+
+Syt: 4
+	Prowadziłem swoich wyznawców do miejsca, które wskazywały mi wizje. Przeżyliśmy wiele kryzysowych sytuacji, lecz najgorszą z nich było: ( syt -> 5)
+		Odp: Napad bandytów.
+			 () : Bandyci zjawili się w środku nocy. Było ich mniej niż was, ale ich wściekłe oczy śnią ci się do teraz. Odgryzali krtanie moim ludziom i po chwili wszyscy wyglądali jakby kąpali się we krwi. Mi i kilkunastu wyznawcom udało się obronić i ukryć, gdy reszta konała. 
+			 (zap +1) : Wiedziałem lepiej jak się obronić przed szaleńcami.
+		Odp: Zniszczone jedzenie.
+			 () : Nie zauważyliśmy paskudnej zarazy karaluchów na naszych wozach. Ktoś zobaczył robaki, gdy te już przetrzebiły większość zapasów. W następnych tygodniach wiele ludzi poświęciło swoje życie, aby ich bliscy mogli coś zjeść. Kładące się na ziemi osoby, gdy wszyscy szli dalej już zawsze będą mi się kojarzyć ze śmiercią.
+			 (zap +1) : Od tamtej pory lepiej przechowywaliśmy i konserwowaliśmy jedzenie.
+		Odp: Fałszywe przeczucie.
+			 () : Za bardzo ufałem sobie. Nikt nie szukałby pożywienia we wraku statku na dnie mroźnej rzeki. Byłem tak pewny znaleziska, że wszyscy mężczyźni zanurkowali razem ze mną w ciemną wodę. Skarbu nie było, ale te wrzody na twarzach i plecach zniszczyły zdrowie wielu.
+			 (ene +1) : Od tamtej pory zdecydowanie bardziej zastanawiałem się nad decyzjami.
+
+Syt: 5
+	Pomimo przeszkód dotarliśmy w pobliże miejsca, do którego od początku prowadziły mnie wizje. Daleko na horyzoncie widniała zamazana sylwetka budowli wystających ponad dorodnymi drzewami. 'Miasto' - tak się niegdyś nazywało się podobne miejsca.\n\nDo tej pory krok w krok towarzyszyli mi wyznawcy, lecz dalej musiałem ruszyć sam. Nie opuściliby mnie, więc zaplanowałem samotną ucieczkę z obozu w nocy. Wieczorem: ( syt -> 5b)
+		Odp: Nakazałem kilku osobom, aby oddali mi swoje zapasy
+			 (zap +1) : Otrzymałem tyle zapasów, ile tylko zmieściłem do plecaka.
+			 (syt -> 6) : 
+		Odp: Wygłosiłem mowę: ‘Szerzcie dobrą nowinę.’
+			 () : Poleciłem, aby w przypadku mojego zaginięcia wyznawcy rozeszli się na wszystkie strony świata i zaczęli szukać drugiej osobie o podobnym, wielkim darze.
+			 (ene +1) : Słuchając własnych słów nabrałem nadziei.
+			 (syt -> 6) : 
+		Odp: Zjadłem z nimi bogatą wieczerzę.
+			 (zap -2) : Tamtego wieczora zjedliśmy wiele zapasów.
+			 (syt -> 6) : 
+		Odp 5/thank: Dziękowałem im za ich pomoc.
+			 () : Moi wyznawcy przyjęli podziękowania ode mnie niczym dar i błogosławieństwo, czułem się gotowy do wyjścia.
+			 () : Nie zdawali sobie zprawy, że niedługo później ich opuszczę.
+			 (syt -> 6) : 
+		Odp: Przeżyłem wizję w samotności.
+			 () : Czasami, podczas gdy moje ciało mrowiło, czułem jakby to nie było losowe. Ktoś mnie prowadził. Nie wiedziałem jeszcze wtedy dokąd.
+			 () : Wizje były tak mocne, że ...
+			jeśli prze<4 (zap -2) : ... podczas ataku potłukłem dwa słoiki z ogórkami.
+			jeśli prze>3 () : ... zobaczyłem prawdziwy cel mojej podróży.
+			 (syt -> 6) : 
+
+Syt: 5b
+	Zobaczyłem jaskinię wypełnioną światłem. Żółte ściany wykonane z piaskowca nie ukazywały żadnych śladów ludzkiej działalności. Z góry słyszałem dźwięki maszyn. ( syt -> 6)
+		Odp: Zamknąłem oczy.
+			 () : Ujrzałem obrazek unoszącego się mężczyzny pośrodku tej jaskini.
+			 (prze +1) : Wizja prorocza.
+		Odp: Szukałem znaków.
+			 () : Długo szukałem jakiś znaków, które mogłyby wskazać mi drogę.
+			 (endGame -> 5b.lose) : Zagubiłem się we śnie, nie wiedziałem jak się obudzić.
+
+Syt: 6
+	Nie było mi łatwo ruszyć w dalszą podróż samotnie, ale czułem ciężar odpowiedzialności. Wiedziałem, że zwłoka pogorszy sytuację. Specjalnie położyłem się na uboczu. Gdy zapadła noc: ( syt -> chapter1.end)
+		Odp: Spakowałem wisiorek.
+			 () : To jedyna pamiątka po osobie, do której zbliżyłem się bardziej niż powinienem był. Na wisiorku wygrawerowane było jej imię: 'Sharika'.
+			 (endGame -> sentiment) : Przypomniały mi się wszystkie chwile, które przeżyłem razem z moimi ludźmi. Nie byłem w stanie ich opuścić.
+		jeśli [Energia > 0]: 
+			Odp: Wziąłem moje 'zęby'.
+				 () : Wizje pozostawiły ślad na moim zdrowiu. Najpierw zaczęły mi wypadać włosy, potem moja skóra zaczęła się łuszczyć, na koniec zacząłem tracić zęby. Zbierałem zęby do pudełka, czasami wyciągałem je, by przypomnieć sobie o swojej roli.
+
+Syt: chapter1.end
+	Stałem pod wielkim dębem, obserwując obozowisko moich wyznawców. Ich podróż kończyła się tutaj, moja dopiero zaczynała. Nie puściliby mnie samego w dalszą drogę, dlatego zdecydowałem się kontynuować podróż w pojedynkę. ( syt -> 7)
+		jeśli [Energia < 6]: 
+			() : Miałem za mało sił, aby wybrać się w dalszą drogę.
+		jeśli [Energia > 5]: 
+			Odp: Opuściłem moich wyznawców.
+				jeśli atak>0 (chapter +1) : Wiedziałem już, że ostatecznie muszę zostawić swoich wyznawców. Czułem, że wystarczy mi sił, aby tego dokonać.
+				jeśli atak>0 (endGame -> chapter1.end) : Koniec rozdziału pierwszego. Nowy rozdział został odblokowany.
+				jeśli atak<1 () : Brakowało mi jeszcze wyszkolenia w walce, aby opuścić moich wyznawców.
+				jeśli atak<1 (endGame -> chapter1.fail) : Aby wybrać się samotnie w podróż musiałem jeszcze opanować podstawową umiejętność obrony w dziczy.
+		Odp: Nie byłem w stanie opuścić moich wyznawców
+			 () : Miałem za mało sił, aby wybrać się dalej w samotną podróż.
+			 (endGame -> chapter1.lose) : Zostałem ze swoimi ludźmi, do końca życia. Nie odnalazłem mojego przeznaczenia, lekarstwa. Oglądałem jak umierali jeden po drugim, aż w wieku 60 lat zostałem sam.
+
+Syt: 7
+	Wędrowałem całą noc i część dnia. Czułem się doszczętnie wyczerpany, upadłem na kolana. Przystanąłem pod wielkim dębem w środku puszczy. ( syt -> 8a)
+		jeśli [Przeczucie > 0]: 
+		jeśli [Przeczucie < 1]: 
+		jeśli [Przeczucie < 1]: 
+		Odp: Zrobiłem krótką przerwę.
+			 () : Usiadłem na chwilę, by dać odpocząć nogom. Wyrzuciłem wypatroszonego wilka, który już zaczynał się psuć.
+			 (zap -1) : Zjadłem puszkę z paprykarzem.
+			 (ene +1) : Po kilku głębszych oddechach ruszyłem w dalszą drogę.
+		Odp: Oporządziłem mięso i zostałem tam na noc.
+			 (zap +2) : Oskórowałem mięso i na przygotowanym ognisku wędziłem kilka kawałków mięsa z wilka.
+			 (ene +1) : Pożywiłem się gorącym posiłkiem.
+			 () : Zawinąłem sobie w prowizoryczne posłanie ze szmat i zasnąłem.
+			 (syt -> 9d) : 
+		Odp geiger: Na ziemi leżało jakieś popękane urządzenie...
+			 () : Urządzenie trzeszczało bardzo delikatnie, gdy brałem je do rąk. Rodzice opowiadali mi o takim urządzeniu, pokazuje, czy w danym miejscu jest ślad radioaktywny. Wtedy też zauważyłem, że moje palce lekko mrowieją. Schowałem je do kieszeni i szedłem dalej.
+
+Syt: 8a
+	Szedłem, aż słońce schowało się za horyzontem. Próbowałem utrzymać kierunek marszu, gdy z pobliskich krzaków dotarł do mnie bardzo ostry, syczący odgłos. W tamtym momencie zatęskniłem za moimi towarzyszami. ( syt -> 8.run)
+		Odp: Kontynuowałem marsz.
+			 () : Szedłem bardzo zdenerwowany, co chwilę obracałem się do tyłu i starałem dostrzec zagrożenie w świetle księżyca przedostającego się przez korony drzew. Moja noga zaczepiła o coś wystającego z ziemi.
+		Odp 8a.fire: Rozpaliłem ognisko.
+			 (ene +1) : Zebrałem leżące nieopodal patyki i korzystając z podpałki wskrzesiłem ogień. Było mi cieplej, a w dodatku płomienie powinny odstraszyć dzikie zwierzęta. Zasnąłem grzany małymi płomieniami.
+			 (zap -1) : Zjadłem kolację.
+			 (syt -> 8b) : 
+		Odp: Usiadłem i czekałem aż zagrożenie wyjdzie z ukrycia.
+			 () : Mając założony plecak, usiadłem i oparłem się o najbliższe drzewo, które osłaniało mnie z jednej strony. Nie słyszałem syku.
+			 (syt -> 8b) : 
+
+Syt: 8.run
+	Na chwilę straciłem z bólu oddech. Tuż za mną znowu rozległ się syk. ( syt -> 8b)
+		Odp: Poderwałem się do ucieczki.
+			 () : Czując bardzo bolesne ukłucia w rękach, wstałem i zacząłem uciekać. Było jednak ciemno, a teren okazał się nierówny i zdradziecki. Nadepnąłem na nierówny kształt. Skręcając kostkę upadłem, uderzając głową o kamień, strużka krwi pociekła z mojej skroni.
+			 (endGame -> run) : To nie uderzenie w głowę, było powodem mojej śmierci, a metalowy pręt, który wbił się w mój brzuch.
+		Odp: Udawałem martwego.
+			 () : Wstrzymałem oddech i starałem się leżeć nieruchomo pomimo palącego bólu. Bestia zbliżyła się do mnie od tyłu, do stóp.
+			jeśli atak>1 () : Poczułem w pewnej chwili, że bestia wyskakuje w moim kierunku. Wykorzystałem moment, aby szybko się odwrócić i nogą pchnąć ją w krzaki. Usłyszałem pisk, wstałem i uciekłem. Nawet nie pamiętam, gdzie zasnąłem.
+			jeśli atak<2 () : Nie zwróciłem nawet uwagi, jaka bestia mnie zaatakowała. Była krzyżówką dwóch gatunków. Pierwszy osobnik nowego drapieżnika.
+			jeśli atak<2 (endGame -> hide) : Bestia skoczyła od razu do karku i skruszyła mój rdzeń kręgowy.
+			 (syt -> 10) : 
+
+Syt: 8b
+	Siedziałem w mroku już dłuższą chwilę oparty o drzewo. Zaczynałem się robić senny. Przykryłem się kurtką.  ( syt -> 9d)
+		jeśli [Energia > 2]: 
+			Odp treeUp: Wspiąłem się na drzewo.
+				 () : Zwinnie wspiąłem się na drzewo i wyłożyłem się na gałęziach.
+		jeśli [Energia > 2]: 
+			() : Poczułem delikatne mrowienie kierujące mnie ku górze.
+		Odp 8b.fire: Rozpaliłem ognisko.
+			 (ene +1) : Zebrałem leżące nieopodal patyki i korzystając z podpałki wskrzesiłem ogień. Było mi cieplej, a w dodatku płomienie powinny odstraszyć dzikie zwierzęta.
+			 (zap -1) : Zjadłem kolację.
+			 (syt -> 10) : 
+		Odp: Skuliłem się i owinąłem w szmaty na noc.
+			 (ene -1) : W nocy było zimno i ciągle się budziłem ze strachu przed zagrożeniem.
+			 (syt -> 10) : 
+
+Syt: 9d
+	Siedziałem za wielkim stołem, po mojej prawej i lewej stronie siedzieli moi wyznawcy. Niektórych z nich rozpoznawałem, ale było ich tak wielu, że nie potrafiłem objąć ich wzrokiem. Przede mną leżał kielich wypełniony czerwoną substancją. ( syt -> 10)
+		jeśli [Przeczucie > 1]: 
+			() : Czułem, że ktoś musiał wypić zawartość kielicha.
+		Odp: Wypiłem zawartość kielicha.
+			 () : Podniosłem kielich, który ciążył mi w rękach. Zbliżyłem zimną krawędź do ust i upiłem krótki łyk. Zimna ciecz spłynęła mi do gardła i o dziwo - rozgrzała mnie. 
+			 (ene -1) : Zaczęło brakować mi powietrza, złapałem się za szyję. W konwulsjach upadłem na podłogę, wyznawcy patrzyli się na mnie z góry. Nadeszła ciemność.
+		Odp: Przekazałem kielich wyznawcom.
+			 () : Podniosłem kielich, który ciążył mi w rękach. Popatrzyłem na oleistą, czerwoną ciecz. Nie upiłem ani kropli, podałem kielich wyznawcy po mojej prawej. Ten posłusznie upił łyk, po czym zaczął świecić. Przekazał kielich dalej. Jeden po drugim wszyscy pili z kielicha i zaczynali jaśnieć.
+			 (prze +1) : Wizja prorocza.
+		Odp: Odstawiłem kielich.
+			 () : Podniosłem kielich, który ciążył mi w rękach. Popatrzyłem na oleistą, czerwoną ciecz. Wyznawcy patrzyli na mnie wyczekująco. Odstawiłem kielich z powrotem i odsunąłem go od siebie.
+			 (endGame -> theyKill) : Wyznawcy zerwali się ze swoich miejsc i mnie skrępowali. Na siłę odchylili moją głowę, otwierając mi usta i wlewając mi do gardła zawartość kielicha. Trzymali mnie cały czas, nawet kiedy umierałem w konwulsjach.
+
+Syt: 10
+	Słońce zdążyło już wstać, raziły mnie promienie prześwitujące przez kołyszące się gałęzie. ( syt -> 11)
+		() : Odrętwienie powoli przechodziło, ale byłem bardzo niewyspany.
+		() : Zszedłem z drzewa.
+		Odp: Zjadłem coś przed dalszą drogą.
+			 (zap -1) : W plecaku znalazła się puszka wędzonego morświnia.
+			 (ene +1) : Mój żołądek protestował przy pierwszych kęsach, ale po chwili uspokoił się, a ja zyskałem nieco sił. Zarzuciłem plecak i w lepszym nastroju ruszyłem dalej.
+		Odp: Uspokoiłem się przed dalszą drogą.
+			 () : Usiadłem pod drzewem, oddychając głęboko. Starałem się uspokoić, choć trudno mi byłó zapomnieć o nocnych koszmarach. Muskające mnie ciepłe promienie słońca, szumiące na drzewie gałęzie i zapach wiosny pozwoliły mi się odprężyć i zasnąłem. Obudziłem się wypoczęty, kiedy słońce zaczęło swoją wędrówkę w dół. Ruszyłem w dalszą drogę, aby nadrobić czas.
+		Odp: Ruszyłem od razu.
+			 (ene -1) : Droga była długa.
+
+Syt: 11
+	Pod koniec dnia natrafiłem na twarde i płaskie podłoże ciągnące się po horyzont wycięte w środku lasu. ( syt -> 12)
+		() : Podobno kiedyś ludzie używali go do przemieszczenia się w swoich wehikułach. Z dawnych metalowych koni zostały jedynie zardzewiałe blachy i potłuczone szyby, a “utwardzoną ziemię” rozkruszyły krzewy i młode drzewa.
+		() : Przy drodze zobaczyłem powaloną tablicę z nieczytelnym napisem. Rodzice nauczyli mnie odróżniać litery, ale wiedza ta zatarła się kiedy ich zabrakło.
+		jeśli [Energia > 3]: 
+			Odp 11/sign: Przepisałem znaki do notatnika.
+				 () : Przepisywanie zajęło mi dużo czasu spędzonego na otwartym terenie na piekącym słońcu.
+		Odp: Szedłem dalej.
+			 () : Po kilku krokach dostrzegłem jakiś kształt w trawie.
+			jeśli ene>1 (zap +1) : Po podejściu bliżej odkryłem porzucony w zaroślach plecak. Większość jedzenia została już dawno wyjedzona, ale udało się znaleźć dwie przedwojenne nietknięte puszki z tuńczykiem.
+			jeśli ene<2 () : Nie miałem siły analizować. Poszedłem dalej.
+
+Syt: 12
+	Długo szedłem po płaskim podłożu wyciętym w gęstym lesie. Słońce położyło się za drzewami i zrobiło się szarawo. ( syt -> 13)
+		jeśli [Energia < 2]: 
+			Odp: Zignorowałem gorączkę, szedłem dalej.
+				jeśli ene>2 () : Słabość po chwili ustąpiła, poczułem się lepiej idąc.
+				jeśli ene<3 (ene -1) : Czułem się coraz gorzej.
+		jeśli [Energia < 2]: 
+			() : Moje ciało było rozpalone. Dziwne, bo choroba która zdziesiątkowała ludzkość i stanowiła śmiertelne zagrożenie, mnie się dotychczas nie imała.
+		jeśli [Energia > 1]: 
+			Odp: Szedłem dalej drogą.
+		Odp: Zatrzymałem się, by odpocząć.
+			jeśli ene<2 () : Gdy tylko usiadłem, natychmiast zmorzył mnie sen.
+			jeśli ene>1 () : Chwilę odpocząłem i poszedłem dalej.
+
+Syt: 13
+	Ostatnie promienie słońca zniknęły za drzewami . Dostrzegłem sylwetki budowli.\n\nGdy doszedłem do nich, jeden budynek nadawał się na schronienie, bo miał zamknięte drzwi. ( syt -> 14)
+		Odp: Wszedłem do dużego budynku.
+			 () : W mroku nie zauważyłem zagrożeń. Przecisnąłem się przez dziurę w ścianie przechodząc do dużego pomieszczenia.
+		() : Urządzenie geigera lekko drgając wskazało duży budynek. Nie miał części dachu, za to wielką dziurę w ścianie.
+		Odp: Wszedłem do małego budynku.
+			 (endGame -> posion) : Nie zauważyłem węża leżącego na ganku. Gdy tylko zbliżyłem się do drzwi gad błyskawicznie zaatakował. Ugryzienie pod kolanem szybko zaczęło boleć. Po 10 minutach agonii straciłem przytomność.
+		Odp: Ułożyłem się na zewnątrz w krzakach.
+			 () : Ułożyłem się w gęstych zaroślach, przykrywając się kurtką zasnąłem na plecaku.
+			 (syt -> 15) : 
+
+Syt: 14
+	Wszedłem głębiej między labirynt z gruzów i poprzewracanych półek. Stare papiery delikatnie chrzęściły pod butami. Nie rozpalałem światła, aby nie odsłonić się przed ewentualnym niebezpieczeństwem.\n\nZnalazłem ciemny kąt, osłonięty przez gruz. Wykopałem norę wśród starych papierów i ułożyłem się wygodnie. ( syt -> 15)
+		Odp: Rozpaliłem małe ognisko z papierów, aby się ogrzać.
+			 () : Ułożyłem papier pomiędzy kamieniami, aby nie zapalić całego budynku i rozpaliłem malutkie ognisko. Pomarańczone światło powoli pożerało pomazane tuszem papierowe płaty.
+			 (zap -1) : Podgrzałem też i zjadłem na ciepło jakąś zupę z puszki.
+			 (ene +1) : Posiłek dobrze mi zrobił.
+		Odp: Przeszukałem budynek.
+			 (zap +1) : Na wyższym piętrze znalazłem czyjeś schronienie. Ten ktoś już dawno nie żył. Zabrałem kilka puszek jedzenia z jego kryjówki.
+			 () : Na jednej z półek chyba był napis podobny do tego co był na znaku...
+			jeśli 11/sign () : ... nie byłem pewien.
+			jeśli 11/sign (atak +1) : ... wyciągnąłem notatnik. 'Tak to ten' - przeszukałem tą część dokładnie i znalazłem ładny nóż w pudełku. Wziąłem go.
+			 () : Położyłem się spać na dole.
+
+Syt: 15
+	 ( syt -> 17)
+		() : Obudziłem się z zimna, słońce jeszcze nie wyszło nad horyzontem. Wytarłem wilgoć z twarzy i ruszyłem w dalszą podróż.
+		() : Obudziłem się, gdy słońce jeszcze nie wyszło poza horyzont. W drodze wracałem myślami do miejsca ostatniego spoczynku. Ciekawiło mnie co też zapisane było na tych wszystkich stronicach.
+		() : Gdy słońce już zachodziło usłyszałem szum wody, później drogę przecięła mi szeroka rzeka. W zasięgu wzroku nie dostrzegłem żadnego mostu. Od zawsze bałem się głębokiej wody, ta była niesamowicie czarna.
+		Odp: Przepłynąłem wpław.
+			 () : Początkowe wejście do wody było najgorsze. Moknące buty, następnie spodnie i koszula ciążyły bardzo. Woda była zimna, ale nie lodowata. Zacząłem płynąć. Woda dostała mi się do ust, zabrakło mi tchu...
+			jeśli ene>2 () : ... użyłem całej swojej siły, aby skupić się na przepłynięciu. Przemoczony, wycieńczony dotarłemna drugi brzeg.
+			jeśli ene>2 (zap -2) : Później się dowiedziałem, że z plecaka wypadło mi kilka konserw.
+			jeśli ene<3 () : ... zacząłem tonąć.
+			jeśli ene<3 (endGame -> drown) : Moje oczy, uszy, nos zalała woda, a pod taflą zrobiło się ciemno. Poczułem ciężar na swoich ramionach i klatce piersiowej. Na końcu wydawało mi się, że będzie dobrze.
+		Odp 15/2: Poszukałem jakiegoś sposobu, aby przepłynąć.
+			 () : Zacząłem przeszukiwanie od gęstych krzaków w pobliżu. Zobaczyłem tam sporą dziurę w której leżało dużo gałęzi. Uplotłem z nich prowizoryczną tratwę, którą wyniosłem na wodę. Płynąc ledwo utrzymywałem się na powierzchni wody. Nagle świetle księżyca zauważyłem olbrzymi ciemny kształt przepływający pod taflą wody...
+			jeśli atak>1 () : ... wiedziałem, że muszę zachować spokój, przestałem na chwilę wiosłować i kontynuowałem spokojnie później.
+			jeśli atak<2 () : ... cofnąłem się w odruchu do tyłu, nie zauważając, że tratwa już się skończyła.
+			jeśli atak<2 (endGame -> beastWater) : Wywróciłem się do wody, od razu łapiąc pełne usta wody. Bestia przepłynęła dalej, dając żywiołowi nasycić się życiem człowieka.
+
+Syt: 17
+	Byłem na drugim brzegu rzeki. ( syt -> 18)
+		() : Leżałem przez pewien czas by odpocząć, sprawdzić zapasy i wycisnąć mokre rzeczy.
+		() : Gdy w końcu się podniosłem, widziałem szeregi budynków przed sobą. Był już wieczór. Poczułem lekkie mrowienie w palcach.
+		Odp: Oddałem się wizji.
+			 () : Zobaczyłem jaskinię. Przez dziurę na górze dostawało się bladoniebieskie światło. Cała ściana mieniła się kolorami, nie mogłem dostrzec żadnego wzoru. Potem przyszedł sen...
+		jeśli [Energia > 2]: 
+			Odp: Przyszykowałem sobie lepsze spanie.
+
+Syt: 18
+	Siedziałem na tronie świata. Na moje rozkazy natychmiast odpowiadało mrowie służących. Miałem wszystko, czego sobie zażyczyłem. Przyszedł kolejny pretendent. Ubrany był w prosty czarny płaszcz, w ręku trzymał sękatą laskę.\n\n‘Czy nie zapomniałeś o swoim przeznaczeniu?’ - pyta poddany. ‘Czy nie zapomniałeś?’ Na jego znak po mojej prawej stronie otwierają się drzwi, za którymi dostrzegłem zniszczony świat, a na wprost otworzyły się drzwi, za którymi czekała góra złota, po mojej lewej stronie otworzyły się drzwi, za którymi biegali ludzie skąpani we krwi. ( syt -> 19)
+		Odp 18/death: Skazałem mędrca na śmierć.
+			 (prze +1) : Wizja prorocza.
+		Odp: Zaprowadziłem mędrca do skarbca.
+			 (ene -1) : Kiedy tylko przekroczyłem próg, mędrzec uderzył mnie laską w plecy i w jednej chwili miał na sobie moje szaty. Stałem goły pośrodku skarbca, zacząłem zapadać się w złocie, dusiłem się monetami, które wpadały mi do ust.
+
+Syt: 19
+	Obudziłem się zupełnie otumaniony. Zebrałem swoje rzeczy i szedłem dalej, tam, gdzie moje czucie mnie prowadziło. Miasto, wreszcie. Wyraźniej czułem w którym kierunku mam zmierzać. ( syt -> chapter2.end)
+		() : Byłem tak poruszony wizją, że przerysowałem ją do notatnika.
+		Odp: Szedłem tam, gdzie mnie przeczucie kierowało.
+			 () : Szedłem przez ciasne ulice składające się z betonu, kamieni i przedostającej się roślinności. Ziejące czernią dziury po wybitych szybach wyglądały niczym puste oczodoły nieżywych. 
+			jeśli atak>1 () : Skradałem się bardzo ostrożnie i zauważyłem w jednym oknie postać. Przeszedłem przy samej ścianie budynku tak, aby nikt mnie nie zauważył.
+			jeśli atak<2 () : Nie zauważyłem w jednym z okien postaci.
+			jeśli atak<2 (endGame -> shot2) : Bezszelestna strzała z łuku przebiła mi szyję. Chwyciłem ranę oboma rękami, ale to nic nie dawało. Straciłem przytomność leżąc we własnej kałuży krwi.
+		Odp: Szedłem bezpiecznie naokoło.
+			 () : Znalazłem większą przestrzeń i kierowałem się od drzewa do drzewa
+			 (zap -3) : Po drodze spotkałem mężczyznę bez nóg, powiedział, że zacznie krzyczeć, jeśli nie oddam mu kilku konserw. Oddałem i poszedłem w ciszy dalej.
+
+Syt: chapter2.end
+	Miasto było zarośnięte tak bardzo, że niekiedy ciężko było je odróżnić od lasu. Dziwiłem się, że minęło tylko kilkadziesiąt lat od kiedy był tu tylko beton. ( syt -> 20)
+		Odp: Koniec etapu drugiego.
+			 (chapter +1) : Wiedziałem już gdzie czekało na mnie rozwiązanie..
+			 (endGame -> chapter2.end) : Koniec rozdziału drugiego. Nowy rozdział został odblokowany.
+
+Syt: 20
+	Czułem się niepewnie w mieście, byłem tu wcześniej tylko raz. Jak przez mgłę pamiętałem przekradanie się w nocy pomiędzy budynkami w których zapalone były światła. Wtedy jeszcze ludzi było bardzo dużo, każdy mógł być niebezpieczny.\n\nCzułem, że jeśli poddam się teraz emocjom, to odpłynąłbym do wizji. ( syt -> 21)
+		jeśli [Atak > 0]: 
+			Odp: Szedłem dalej, ostrożnie.
+				 () : Zobaczyłem ciemny kształt o sylwetce człowieka, stojącego w oknie budynku naprzeciwko.
+		Odp: Poddałem się wizji.
+			 () : Od razu pochłonęły mnie wizje, które wzmagały się w momentach stresu.
+			 (endGame -> vision) : W oknie stał człowiek, który zobaczył krzyczącego mężczyznę z szeroko otwartymi oczyma. Powoli nałożył strzałę na łuk, wycelował, strzelił. Grot trafił prosto w serce.
+
+Syt: 21
+	Wyszedłem na szeroki i płaski teren. Bujna trawa sięgała mi do pasa. W oddali, w wielkiej bramie dostrzegłem krzątające się sylwetki. Wyglądało, jakby pilnowali przejścia. Nagle poczułem mrowienie na skórze, lekkie zawroty głowy, metaliczny posmak na języku. Jakaś niewidzialna siła kierowała mnie na bok.\n\nDodatkowo mnie zauważyli ‘Ej, ty!’ odezwał się krzyk. ‘Zaczekaj.’ Niewyraźne postacie zaczęły biec w moim kierunku. ( syt -> 23)
+		Odp: Wyszedłem im naprzeciw.
+			 (ene -1) : Podniosłem się i ruszyłem w ich stronę. Miałem tak brudną kurtkę, że początkowo mnie jeszcze nie zauważyli. Pomachałem im. Rozległ się huk i ramię zaczęło mnie boleć. 
+		Odp: Kucnąłem w trawie.
+			 () : Obserwowałem ich z dala, gdy usłyszałem szelest z prawej strony. Ktoś biegł w moim kierunku. Usłyszałem huk i świst koło mojego ucha.
+			 (zap -1) : Z plecaka wypadła mi puszka, nie zdążyłem jej podnieść.
+
+Syt: 23
+	Zerwałem się do biegu w tej wysokiej trawie. Usłyszałem kolejny huk, jakieś uderzenie w głowę zdołało mnie przewrócić. Mrowienie na skórze osiągnęło apogeum. Leżąc zobaczyłem metalowy właz pod ziemię, uchyłem go i wcisnąłem się w wąskie zejście w dół. Plecak mi się zaklinował się w przejściu. ( syt -> 24)
+		Odp: Próbowałem się przepchnąć.
+			 () : Przycisnąłem plecak bliżej siebie. Rozległ się huk, a po nim świst.
+			 (ene -2) : Kula trafiła w moją rękę, wystającą jeszcze poza obręb włazu.
+		Odp: Zerwałem wiszące sznurki z puszkami z plecaka.
+			 (zap -2) : Dwie kule wbiły się w ziemię tuż obok moich rąk. 
+
+Syt: 24
+	Zakręciłem za sobą klapę. Słyszałem krzyki i stukania w metal powyżej. Otoczyła mnie zupełna ciemność i chłód bijący z gładkich ścian szybu. Jedyna droga prowadziła w dół. Stopień po stopniu schodziłem po drabinie, aż stanąłem na ziemi.\n\nNa dole było zimno, po omacku, dotykając ścian szedłem. Trafiłem na wystający pręt. ( syt -> 25a)
+		Odp 24/1: Starałem się wyrwać pręt.
+			 () : Rozległ się trzask, i mleczne światło wypełniło pomieszczenie. Podłużne świetlówki zamontowane w suficie głośno buczały, słyszałem też szum maszyn.
+		Odp: Szukałem po omacku dalej
+			 (syt -> 26) : 
+
+Syt: 25a
+	W pomieszczeniu po jednej stronie stały metalowe półki pełne pudełek. Zacząłem powoli przeglądać pudła, lecz w większości z nich gniły papiery. Na dole jednak znalazłem puszki, zapewne jedzenia. ( syt -> 26)
+		Odp: Pożywiłem się zamiast pakować rzeczy do plecaka.
+			 () : Po otwarciu pierwszej puszki w pomieszczeniu uniósł się smród zgniłej ryby.
+			jeśli ene<3 (ene -1) : Otworzyłem jeszcze kilka, ale zapach się tylko pogarszał. W podenerwowaniu pociąłem się ostrą blachą.
+			jeśli ene>2 (ene +1) : Otworzyłem jeszcze niejedną, z wielu zapach był nie do zniesienia, ale znalazłem kilka dobrych i smacznych.
+		Odp: Schowałem do plecaka puszki.
+			 (zap +2) : Było akurat tyle miejsca, żeby zmieścić cztery konserwy.
+
+Syt: 26
+	 ( syt -> 27)
+		() : Przeszedłem do następnego pomieszenia.
+		() : Po omacku wyczułem framugę drzwi, przeszedłem do następnego pomieszenia.
+		() : Od razu poczułem mrowienia oraz zawroty głowy. Przed sobą miałem wielkie metalowe urządzenie, które rozświetlały tysiące małych światełek, mieniących się na najróżniejsze kolory.
+		jeśli [Energia > 2]: 
+			() : W mojej głowie pojawiły się obrazy podobnych światełek, miałem wrażenie że już je kiedyś widziałem.
+		() : Mrowienie na skórze przerodziło się w nieznośny swąd, zawroty w głowie spowodowały ugięcie się kolan. Pojawiła się nieznośna chęć naciśnięcia dużego czerwonego przycisku.
+		Odp: Nacisnąłem przycisk.
+			 () : Nacisnąłem przycisk, wtedy maszyna wyłączyła się, przestała świecić i buczeć.  Słyszałem tylko kapanie kropel z wilgotnego sufitu na twardą podłogę. Czułem się bezpiecznie, więc ułożyłem się do snu na plecaku kącie pokoju przykrywając kurtką.
+		Odp: Nie nacisnąłem przycisku.
+			 (ene -1) : Zawroty w głowie przybrały na sile, zemdlałem.
+			 (prze +1) : Przeżyłem wizję proroczą. Wiem o tym, czułem to. Wielokrotnie później starałem się przypomnieć treść wizji, ale moje ciało było tak zmęczone, że nie zapamiętałem jej. Mimo wszystko mój organizm był bardziej wyczulony.
+
+Syt: 27
+	Gdy się obudziłem, leżałem przywiązany i zakneblowany w innym pokoju. Nade mną pochylały się dwie osoby, badając moje oczy. Jeden z nich podniósł do góry rękę ze strzykawką, pstryknął w szkło i wbił mi w szyję. Nie zdążył wstrzyknąć zawartości, bo mężczyzna stojący obok niego wyrwał mu ją. Następnie celnym uderzeniem w twarz natychmiast drugiego powalił.\n\n‘Musisz uciekać!’ - krzyknął do mnie - ‘To są fałszywi bogowie, nie wierz im!’ - zerwał mi knebel i wyzwolił z więzów. ( syt -> 28)
+		Odp: Wyrwałem się z łóżka i wybiegłem z pokoju.
+			 (atak +1) : ‘Będę pamiętał!’ powiedziałem do niego. Wybiegłem w kierunku korytarza.
+			 (ene -1) : Poczułem się bardzo niepewnie, jakby cały świat był przeciwko mnie
+		Odp: Zacząłem wołać o pomoc.
+			 () : 'Na pomoc! Ktoś tu jest!' - wykrzyczałem. 'Głupcze' - powiedział ten, po czym przycisnął knebel do moich ust i zaczął mnie dusić.
+
+Syt: 28
+	Obudziłem się w ciemności. Czułem, że spałem naprawdę długo, bo byłem odrętwiały. W bunkrze było zimniej i ciszej niż przedtem. Po omacku znalazłem drogę do drabiny. ( syt -> 29)
+		jeśli [Energia > 2]: 
+			() : Czułem mrowienie kierujące mnie do pokoju z papierami.
+		Odp: Poszukałem innego wyjścia.
+			 () : Szukałem po omacku drugiego wyjścia, wydawało mi się, że nie ma więcej pokoi, gdy trafiłem na ukryte przejście. Na czworakach szedłem długim, lekko wznoszącym się korytarzem . Dotarłem do wysokich wrót, po otwarciu których wyszedłem na powierzchnię, do miasta.
+		Odp: Wszedłem po drabinie.
+			 (endGame -> bullet) : Wspiąłem się po drabinie. Otworzyłem powoli i rozglądnąłem się wokół. Nikogo nie zauważyłem, wyszedłem na powierzchnię. Nagle poczułem ukłucie w głowie. Zrobiło się czarno. Zobaczyłem biały korytarz, zacząłem biec, ale zapadłem się do czarnej otchłani.
+
+Syt: 29
+	Idąc przez dość wysoką trawę przewróciłem się o coś. Wstałem z kolan i zobaczyłem przestraszone dziewczęce oczy. Oblepiona była zakrzepłą krwią. Bała się mnie. ( syt -> 30)
+		Odp: Zbadałem ją.
+			 () : Dziewczyna początkowo się opierała ...
+			jeśli atak>1 (zap -1) : ... jednak uspokojona moją siłą i pewnością po chwili zrezygnowała. Miała w wielu miejscach pogryzione ciało. Leżała w tym miejscu już pewnie od dłuższego czasu. W końcu odezwała się: ‘Uciekaj stąd… To miasto jest… Oni są fałszywi…’. Patrzyła się na mnie szaleńczo. Zostawiłem jej puszkę jedzenia i oddaliłem się rychło.
+			jeśli atak>1 (ene +1) : Poczułem się lepiej.
+			jeśli atak<2 (ene -2) : ... zaczęła mnie dotkliwie drapać ze strachu. Stwierdziłem, że nic tu nie poradzę, odszedłem od niej.
+		Odp: Poszedłem dalej.
+			 () : Oddalając się, spojrzałem w tył, nasze oczy spotkały się. Zobaczyłem przerażenie.
+			 (ene -1) : Jeśli jej nie pomogłem, to jak mam pomóc całemu światu.
+			 (syt -> 31) : 
+
+Syt: 30
+	Kobieta przypomniała mi o dawnej towarzyszce. O jedynej osobie, która byłaby w stanie odwieść mnie od ratowania świata. Nigdy o niej nie zapomnę, ze względu na... ( syt -> 31)
+		Odp: Jej piękny uśmiech.
+			 (ene +1) : Nikt nie uśmiechał się tak jak Sharika. Uśmiechała się często, nawet w trudnych chwilach. Samo wspomnienie tego uśmiechu dodawało mi sił.
+		Odp: Jej mądrość.
+			 () : Potrafiłem godzinami rozmawiać z Shariką. Zawsze służyła mi radą i pomocą. Gdyby nie ona, pewnie nigdy nie zjednałbym sobie tylu popleczników. Brakowało mi jej, szczególnie teraz, w godzinie ostatniej próby.
+			 (zap +2) : Przypomniało mi się, że miałem jeszcze kilka sucharów w kieszeniach, przełożyłem je do plecaka.
+
+Syt: 31
+	Znalazłem się na placu pośrodku którego były ruiny budynku. Z ruin dobiegało wołanie o pomoc. Ostrożnie doszedłem do krawędzi ruin i zobaczyłem wielką dziurę w ziemi, głęboką na kilkanaście metrów. Dostrzegłem mężczyznę, który kurczowo trzymał się pręta wystającego ze ściany osuwiska. Zobaczył mnie i spojrzał błagalnym wzrokiem. ( syt -> 31.2)
+		Odp: Zignorowałem jego wołanie idąc dalej.
+			 (syt -> 32) : 
+		Odp: Postarałem się go uratować.
+			 (zap -1) : Utworzyłem prowizoryczną linę z kurtki i ubrań. Rzuciłem w dół wcześniej się obwiązując.
+
+Syt: 31.2
+	Uratowany mężczyzna podziękował mi wylewnie. Spytał się kim jestem. ( syt -> 31.2.1)
+		Odp: Zbawcą świata.
+			 () : ‘To ciebie miałem znaleźć!’ - rzucił się na mnie. Wcześniej wyglądał na ledwo żywego, a teraz stanął wyprostowany i podbiegł do mnie z wrogim zamiarem. Zamachnął się pięścią i ...
+			jeśli atak>1 () : .. zrobiłem unik, wyprowadziłem kontrę w jego przeponę. Natychmiast zgiął się w pół, wystawiając swój kręgosłup na mój łokieć. Wiedziałem, że on się nie podda, więc kopnąłem go na koniec z całej siły w twarz. Zemdlał.
+			jeśli atak<2 () : ... uderzył mnie w twarz.
+			jeśli atak<2 (endGame -> beaten) : Poleciałem na plecy i zacząłem się krztusić krwią z własnego nosa. Kopnął mnie w głowę, nie byłem w stanie otworzyć oczu. Czułem jeszcze kilka ciosów, zanim wszystko zalała obojętność.
+		Odp: Nikim szczególnym.
+			 () : ‘Ale pewnie w tym plecaku masz pełno jedzenia!’ spytał się błagalnie, chociaż w jego oczach zobaczyłem desperację.
+			 (syt -> 31.2.2) : 
+
+Syt: 31.2.1
+	Stałem zmachany nad nieprzytomnym mężczyzną. Wyglądał jeszcze gorzej niż ja. Miał około dwudziestu lat, był bardzo wysoki i chudy. Zrobiło mi się go żal. ( syt -> 31.2.2)
+		Odp: Przeszukałem go.
+			 () : Schyliłem się nad ciężko oddychającym, ale nieprzytomnym mężczyzną. Ubrany był w łachmany, wiedziałem, że jeśli coś ma i mu zabiorę, to na pewno umrze.
+			 (zap +1) : Miał w kieszeni wyjątkowo smaczną konserwę łososia norweskiego, zabrałem sobie.
+			 (syt -> 32) : 
+		Odp: Zaciągnąłem go i wyrzuciłem w ruiny.
+			 () : Chwyciłem go za nogi, przełożyłem przez niskie mury i zrzuciłem w dół. Obserwowałem jak leciał i uderzył w coś na dole, nie obudził się, nie zaczął krzyczeć. Poszedłem dalej.
+			 (syt -> 32) : 
+
+Syt: 31.2.2
+	Patrzył się na mój wypchany plecak, wydawało mi się, że nie dam rady mu uciec. ( syt -> 32)
+		Odp: Poczęstowałem go jedną puszką.
+			 (zap -1) : Spokojnie wyjąłem puszkę z paprykarzem, które i tak nie lubię. Przekazałem mu ją. Spojrzał na ...
+			jeśli atak>1 () : ... moje umięśnione przedramię i odebrał spokojnie puszkę, powiedział, że nie możemy ze sobą dłużej zostać i poszedł. Nie zatrzymywałem go.
+			jeśli atak<2 () : ... mnie z politowaniem i uderzył mnie w twarz, nie miałem ochoty mu oddawać. 'Skurwiel' - rzucił na odchodnym.
+		Odp: Poczęstowałem go pięcioma puszkami.
+			 (zap -2) : Wyjąłem puszki i przekazałem mu. Jego oczy się rozjaśniły z radości. Podziękował serdecznie i powiedział, że nie możemy ze sobą dłużej przebywać. Wtedy jeszcze nie rozumiałem co miał na myśli, ale nie dopytywałem go. Poszedł.
+		Odp: Powiedziałem, że nie mogę mu nic dać.
+			 () : 'Acha, 'rozumiem' - powiedział zimnym głosem. Natychmiast wstał i poszedł w drugą stronę. Nie miałem ochoty go zatrzymywać.
+
+Syt: 32
+	Dotarłem do spokojnej rzeki, która nieopodal rozdwajała się na dwie nitki. Woda otaczała małą wyspę. Właśnie ta wyspa była celem mojej podróży. Zszedłem na brzeg rzeki, aby zobaczyć jak się przedostać na drugą stronę. ( syt -> 35)
+		Odp: Okrążyłem wyspę.
+			 () : Szedłem wzdłuż brzegu rzeki, aż natrafiłem na sprawną łódkę. Wepchałem ją do wody i wiosłując dostałem się na wysepkę.
+			 (zap -2) : Pożywiłem się sucharkami z plecaka.
+			 (ene +1) : Po posiłku poczułem się lepiej.
+		Odp: Przepłynąłem rzekę wpław.
+			jeśli ene>3 (ene -1) : Udało mi się dopłynąć na drugą stronę, choć wymagało to sporego wysiłku.
+			jeśli ene<4 () : Zmęczony po trudach przeprawy wszedłem do wody, przemoczone buty, koszulka i plecak ciążyły niesamowicie. Gdy straciłem grunt pod nogami, spanikowałem i nałykałem się wody.
+			jeśli ene<4 (endGame -> swim) : Moje ciało jeszcze odruchowo szukające powietrza szybko poniósł prąd wody. Już nic nie pamiętałem. Nie było mnie.
+
+Syt: 35
+	Gdy tylko postawiłem pierwszy krok na wyspie, usłyszałem dźwięk puszki odbijającej się od kamienni. Wkoło pojawiła się nienaturalna, dusząca mgła. ( syt -> chapter3.end)
+		Odp: Uciekłem.
+			 () : Wybiegłem z dymu. Chciałem wrócić wpław przez rzekę, lecz załzawione oczy uniemożliwiły mi ucieczkę. Uderzyłem głową w coś twardego...
+			jeśli ene>3 (ene -1) : ... poczułem ból, ale zdołałem utrzymać świadomość.
+			jeśli ene<4 () : ... poczułem ból i ciepłe uczucie w głowie z nosa zaczęła lecieć mi krew.
+			jeśli ene<4 (endGame -> painBlood) : Ból był tak bardzo nie do zniesienia, że coś w mojej głowie pękło...
+		Odp: Zasłoniłem kurtką twarz.
+			 () : Poczułem jak dym opanowuje mi płuca. Stałem nieruchomo, wydawało mi się, że to jest swojego rodzaju test.
+			 (ene -3) : Choć mgła rozsadzała moje płuca, starałem się ustać jak najdłużej.
+
+Syt: chapter3.end
+	Nie byłem przytomny, gdy zabierali mnie na noszach do podziemnego kompleksu z którego nie dane mi było się już wydostać. ( syt -> 36)
+		Odp: Koniec etapu trzeciego.
+			 (chapter +1) : Wiedziałem już gdzie czekało na mnie rozwiązanie.
+			 (endGame -> chapter3.end) : Koniec rozdziału trzeciego. Nowy rozdział został odblokowany.
+
+Syt: 36
+	Głowa mnie bardzo bolała. Leżałem na czymś miękkim. Otworzyłem oczy, byłem w niewielkim białym pokoju. Wyglądał dokładnie jak ten z mojego snu. Obok mnie znajdowała się aparatura połączona rurkami wbitymi w moją prawą rękę. ( syt -> 37)
+		Odp: Zawołałem po pomoc.
+			 () : Żadnej reakcji.
+		Odp: Rozglądnąłem się po pokoju
+			 () : W pomieszczeniu znajdowało się mnóstwo sprzętu, podobnego do tego z bunkra. Z dużej maszyny wystawało pełno drutów i kabli. Pokój oświetlany był przez diody.
+
+Syt: 37
+	Na suficie, na czarnym bolcu wisiał stożek, który był zwrócony na mnie. Na końcu pokoju były metalowe drzwi, które miały u góry małą szybkę, a na dole klapę. ( syt -> 38)
+		Odp 37/1: Odpiąłem się od aparatury i chciałem wyjść z pokoju.
+			 () : Rurki, po wyjściu z mojego przedramienia powodowały lekkie krwawienie. Miałem problem z ustaniem na nogach, ale opierając się o ściany doszedłem do drzwi. Zauważyłem, że drzwi nie mają klamki.
+			 (ene -1) : Przewróciłem się i obiłem łokieć.
+		Odp: Leżałem i czekałem.
+			 (ene +1) : Z każdą minutą czułem się coraz lepiej. Wydaje mi się, że to była kwestia tych podpiętych rurek.
+
+Syt: 38
+	W pokoju panowała cisza, światło diod lekko oświetlało kamienny sufit na różne kolory. Nagle przez otwór w drzwiach wpadła taca z jakąś żółtą papką, byłem głodny. ( syt -> 39)
+		Odp: Pożywiłem się.
+			 (ene +1) : Najadłem się do syta.
+			 () : Po kilku minutach zrobiłem się tak senny, nie pamiętałem, czy położyłem się na łóżku.
+		Odp: Nie jadłem.
+			jeśli 37/1 (syt -> 40) : Drzwi uchyliły się i do mojego pokoju wszedł wysoki mężczyzna w białym skafandrze.
+			jeśli 37/1 () : Leżałem dalej na łóżku, rurki podłączone do mojego ramienia zmieniły kolor z przeźroczystego na niebieski. Zasnąłem chwilę później.
+
+Syt: 39
+	Obudziłem sie na łóżku. Nie mogłem ruszyć rękoma, byłem skrępowany pasami. ‘Spokojnie, to dla twojego dobrego dobra.’ Obok mnie siedział starszy mężczyzna, trzymał rękę na mojej klatce piersiowej. ( syt -> 40)
+		Odp: 'Co to za miejsce?'
+			 () : 'To pozostałości po dawnym świecie. Tajna placówka wojskowa, nazywała się Wrocławskie Laboratorium Chorób Zakaźnych. Teraz to być może miejsce skąd nadejdzie ratunek dla ludzkości.'
+		Odp: 'Dlaczego mnie więzicie?'
+			 () : ‘Dla twojego bezpieczeństwa. Przebywanie tutaj może być dla ciebie szokiem, ale nie martw się, jesteś w dobrych rękach. Z twoją pomocą być może uda się nam uratować ludzkość.’
+		Odp: 'Kim jesteś?'
+			 () : 'Jestem tak samo jak ty wybawcą, tylko innego rodzaju. Twoja pomoc jest w tym niezbędna.'
+
+Syt: 40
+	‘Jesteś dla nas bardzo ważny. Proszę cię, abyś poszedł ze mną.’ stał w wyjściu do pokoju. ( syt -> 41)
+		Odp: Poszedłem za nim.
+			 () : Otworzył drzwi i wyprowadził mnie na korytarz.
+		Odp: 'Chcę wiedzieć więcej' - powiedziałem.
+			 () : ‘Dowiesz się wszystkiego w swoim czasie. Teraz chodźmy, muszę ci wiele pokazać.’ Ciekawość zwyciężyła, wyszedłem się za mężczyzną na korytarz.
+		Odp: Zaatakowałem go.
+			 () : Udałem, że posłusznie za nim podążam, ale gdy się obrócił chwyciłem go od tyłu i ...
+			jeśli atak>2 () : ... zaciągnąłem go do pokoju i zacząłem dusić. Zaczął głośno się wyrywać.
+			jeśli atak>2 (endGame -> attackWin) : Usłyszałem kroki na korytarzu, do pokoju wbiegły dwie osoby, które zaczęły okładać mnie pałkami. Później została tylko pustka i ból. Nieświadomie pomogłem uratować ludzkość.
+			jeśli atak<3 () : ... udało mu się wyślizgnąć z mojego objęcia, odwrócił się, kopnął mnie w piszczel i gdy się zgiąłem poprawił podbródkowym. Poleciałem na plecy.
+			jeśli atak<3 (endGame -> attackLose) : 'Ty niewdzięczna świnio' - krzyknął i zaczął mnie okładać pięściami po twarzy, aż wszystko zrobiło się czarne.
+
+Syt: 41
+	Prowadził mnie przez puste, dobrze oświetlone jarzeniówkami, betonowe korytarze. Doszliśmy do rozwidlenia, skręciliśmy w lewo. Korytarz kończył się drzwiami, otworzył je i zaprosił mnie do środka. Weszliśmy do białego, podłużnego pomieszczenia, w którym stały wielkie metalowe szafy. Otworzył jedne z kwadratowe drzwiczki i wysunął płaskie łóżko z sinymi zwłokami.\n\n‘W tym pomieszczeniu znajduje się sześćdziesiąt ciał. Ci ludzie, tak samo jak ty, myśleli, że są wyjątkowi.’ - wycedził. Patrzył się na mnie wyczekująco. ( syt -> 42)
+		Odp: ‘Dlaczego umarli?’
+			 () : ‘Niektórzy nie przeżyli badań, niektórzy zabili się sami.’
+		Odp: ‘Mnie też chcesz zabić?’
+			 () : ‘Poddamy cię badaniom, od ciebie zależy, czy przeżyjesz.’
+
+Syt: 42
+	‘Ciekawe...’ - wyszliśmy z tego pomieszczenia wzdłuż korytarza ściana była przeszklona. Za zwierciadłem widziałem łóżka, na których leżeli ludzie, podpięci do aparatury. Wszyscy wyglądali bardzo niezdrowo, mieli zapadnięte oczy, szarą skórę.\n\n'Jesteś na to gotów?’ - powiedział patrząc na jednego pacjenta. ( syt -> 43)
+		Odp: ‘Jestem.’
+		Odp: ‘Na mnie choroba nie działa.’
+		Odp: ‘Nie jestem.’
+			 () : ‘Nie jestem gotowy na śmierć, to ja jestem zbawicielem. Nie będę bezsensownie umierał. Mężczyzna posmutniał.
+			 (endGame -> shot) : ‘W takim razie zostaje mi tylko jedno.’ - wyciągnął z kieszeni pistolet, usłyszałem świst i ukłucie w brzuchu. Straciłem władanie nad kończynami, przewróciłem się na plecau. Tyłem głowy poczułem zimny chłód podłogi i ciepłą ciecz rozlewającą się po plecach.
+		Odp: 'Czy ten człowiek przeżyje?' - zapytałem wskazując na jednego.
+			 () : ‘Niestety nie jest odporny na chorobę, a twierdził inaczej. Nie przeżyje nocy. Ciebie może spotkać to samo, jeśli nie jesteś odpowiedni.'
+
+Syt: 43
+	‘Ciekawe. Chcę ci pokazać ostatnią rzecz.’ - przeszliśmy korytarzem dalej i weszliśmy w drzwi po prawej. Pomieszczenie było puste. Od razu po wejściu do środka poczułem dreszcze, miałem problemy z utrzymaniem równowagi. Palce zaczęły mi mrowieć.\n\n‘Za chwilę doświadczysz wizji. Musisz mi powiedzieć, co zobaczysz.’ - padłem na kolana. ( syt -> 44)
+		jeśli [Energia > 2]: 
+			() : Na środku pokoju stała kolumna przykryta jakimś ciemnym materiałem.
+		jeśli [Przeczucie > 3]: 
+			() : Czułem, że to nie ta kolumna powoduje wizje w pokoju. Że jest coś więcej.
+		Odp: ‘Widzę ulice skąpane we krwi.’
+		Odp: ‘Widzę ludzi pijących moją krew.’
+			 (prze +1) : Wizja prorocza.
+		Odp: ‘Widzę głowę, na której wyrasta trawa.’
+		jeśli [Przeczucie > 3]: 
+			Odp 43/attack: Powstrzymuję wizje i atakuję mojego przewodnika
+				 () : Wstałem z kolan i skoczyłem na rozmówcę...
+				jeśli atak>2 (syt -> 51) : ... nie spodziewał się ataku w tym miejscu. Powaliłem go swoim ciałem, chwyciłem jego głowę w dłonie i mocno uderzyłem nią o posadzkę.
+				jeśli atak<3 (syt -> 50) : ... ten zrobił unik, uderzył mnie w tył głowy. Upadłem na posadzkę i straciłem przytomność. We śnie wizje mieszały się z moim bólem. 
+
+Syt: 44
+	Mój rozmówca przykrył jakiś kamień na środku pokoju materiałem, wizje mnie opuściły. Wyszliśmy z pokoju i przeszliśmy korytarzem, obserwując umierająch pacjentów za szybą. Przeszliśmy w inny sektor, bo zmieniły się kolory ścian z szarych na białe, weszliśmy przez drzwi do pokoju z biurkiem, fotelami i półkami z książkami. Wskazał mi krzesło przed biurkiem, a sam usiadł po drugiej stronie.\n\n‘Jestem winien ci wyjaśnienia. Uważasz siebie za zbawiciela ludzkości i może rzeczywiście nim jesteś, ale w nieoczywisty sposób. Od czego by tu zacząć… Pewnie ciekawią cię inni, istoty od których dostajesz wizje? ( syt -> 45)
+		Odp: ‘To mój dar.’
+			 () : 'Nie ma ich, jest tylko mój dar, nazywam go szóstym zmysłem. To przeczucie wskaże mi drogę.'
+		Odp: ‘To wyższe istoty.’
+			 () : ‘To są istoty, które są doskonalsze niż ludzie i które dbają o to, aby gatunek ludzki przetrwał.’
+		Odp: ‘To bóg.’
+			 () : 'To bóg, który jednocześnie każe i chroni ludzkość. Jestem jego posłańcem i zbawicielem ludzkości.'
+
+Syt: 45
+	‘Powiem to wprost. Inni nie istnieją. To tylko twoje wyobrażenie…’ Mężczyzna miał smutny wyraz twarzy. ( syt -> 46)
+		Odp: ‘Nieprawda!’
+			 () : ‘Kłamiesz! Czuję ich obecność, widzę ich w moich wizjach, widziałem ich działanie.’ 
+		Odp: Milczałem.
+			 () : Nie dałem po sobie poznać, co sądziłem o tym, co usłyszałęm.
+
+Syt: 46
+	‘Cokolwiek nie myślałbyś o innych i jak ich sobie wyobrażał, tak naprawdę istnieją oni tylko w twoim umyśle. To skutek uboczny promieniowania, któremu zostałeś poddany w dzieciństwie. To promieniowanie kierowało twoimi krokami, przyciągało cię do mnie.’ ( syt -> 47)
+		Odp: ‘Tak.’
+			 () : Nie wiedziałem czym jest promieniowanie, ale w mojej głowie odżyły wspomnienia z dzieciństwa. Pamiętałem chwile, gdy byłem przypięty do łóżka, pamiętałem ból… 
+		Odp: ‘Nie.’
+			 () : W mojej głowie odżyły wspomnienia z dzieciństwa. Pamiętałem, że byłem przypięty do łóżka, pamiętałem ból…
+
+Syt: 47
+	‘Ci, którzy byli przed tobą mieli różne wizje. Niektórzy byli prowadzeni przez głos wiecznej matki, innymi kierowała chęć zdobycia władzy, niektórzy zwyczajnie tracili zmysły.’\n\nMężczyzna przerywa na chwilę, poprawia okulary.\n\n‘Widzę, że jesteś niespokojny. Możesz zadawać pytania jeśli chcesz.’ ( syt -> 48)
+		Odp 47/fallout: ‘Czym jest promieniowanie?’
+			 () : ‘Promieniowanie to jak fale rozchodzące się na wodzie, po tym jak wrzucisz do niej kamień.
+		Odp: ‘Ilu było przede mną?’
+			 () : ‘Wszystkie zasoby naszego ośrodka przeznaczyliśmy na poszukiwanie właściwego osobnika - 114’.
+		Odp: 'Kto zbudował to miejsce.'
+			 () : ‘To tajny ośrodek badawczy, który powstał w 2035 roku, kiedy było wiadomo, że prędzej czy później świat nawiedzi podobna pandemia. Zbudowania wtedy jeszcze 6 takich placówek, niestety z żadną nie mamy kontaktu.’
+		Odp: ‘Skąd wzięła się choroba?’
+			 () : ‘Nie mamy pewności, ale w momencie w których wybuchła epidemia ludzkość prawie do cna wykorzystała naszą planetę. Gdyby nie choroba, to pewnie wybuchłaby globalna wojna o pozostałe surowce. Choroba zaatakowała najpierw trzodę hodowlaną. Zwierzęta były hodowane w najgorszych warunkach, wstrzykiwano im antybiotyki na zaś… Mieliśmy szczęście, że choroba pojawiła się tak późno.’
+		Odp: ‘Dlaczego wysłaliście mnie na zewnątrz?’
+			 () : ‘Robimy tak z każdym obiektem. To kolejny z testów. Obserwacja jak organizm radzi sobie w warunkach nie laboratoryjnych. Z początku posyłaliśmy ochroniarzy, by nasze obiekty nie ginęły bez sensu w zniszczonym świecie. Ale zaniechaliśmy tego. Jeden ze skutków ubocznych promieniowania jest taki, że obiekty ciągnęło w to miejsce. Sami do nas przychodzili.’
+
+Syt: 48
+	‘W tobie może tkwić lekarstwo, które będzie w stanie zwalczyć wyniszczającą nas chorobę.’\n\nMężczyzna poprawił okulary, pochylił się bliżej ku mnie.\n\n‘Jednak żeby zdobyć pewność musimy poddać cię testom. Wstrzykniemy ci wszystkie odmiany choroby jakie znamy. Jeśli twój organizm poradzi sobie z chorobą, będziemy uratowani. Jeśli nie - umrzesz. Czy wiedząc to, dalej chcesz być zbawicielem ludzkości?’ ( syt -> 50)
+		Odp: ‘Tak.’
+			 () : ‘Doskonale!’ Mężczyzna wyprostował się w krześle. ‘Zaczynamy natychmiast, nie ma na co czekać.’ Mężczyzna wstał i obraca się do mnie plecami, wyciąga z szafki naręcze papierów. Zaczyna je kartkować. Odwraca się do ciebie twarzą.
+		Odp: ‘Nie.’
+			 () : ‘Szkoda.’ Mężczyzna wzdycha. Naciska guzik na biurku, a do pokoju w mgnieniu oka weszły dwie osoby. Skrępowali moje kończyny i zawiązali usta. ‘A mogłeś pozostać zbawicielem w świadomości ludzi. Zrobimy co do nas należy, czy to się tobie podoba, czy nie.’
+		Odp: Zignorowałem jego pytanie i zadałem swoje - 'czy promieniowanie można zobaczyć'?
+			 (prze +1) : 'Dobre pytanie, ja nie potrafię, a ty?' - odpowiedział patrząc się na mnie z zaciekawieniem, jakby coś ukrywał.
+
+Syt: 50
+	Zapięli mnie w pasy na łóżku, podpięli aparaturę. Kolejne dni minęły mi w przebłyskach świadomości, w których widziałem intensywne wizje. Próbowałem się wycofać, przekazać obsłudze, że już nie chcę, ale mojego głosu nikt nie słuchał. ( syt -> 51)
+		Odp: Kąpałem się w deszczu z krwi.
+			 (endGame -> visionEnd2) : Razem ze mną byli moi wyznawcy, wszyscy martwi, ich martwe oczy były zwrócone na mnie.
+		() : Nikt ze mną nie rozmawiał, nikt mi nic nie powiedział.
+		Odp: Czułem ból.
+			 () : Obudziłem się. Moje oczy powoli przyzwyczaiły się do światła. Czułem chłód od swoich kończyn, moja skóra była sucha jak piasek, płuca paliły mnie przy każdym oddechu. Obok mnie siedział mężczyzna, który przyjął mnie do bunkra.
+
+‘Mam dla ciebie dobrą i złą wiadomość. Zacznę od tej dobrej. Przetrwałeś wszystkie testy i to rzeczywiście ty uratujesz ludzkość.’
+			 () : [W rozdziale pierwszym przeżyjesz teraz wizję, która była wcześniej niedostępna.]
+			 (endGame -> visionEnd) : ‘Zła wiadomość jest taka, że do stworzenie lekarstwa potrzebujemy twojej krwi. Krwi potrzebujemy dużo więcej niż jesteś nam w stanie dać i zarazem przeżyć aby uratować świat, musimy cię poddać wiecznej śpiączce, a twoje organy wsadzić do inkubatora i sztucznie podtrzymywać obieg krwi.’
+
+Syt: 51
+	Mężczyzna leżał nieprzytomny, drzwi były zamknięte. Rozglądnąłem się po pokoju. Kolumna na środku była oświetlna niebieskim światłem. Na jej szczycie stał przeźroczysty kamień.  ( syt -> 52)
+		Odp: Kopnąłem kolumnę
+			 () : Kolumna wywróciła się, a kamień rozbił na kawałki. W miejscu gdzie stała pojawiła się ciemna dziura ziejąca chłodem. Wszedłem tam.
+
+Syt: 52
+	W dziurze zawieszony był sznur, zsunąłem się na nim. Poczułem ogromną ulgę, gdy moje stopy dotknęły stałego gruntu. Stałem w wielkiej, ciemnej, pustej jakini, oświetlonej niebieskim światłem przez otwór którym wszedłem. Czułem mocne mrowienie w głowie. ( syt -> 53)
+		Odp 52/closeEyes: Zamknąłem oczy.
+			jeśli prze>4 () : Nigdy nie miałem wizji tak bardzo zintegrowanej z pomieszczeniem w którym się znajdowałem. Z zamkniętymi oczami czułem całe pomieszczenie. Czułem też, że kilka kroków za mną jest tron. Przeszedłem z zamkniętymi oczami do tyłu i usadowiłem się na nim.
+			jeśli prze<5 (ene -2) : Cała jaskinia szalała. Czułem, że coś tu jest, ale nie potrafiłem spośród tych silnych sygnałów nic wyłowić. Przytłoczyło mnie to, zakręciło mi się w głowie i upadłem...
+			jeśli prze<5 (syt -> 50) : 
+		Odp: Wróciłem po sznurze do góry.
+			 () : Gdy byłem już u góry jakaś dłoń wysunęła się z dziury. Wiedziałem, że mnie pojmą, ale nie widziałem wtedy innej opcji. Chwyciłem za rękę, a ktoś mnie wciągnął do góry.
+			 (syt -> 50) : 
+
+Syt: 53
+	Gdy siadałem na tronie czułem jeszcze dokliwsze mrowienie niż zwykle. Otworzyłem oczy i zobaczyłem, że nabiłem się na tysiące bardzo cieniutkich żyłek, po których teraz spływała moja krew. ( syt -> <nic>)
+		Odp: Starałem się wyrwać z 'tronu'.
+			 (endGame -> bloodOut) : Spanikowany zacząłem się wyrywać. Żyłki popękały w moim ciele, czułem jak rozpadam się w środku. Straciłem panowanie nad nogami. Upadłem na twarz, krew leciała mi z oczu, brzucha, nóg. Straciłem siły i zasnąłem.
+		Odp: Osunąłem się spokojnie na 'tron'.
+			 () : W jakiś dziwny sposób strużki mojej krwi zaczęły unosić się wewnątrz tej jaskinii. Jaśniały czerwonym światłem. Nie rozumiałem na jakiej zasadzie to działa, ale wiedziałem, że zostało to przygotowane i mechanizm się uruchomił. Czułem się spełniony.
+			 (endGame -> absoluteWin) : Spełniłem swoje przeznaczenie, świat wyzdrowiał. Wyzdrowiał na kolejne kilka tysięcy lat. Koło znowu się zatoczy i wróci do tego miejsca.

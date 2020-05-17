@@ -1,0 +1,941 @@
+Story ardeny
+
+Parametry
+	sila zaczynasz mając 1
+	zdrowie zaczynasz mając 8
+	zrecznosc zaczynasz mając 1
+
+Syt: syt1
+	W Europie wylądowałem 6 czerwca '44. D – Day... Walczyłem cały czerwiec we Francji, później ruszyliśmy w pogoń za uciekającymi Niemcami i nie zostałem nawet draśnięty... aż do nieszczęsnej Market Garden. Jakim byłem żołnierzem? ( syt -> syt4)
+		Odp: Służyłem jako strzelec wyborowy.
+			 (zrecznosc +2) : Każdy strzelec wyborowy był doświadczony w celowaniu i cichym poruszaniu się.
+			 (zdrowie -7) : Podczas zmiany pozycji wpadłem w pułapkę i połamałem nogę.
+			 () : Było jasne, że czeka mnie czas w szpitalu.
+		Odp: Służyłem z ciężkim karabinem - CKM.
+			 (sila +2) : Każdy cekaemiarz przechodził ciężki trening siłowy.
+			 (zdrowie -6) : Podczas ostrzału, zabłąkana kula strzaskała mi ramię.
+			 () : Było jasne, że czeka mnie czas w szpitalu.
+		Odp: Zapisałem się jako łącznik, zawsze trochę dalej od frontu - bezpieczniej.
+			 (zdrowie -3) : Mimo wszystko jakaś zabłąkana kula trafiła w radio na moich ramionach skutkując szerokimi poparzeniami pleców.
+
+Syt: syt4
+	Na rekonwalescencję trafiłem do szpitala wojskowego. Byłem jednym z pierwszych, więc mogłem jeszcze wybrać, gdzie chcę leżeć... ( syt -> syt5)
+		Odp: Poprosiłem, żeby mnie położyli blisko zbrojowni. Tam ćwiczyłem strzelanie.
+			 (zrecznosc +1) : Spędzałem całe dnie na strzelnicy, ogólna zręczność mi się poprawiła.
+			 (zdrowie +1) : Czas w szpitalu wpływał dobrze na moje zdrowie.
+		Odp: Poprosiłem, żeby położyli mnie przy pokoju pielęgniarek, gdzie byłem najlepiej doglądany.
+			 (zdrowie +3) : Miałem najlepszą opiekę, dużo szybciej wracałem do zdrowia.
+		Odp: Poprosiłem o miejsce obok parku z siłownią w ogrodzie.
+			 (sila +1) : Każdego dnia rano ćwiczyłem godzinę w ogrodzie.
+			 (zdrowie +1) : Czas w szpitalu wpływał dobrze na moje zdrowie.
+
+Syt: syt5
+	Obok mnie leżał ciężko ranny młody chłopak, przyjechał nieprzytomny, dziwnie chrapał. Był środek nocy, gdy zbudziło mnie paniczne łapanie oddechu. Łóżko obok, chłopak odzyskał przytomność i walczył o życie. ( syt -> syt6)
+		Odp syt5/1: Pobiegłem przez ciemne korytarze do pokoju pielęgniarek.
+			jeśli zrecznosc>2 () : Dobiegłem szybko do pokoju pielęgniarek i udało się w porę ustabilizować stan chłopaka.
+			jeśli zrecznosc<3 (zdrowie -1) : W panice przewróciłem się na korytarzu, potykając o rannych leżących na podłodze. Skręciłem nogę w kostce.
+			jeśli zrecznosc<3 () : Narobiłem tyle hałasu, że pielęgniarki przybiegły i ustabilizowały stan chłopaka.
+		jeśli [Siła > 3]: 
+			Odp syt5/2: Aby oszczędzić czas, wziąłem go na plecy i udałem się z nim do pokoju pielęgniarek.
+				 (sila +1) : To był dobry trening siły w ekstremalnych warunkach.
+				 (syt -> syt7) : Następnego dnia chłopak czuł się źle, miał wysoką gorączkę. Wołał jakiegoś Roberta.
+		Odp: Starałem się zasnąć, każdy musi dbać o siebie.
+			 () : Chłopak po jakimś czasie ucichł, a ja zasnąłem głęboko.
+
+Syt: syt6
+	Następnego dnia chłopak czuł się źle, miał wysoką gorączkę. Wołał jakiegoś Roberta. ( syt -> syt7)
+		jeśli [Zręczność > 2]: 
+			() : Na jego łóżku widniał napis: Grzegorz Kirkman.
+		Odp: Próbowałem z nim rozmawiać.
+		jeśli [Siła > 2]: 
+			Odp 6/2: Mam dość tego zrzędzenia, duszę go własną poduszką, gdy nadarzy się okazja.
+				jeśli zrecznosc>1 (syt -> syt16) : Akurat szła pielęgniarka, powstrzymałem się na chwilę z poduszką, nie widziała mnie.
+				jeśli zrecznosc>1 (sila +1) : Przy jego ciele znalazłem medal, jego zdjęcie z kimś i stary kastet.
+				jeśli zrecznosc<2 () : Podczas, gdy dusiłem chłopaka, nie zauważyłem pielęgniarki, która właśnie przechodziła. Gdy zdjąłem poduszkę z denata do pokoju weszła żandarmeria w hełmach.
+				jeśli zrecznosc<2 (zdrowie -3) : Bili mnie do utraty świadomości.
+				jeśli zrecznosc<2 (endGame -> arest) : Obudziłem się przykuty do łóżka w areszcie wojskowym. Wyrok sądu wojskowego został wydany zaocznie. Najbliższe kilka lat miałem przesiedzieć z dala od frontu w klatce.
+		Odp 6/3: Nie słuchałem jego majaczenia.
+			 (syt -> syt8) : 
+
+Syt: syt7
+	Zamieniliśmy kilka słów. Jego brat, Robert Kirkman służył w piechocie. Miał iść do Belgii i przez Ardeny do Niemiec. Poprosił, żebym dał mu jego medal, jeśli go spotkam  w akcji. ( syt -> syt8)
+		Odp syt7/1: Powiedziałem: 'Zrobię, co będę mógł.' [Wziąłem medal i ich zdjęcie]
+			 () : Szansa na dostarczenie tych przedmiotów była niska, ale większa od zera, chłopak ucieszył się.
+		Odp: Powiedziałem: 'Na pewno się nie spotkamy, nie miej fałszywej nadziei.'
+			 () : Może byłem zbyt surowy, bo moja odpowiedź zgasiła energię w tym i tak już ledwo żywym chłopaku.
+
+Syt: syt8
+	Którejś nocy poprosił mnie, żebym pomógł mu wyjść na dwór. Chciał pooddychać świeżym powietrzem, zapalić papierosa. Dotlenić się... Wiedziałem, że jest to ryzykowna akcja. ( syt -> syt9)
+		() : Było mi przykro, że kilka dni wcześniej mu nie pomogłem, gdy się dusił.
+		Odp 8/1: Zgodziłem się.
+			 (syt -> syt10) : 
+		Odp: Powiedziałem, żeby szukał sobie przyjaciół w innym miejscu.
+			 (syt -> syt16) : 
+
+Syt: syt9
+	Powiedział, że zapali jednego papierosa, a resztę paczki odda mi. ( syt -> syt10)
+		Odp: Wziąłem paczkę.
+		Odp: Powiedziałem, żeby zatrzymał sobie tą paczkę, a pomogę mu bez tego.
+
+Syt: syt10
+	Poczekaliśmy żeby w nocy zapanował spokój. ( syt -> syt12)
+		jeśli [Siła > 4]: 
+			Odp: Weź go na plecy.
+				 (syt -> syt14) : 
+		Odp: Ukradnij wózek.
+		Odp: Wyjdźcie wspierając się na sobie.
+			jeśli sila<3 (zdrowie -1) : Byłem jednak za słaby. Wpadliśmy na łóżko chłopaka z urwaną nogą i ostrą biegunką... Zbiegły się pielęgniarki, lekarze, sprzątaczka... Dostaliśmy burę jak gówniarze i zmusili nas do powrotu do łóżek.
+			jeśli sila<3 (syt -> syt16) : Tej samej nocy George miał kolejną zapaść. Tym razem nikt mu nie pomógł. Rano już był zimny.
+			jeśli sila>2 (syt -> syt14) : Wystarczyło mi siły za nas dwóch, wyszliśmy przez okno na parterze.
+			 (syt -> syt16) : 
+
+Syt: syt12
+	Wózek stał obok pokoju pielęgniarek... ( syt -> syt14)
+		Odp: Za pomocą ukradzionych bandaży przyciągnij wózek do siebie.
+			jeśli zrecznosc<3 () : Pociągnąłem trochę za mocno i wózek narobił hałasu. Pielęgniarka wyszła ze swojego pokoju i chciała wiedzieć, co robię. Odprowadziła nas do pokoju.
+		jeśli [Zdrowie > 5]: 
+			Odp: Zakradnij się i ostrożnie podprowadź wózek.
+				 (sila +1) : Potrafisz skradać się bezgłośnie w niewygodnych pozycjach. Każdy ból tłumisz w sobie i na zewnątrz nic się nie wydostaje.
+		jeśli [Zręczność > 1]: 
+			Odp: Odwróć uwagę pielęgniarki rzuconą łyżką i zabierz szybko wózek.
+		Odp: Zrezygnuj z akcji, wróćcie do pokoju jak pokonani.
+			 (syt -> syt16) : 
+
+Syt: syt14
+	Staliśmy w szpitalnych piżamach na dworze. Była zimna, październikowa noc. Pełnia... Do dziś pamiętam tą ciszę. Kiedy następnym razem patrzyłem na księżyc w pełni, moje życie wyglądało już zupełnie inaczej. Pamiętam, że chłopak wtedy płakał paląc papierosa... ( syt -> syt16)
+		Odp: Zapal razem z nim...
+			 () : Dwa dni później umarł głośno charcząc. Lekarze przyszli, gdy już było za późno.
+		Odp: Gdy on palił, pokaż mu znane Ci konstelacje gwiezdne, których uczyła Cię matka.
+			 () : Gdyby ktoś wyjrzał z okna na dwór, zobaczyłby dwie osoby pokazujące sobie niebo. Poczułby także woń tytoniu rozchodzącą się w mroźnym powietrzu.
+			 () : Dwa dni później George umarł.
+
+Syt: syt16
+	Zwykły dzień w szpitalu wojskowym... Jeszcze tego samego dnia na jego miejsce przynieśli nowego. ( syt -> syt17)
+		Odp: Spróbuj nawiązać z nim kontakt.
+			jeśli 6/2 () : Wydawało Ci się, że się trochę Ciebie obawia, czyżby w jakiś sposób wiedział, że poprzedni pacjent nie umarł z przyczyn naturalnych?
+		Odp: Nie próbuj nawiązywać z nim kontaktu.
+
+Syt: syt17
+	Ten nic nie mówił. Co nie zmieniało faktu, że każdą noc wypełniały jęki rannych i wycie syren alarmowych. ( syt -> syt19)
+		Odp: Poproś o środki nasenne.
+			 (zdrowie +1) : Spałeś bardzo dobrze.
+		Odp: Staraj się zasypiać samemu.
+			 (sila +1) : Męczyłeś się pół nocy z zaśnięciem. W końcu nauczyłeś się odprężać przy jękach. Siła jest też w głowie.
+
+Syt: syt19
+	W połowie listopada dotarły do mnie listy z domu. Najstarsze miały datę jeszcze z czerwca. Poprosiłem pielęgniarkę, żeby mi je przeczytała. Uznałem, że nawet najgorsze wieści w cudzych ustach nie zabrzmią tak źle, jak we własnej głowie. ( syt -> syt20)
+		Odp: Poproś, żeby zaczęła od najstarszych.
+		Odp: Poproś, żeby zaczęła od najnowszych. Zdążyłbyś wtedy jeszcze pójść poćwiczyć strzelanie.
+			 (zrecznosc +2) : Poćwiczyłeś tego dnia na strzelnicy.
+			 (syt -> syt23) : 
+
+Syt: syt20
+	Mój brat zginął w Afryce zanim wyruszyłem do Europy. Dowiedziałem się o tym z gazety w czasie rejsu do Anglii. Drukowali tam listę poległych. Siostra pisała o tym dniu... ( syt -> syt21)
+		Odp syt20/1: Rodzice cierpieli, a ja ruszałem w jego ślady. Mama nie przestawała płakać, ojciec co chwila się irytował. Świat moich rodziców się zawalił. Wiele nocy śniłem o tym, że wracam...
+			 (zdrowie +2) : Włączyła mi się tęsknota za domem, wracałem szybciej do zrowia, żeby jeszcze kiedyś spotkać się z rodzicami.
+		Odp syt20/2: Oni mieli siebie, a ja zostałem sam. I nie zamierzałem wracać dopóki tu się nie skończy. Obowiązek? Zemsta? Może po prostu nie chciałem, żeby umierał za przegraną sprawę. To trzeba było wygrać!
+			 (sila +1) : Cel dodaje sił. Zawsze łatwiej wstawać, kiedy jest dokąd iść.
+
+Syt: syt21
+	Kiedy nie otrzymywali wieści ode mnie, pisała dalej siostra, wszystko tylko się pogarszało. Wojna zbierała swoje żniwo po każdej stronie Atlantyku. Ja mogłem coś zrobić, im pozostawało czekanie. Dostali informację, że zostałem ranny i jestem w szpitalu. Mama poddała się wcześniej, tej wiadomości już nie doczekała... ( syt -> syt22)
+		Odp: Poproś, żeby przestała na razie czytać...
+			 () : Tego się bałem, ale właściwie wiedziałem, że tak będzie. Świata, który opuszczałem już nigdy nie będzie...
+		Odp: Poproś, żeby od razu przeszła do ostatniego listu.
+			 (syt -> syt23) : 
+
+Syt: syt22
+	To była silna kobieta, chociaż na wojnie nie ma silnych ludzi. Są tylko jeszcze nie pobici. ( syt -> syt23)
+		Odp: Posiedź w milczeniu zanim wrócisz do listów.
+			 (sila +1) : Czasami trzeba poświęcić chwilę na smutek, żeby później już się za Tobą nie ciągnął.
+		Odp: Poproś pielęgniarkę, żeby czytała dalej.
+			 (zdrowie +1) : Pomimo żalu zdajesz sobie sprawę, że świat toczy się dalej, więc toczysz się razem z nim.
+
+Syt: syt23
+	W ostatnim liście siostra mówiła tylko o swoim mężu. Po Market Garden przestał pisać. Nie został ranny, więc wciąż był na froncie. Podobno miał iść do jakiegoś lasu, miał uderzać w serce wroga. Prosiła mnie, żebym go odnalazł albo chociaż wieści o nim. Kiedy odchodził na front była już w ciąży... Wkrótce urodzi. ( syt -> syt24)
+		Odp syt23/1: Nigdy go nie lubiłem. Za dużo pił, raz nawet się pobiliśmy... Nie będę się dla niego narażał!
+			 () : Może go spotkam na froncie, może nie, na pewno nie będę szedł na ślepo dla szwagra, którego i tak nigdy nie widziałem.
+		Odp syt23/2: To mąż siostry, ojciec jej dziecka. Muszę go odnaleźć...
+			 () : Rodzina jest najważniejsza, w tamtej chwili, leżąc obolały w łóżku, obiecałem sobie odnaleźć tego mężczyznę.
+
+Syt: syt24
+	Lekarz z wyników badań przeczytał, że mi się polepsza i niedługo będą mnie przenosić w inne miejsce. Zamknął teczkę i wrócił do pokoju dyżurnego. ( syt -> syt27)
+		() : Jeśli naprawdę chcę znaleźć szwagra, to powinienem sam zadbać o to, by znaleźć się na froncie.
+		() : Jeśli nie zależało mi na wróceniu na front, to sam muszę zadbać o to, gdzie trafię.
+		Odp: Poczekam na nocny obchód, aby lekko 'zmodyfikować' swoje papiery.
+		jeśli [Zdrowie > 5]: 
+			Odp: Byłem w już na tyle dobrym stanie, że mogłem wymyślić jakąś prostą wymówkę, aby pójść do pokoju pielęgniarek od razu.
+				 (syt -> syt28) : 
+		Odp: Liczy się aby wyzdrowieć, udaję się na stołówkę.
+			 (zdrowie +1) : Kolacja wyjątkowo była wyśmienita
+			 () : Po kilku tygodniach przyszły papiery, miałem jednak wrócić na front.
+			 (syt -> syt37) : 
+
+Syt: syt27
+	Wieczór, pielęgniarki chodzą po piętrze i sprawdzają wszystkich pacjentów po kolei. ( syt -> syt28)
+		jeśli [Zdrowie > 2]: 
+			Odp: Chowam się pod łóżkiem blisko pokoju pielęgniarek i czekam obserwując, aż pokój będzie wolny.
+				jeśli zrecznosc>2 () : Nogi pielęgniarki minęły moją przyciśnięta do ziemi twarz, ruszyłem do pokoju pielęgniarek.
+				jeśli zrecznosc<3 (syt -> syt31) : Przez dłuższą chwilę nie widziałem żadnej pielęgniarki, myśląc, że nikogo już nie ma, wbiegłem do pokoju i zabrałem się od razu za wertowanie kartotek. Myliłem się...
+		jeśli [Siła > 5]: 
+			Odp: Wdaję się w bójkę z innym pacjentem (wybieram dosyć chorego, żeby wygrać, ale nie zrobić mu krzywdy). Będę czekał na lekarza w pokoju pielęgniarek.
+		jeśli [Zręczność > 5]: 
+			Odp: Rzucam w unieruchomionego pacjenta kawałkami ryżu, aż zacznie krzyczeć i wszyscy się zbiegną, wtedy zakradnę się do pokoju pielęgniarek.
+		Odp: Nie decyduję się na żadną akcję, poczekam i zobaczę co się ze mną stanie.
+			 () : Po tygodniu dowiedziałem się, że trafię na front.
+			 (syt -> syt37) : 
+
+Syt: syt28
+	Pokój pielęgniarek: na biurku leżą papiery, na półkach widać 'interesujące' leki, pod ścianą stoją kolejne szafki. Chyba słyszę idącego lekarza po korytarzu. ( syt -> syt30.1)
+		jeśli [Zręczność > 4]: 
+			() : Po chwili nasłuchiwania stwierdziłem, że to tylko mysz w ścianie.
+		Odp: Na szybko wertuję papiery na biurku.
+			 () : Nic nie mogłem znaleźć. W pokoju było zbyt ciemno.
+			 (syt -> syt31) : 
+		Odp: Siadam za biurkiem, powoli i metodycznie przeszukuję papiery po kolei.
+			 () : W końcu znalazłem! Trzeba się śpieszyć, za dużo czasu zmarnowałem na grzebanie w tym śmietniku... Wojenny bałagan!
+			 (syt -> syt30) : 
+		Odp: Szukam odpowiedniego leku, aby pogorszyć swój stan.
+			 () : Wydaje mi się, że na półce znalazłem leki, biorę je do ręki.
+
+Syt: syt30.1
+	Mam w ręku kilka pełnych pudełek z lekami ( syt -> syt31.1)
+		Odp: Zabieram wszystkie pudełka z lekami i uciekam z pokoju. [Pielęgniarki mogą zauważyć brak pudełek.]
+			jeśli zrecznosc>3 () : Ledwo zdążyłem wyślizgnąć się z pokoju, zanim lekarz wrócił po zapomnianą wcześniej pieczątkę.
+			jeśli zrecznosc<4 (syt -> syt31) : Nie zdążyłem uciec.
+		Odp: Szukam po ulotkach, który lek będzie najodpowiedniejszy, aby pogorszyć mój stan.
+			 (syt -> syt31) : 
+		Odp: Łykam na ślepo po kilka tabletek z każdego pudełka.
+			jeśli zdrowie<6 () : Organizm był za słaby na taką ilość leków.
+			jeśli zdrowie<6 (endGame -> tabletyWeak) : Po kilku minutach upadłem na ziemię i zacząłem się konwulsyjnie trząść. Ostatnią moją myślą było, że przecież słyszałem kroki lekarza na korytarzu, a teraz, gdy go potrzebuję, to nikt się nie pojawia.
+			jeśli zdrowie>4 (zdrowie -4) : Udało się! Leki prawie natychmiast powaliły mnie na ziemię. Po kilkunastu minutach, gdy zaczęły się u mnie konwulsje, pielęgniarkom udało się mnie wyciągnąć z zapaści.
+			jeśli zdrowie>4 (syt -> syt140) : Niestety to, co przyszło później już nie było tak radosne...
+
+Syt: syt31.1
+	Poranek, leżę we własnym łóżku, pod posłaniem kurczowo trzymam leki, które mogą opóźnić mój powrót na front. Jeden z leków może wpłynąć pozytywnie na wydolność mojego organizmu. ( syt -> syt30)
+		Odp: To był od początku głupi pomysł, wyrzucam leki i czekam na przeniesienie.
+		Odp: Zażywam tylko ten lek, który zwiększy wydolność mojego organizmu.
+			jeśli zdrowie>4 (zdrowie +2) : Mój silny organizm został jeszcze bardziej wzmocniony przez te leki.
+			jeśli zdrowie<5 (zdrowie -1) : Mój organizm był zbyt słaby, aby podołać tak silnemu lekowi, mogłem sobie coś na stałe zniszczyć.
+		Odp: Zażywam leki, które pogorszą mój stan.
+			 (zdrowie -2) : Mój stan faktyczne się pogorszył. Na szczęście na tyle tylko, żeby się nie zakwalifikować na służbę.
+			 (syt -> syt34) : 
+
+Syt: syt30
+	Twoje papiery leżą przed Tobą na biurku. Długopis masz w ręce. ( syt -> syt31)
+		Odp: Zacznij fałszować swoją kartę.
+			 (syt -> syt32) : 
+		Odp: Chyba słyszysz kroki lekarza, odłóż dokumenty.
+			 () : W drzwiach pojawił się lekarz.
+			 (syt -> syt34) : 
+
+Syt: syt31
+	„Co to kurwa ma znaczyć?!” wrzasnął lekarz, przy okazji waląc mnie w łeb tak, że wszystko wypadło mi z rąk. Nie miał kiedy przyjść... Niestety: widział dokładnie co robiłem. ( syt -> syt32)
+		Odp: Rozejrzyj się udając zdezorientowanie i krzyknij: „To nie jest mój pokój!”
+			 (syt -> syt34) : 
+		Odp: Nic nie mów.
+			jeśli syt23/1 (syt -> syt34) : 
+		Odp: Powiedz prawdę.
+			jeśli syt23/2 (syt -> syt36) : 
+
+Syt: syt32
+	Lekarz stał w drzwiach, a przez pielęgniarka wracała już pochodu... ( syt -> syt34)
+		Odp: Rzuć się na lekarza i spróbuj go odepchnąć.
+			jeśli sila>2 (syt -> syt130) : Odepchnąłem lekarza i wybiegłem na korytarz, a później na dwór i zacząłem biec przed siebie.
+			jeśli sila<3 () : Lekarz bez większego trudu powstrzymał mnie od opuszczenia pokoju.
+			 (syt -> syt131) : 
+		Odp: Wyskocz przez okno.
+			 (zdrowie -4) : Wyskoczyłem, ale nogi się pode mną załamały i nie byłem w stanie uciekać.
+			 (zrecznosc +4) : Taka odwaga wymaga ogromnej pewności siebie i w swoje możliwości.
+			 (syt -> syt134) : 
+		Odp: Zaatakuj lekarza.
+			 () : Nie wiem, co strzeliło mi do głowy. Wciąż nie byłem w pełni sił, a lekarz był zdrowy i silny. Powstrzymał mnie bez problemu. Zresztą jak miałbym później uciekać? Z gołą dupą?
+
+Syt: syt34
+	Lekarz spojrzał na mnie z wyrzutem. „Wiem, co chciałeś zrobić” powiedział. I miał rację, wiedział. ( syt -> syt35)
+		Odp: Wytłumacz dlaczego nie chcesz wracać na front.
+			 () : Postarałeś się mu szybko powiedzieć, że nie widzisz sensu w odszukiwaniu szwagra na froncie, szanse na odnalezienie go są nikłe, a możesz nie wrócić.
+		Odp: Wytłumacz dlaczego chcesz wrócić.
+			 () : Lekarz był poruszony Twoją chęcią odnalezienia szwagra. Powiedział jednak, że mogę nie wrócić - wiedziałem.
+		Odp: Powiedz, że skoro wie, to nie musisz nic mówić.
+			jeśli syt23/1 () : Faktycznie wiedział, że nie jest mi w smak ryzykowanie życia za 'obcą' osobę.
+			jeśli syt23/2 () : Nie wiem skąd wiedział, ale szanował moją decyzję powrotu na front.
+			 (syt -> syt36) : 
+
+Syt: syt35
+	Powiedział, że dla takich jak ja szkoda miejsca, że dekowników nie będzie trzymał w swoim szpitalu. Zna dla mnie dobre miejsce. Podobno mi się spodoba... Poradził mi też, że lepiej byłoby gdybym znalazł szwagra. Armię już zawiodłem, źle byłoby gdybym zawiódł również rodzinę. ( syt -> syt36)
+		Odp: Powiedz, że go znajdziesz.
+			 (syt -> syt37) : 
+		Odp: Powiedz, żeby pilnował swoich interesów.
+			 (zdrowie -1) : W ciągu najbliższych kilku dni, zanim wyniosłem się ze szpitala dostawałem inne leki, bałem się, że lekarz na złość coś mi do nich dorzucał.
+			 (syt -> syt37) : 
+		Odp: Nic nie mów.
+			 (syt -> syt37) : 
+
+Syt: syt36
+	Powiedział, że skoro tak bardzo chcę wrócić to on nie będzie mi stawał na drodze. Wolne łóżko zawsze się przyda. Pozwolił mi nawet wybrać miejsce, gdzie chcę trafić... ( syt -> syt37)
+		Odp: Podobno walczą w jakimś lesie przy sercu Trzeciej Rzeszy...
+		Odp: Powiedz, żeby sam zdecydował.
+			 () : 'Ardeny pasują?' - odezwał się. Dokładnie tam chciałem zacząć poszukiwania szwagra. Uśmiechnęliśmy się do siebie.
+
+Syt: syt37
+	Trafiłem na front. Początek grudnia, zimno jak cholera, niedoleczony, niedoinformowany... ale przynajmniej był tam spokój. Tak mówili. Ze sobą miałem list siostry i wypis ze szpitala. Za sobą walki o Francję i Market Garden, a przed sobą ten cholerny las. Wkrótce miałem też przekonać się, co znaczy Allerseelenschlacht. ( syt -> syt38)
+		Odp: Część 2 – Ardeny, Belgia 1944.
+
+Syt: syt38
+	Po Market Garden front aliancki mocno zwolnił, a w listopadzie walki trwały głównie w lesie Hurtgen. Tam wysyłali większość rekonwalescentów. Pierwsze dwa dni spędziliśmy za linią frontu, bo trwał wzajemny ostrzał. Popytałem trochę o szwagra, ale nikt nic nie wiedział. ( syt -> syt39)
+		Odp syt38/1: Poszukaj sztabu i postaraj się dowiedzieć czegoś o szwagrze.
+		Odp: Poszukaj kantyny i zabaw się.
+			 (syt -> syt40) : 
+		Odp: Idź spać, aby się dobrze wyspać przed akcją.
+			 (zdrowie +1) : Podczas, gdy wszyscy się bawili, w koszarach nikogo nie było i mogłem się wspaniale wyspać.
+			 (syt -> syt41) : 
+
+Syt: syt39
+	Kapral w sztabie wpuścił mnie do środka, żebym nie odmroził sobie czegoś na tym mrozie, ale nie pozwolił spotkać z nikim wyższym stopniem. ( syt -> syt40)
+		Odp: Pytam się o szwagra bez przedstawiania się.
+			 () : Nie znał nikogo takiego.
+		Odp: Przedstawiam się i pytam o szwagra.
+			jeśli syt23/2 () : Powiedział, że słyszał na mój temat co nieco od znajomych ze szpitala. Teraz nic nie może zrobić, ale postara się coś znaleźć. Kto by pomyślał, że sztabowa gnida okaże się człowiekiem?
+			jeśli syt23/2 () : Dał mi paczkę papierosów i powiedział, żebym poszedł pograć z chłopakami w pokera w kantynie przed akcją.
+			jeśli syt23/1 (syt -> syt41) : Powiedział, że nie ma czasu na dekowników i wyrzucił mnie na dwór. Zasrany dupek.
+			 (syt -> syt41) : 
+
+Syt: syt40
+	Szybko dołączyłem do stolika z pokerem. Żołnierze wymienili między sobą spojrzenia. Nie wiedziałem, o co im chodzi. ( syt -> syt41)
+		Odp: Gram z nimi.
+			jeśli syt23/1 () : Słyszeli moją historię, jak to nie chciałem wracać na front. Oczywiście powiedzieli mi to dopiero, jak ograli z paczki fajek. Dranie.
+			jeśli syt23/2 (zrecznosc +1) : Słyszeli moją historię, jak chciałem wrócić na front. Dali mi dwie paczki fajek i kilka rad.
+			jeśli zrecznosc>4 () : Wygrałem niemiecki pistolet Luger. Szkoda, że nie działał.
+			jeśli zrecznosc<5 () : W jednej grze graliśmy o niemiecki pistolet, szkoda, że mi wtedy karta nie podeszła.
+		Odp: Odejdź od stolika i wróć do koszar.
+			 () : Wieczór spędziłem sam w łóżku, podczas gdy reszta chłopaków bawiła się w kantynie.
+			jeśli zrecznosc>1 () : Zobaczyłem wszy na swoim łóżku, wymieniłem pościel.
+			jeśli zrecznosc<2 (zdrowie -1) : Nie zauważyłem wszy w łóżku, całą noc coś po mnie chodziło. Nie zmrużyłem nawet oka.
+
+Syt: syt41
+	Ostrzał w końcu ustał i kazano nam stawić się przed sierżantem sztabowym. Poprosił, żebym krótko opisał, co robiłem odkąd znalazłem się w Twierdzy Europa. ( syt -> syt42)
+		Odp: Pomiń historie ze szpitala.
+			 (syt -> syt43) : 
+		Odp: Nie pomijaj historii ze szpitala.
+		Odp: Powiedz, że ma wszystko w aktach.
+
+Syt: syt42
+	Zmarszczył nos i pokręcił głową, ale nic nie powiedział. ( syt -> syt43)
+		Odp: Też nic nie mów.
+		Odp: Spróbuj się wytłumaczyć.
+			 (syt -> syt44) : 
+
+Syt: syt43
+	Dostałem przydział amunicji, dziurawą szmatę uchodzącą za zimowy koc i dodatkową parę skarpet. Sierżant kazał mi unikać odmrożeń. ( syt -> syt44)
+		Odp syt43/1: Powiedz, że jeśli tylko będziesz mógł się z nim zamienić i zostać w sztabie to może ci się udać.
+			 (syt -> syt45) : 
+		Odp: Podziękuj za radę.
+			 (syt -> syt46) : 
+		Odp syt43/3: Zapytaj się, czy ma jeszcze jakieś równie oczywiste rady w zanadrzu. Na przykład, że masz strzelać do nazistów i nikogo więcej?
+			 (syt -> syt45) : 
+
+Syt: syt44
+	Roześmiał się i dał mi paczkę papierosów ekstra. ( syt -> syt45)
+		Odp: Super! Będę świetnie zaopatrzonym trupem!
+			 (syt -> syt46) : 
+		Odp: No i dobrze. To taki czas, że trzeba się cieszyć z każdej małej dogodności.
+			 (syt -> syt46) : 
+		Odp: Powiedz, że to Twoje ulubione. Jak każdego innego na linii frontu.
+			 (syt -> syt46) : 
+		Odp: Uciesz się, że będzie czym podzielić się z chłopakami z okopu.
+			 (syt -> syt46) : 
+
+Syt: syt45
+	Powiedział, że za taką odpowiedź to mogę zostać, ale postawiony pod sąd wojskowy. ( syt -> syt46)
+		Odp: Przynajmniej nie zmarznę.
+		Odp: Powiedz, że nie zna się na żartach.
+			 () : Sztabowa świnia kazała mi na miejscu opaść 100 razy.
+			jeśli sila>4 (sila +1) : To był bardzo dobry trening, przez kilka dni miałem zakwasy.
+			jeśli sila<5 (zdrowie -1) : Nie byłem w stanie wykonać wszystkich pompek. Świnia męczyła mnie przez pół godziny, zerwałem jakiś mięsień w ręce.
+		Odp: Zapytaj, czy nie szkoda mu amunicji. Na froncie pluton mogą wyręczyć Niemcy. Albo zimno. Albo głód. Nie ma co się fatygować.
+		Odp: Powiedz z szerokim uśmiechem, że jak nie on, to możesz się wymienić na kogokolwiek innego. Nie jesteś wybredny.
+
+Syt: syt46
+	Wkrótce później, pod osłoną nocy poszedłem z przewodnikiem, tak jak wielu innych, szukać swojego okopu. Kilka kroków po tym, jak straciliśmy z oczu wątłe światła sztabu zatrzymał nas wartownik i zażądał hasła. ( syt -> syt47)
+		Odp: Warknąłem, że przecież widzi skąd idziecie i żeby hasło wsadził sobie tam gdzie wie...
+			 () : Spojrzał na mnie początkowo wściekły, puścił mnie dalej. Miałem wrażenie jakby czegoś mi nie mówił.
+		Odp: Powiedziałem, że dopiero idę dać się zabić i nie znam jeszcze hasła pod którym będę umierać.
+		Odp syt46/3: Nic nie mówię, czekam aż przewodnik odpowie hasłem.
+			 () : Hasło to: „Omaha”. Zapamiętałem.
+		Odp: Cieszę się, że jestem w końcu blisko linii frontu.
+
+Syt: syt47
+	W końcu trafiłem do swojego okopu. Jeden z tych najdalej wysuniętych. ( syt -> syt48)
+		Odp: Zaczynam narzekać, że jeszcze krok dalej i odlewałbyś się w niemieckich wychodkach.
+			 () : Mój przewodnik miał już dość mojego narzekania, zamachnął się na mnie kolbą karabinu.
+			jeśli zrecznosc<5 (zdrowie -2) : Nie zauważyłem jego ruchu, dostałem w potylicę i zemdlałem. Wieczorem obudziłem się z zakrzepniętą krwią na twarzy na ziemi. Nikogo nie interesowała moja sytuacja.
+			jeśli zrecznosc>4 () : Zauważyłem jego ruch i w porę się uchyliłem. Powiedziałem, że następnym razem straci karabin i zęby.
+		Odp: Miejsce, jak miejsce. To wojsko, tu się wykonuje rozkazy, a nie szuka miejsca na wakacje.
+
+Syt: syt48
+	W moim okopie było pięciu żołnierzy. Szybko i szeptem przedstawili mi się po kolei. ( syt -> syt50)
+		Odp: Poczęstuj ich papierosami.
+		Odp: Zapal sam, ale nikogo nie częstuj.
+			 (endGame -> sniperDeath) : Odległy, przytłumiony suchy stukot był ostatnim dźwiękiem, jaki usłyszał. Snajper trafił go w oko, tuż obok papierosa. Umarł z wyrazem zdziwienia na twarzy, no bo niby czemu pozostali się na niego rzucają?
+		Odp: Usiądź cicho w kącie.
+			 (syt -> syt51) : 
+
+Syt: syt50
+	Podziękowali i wzięli ode mnie, ale żaden nie zapalał. Wyjaśnili mi, że w nocy snajper celuje do ognika na końcu papierosa. Poczekają do rana. ( syt -> syt51)
+		Odp: Też zaczekaj.
+		Odp: Schowaj się tak, żeby nie było widać ognika z papierosa i zapal.
+
+Syt: syt51
+	Zapadła cisza. Gdy nie strzelamy, daj Boże, do Hunów trzeba coś robić... Patrzyli na mnie badawczo, jak się okazało: wiedzieli, co zrobiłem w szpitalu, za to żaden nic nie wiedział o moim szwagrze. Ot sprawiedliwość  losu... ( syt -> syt52)
+		Odp: Rozmawiam z porucznikiem Johnem Gylenhalem.
+		Odp: Rozmawiam z Markiem Orlovskim.
+			 (syt -> syt51) : Urodził się i mieszkał w Chicago, jego rodzice pochodzili z Polski. Babcia dała mu małą flagę i całując kazała zabić tylu sukinsynów, którzy położyli ręce na jej kraju ile się da. Podobno dokładnie tak powiedziała.
+		Odp: Rozmawiam z Tomem Kirkmanem.
+			 (syt -> syt56) : 
+		Odp: Rozmawiam z Ronem Livingstonem.
+			 () : Ron przeklinał wojnę, Ardeny, Hitlera, nas... w sumie wszystko. Mówiąc bardzo ogólnie: nie chciał tu być. To wszystko, o czym mówił.
+			jeśli syt23/2 (syt -> syt51) : Mnie jednak polubił. Stwierdził, że jesteśmy podobni, że ta wojna to nam o dupę potłuc. Wygląda na to, że zdobyłem kumpla.
+			jeśli syt23/1 (syt -> syt51) : Mnie nie mógł znieść w szczególności. Nie mógł zrozumieć, jak można było zgłosić się tu samemu. Chyba zyskałem wroga po swojej stronie.
+			 (syt -> syt51) : 
+		Odp: Rozmawiam z Edwinem Finnem.
+			jeśli syt23/1 (syt -> syt51) : Splunął mi tylko pod nogi i powiedział, że z dekownikami nie będzie rozmawiał. Chyba zyskałem wroga po swojej stronie.
+			jeśli syt23/2 (syt -> syt61) : 
+			 (syt -> syt51) : 
+		Odp: Szykuję się do snu.
+			 () : Rozmowy uciszyły się, znalazłem jakieś bezwietrzne miejsce na palecie z granatami.
+			 (syt -> syt63) : 
+
+Syt: syt52
+	Porucznik miał zabandażowaną rękę i widoczną, świeżą ranę na czole. Walczył w Ardenach od października, ale ominęło go Market Garden. Awansowany jeszcze w szkole wojskowej. ( syt -> syt56)
+		Odp: Zapytałem o rany.
+			jeśli syt23/1 (syt -> syt51) : Odburknął, że to nie moja sprawa. Kazał mi zamknąć ryj i siedzieć cicho.
+			jeśli syt23/2 (syt -> syt51) : Uśmiechnął się gorzko. Okazało się, że był już ranny siedem razy, ale nigdy na tyle mocno, żeby odesłać go na tyły. Obiecali mu, że za trzynastą raną, bez względu na to, jaka będzie, dadzą mu odpocząć.
+			 (syt -> syt51) : 
+		Odp: Porozmawiałem z kimś innym.
+			 (syt -> syt51) : 
+
+Syt: syt56
+	Tom pochodził z małego miasteczka w Minnesocie. Zimy nie były mu straszne, więc jako jedyny nie narzekał co pięć minut na mróz. ( syt -> syt61)
+		Odp: Powiedziałem mu, że w szpitalu spotkałem chłopaka, który miał tak samo na nazwisko.
+			 (syt -> syt51) : Ucieszył się, przynajmniej na początku. Kiedy powiedziałem, że brat umarł radość znikła. Był wdzięczny za informacje.
+			jeśli syt7/1 (zdrowie +1) : Jeszcze bardziej uradowało go ich wspólne zdjęcie, które dostałeś od Roberta. Poczułeś znaczny przypływ sił.
+		Odp: Powiedziałem mu, że w szpitalu spotkałeś kogoś, kto miał tak samo na nazwisko [Pokazujesz ich wspólne zdjęcie zrabowane z ciała chłopaka].
+			 (syt -> syt51) : Ucieszył się, przynajmniej na początku. Kiedy powiedziałem, że brat umarł radość znikła. Dobrze, że nikt mnie nie widział, jak dusiłem jego kociego brata moją poduszką.
+			 (zrecznosc +1) : Robert tak bardzo się ucieszył, że w dowód wdzięczności zamienił się ze mną swoim celniejszym karabinem.
+		Odp: Porozmawiałem z kimś innym.
+			 (syt -> syt51) : 
+
+Syt: syt61
+	Był ochotnikiem. Okazało się później, że sfałszował datę urodzin, żeby ruszyć z Wisconsin na front. Polubił mnie, bo jak mówił: trzeba mieć jaja, żeby dobrowolnie ruszyć na wojnę. Wygląda na to, że zdobyłem kumpla. ( syt -> syt63)
+		Odp: Zapytałem, jak długo tu walczy.
+			 (syt -> syt51) : Był w Ardenach od początku walk, od września. Weteran lasu Hurtgen, chociaż nie miał jeszcze 20 lat. Był jedynym, którego tu spotkałem, który walczył w Ardenach od września.
+		Odp: Rozmawiam z kimś innym.
+			 (syt -> syt51) : 
+
+Syt: syt63
+	W końcu położyłem się spać. Nikt świeżaka pierwszej nocy nie wyśle na zwiad. Temperatura spadła gdzieś do minus pięciu, może siedmiu. Od razu przemarzłem do szpiku kości, a miało być jeszcze gorzej... ( syt -> syt64)
+		Odp: Ułóż się wygodnie i otul wszystkim, co masz.
+			jeśli syt23/2 (syt -> syt72) : 
+		Odp: Wszystkie swoje rzeczy połóż najbliżej siebie. Nie uda się przykryć tak ciepło. Wiadomo, co to za jedni?
+			 (zdrowie -1) : Zacząłem kaszleć jeszcze tego samego wieczoru.
+			 (syt -> syt72) : 
+
+Syt: syt64
+	Minęło kilka dni... Któregoś ranka obudziło mnie przenikliwe zimno albo kopniak, nie pamiętam, a zmarznięte ciało nie czuło wielkiej różnicy. Kazali mi zostawić zbędne rzeczy i ruszyć dupę pomiędzy drzewa na zwiad. Opadła mgła i ni cholery nie widzieli, co się przed nimi dzieje, a nikt nie chciał iść dobrowolnie. ( syt -> syt65)
+		Odp: Powiedz, że chyba zwariowali. Za nic nie pójdziesz w obcy las naszpikowany Niemcami, jak zupa skwarkami.
+		Odp: Bez słowa weź karabin i nie oglądając się na nich idź na zwiad.
+			 (syt -> syt67) : 
+
+Syt: syt65
+	Porucznik powiedział, że pójdę: albo na zwiad, albo pod sąd wojenny. ( syt -> syt67)
+		Odp: Olej go. Niech stawia sąd wojenny.
+			 (endGame -> sadWojenny) : Na początku grudnia, w amerykańskich oddziałach w Lesie Hurtgen odbył się sąd wojenny. Oficerowie, dla powstrzymania raczkującego buntu, osądzili i skazali na rozstrzelanie trzech żołnierzy odmawiających wykonania rozkazu. Wyrok wykonano.
+		Odp: Niech mu będzie, idź...
+
+Syt: syt67
+	Gdybym z kuzynem pił samogon przez tydzień widziałbym więcej. Ni cholery nie mogłem dostrzec drzew na dwa kroki przed sobą. Co za przez Boga przeklęte miejsce! ( syt -> syt68)
+		jeśli [Zręczność > 3]: 
+			Odp: Idź ostrożnie i nasłuchuj po każdym kroku.
+				 () : Usłyszałem jakiś dźwięk w krzakach, podszedłem ostrożnie bliżej z celownikiem przy oku. To był niemiec, miałem go na muszce.
+		jeśli [Siła > 3]: 
+			Odp: Zostawiaj na drzewach nacięcia, żeby łatwiej wrócić. Kora jest zimna i twarda, wymaga siły aby robić sensowne nacięcia.
+				 () : Podczas nacinania drzew jakiś młody niemiec się na mnie natknął. Dziwne, nie miał broni, od razu w niego wycelowałem.
+		Odp: Idź pewnie przed siebie, wrócisz po śladach.
+			 () : No i się zgubiłem. To było do przewidzenia. Wiatr zakrył ślady, a w tej mgle nie mogłem znaleźć znajomych drzew. Nie wiedziałem nawet w którą stronę powinienem iść. Kiedy stałem tam, jak skończony kretyn z naprzeciwka wyszedł młody Niemiec.
+
+Syt: syt68
+	Trzymałem niemca na muszce. On jedną nogą w krzakach, bez broni sam nie wiedział co robić. ( syt -> syt71)
+		Odp: Zastrzel go.
+			jeśli zrecznosc<4 () : Amerykanin strzelił, ale nie trafił. Ręce zaczęły mu drżeć. Strzelił drugi i trzeci i wciąż nie trafił. Kiedy przymierzał się do czwartego strzału gdzieś z boku odezwał się karabin maszynowy strzelając w mgłę.
+			jeśli zrecznosc<4 (endGame -> randomShoot) : Trafił ich obydwu. Upadli blisko siebie. Niemiec jeszcze podczołgał się i pokazując na las powiedział: Allerseelenschlacht. Umarli dotykając się czołami, jak najbliżsi przyjaciele.
+			jeśli zrecznosc>3 () : Chłopak dostał kulą prosto w głowę. Siła pędu pocisku spowodowała, że ciało wykonało salto, lądując twarzą na ziemi. Huk poniósł się po koronach drzew.
+			 (syt -> syt79) : 
+		Odp syt68/2: Weź go na muszkę, ale nie strzelaj. Każ mu spieprzać w podskokach skąd przyszedł.
+			 () : Przez chwilę się wahał, ale zawrócił i zniknął we mgle. Przyjechałem tu zabijać nazistów, a nie bezbronnych chłopców.
+			 (syt -> syt79) : 
+		Odp: Weź go do niewoli.
+			jeśli sila>2 () : Trzymając go ciągle na muszce, udało mi się go drugą ręką związać.
+			jeśli sila<3 (zdrowie -1) : Trzymając go jedną ręka na muszce i związując, udało się Niemcowi jakoś wywinąć bokiem. Uderzył mnie pod żebra i uciekł w krzaki, zwinąłem się z bólu.
+			jeśli sila<3 (syt -> syt79) : 
+
+Syt: syt71
+	Zanim ruszyliśmy w przeciwną stronę do tej, z której przyszedł przeszukałem go. Miał przy sobie zdjęcie jakiejś starszej kobiety, matki chyba... ( syt -> syt72)
+		Odp: Oddaj mu zdjęcie.
+			 () : Widać było, że jest mi wdzięczny, przestał już się tak miotać. Chyba nawet mnie polubił.
+			 () : Wróciliśmy razem do okopów.
+			 (syt -> syt78) : 
+		Odp: Wyrzuć zdjęcie na śnieg i nie pozwól mu go podnieść.
+			 () : Jeniec smutnym wzrokiem patrzył na zdjęcie. Coś z nim zgasło. Ucieszyłem się na widok tych pustych oczu, nie wiem czemu.
+			 () : Zaciągnąłem go do okopów.
+			 (syt -> syt78) : 
+
+Syt: syt72
+	Minęło kilka dni... Któregoś ranka obudzili mnie kopniakiem, kazali zostawić zbędne rzeczy i ruszyć dupę pomiędzy drzewa do sztabu. Miałem zanieść informację i jak określił to porucznik: Weź se kurwa załatw jakiś gruby płaszcz, a jak trzeba to ukradnij samemu Ike'owi! Była straszna mgła. ( syt -> syt73)
+		Odp: Zapytaj w którym kierunku masz iść, bo głupio byłoby trafić na Niemców.
+			 (zrecznosc -1) : Dobry strzelec nie musi pytać, gdzie celować.
+		Odp: Pomarudź, ale weź karabin i idź.
+			 (zdrowie -1) : Marudzą tylko ofermy.
+		Odp: Bez słowa weź karabin i nie oglądając się na nich idź do sztabu.
+			 (sila +1) : Świadomość własnej siły dodaje pewności w działaniach.
+
+Syt: syt73
+	Sztab znalazłem bez większych problemów. Chyba mam w sobie coś z Francuza, że nie mam problemów z wycofywaniem się. Najpierw poszedłem do sztabu zanieść informacje. ( syt -> syt74)
+		Odp: Przywitaj się ze znajomym kapralem. Zamień  kilka przyjacielskich słów. Przekaż informacje i zapytaj o szwagra.
+			 (zdrowie +1) : Przyjacielska rozmowa na krańcu świata Cię pokrzepiła.
+		Odp: Przekaż informacje i wyjdź.
+			 (syt -> syt76) : 
+		Odp: Przekaż informacje i zapytaj o szwagra.
+
+Syt: syt74
+	Kapral sprawdził w rejestrze i okazało się, że szwagier jest tutaj, w Ardenach. Nie został ranny, więc na pewno jest na linii frontu. Nie wiem, czy to dobra wiadomość, czy zła. W końcu: trwa wojna, ale przynajmniej żyje. ( syt -> syt75)
+		Odp: Poproś, żeby wysłał tą informację do Twojej siostry.
+			jeśli syt38/1 (syt -> syt76) : 
+		Odp: Podziękuj i wyjdź.
+			 (syt -> syt76) : 
+		Odp: Zapytaj o pułk, przydział, miejsce...
+
+Syt: syt75
+	Kapral pokręcił głową. Powiedział, że nawet liczbę żołnierzy podają orientacyjnie, a tego, kto gdzie jest, to nie wie nikt dopóki żołnierz nie trafi do szpitala. ( syt -> syt76)
+		Odp: Podziękuj za informacje i poproś, żeby dalej szukał.
+			 () : Spojrzał na mnie spod brwi, zły. Powiedział, że właśnie idzie na przerwę i kazał odejść. Odszedłem.
+		Odp: Podziękuj i wyjdź.
+		Odp: Zostaw mu kilka papierosów i powiedz, żeby pamiętał o szwagrze.
+			 () : Uśmiechnął się, obiecał że dołoży wszelkich starań.
+
+Syt: syt76
+	W magazynie siedział ten sam sierżant, co poprzednio. Nawet zdobycie nowego płaszcza to przygoda. ( syt -> syt77)
+		Odp: Zapytaj, czy nadal nie chce się zamienić, a kiedy przestanie Cię rugać powiedz o poleceniu twojego porucznika.
+		Odp: Przywitaj się i powiedz, że nie wiesz co robić, jak jest mgła i przyszedłeś po radę, a kiedy przestanie się śmiać powiedz z czym przyszedłeś.
+		Odp: Powiedz z czym przyszedłeś.
+
+Syt: syt77
+	Wziąłem płaszcz, zjadłem ciepły posiłek i ruszyłem z powrotem. Cholerna mgła nadal wisiała nisko. To będzie cud, jak się nie zgubię. ( syt -> syt78)
+		Odp: Zapytaj kogoś o kierunek, w którym masz iść. Przynajmniej zaczniesz powrót w dobrą stronę.
+			 (syt -> syt68) : 
+		Odp: Idź przed siebie, to zawsze dobry kierunek.
+			 (syt -> syt68) : 
+
+Syt: syt78
+	W okopach przywitał nas porucznik, który nie wyglądał na zadowolonego z jeńca. Takiego trzeba odstawić do sztabu, a tu podobno coś się szykuje i nikt nie może opuszczać okopów. Kazał mi pilnować Niemca. ( syt -> syt79)
+		Odp syt78/1: Spróbuj z nim rozmawiać.
+			 (syt -> syt80) : 
+		Odp: Weź go na muszkę i nic nie mów.
+			 (syt -> syt80) : 
+		Odp: Każ mu siedzieć w kącie inie zwracaj na niego większej uwagi.
+			 (syt -> syt80) : 
+
+Syt: syt79
+	Wróciłem w samą porę. Przynajmniej z punktu widzenia porucznika. Coś się szykowało i nikt nie mógł opuszczać okopów. ( syt -> syt80)
+		Odp: Siądź w kącie okopu i czekaj spokojnie.
+			 (syt -> syt81) : 
+		Odp: Usiądź na brzegu okopu i wpatruj się w mgłę przed sobą. Ktoś może stamtąd przyjść.
+			 (syt -> syt81) : 
+		Odp: Zapytaj porucznika, co masz robić.
+			 (syt -> syt81) : 
+
+Syt: syt80
+	Pierwszy ostrzał spadł niespodziewanie i szybko się skończył. Macali nas, gdzie kończy się linia frontu. Młody Niemiec struchlał, zbladł i zaczął się jąkać. Powtarzał tylko: Das ist  Allerseelenschlacht wskazując na las. Finn przetłumaczył. Znaczyło to: „To jest bitwa wszystkich dusz”. ( syt -> syt81)
+		Odp: Uderz jeńca i każ mu się zamknąć.
+			jeśli syt23/2 (syt -> syt82) : 
+		Odp: Nic nie rób, niech sobie gada.
+			jeśli syt23/2 (syt -> syt82) : 
+
+Syt: syt81
+	W powietrzu czuć było napięcie. Finn spojrzał się na mnie i przez chwilę mierzył mnie wzrokiem, ale nic nie powiedział. ( syt -> syt82)
+		Odp: Co się kurwa gapisz?!
+			 (syt -> syt83) : 
+		Odp: Nie wiesz, gdzie są Niemcy, baranie?
+			 (syt -> syt83) : 
+		Odp: Rób swoje, a nie się gapisz.
+			 (syt -> syt83) : 
+
+Syt: syt82
+	W powietrzu czuć było napięcie. Finn spojrzał się na mnie i powiedział, żebym leciał do najbliższego drzewa, kiedy się zacznie i jak najmocniej przycisnął się do pnia. Podobno później zrozumiem. ( syt -> syt83)
+		Odp: Dziękuję... chyba.
+		Odp: Co ty pleciesz? Tu w okopie...
+
+Syt: syt83
+	W jednej chwili wszystko przestało się liczyć. Rozległ się w oddali dźwięk, jakby osuwały się tony kamieni, a chwilę później pierwsze bomby rozerwały drzewa nad naszymi głowami. Zanim zasypał nas deszcz drzazg i odłamków wszyscy zerwali się na nogi i wybiegli z okopu. ( syt -> syt84)
+		Odp: Wybiegłem, jak inni, ale nie wiedziałem po co.
+		Odp: Ruszyłem biegiem do najbliższego drzewa, co w tej mgle nie było łatwe.
+			 () : Usłyszałem świst.
+			jeśli zrecznosc<3 (zdrowie -1) : Odłamek przebił mi prawe ramię, to tylko powierzchowna rana.
+			jeśli zrecznosc>2 () : Natychmiast się uchyliłem, coś zimnego musnęło mnie po policzku.
+			 (syt -> syt106) : 
+		Odp: Zostałem w okopie, razem z jeńcem, który zasłonił głowę rękoma i krzyczał chcąc zagłuszyć bomby.
+			jeśli zrecznosc>4 (syt -> syt123) : Usłyszałem świst pocisku lecący przez las, rzuciłem się w przeciwnym kierunku. Nawet mnie nie drasnął.
+			jeśli zrecznosc<5 (zdrowie -1) : Jeden z pocisków wybuchł tuż obok nas, zasypując nas odłamkami i zwalając na nas drzewo.
+			 (syt -> syt123) : 
+
+Syt: syt84
+	Bomby rozrywały drzewa nad moją głową, a ja zamarłem i podziwiałem pokaz potężnych ogni sztucznych. Wybuchło kilka metrów obok mnie, a siła eksplozji rzuciła mnie plecami na drzewo. ( syt -> syt85)
+		jeśli [Zdrowie < 3]: 
+			Odp: Spróbuj się podnieść, albo przynajmniej usiąść
+				 () : Siedziałem sam licząc na to, że pierwsi znajdą mnie nasi. Nie miałem nawet sił krzyczeć.
+		Odp: Zawołaj Toma na pomoc.
+			 (syt -> syt99) : 
+		Odp: Przeczekaj ostrzał i rusz w stronę sztabu.
+			 (zdrowie -3) : Wokoło wybuchały bomby, jedna uderzyła niedaleko i pokaleczyła moje plecy.
+			 (sila -2) : Czułem się, jakby mi rozszarpała wszystkie mięśnie.
+			jeśli zdrowie>4 (syt -> syt96) : 
+		Odp: Nie bacząc na ostrzał - rusz w stronę sztabu od razu.
+			 (zdrowie -5) : Ślepo uciekając nadepnąłeś na niemiecką zapadnię, zdarłeś sobie skórę na nodze do kości.
+
+Syt: syt85
+	Niestety, pojawili się Niemcy. ( syt -> syt86)
+		Odp: Próbuj uciekać.
+			 () : Natychmiast się zerwałem na nogi i uciekłem w pierwsze krzaki.
+			jeśli zrecznosc>5 (syt -> syt106) : Strzelali za mną, ale nikt nie pobiegł. Trafiłem do swoich w sam środek walki.
+			jeśli zrecznosc<6 (zdrowie -3) : Strzelili do mnie i trafili mnie w plecy, zanim zniknąłem za krzakami. Kłujący ból przeszywał mnie na wskroś, moja krew pojawiła się na klatce piersiowej.
+		Odp: Próbuj walczyć.
+		Odp: Nic nie rób, to i tak nie ma sensu. Poczekaj na to, co zrobią oni.
+			 (zdrowie -2) : To było do przewidzenia: pobili mnie gorzej niż psa. Byłem już nieprzytomny, gdy mnie stamtąd zabrali.
+			 (syt -> syt88) : 
+		Odp: Poddaj się. Idź w niewolę.
+			 (syt -> syt88) : 
+
+Syt: syt86
+	Zaczęli się ze mnie śmiać. Przewrócili mnie kilka razy, ale w końcu im się znudziło i wzięli mnie do niewoli. ( syt -> syt88)
+		Odp: Wciąż walcz.
+			 (endGame -> germanDeath) : Niemiec od niechcenia skierował karabin nawet nie zdejmując go z ramienia w stronę rannego Amerykanina i pociągnął za spust. Kula przebiła głowę chłopaka i utknęła w drzewie. Niemcy poszli dalej.
+		Odp: Przestań walczyć. Idź w niewolę.
+
+Syt: syt88
+	Odstawili mnie na swoją linię frontu. Pobieżnie obejrzał mnie lekarz i rzucili mnie obok namiotu medycznego. Miałem czekać, ale nie powiedzieli mi, czy na śmierć, czy na transport do obozu. ( syt -> syt89)
+		Odp: Idź spać, żeby odzyskać siły
+			 (zdrowie +1) : Odpoczynek dobrze Ci zrobił.
+			 (syt -> syt93) : 
+		Odp: Rozejrzyj się dookoła, postaraj się znaleźć kogoś znajomego.
+			 (syt -> syt90) : 
+		Odp: Nic nie rób. Leż, jak Cię położyli.
+			 (syt -> syt90) : 
+
+Syt: syt89
+	Obok przechodził młody Niemiec, nie poznałem go, ale on mnie pamiętał. To był ten chłopak, którego rano puściłem wolno. Zaszprechał coś po swojemu i zaraz dwóch sanitariuszy zabrało mnie stamtąd i przeniosło do namiotu. Okazało się, że obok namiotu leżeli ci, którzy mieli umrzeć. ( syt -> syt90)
+		Odp: Podziękuj, że się wstawił za Tobą.
+			 (syt -> syt95) : 
+		Odp: Nic nie mów. Podziękuj skinieniem głowy.
+			 (syt -> syt95) : 
+
+Syt: syt90
+	Ktoś mnie rozpoznał. Wyskoczył z konwoju jeńców i klęknął obok mnie. Szwagier. Jednak go znalazłem. Niemiec kopnął go i kazał mu wracać do szeregu, ale on coś mu odpowiedział i pozwolił mu chwilę przy mnie zostać. ( syt -> syt91)
+		Odp: Powiedz mu, że siostra się o niego niepokoi.
+		Odp: Powiedz mu, że go szukałeś.
+		Odp: Nic nie mów.
+
+Syt: syt91
+	Pokręcił głową, nie mógł nic powiedzieć. W końcu wydukał tylko: „Przykro mi...” Nie wiedziałem o co mu chodzi. Spojrzałem uważniej na ludzi leżących wokół mnie i zrozumiałem. Nie czekałem na transport... ( syt -> syt92)
+		Odp: Poproś, żeby dbał o twoją siostrę jeśli wróci.
+		Odp: Powiedz, że to, co było to się nie liczy, że teraz ma tylko wrócić. Wymuś na nim tą obietnicę.
+		Odp: Powiedz, że to on powinien być na twoim miejscu. Masz nadzieję, że nie wróci stąd żywy. Twojej siostrze będzie lepiej bez niego.
+
+Syt: syt92
+	Jeniec wstał zostawiając swojego rodaka na ziemi. Wielu rodaków. ( syt -> syt93)
+		Odp: Po upływie kilku godzin...
+			 (endGame -> campDeath) : Wkrótce każdy z nich wyzionął ducha, jak jeden mąż. Niemcy zakopali ich w masowej, nieoznaczonej mogile.
+
+Syt: syt93
+	Kiedy się obudziłem wrzucali chłopaków leżących obok na przyczepę. Rzucali nimi jak workami ziemniaków. Nikt nie jęknął. Wszyscy byli martwi. ( syt -> syt94)
+		Odp: Odezwij się, pokaż, że żyjesz.
+		Odp: Spróbuj się odczołgać na bok.
+		jeśli [Siła > 5]: 
+			Odp: Wstań i spróbuj iść samemu do namiotu medycznego
+				 (syt -> syt95) : 
+
+Syt: syt94
+	Niemcy pracujący przy zwłokach spojrzeli na kolejnego z Amerykanów, który jeszcze się ruszał. ( syt -> syt95)
+		Odp: Miałeś już siły się ruszać.
+			 (endGame -> campDeath2) : Ledwo, to prawda, ale jednak... Na nich nie zrobiło to wrażenia. Wrzucili go na przyczepkę, jak pozostałych. Wkrótce każdy z nich był martwy. Zakopali ich w masowej, nieoznaczonej mogile.
+
+Syt: syt95
+	Każdego jeńca, który przeżył do następnego tygodnia zapakowali na ciężarówki i wywieźli do obozów. Wśród nich byłem również i ja. Tam doczekałem wyzwolenia, chociaż było ciężko. ( syt -> syt96)
+		Odp: Nie lubię o tym rozmawiać.
+			 (endGame -> freeUp) : Szwagier nie wrócił z wojny i nie udało nam się nigdy dowiedzieć, co się z nim stało. Ja do dziś mam awersję do drzew, a kiedy jest zimno zaczynam świstać przy oddychaniu. Ale przynajmniej wróciłem i udało mi się wychować siostrzeńca, jak własnego syna.
+
+Syt: syt96
+	Po drodze spotkałem Rona. Wciąż kurwiał na czym świat stoi, ale to były ostatnie przekleństwa w jego życiu. Z rozerwanego brzucha wypływały mu wnętrzności. Kiedy go mijałem poprosił, żebym z nim posiedział. Nie chciał, jak mówił, umierać sam. ( syt -> syt97)
+		Odp: Zostań z nim.
+		Odp: Odejdź.
+			jeśli zrecznosc<5 (zdrowie -3) : Dźgnął mnie nożem w brzuch! Zanim umarł wycedził jeszcze przez zęby: „Nie umrę sam”... I umarł skurwiel.
+			jeśli zrecznosc>4 () : W mgnieniu oka wyciągniął nóż, aby mnie dźgnąć, ale chwyciłem go za nadgarstek. Obróciłem jego dłoń i patrząc mu się w oczy wbiłem mu jego własne ostrze w krtań.
+			 (syt -> syt85) : 
+
+Syt: syt97
+	Nie mógł zrozumieć, co my tu robimy, po co to wszystko? Czy ktokolwiek to wiedział? Usłyszeliśmy zbliżających się Niemców. Uparł się, żebym go nie zostawiał. ( syt -> syt99)
+		Odp: Zostań z nim. Wkrótce umrze.
+			 (syt -> syt85) : 
+		Odp syt97/2: Odejdź.
+			jeśli sila>5 (syt -> syt136) : Złapał mnie za rękę, lecz wyszarpnąłem mu się i ruszyłem w stronę naszych linii.
+			jeśli sila<6 (syt -> syt85) : Złapał mnie za rękę, kiedy chciałem odejść. Nie udało mi się wyrwać z jego żelaznego uścisku.
+			jeśli sila<6 (zdrowie -2) : Zauważyłem nóż w jego drugiej ręce, pociął mi pierś, zanim zdołałem cokolwiek zrobić. I Umarł, skurwiel.
+			 (syt -> syt85) : 
+		jeśli [Zręczność > 5]: 
+			Odp: Zobaczyłem w jego ręce nóż gotowy do ciosu.
+				 (syt -> syt97) : 
+
+Syt: syt99
+	Kiedy ostrzał ustał staliśmy obaj oparci o drzewo podtrzymując się wzajemnie. Tom miał zmiażdżone odłamkiem drzewa kolano i przebity brzuch. Mi chyba coś pękło w środku. Wszyscy krzyczeli wokół, żeby zostać, bo zaczną drugi ostrzał, ale nie mogliśmy sobie na to pozwolić. Potrzebowaliśmy medyka, a żadnego wokół nie było.. ( syt -> syt100)
+		Odp: Powiedz Tomowi, żeby Cię zostawił i ratował się sam.
+			 (syt -> syt85) : 
+		jeśli [Siła > 1]: 
+			Odp: Wspierając się na sobie idźcie w stronę szpitala.
+
+Syt: syt100
+	Przedzieraliśmy się przez mgłę i las w stronę szpitala. Dwie ledwo żywe ofiary ostrzału. To musiało wyglądać komicznie. Wkrótce zaczął się drugi ostrzał. ( syt -> syt102)
+		jeśli [Siła > 4]: 
+			Odp: Na szczęście byliśmy już poza jego zasięgiem.
+				 (syt -> syt104) : 
+		Odp: Zostaw Toma i uciekaj sam.
+		Odp: Poszukajcie schronienia.
+			 (syt -> syt85) : Podciągnąłem się do drzewa, oparłem o nie i usiadłem. Miałem nadzieję, że jeśli nie zabłądziliśmy to zaraz znajdą mnie nasi.
+			 (zdrowie -1) : Kiedy rozglądaliśmy się za schronieniem jedna z bomb wybuchła tuż obok. W ostatniej chwili Tom spróbował zakryć mnie swoim ciałem. Zanim umarł powiedział jeszcze: „Szkoda mi naszej mamy...”.
+
+Syt: syt102
+	Jego smutno uśmiechniętą twarz miałem nadal przed oczami. Nawet, jak dotarłem w końcu do szpitala i położyli mnie w łóżku. Zginąłbym, gdyby nie on, a ja go porzuciłem gdzieś tam w lesie... ( syt -> syt103)
+		Odp: Zapytaj o niego lekarzy.
+		Odp: Postaraj się o nim zapomnieć.
+		Odp: Przyglądaj się każdemu nowemu rannemu. Może będzie jednym z nich?
+
+Syt: syt103
+	Nigdy już go nie spotkałem, nie dowiedziałem się też, co się  z nim stało. Znalazłem za to szwagra. Przynieśli go wieczorem tego samego dnia. Stracił nogę, ale przeżył i był wspaniałym ojcem i mężem. Koniec wojny zobaczyłem jednak w gazetach. Kiedy wróciłem do kraju wciąż nie mogłem zapomnieć o Tomie. Stałem się zgorzkniały i ponury. ( syt -> syt104)
+		Odp: Odwiedziłem jego rodzinne miasteczko.
+			 (endGame -> lostTom) : Nie byłem w stanie spotkać się z jego matką. Czasami słyszałem, jak bliscy mówili mi, że lepiej byłoby, gdybym umarł w Europie. Często wydaje mi się, że mają rację, że byłoby lepiej...
+
+Syt: syt104
+	Kiedy dotarliśmy do szpitala zaraz nas rozdzielili. Jego wzięli na operację, a ja podobno mogłem poczekać. ( syt -> syt105)
+		Odp: Powiedz mu, że wkrótce się zobaczycie.
+		Odp: Czuwaj najbliżej stołu operacyjnego, jak się da.
+
+Syt: syt105
+	Nie wiem, jak długo go operowali, bo zaraz sam straciłem przytomność. Jak się okazało – nie mogłem czekać. Obudziłem się pięć dni później. Tom leżał z mojej jednej strony, szwagier siedział z drugiej. Dowiedział się, że ktoś się o niego wypytuje i odnalazł mnie. Sam utykał, ale to nie było nic groźnego. ( syt -> syt106)
+		Odp: Resztę wojny spędziłem w szpitalach, zawsze z Tomem.
+			 (endGame -> hospitalWin) : Kiedy mieliśmy wracać do kraju przyjechał po nas szwagier. On walczył do końca wojny, ale na szczęście udało mu się przeżyć. Wróciliśmy wszyscy trzej. Mimo wszystko uważam do dziś, że mieliśmy dużo szczęścia...
+
+Syt: syt106
+	Ostrzał trwał, jak mi się wydawało, dwie godziny. W rzeczywistości było to tylko kilka minut. Wokół krzyczeli, żeby nie wychodzić z kryjówek, bo zaraz zaczną drugi raz. Wtedy go zobaczyłem. Porucznik leżał pod swoim drzewem twarzą do dołu. Nie miał obu nóg. ( syt -> syt107)
+		Odp: Podejdź do niego.
+		Odp: Zostaw porucznika i uciekaj sam.
+			 (syt -> syt115) : 
+
+Syt: syt107
+	„Teraz na pewno Pana odeślą, poruczniku” powiedziałem klękając obok niego. Uśmiechnął się z trudem. „Nie wiem, czy z tego wyjdę” odpowiedział i zakaszlał krwią, kiedy próbował się roześmiać. ( syt -> syt108)
+		Odp: Obejrzyj jego rany i postaraj się mu pomóc na ile potrafisz...
+			 (syt -> syt110) : 
+		jeśli [Siła > 2]: 
+			Odp: Weź go na plecy i postaraj się wynieść z pola walki.
+				 (sila +1) : Zarzuciłem go sobie na ramiona i ruszyłem w kierunku, gdzie według mnie powinna być pomoc. Był lżejszy niż mi się wydawało, może dlatego, że nie miał nóg.
+		Odp: Okryj go kocem i czekaj na pomoc.
+			 (syt -> syt110) : 
+
+Syt: syt108
+	Za plecami zaczęły wybuchać pierwsze pociski. Porucznik zaczynał ciążyć na plecach. ( syt -> syt109)
+		Odp: Przyśpiesz.
+			jeśli sila>5 (syt -> syt138) : Bez problemu przyspieszyłem tempa i wyszliśmy ze strefy ognia.
+			jeśli sila<6 () : Nie dałem rady. Upadliśmy w śnieg i nie miałem sił, żeby iść dalej. Widziałem, jak nasze linie przesuwały się do tyłu.
+		Odp: Zostaw porucznika i dalej uciekaj sam.
+			 (syt -> syt115) : 
+
+Syt: syt109
+	Zostaliśmy sami. Ostrzał ustał i słyszeliśmy już zbliżających się Niemców. Porucznik spojrzał na mnie i powiedział: „Dobry chłopak jesteś, nie umieraj tu. Zostaw mnie i ratuj siebie. To rozkaz”. ( syt -> syt110)
+		Odp: Pożegnaj się z porucznikiem i zostaw go tak, jak prosił.
+			 (syt -> syt115) : 
+		Odp: Powiedz, że nie ma takiej opcji. Zostajesz, nawet gdybyś miał mieć za to sąd wojenny.
+
+Syt: syt110
+	Kiedy znaleźli nas Niemcy podniosłem ręce i poddałem się za nas obu. Jeden z nich przyjrzał się nam uważnie. Kiedy mnie wiązali wyciągnął broń i strzelił porucznikowi w głowę. ( syt -> syt111)
+		jeśli [Siła > 4]: 
+			Odp: Rzuć się na nich z pięściami.
+				 (zdrowie -1) : Walnąłem najbliższego z pięści, drugiego uderzyłem głową w klatkę piersiową, ale trzeci walnął mnie kolbą w nos. Zakręciło mi się w głowie.
+		Odp: Zbliż się do ciała porucznika i pożegnaj się z nim.
+			 (zdrowie -1) : Niemcom nie podobało się takie rozczulanie się. Dostałem z kolby karabinowej w plecy, upadłem na ciało porucznika. Jego usta otworzyły się jakby w bólu.
+			 (syt -> syt113) : 
+		Odp: Odwróć się i nie patrz na jego ciało.
+			 (syt -> syt113) : 
+
+Syt: syt111
+	Leżałem plecami na zimnym śniegu. Nad moją głową widziałem tylko drzewa i karabiny. ( syt -> syt113)
+		Odp: Walcz dalej.
+			jeśli zrecznosc>5 (zdrowie -1) : Udało mi się jakoś wyrwać karabin od jednego z niemców, gdy trzymałem jednego na muszce, dostałem czymś w głowę i straciłem przytomność.
+			jeśli zrecznosc<6 () : Niemcy w końcu stracili cierpliwość do miotającego się chłopaka.
+			jeśli zrecznosc<6 (endGame -> germanDeath2) : Dowódca uderzył go kolbą w skroń i chłopiec upadł bez życia na ziemię. Jego ostatnim widokiem było beznogie ciało jego dowódcy.
+		Odp: Poddaj się. I tak już nic nie zmienisz.
+
+Syt: syt113
+	Trafiłem do niewoli. Tak jak i Orlovski. Pokazał mi nieśmiertelnik z imieniem i nazwiskiem mojego szwagra. Trafił na niego podczas odwrotu. ( syt -> syt114)
+		Odp 113/1: Powiedz, że to może być też ktoś inny o tym nazwisku.
+			 () : Orlovski już miał Ci dawać nieśmiertelnik, gdy cofnął rękę. 'Skoro tak mówisz, to szukaj dalej sam.' - powiedział. I odszedł.
+		Odp: Weź blaszki i podziękuj mu za informację.
+			jeśli sila>5 () : Spojrzał na Twoje masywne przedramię i powiedział: 'Może kiedyś się odwdzięczysz pomocą.' - uśmiechnął się smutno i odszedł.
+			jeśli sila<6 () : 'Może Bóg nam wszystkim wynagrodzi nasze trudy.' - powiedział i oddalił się.
+		Odp: Nic nie mów.
+			 () : Orlovski spojrzał na mnie ze zrozumieniem. Sam nie wiedziałem co rozumiał, ale przytaknął, klepnął mnie po ramieniu i został w mojej dłoni nieśmiertelnik.
+			 () : Gdy się obróciłem, aby mu podziękować, już go nie było.
+
+Syt: syt114
+	Trafiłem do obozu. Orlovski uciekł i podobno przedostał się do aliantów. Walczył jeszcze pod koniec wojny. ( syt -> syt115)
+		Odp: Mnie wyzwolili spadochroniarze w kwietniu '44.
+			 (endGame -> backToCamp) : Wróciłem do kraju, ale nigdy nie zapomniałem porucznika Gylenhala. Do dziś palę świeczki pod jego pomnikiem. Szwagier jednak nie zginął. Wrócił dwa lata po wojnie, ale tylko po to, żeby się rozwieść. Osiadł w Belgii i tam założył nową rodzinę.
+		Odp: Szukałem szwagra na froncie jeszcze długo.
+			 (endGame -> poison) : Niemcy wzięli mnie do niewoli i obozu. Będąc tam przyszła do mnie poczta, że to Orlovski faktycznie pokazał mi cudzy nieśmiertelnik. Szwagier jednak nie zginął. Wrócił dwa lata po wojnie, ale tylko po to, żeby się rozwieść. Osiadł w Belgii i tam założył nową rodzinę. Niemcy zabili mnie trucizną w serce.
+
+Syt: syt115
+	Przedzierałem się sam przez ten cholerny las, wiedziałem, że Niemcy są tuż za mną. Wciąż czułem, że zrobiłem źle zostawiając porucznika. ( syt -> syt136)
+		Odp: Przedzieraj się dalej
+
+Syt: syt136
+	Nagle przede mną rozległo się wołanie o hasło. Po angielsku! ( syt -> syt117)
+		Odp: Omaha! Omaha kurwa!
+			 (syt -> syt119) : 
+		Odp: Swój kurwa!
+		Odp: To ja, nie strzelaj!
+		Odp: Zatrzymaj się i nic nie mów.
+			jeśli zrecznosc>6 (zrecznosc +1) : Usłyszałem cyknięcie zwalnianego zabezpieczenia i odruchowo rzuciłem się na ziemię. Kula świsnęła nade mną.
+			jeśli zrecznosc<7 () : Młody wartownik nie słysząc odzewu strzelił do widocznego w rzedniejącej mgle cienia.
+			jeśli zrecznosc<7 (endGame -> omahaDeath) : Trafił od razu. Cień się osunął, a na piersi amerykańskiego munduru zaczęła rosnąć czerwona plama. Wkrótce i śnieg wokół przybrał czarno-czerwoną barwę. Wartownik po chwili opuścił posterunek i wycofał się jeszcze dalej.
+
+Syt: syt117
+	Podeszło do mnie dwóch naszych żołnierzy. Zapytali kto jest żoną Myszki Mickey. ( syt -> syt118)
+		Odp: Daisy.
+		Odp: Minnie.
+			 (syt -> syt119) : 
+		Odp: Pluto.
+
+Syt: syt118
+	Amerykańscy żołnierze, podczas patrolu natknęli się na... ( syt -> syt119)
+		Odp: Niemieckiego szpiega w ich mundurze.
+			 (endGame -> wrongAnswer) : Zastrzelili go bez wahania. Dla szpiegów nie było litości!
+
+Syt: syt119
+	Pokierowali mnie do punktu przegrupowań. Kiedy biegłem przez las wydawało mi się, że byłem sam, ale tam było wielu z nas i wciąż nadbiegali nowi. Wśród nich Livingstone. Splunął na mój widok. Jemu nic nie było, a ja miałem ranne ramię. ( syt -> syt120)
+		Odp: Poradź mu, żeby się pierdolił.
+		Odp: Zignoruj go.
+		Odp: Uderz go zdrową ręką.
+
+Syt: syt120
+	Miałem okazję znów wrócić na jakiś czas do szpitala, jednak rana nie była na tyle poważna, poza tym... czułem, że jestem winny dalszą walkę porucznikowi. ( syt -> syt121)
+		Odp: Poproś o kilka dni przerwy.
+			 (syt -> syt122) : 
+		Odp: Zaciśnij zęby i walcz dalej. W końcu to tylko dziura w ramieniu.
+
+Syt: syt121
+	Jeszcze tego samego dnia przeprowadziliśmy kontrofensywę. Później następną i następną. Walki trwały w tym przeklętym lesie do lutego, ale przełamaliśmy ich. Ruszyliśmy w końcu w głąb Rzeszy i koniec końców pokonaliśmy ich. Nie oszczędzałem się, dosłużyłem się stopnia porucznika, ale wciąż pamiętałem o Gylenhalu. ( syt -> syt122)
+		Odp: Utonąłem w poczuciu winy.
+			 (endGame -> vodkaWin) : Pod koniec wojny zamieniłem swój nieśmiertelnik z jednym z zabitych chłopaków. Nie wróciłem nigdy do kraju. Zaprzyjaźniłem się z wódką i ta przyjaźń trwa do dziś. Szwagra też nie znalazłem.
+
+Syt: syt122
+	W szpitalu odnalazłem szwagra. Też był lekko ranny. Napisałem o tym do siostry i ruszyliśmy dalej walczyć. Zginął głupią śmiercią, już po zwycięstwie w Europie, a jeszcze przed Hiroszimą. ( syt -> syt123)
+		Odp: Jakiś pijany kapral wjechał w niego, kiedy szedł ulicą.
+			 (endGame -> porucznikLeft) : Nie potrafiłem tego wyjaśnić siostrze, która mnie za to znienawidziła. Sam sobie z kolei nigdy nie mogłem wybaczyć tego, że zostawiłem porucznika. Ten cień wisi nade mną do dziś.
+
+Syt: syt123
+	Finn przybiegł nam pomóc i kiedy już prawie odsunął drzewo spadł drugi pocisk. Oberwaliśmy wszyscy. ( syt -> syt124)
+		Odp: Zapytaj Finna, co z nim.
+		Odp: Sprawdź, co z jeńcem.
+		Odp: Obejrzyj siebie.
+
+Syt: syt124
+	Jeniec wykrwawiał się na śmierć z rozerwanej ręki i oskalpowanej głowy. Finn Miał przebite ramię i posypany był odłamkami, jak rudy piegami. Mi oderwało część stopy i rozwaliło bębenek w lewym uchu. Fin wstał i zaczął na nas patrzeć. Jeniec cicho zapłakał. ( syt -> syt125)
+		Odp: Krzyknij do Finna, żeby się ogarnął.
+		Odp: Zajmij się opatrywaniem swoich ran.
+		Odp: Zajmij się jeńcem.
+
+Syt: syt125
+	Fin przyklęknął obok jeńca i zaczął z nim rozmawiać po niemiecku i uciszać go. Początkowo rozmowa szła całkiem dobrze, ale w końcu młody Niemiec zaczął powtarzać jedno słowo: Bitwa wszystkich dusz. Finn cofnął się, usiadł na zwalonym drzewie i zaczął płakać. Dopiero teraz zdałem sobie sprawę z tego, jaki był młody. Coś w nim pękło. ( syt -> syt126)
+		Odp: Staraj się porozmawiać z Finnem, pocieszyć go.
+			 (syt -> syt127) : 
+		Odp: Nic nie rób. Pozwól mu przeżyć to po swojemu.
+			 (syt -> syt127) : 
+		jeśli [Siła > 5]: 
+			Odp: Podejdź do niego i obejmij go.
+
+Syt: syt126
+	Finn wtulił się we mnie i zaczął mnie przepraszać. Po chwili zamilkł, wstał  i bez słowa poszedł w las. ( syt -> syt127)
+		Odp: Pozwól mu odejść.
+		jeśli [Zdrowie > 2]: 
+			Odp: Wołaj za nim, żeby został.
+		jeśli [Zdrowie > 4]: 
+			Odp: Spróbuj go gonić.
+
+Syt: syt127
+	Wkrótce zniknął we mgle. Wokół trwał odwrót i zostałem z jeńcem sam. Nie miałem siły się ruszyć i tylko czekałem na to, co się wydarzy. Jeniec jęczał nieznośnie i jeszcze nie umierał. Wkrótce przyszli Niemcy. Jeden z nich widząc swojego kamrata wycelował pistolet w moją głowę. ( syt -> syt128)
+		Odp: Spojrzałem na jeńca, dla którego byłem dobry.
+			 () : Jeniec ostatkiem sił coś mu powiedział i ten schował lugera do kabury. Podnieśli mnie i zanieśli mnie za swoje linie. Trafiłem do niewoli.
+		Odp: Spojrzałem na jeńca, dla którego byłem dobry.
+			 () : Jeniec ostatkiem sił coś mu powiedział i ten schował lugera do kabury. Podnieśli mnie i zanieśli mnie za swoje linie. Trafiłem do niewoli.
+		Odp: Próbuję wyjaśnić sytuację gestami.
+			 (endGame -> germanExecution) : Jeniec jeszcze otworzył oczy i spojrzał na mnie z nienawiścią. Rozległ się suchy trzask iglicy lugera.
+
+Syt: syt128
+	Niemieccy lekarze opatrzyli mnie, ale kiedy nasi uderzyli kontrofensywą zostawili mnie, jak wielu innych na gołej ziemi i uciekli. Trafiłem znów do szpitala. Tam znalazłem szwagra, ale wśród poległych. Głupia sprawa. ( syt -> syt129)
+		Odp: Napisz o tym siostrze.
+		Odp: Skłam siostrze, że jeszcze go nie znalazłeś. Niech inni dostarczą jej tą wiadomość.
+
+Syt: syt129
+	W połowie lutego znów byłem na froncie. Walczyłem do końca, a kiedy wróciłem do kraju próbowałem odnaleźć Finna. ( syt -> syt130)
+		Odp: Znalazłem go w szpitalu dla psychicznie chorych pięć miesięcy po wojnie.
+			 (endGame -> finnFound) : Siedział w kącie i ciągle mówił po niemiecku. Niedługo później zniknął. Nikt nie wie jak, po prostu rano go nie było w pokoju mimo iż drzwi były zamknięte. Nigdy już o nim nie usłyszałem.
+
+Syt: syt130
+	Szybko zdałem sobie sprawę, że nie mam gdzie, i że zaraz mnie złapią. ( syt -> syt131)
+		Odp: Uciekaj dalej.
+			 (syt -> syt132) : 
+		Odp: Wróć do szpitala.
+			 (syt -> syt34) : 
+
+Syt: syt131
+	Lekarz usadził mnie lewym prostym, aż zawirował mi świat. ( syt -> syt132)
+		Odp: Szarp się dalej z lekarzem.
+		Odp: Usiądź spokojnie.
+			 (syt -> syt34) : 
+
+Syt: syt132
+	Wkrótce osaczyli mnie żandarmi i łatwo sprowadzili do parteru. Nie mogłem już nic zrobić. ( syt -> syt134)
+		Odp: Poddaj się im spokojnie.
+			 (syt -> syt34) : 
+		Odp: Szarp się do samego końca.
+			 (sila +1) : Takiego treningu siły dawno nie przeżyłem.
+			 (syt -> syt34) : 
+
+Syt: syt134
+	Nawet się tego nie spodziewali. Zacząłem biec, ale zdałem sobie sprawę, że właśnie dezerteruję z armii. ( syt -> syt138)
+		Odp: Uciekaj dalej.
+			 (syt -> syt132) : 
+		Odp: Wróć do szpitala.
+			 (syt -> syt34) : 
+
+Syt: syt138
+	Dotarliśmy z porucznikiem do naszych. Nie był szczęśliwy, że nie ma nóg. ( syt -> syt139)
+		Odp: Powiedz, że jeszcze będą o was gry powstawać.
+		Odp: Powiedz, że nie ma za co.
+
+Syt: syt139
+	Spędziłem znów trochę czasu w szpitalu i wróciłem na front. Trafiłem do niewoli chyba jako ostatni Amerykanin już w lutym, jak było wiadomo, że Niemcy się poddadzą. Tam spotkałem szwagra, ale on był w obozie od Market Garden i był cieniem człowieka. Umarł dwa tygodnie przed wyzwoleniem nas przez naszych. Porucznik wrócił do kraju, ale... ( syt -> syt140)
+		Odp: ...nie potrafił poradzić sobie z życiem kaleki.
+			 (endGame -> suicide) : W '47 pułkownik popełnił samobójstwo.
+
+Syt: syt140
+	Obudziłem się rano całkowicie sparaliżowany. Lekarze mówili, że każdego dnia mogę odzyskać władzę ruchową. Mijały miesiące. Prawie każdego dnia pielęgniarki mnie obracały, abym nie dostał odleżyn, pomimo tego byłem siny na całym ciele. Mój ociec dowiedziawszy się o moim stanie zapowiedział, że mnie odwiedzi. ( syt -> <nic>)
+		Odp: Próbuję popełnić samobójstwo, aby ojciec mnie nie zobaczył w takim stanie.
+			 (endGame -> paralyzed) : Na szczęście i nieszczęście całkowity paraliż uniemożliwił mi zakończenie ze swoim życiem, za kilka minut ojciec wejdzie do mojego pokoju.
+		Odp: Czekam na ojca, aby znowu go ujrzeć po tylu latach rozłąki.
+			 (endGame -> fatherDeath) : Nie polepszyło się, ojciec odwiedzał mnie codziennie przez miesiące, zanim sam nie zachorował ze zmartwienia. Byłem jego jedynym żyjącym synem, a nie mogliśmy nawet porozmawiać.

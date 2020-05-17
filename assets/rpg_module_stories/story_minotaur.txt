@@ -1,0 +1,197 @@
+Story minotaur
+
+Parametry
+	umysl zaczynasz mając 3
+	cialo zaczynasz mając 3
+	UKRYTY tow zaczynasz mając 5
+	UKRYTY minotaur zaczynasz mając 1
+
+Syt: 1
+	Kiedy przed drzwiami o szóstej rano stanął elegancko ubrany mężczyzna w ciemnych okularach i zapytał czy może wejść do środka to zakręciła Ci się łezka w oku. Jeszcze nie tak dawno to Ty pukałeś do drzwi kłopotliwych ludzi.\nNiezależnie od wspomnień, w głowie pojawia Ci się myśl 'Znaleźli mnie!'. ( syt -> 2)
+		Odp: Wpuszczam nieznajomego
+			 (umysl +1) : Siłą woli się uspokajasz. Po spokoju nadciąga kolejne uczucie - ciekawość. Mężczyzna wszedł do Twojego mieszkania, usiadł przy Twoim stole i zaprosił Cię gestem ręki, żebyś również usiadł.
+		Odp: Porozmawiamy przez zamknięte drzwi!
+			 (tow -1) : Nikomu nie ufać! - to Twoja stara maksyma. Nie wpuścisz do środka tego człowieka, dopóki nie dowiesz się w jakim celu przyszedł.
+			 (syt -> 3) : 
+		Odp: Uciekam oknem
+			 (cialo +1) : Twoje ciało napręża się od zastrzuku adrenaliny. Brakowało ci tego uczucia.
+Nie masz jednak czasu na nostalgię. Otwierasz okno, wspinasz się na parapet i sprawnie wychodzisz na zewnątrz.
+			 (syt -> 4) : 
+
+Syt: 2
+	'Cieszę się, że możemy prozmawiać w cywilizowanych warunkach. Jestem Pułkownik Niszczuka. Żeby nie przedłużać: wiem kim byłeś, czym się zajmowałeś i że nie bardzo chciałbyś się chwalić swoimi dokonaniami z czasów pracy w SB...\nAle Państwo Cię potrzebuje, mam dla Ciebie robotę. Jednak zanim o tym, najpierw wyjaśnimy sobie kilka kwestii.' ( syt -> 3)
+		Odp: 'Jestem pewien, że mylisz mnie z kimś innym.'
+			 () : Chcesz zyskać nieco czasu potrzebnego do rozszyfrowania twojego rozmówcy. Nie wiesz jeszcze z kim masz do czynienia.
+			 (syt -> 9) : 
+		Odp: 'Jakich kwestii?'
+			 () : Dziwi cię to, że odnaleźli cię dopiero teraz. Pułkownik Niszczuka wygląda na człowieka dobrze zorientowanego w sprawach dawnych służb specjalnych.
+Ciekaw jesteś czego od ciebie chce.
+			 (syt -> 11) : 
+		Odp: 'Państwo, czyli kto?'
+			 () : Za czasów twojej służby 'Państwo' miało wiele twarzy i wiele interesów, ciekawi cię kto, lub co teraz ukrywa się pod tym pojęciem.
+			jeśli tow>4 (syt -> 7) : 
+			jeśli tow<5 (syt -> 10) : 
+
+Syt: 3
+	Jesteś pewien? Mi to nie robi różnicy, ale myślałem, że Tobie zależy na utrzymaniu opinii cichego i niewyróżniającego się obywatela. A to się może szybko zmienić. ( syt -> 4)
+		Odp: Wpuszczam nieznajomego.
+			 () : Faktycznie. Przez długi czas nie wzbudzałeś w sąsiadach żadnych podejrzeń. Jest na tyle wcześnie, że może jeszcze dasz radę uratować trochę wypracowanej normalności.
+			 (syt -> 2) : 
+		Odp: 'Gadaj albo się wynoś.'
+			 (tow -1) : Utrata przykrywki zawsze jest bolesna, ale jesteś gotów ponieść tę stratę. Nie jesteś natomiast gotów na śmierć, od której być może oddzielają się podwójne drzwi twojego mieszkania.
+			 (syt -> 5) : 
+		Odp: Uciekam oknem.
+			 () : Po zastanowieniu jednak stwierdzasz, że lepiej się ewakuować. Nie masz ani środków, ani determinacji, aby walczyć z tym nieznajomym. Odwracasz się i szybko biegniesz do okna.
+
+Syt: 4
+	Spodziewałeś się, że któregoś dnia po Ciebie przyjdą. Własnoręcznie wzmocniłeś rurę do deszczówki, żeby można było komfortowo zejść po niej w dół bloku. Kiedy zeskoczyłeś na chodnik, doskonale wiedziałeś co robić dalej. Zawczasu przygotowałeś plan. ( syt -> 5)
+		Odp: Biegnę do samochodu.
+			 () : Bak jest pełen, w ukrytym schowku wszystko czego potrzebujesz do przeżycia.
+			 (syt -> 6) : 
+		Odp: Uciekam na piechotę.
+			 (cialo -1) : Miałeś nadzieję zgubić ogon w wąskich uliczkach między blokami, ale czekali na Ciebie. Pałki spadły na Ciebie pozbawiając Cię skutecznie chęci oporu.
+Budzisz się w pokoju przesłuchań. Boli Cię głowa. Do pokoju wchodzi Nieznajomy, rzuca Ci parę kostek lodu owiniętych w gazę i siada naprzeciwko zapalając papierosa.
+			 (syt -> 2) : 
+
+Syt: 5
+	'Nie pogrywaj ze mną.' Głos mężczyzny za drzwiami zabarwia się złością. 'Nie zamierzam dłużej prowadzić tej idiotycznej rozmowy przez drzwi. Od takiego specjalisty jak ty, oczekiwałem większej ogłady. Otwórz i pogadajmy jak ludzie'. ( syt -> 6)
+		Odp: Wpuszczam nieznajomego.
+			 () : Sąsiedzi i tak już usłyszeli za dużo, a nie chciałbyś żeby dowiedzieli się więcej.
+			 (syt -> 2) : 
+		Odp: Pierdol się.
+			 (tow -1) : Bezczelny gnój. Nie podoba Ci się on, ani jego głos. Niech wypierdala. Jeszcze parę lat byś go po prostu zastrzelił.
+			 (syt -> 8) : 
+		Odp: Uciekam oknem.
+			 () : Do czerwonej lampki w Twojej głowie doszedł również dźwięk syreny alarmowej. Najwyższy czas na ewakuację. Biegniesz stronę okna i wskakujesz na parapet.
+			 (syt -> 4) : 
+
+Syt: 6
+	Wpadasz do auta i ruszasz z piskiem opon. Jadąc przeszukujesz schowek, w którym schowałeś wszystko co Ci potrzebne do przeżycia. Co tam znajdujesz? ( syt -> 7)
+		Odp: Nowy zestaw dokumentów i dostępy do kont bankowych za granicą.
+			 () : Twoje alter ego, które pieczołowicie pielęgnowałeś, żeby móc z niego skorzystać właśnie w takiej sytuacji.
+			 (endGame -> newLifeCountry) : Rozpoczęcie nowego życia nie było łatwe. Nowa praca, nowi ludzie, ciągłe oglądanie się przez ramię. Raz Cię znaleźli, mogą zrobić to po raz kolejny. Na szczęście masz jeszcze kolejny zestaw dokumentów, także kiedy dostałeś dziwny list z informacją 'To nic osobistego, po prostu musimy dbać o swoją reputację…' po raz kolejny wsiadłeś w auto i odjechałeś.
+		Odp: Zestaw survivalowy.
+			 () : Nóż, latarka z dynamo, parę przedmiotów niezbędnych do przetrwania w dziczy. W razie czego możesz żyć tak latami.
+			 (endGame -> newLifeWild) : Człowiek i dzika przyroda potrafią rozumieć się o wiele lepiej, niż zwykli ludzie mogliby przypuszczać. Rzadko spotykasz ludzi, więc wpadłeś w rutynę przetrwania. Kiedy straciłeś rachubę dni w znalezionym kawałku lusterka zobaczyłeś twarz, której nie rozpoznałeś. Czy naprawdę tak miało wyglądać Twoje życie?
+
+Syt: 7
+	'Powiedzmy że są osoby w rządzie bezpośrednio zainteresowane sukcesem przedsięwzięcia, którym się aktualnie zajmuję. Twoje zaangażowanie w sprawę na pewno nie umknie ich uwadze i będzie odpowiednio docenione w swoim czasie. 'Nieznajomy zawiesza na chwilę głos.'\nNie ukrywam, że Twój udział znacząco zwiększy szansę na sukces całej akcji. Słyszałem o Twoich dokonaniach. Jeśli jesteś zainteresowany, to przejdę do pytań:' ( syt -> 8)
+		Odp: 'Nie odpowiedziałeś na moje pytanie.'
+			 (tow -1) : Niszczuka jest niezadowolony, że go przyciskasz w tej kwestii. 'I wychodzi na to, że jeśli się zgodzę na udział to dostanę kiedyś coś od kogoś. To śmieszne. Powiedz chociaż kto jest na tyle zdesperowany, żeby ściągać kogoś takiego jak ja do świata żywych.'
+			 (syt -> 10) : 
+		Odp: 'Rozumiem. Kontynuuj'
+			 (tow +1) : 
+			 (umysl +1) : Wiesz jak jest, trzeba umieć trzymać język za zębami w odpowiednich chwilach. Znajdujesz to zrozumienie również w oczach oficera przed Tobą.
+			 (syt -> 11) : 
+
+Syt: 8
+	'Dobra, więc mniej przyjemny sposób. Panowie…'. Drzwi z głośnym trzaskiem runęły na podłogę. Na nic się zdały wzmocnienia, zamontowali pewnie jakiś ładunek. Nie zdążyłeś nawet pomyśleć o ucieczce, gdy zarzucili Ci worek na głowę i wyprowadzili na zewnątrz. W tej sytuacji już raczej nie masz wiele do gadania. Czujesz przewrotną satysfakcję, że doprowadziłeś nieznajomego do takich a nie innych działań. Kiedy Cię zaczęli wyprowadzać na zewnątrz ciśnie Ci się na usta komentarz: ( syt -> 9)
+		Odp: 'Żałosne, nawet nie próbowałeś mnie przekonać. Tacy teraz debile zabierają się za robotę.'
+			 (tow -1) : 
+			 (cialo -1) : Ktoś Cię mocno szturchnął. Przy wsadzaniu Cię do samochodu ktoś 'przypadkiem' przywalił Twoją głową w auto. Kiedy zdjęto worek z Twojej głowy siedziałeś w znanym Ci pokoju przesłuchań. Naprzeciwko Ciebie siedzi Niszczuka paląc sobie spokojnie papierosa.
+			 (syt -> 2) : 
+		Odp: 'No, no, naprawdę macie nóż na gardle, żeby od razu rozwalać drzwi i wyprowadzać klienta.'
+			 () : Wiesz, że Cię potrzebują, inaczej by się nie bawili w takie ceregiele. Kiedy zdjęto worek z Twojej głowy siedzisz w znanym Ci pokoju przesłuchań, w którym łuszcząca się na ścianie farba pamięta pewnie jeszcze lata dziewięćdziesiąte. Naprzeciwko Ciebie siedzi Niszczuka paląc sobie spokojnie papierosa.
+			 (syt -> 2) : 
+		Odp: Zachowuję swoje przemyślenia dla siebie.
+			 (umysl +1) : Irytujące zachowanie, amatorskie. Są albo zdeterminowani, albo głupi. Lepiej poczekać i się przekonać. Kiedy zdjęto worek z Twojej głowy siedzisz w znanym Ci z przeszłości pokoju przesłuchań. Naprzeciwko Ciebie siedzi Niszczuka paląc sobie spokojnie papierosa.
+			 (syt -> 2) : 
+
+Syt: 9
+	'Naprawdę teraz chcesz to  teraz rozgrywać w ten sposób? Potrzebuję człowieka z Twoimi umiejętnościami. Uprzedzam, że dość ciężko znoszę odmowę, kiedy już proszę o pomoc.'\nNiszczuka łypie na ciebie znad fajki. 'więc albo pogadamy, albo twoimi szczątki zajmą się psy.' ( syt -> 10)
+		Odp: 'To kto mnie potrzebuje?'
+			jeśli tow>2 (umysl +1) : Pułkownik najpierw wspominał o Państwie, teraz mówi o własnym interesie. Twój umysł nie stracił dawnej sprawności.
+Wplątanie się w osobiste porachunki, nigdy nie wychodzi na dobre.
+			jeśli tow<3 (umysl -1) : To ja tutaj zadaję pytania! - ryknął Niszczuka. Przestraszyła Cię jego reakcja.
+			jeśli tow<3 (syt -> 11) : 
+		Odp: 'Pytaj.'
+			 () : Pora poznać więcej szczegółów
+			 (syt -> 11) : 
+		Odp: 'Żadnych pytań. Nie chcę mieć z tym nic wspólnego.'
+			 () : Nie będziesz prowadził dyskusji w takich warunkach, a już na pewno nie z tym typem i gówno Cię obchodzi, że ktoś Cię gdzieś potrzebuje. Na dobre zerwałeś z przeszłością, dawne, dobre czasy już nie wrócą.
+			 (syt -> 13) : 
+
+Syt: 10
+	'Grupa ludzi, która rządzi tym kurwidołkiem. Jak się sam nie domyślasz, to Ci w tym nie pomogę. Przecież wiesz, że tak naprawdę nie daję Ci w tej chwili wyboru. Wchodzisz w to, bo taką podjąłem decyzję. Jesteś najlepszym kandydatem do zadania, ale do cholery, nie jedynym. Są kolejne pozycje na liście, chociaż nie tak obiecujące. Powiem szczerze, że najzdrowiej dla Ciebie było by wykazać się chęcią współpracy. Moje pytania… ( syt -> 11)
+		Odp: 'Grozisz mi?'
+			 (umysl -2) : Niszczuka zbliża swoją twarz do twojej z grymasem niezadowolenia na twarzy.'
+Tak, geniuszu, grożę Ci. Jak nie zrobisz tego czego chcę to zamienię Twoje życie w piekło, a jak już mi się znudzi to Cię zastrzelę jak zużytą, bezużyteczną kurwę.'
+		Odp: 'Mów dalej.'
+			 () : Pora poznać więcej szczegółów.
+
+Syt: 11
+	Niszczuka uśmiecha się zadowolony. 'Wiedziałem, że okażesz się rozsądnym gościem.'\nPułkownik odchyla się na krześle. 'Mam do ciebie parę pytań. Zacznijmy od tego, dlaczego chciałeś pracować dla SB?' ( syt -> 12)
+		Odp: 'Wierzyłem w system i w komunizm.'
+			 (tow +1) : Dla Ciebie w dalszym ciągu komunizm jest lepszym systemem niż kapitalizm, tylko musi być dobrze realizowany….
+		Odp: Podobało mi się, że mogłem bezkarnie spuszczać wpierdol. Miałem taką możliwość i lubiłem z niej korzystać.
+			 (cialo +1) : Do tej pory miło wspominasz niektóre bójki z opozycjonistami. Usta bezwiednie rozciągają Ci się w uśmiechu.
+		Odp: 'Chciałem mieć dostęp do informacji o wszystkich z mojego otoczenia.'
+			 (umysl +1) : Potrafisz robić użytek z informacji o ludziach dla swojego pożytku. Wyznajesz zasadę, że na każdego znajdzie się hak.
+		Odp: 'Dla benefitów firmy - Wal się, to nie twój zasrany interes.
+			 (tow -1) : Starasz się, żeby twoja odpowiedź zabrzmiała ironicznie, ale prawda jest taka, że dobrze się wtedy ustawiłeś. Kiedy inni stali w kolejce po mielone, ty zajadałeś kawior.
+
+Syt: 12
+	Niszczuka kiwa głową. 'Dobrze - Czym dokładnie zajmowałeś się w SB?' ( syt -> 13)
+		Odp: 'Byłem analitykiem.'
+			 (umysl +1) : Analiza informacji z ton makulatory w archiwach to jedna z najcenniejszych umiejętności, jakie wyniosłeś z tej pracy.
+			 (syt -> 14) : 
+		Odp: 'A co Cię to kurwa obchodzi?'
+			 (tow -1) : Powinien wiedzieć, że nie będziesz gadać o takich rzeczach.
+			 (syt -> 14) : 
+		Odp: 'Działałem w terenie.'
+			 (cialo +1) : Wielokrotnie szacunek trzeba było zdobywać brutalną siłą. Twoje mięśnie w dalszym ciągu pamiętają co intensywniejsze akcje.
+			 (syt -> 14) : 
+		Odp: 'Rekrutowałem ludzi.'
+			 (tow +1) : Do tej pory masz kilka wartościowych kontaktów. Gdyby tylko wiedzieli, że żyjesz to mogliby Cię ostrzec…
+			 (syt -> 14) : 
+
+Syt: 13
+	'Ja… upierdolę Ci życie, jeśli będzie trzeba. Wiesz że jestem w stanie to zrobić. Będzie dla Ciebie naprawdę lepiej, jeśli będziesz współpracował.' ( syt -> 14)
+		Odp: 'Zaryzykuję.'
+			 (tow -2) : Nie chcesz wracać w tryby machiny. Bez względu na koszty.
+			 (endGame -> cela) : Niszczuka nie skłamał. Prosto z rozmowy zabrano Cię do ciemnej celi. Długo nikt nie przychodził. Pierwszymi osobą które zobaczyłeś po bardzo długiej przerwie byli lekarz i dwójka osiłków. Obezwładnili Cię, a potem doktor coś Ci wstrzyknął.
+Obudziłeś się ubrany w kaftan bezpieczeństwa w białym pokoju obitym poduszkami. Zajrzał do Ciebie lekarz 'O, nasz agent się obudził. Czy może dzisiaj jesteśmy groźnym kryminalistą?' Mówiąc to wstrzyknął ci kolejną porcję leków. Mrugnął do Ciebie z uśmiechem i zamknął za sobą pokój.
+		Odp: 'Po głębszym zastanowieniu jednak wam pomogę.'
+			 (umysl -1) : Ręka Niszczuki, którą bezwienie sięgnął po broń wróciła powoli na stół. Ciężko dyskutować z niektórymi argumentami. 'Zostań tutaj. Poczynimy odpowiednie przygotowania.' W ciągu tygodnia zapoznawałeś się z aktami sprawy. Czujesz niepokój na myśl o czekającym Cię powrocie do zawodu.
+			 (syt -> 17) : 
+
+Syt: 14
+	Niszczuka nie daje po sobie poznać, czy podobają mu się twoje odpowiedzi. Po prostu zadaje kolejne pytanie. 'Dlaczego sfingowałeś własną śmierć?' ( syt -> 15)
+		Odp: 'Nowa władza po cichu rozliczała co aktywniejszych agentów.'
+			 (umysl -1) : Miałem swoje grzeszki. Chciałem się dobrze ukryć.
+		Odp: Nie musiałbym więcej się zadawać z kurwami takimi jak ty.
+			 (tow -1) : Znasz ten typ. Dla kolejnego szczebelka w karierze zrobi wszystko.
+
+Syt: 15
+	'Rozumiem. Czym się zajmowałeś po 89?' ( syt -> 16)
+		Odp: 'Szukałem frajerów z Służb, którzy byli skłonni zapłacić za to żeby nikt się nie dowiedział co z nich za 'mężowie stanu'
+			 (tow -1) : Z tak zwanych teczek zrobiłeś sobie niezły interes. W dodatku prasa cię uwielbiała, potrafiłeś na zawołanie dostarczyć materiałów do skandalu.
+		Odp: 'Szkoliłem nowobogackich z survivwalu w lesie.'
+			 (cialo +2) : Patrząc się na swoje podrapane przedramiona mówisz: 'Nawet nie wiesz co się dzieje w górskich lasach.'
+		Odp: 'Wyrabiałem podrobione dokumenty dla potrzebujących.'
+			 (umysl +1) : Fałszowanie dokumentów nie jest porywającym zajęciem, ale przynajmniej nie musiałeś zbyt często opuszczać bezpiecznej kryjówki.
+
+Syt: 16
+	'Świetnie. Dokładnie o to mi chodziło.' Niszczuka opiera łokcie na blacie stolika. Pochyla się w twoim kierunku. 'Powiem krótko. Chciałbym żebyś wszedł dla nas do pewnej grupy przestępczej i zinfiltrował ją od środka. Co ty na to?' ( syt -> 17)
+		Odp: 'Co to za grupa?'
+			 () : 'Nazywają się Minotaur. To banda strasznych skurwieli, a domyślasz się, że zetknąłem się z różnymi ludźmi w życiu. Są zamieszani w każdą większą akcję przeprowadzoną w półświatku.
+Prostytutki-niewolnice, handel ludźmi i narkotykami, przemyt i nielegalny obrót bronią, zamachy na terenie kraju, torturowanie ludzi. Mogę jeszcze wymieniać.
+Sama lektura akt sprawia, że ma się ochotę wysadzić całą grupę w powietrze.
+			 (syt -> 16) : 
+		Odp: 'Chyba macie od tego ludzi?'
+			 () : 'To hermetyczna grupa. Próby pozyskania kogoś z jądra samej organizacji, tylko dało im znać, że ktoś się nimi interesuje. W ich otoczeniu udało nam się znaleźć osoby skłonne do współpracy, ale dość okrutnie obeszli się z paroma znalezionymi tak kontaktami.
+Jak na złość zdaje się, że oni sami zinfiltrowali nasze służby i mają informacje o naszych agentach. Dlatego odnalazłem Ciebie. Sfingowałeś swoją śmierć na tyle dawno temu, że na pewno nie mają o Tobie żadnych informacji.'
+			 (syt -> 16) : 
+		Odp: 'Czego dokładnie ode mnie oczekujecie?'
+			 () : 'Będziesz przygotowywał warunki pod zdobywanie materiałów dowodowych, uprzedzał nas odpowiednio wcześnie o szykowanych akcjach, lub samemu je hamował w odpowiednim momencie. Celem jest rozłożenie ich na kawałeczki, w każdy możliwy sposób.'
+			 (syt -> 16) : 
+		Odp: 'Wchodzę w to.'
+			 (tow +1) : 'Świetnie! Zostań tutaj dopóki nie poczynimy odpowiednich przygotowań.' W ciągu tygodnia zapoznawałeś się ze sprawą, a także przygotowywałeś do wrócenia do akcji. Czujesz narastającą ekscytację na myśl o czekającym Cię wielkim powrocie.
+		Odp: 'Nie chcę brać w tym udziału.'
+			 (tow -1) : Niszczuka przygląda Ci się zmęczonym wzrokiem przez dłuższą chwilę, po chwili wzdycha i od niechcenia daje znak ręką.
+			 (syt -> 13) : 
+
+Syt: 17
+	Za Tobą prolog. ( syt -> <nic>)
+		Odp: Koniec.
+			 (endGame -> endAnnouncement) : Koniec.

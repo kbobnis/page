@@ -1,0 +1,176 @@
+Story centuria
+
+Parametry
+	soldiers zaczynasz mając 50
+	morale zaczynasz mając 10
+
+Syt: intro1_encounter
+	Otwieram oczy. Kolejna nieprzespana noc... W butelce jeszcze coś chlupie, musi wystarczyć. Do dna... Czy jeszcze pamiętam kim jestem? ( syt -> intro2_encounter)
+		Odp intro1_answer1: Pogrążam się we wspomnieniach
+
+Syt: intro2_encounter
+	Nazywam się Aureliusz Marcus - pierwszy dekurion I centurii X legionu. Obrońca ludzi i pogromca goblinów. Opiekun całej okolicznej ludności. Jeszcze trzy miesiące temu: bohater. ( syt -> ambush0_encounter)
+		Odp intro2_answer1: Przypominam sobie zdarzenia sprzed trzech miesięcy
+
+Syt: ambush0_encounter
+	Ten wąwóz od początku mi się nie podobał, jednak skoro mój oddział wybił już ze trzy setki goblinów, to kilku więcej na pewno nie zrobi różnicy. A jednak... ( syt -> ambush1_encounter)
+		Odp ambush0_answer_fight: Dalej
+
+Syt: ambush1_encounter
+	Musieli na nas czekać, tym razem dobrze przygotowani. Wokół krzyki umierających żołnierzy i kwik przerażonych koni. Bogowie, tylko nie konie! Chłopak przede mną właśnie stracił rękę - ocieram jego krew z twarzy i tnę nacierającego goblina. Są opętani żądzą krwi, nieczuli na rany i niewrażliwi na śmierć. ( syt -> ambush1a_encounter)
+		Odp ambush1_answer: Atakuj!
+			 (morale +1) : Trafiony przez ciebie przeciwnik padł martwy na ziemię.
+			 (soldiers -10) : Wokół kłębią się ciała goblinów i twoich ludzi.
+
+Syt: ambush1a_encounter
+	Coraz mniej ludzi i coraz więcej goblinów. Szyk łamie się, ludzie i konie umierają. Obok walczy Pullo i kilku innych weteranów. Starzy żołnierze zabijają metodycznie i na chłodno, wiedzą, że tylko tak mogą wyjść z opresji. Ale tych młodszych już paraliżuje strach i panika przesłania oczy. ( syt -> ambush2_encounter)
+		Odp ambush1a_answer_fight: Walczę dalej!
+			 (soldiers -15) : Nasze linie chwieją się coraz mocniej...
+			 (morale -5) : Twoi żołnierze tracą ducha!
+		Odp ambush1a_answer_escape: Zarządzam odwrót!
+			 (soldiers -15) : Krótki rozkaz i Pullo trąbi odwrót.
+			 (morale -5) : Twoi żołnierze tracą ducha!
+
+Syt: ambush2_encounter
+	Wokół roznosi się się szczęk oręża. ( syt -> ambush3_encounter)
+		() : Niewielu z nas udaje się odbić od wroga. Może się uda, może nie będą nas ścigać. Ich wilki są szybsze, ale jeźdźcy nie tak karni, pewnie właśnie zaczynają ucztę na trupach. 
+		() : Wokół ciebie zgromadziła się garstka ocalałych. Najlepsi twoi żołnierze. Powoli, ale systematycznie cofacie się w dół wąwozu.
+		Odp ambush2_answer1: Przebijamy się dalej!
+			 (soldiers -3) : Kolejni twoi żołnierze umierają!
+
+Syt: ambush3_encounter
+	Widzisz jak twój sztandarowy Nervo ginie trafiony strzałą w oko. Insygnia twojego oddziału upadają na ziemię. ( syt -> ambush4_encounter)
+		Odp ambush3_answer: Podnoszę sztandar
+			 (morale +2) : Podnosisz okrwawiony sztandar!
+		Odp ambush3_answer_escape: Panicznie uciekam
+			 (soldiers -15) : Kolejni twoi żołnierze umierają!
+			 (syt -> escape1_encounter) : 
+
+Syt: ambush4_encounter
+	Początek wąwozu, tu się wszystko zaczęło. Jeszcze kilka chwil i jesteśmy w lesie. Żyję ja i żyje Pullo. Nikt więcej nie ocalał, jednak mamy sztandar. To najważniejsze, bo tylko dzięki niemu centuria będzie mogła się odrodzić. Nasłuchuję, ale las dokoła jest cichy, słychać jedynie przygłuszone wycie i dalekie odgłosy rzezi. ( syt -> ambush5_encounter)
+		Odp ambush4_answer1: Kontynuujemy odwrót
+			 (soldiers -10) : Kolejni twoi żołnierze umierają!
+
+Syt: ambush5_encounter
+	W lesie twój koń jest powolniejszy od goblińskich wilków. Za chwilę dopadną także ciebie i Pullo. Wiesz, że musisz coś zrobić, inaczej obaj zginiecie, a sztandar waszej centurii zostanie pohańbiony. ( syt -> escape1_encounter)
+		Odp friend_answer: Rzucam za siebie sztandar licząc, że spowolni to gobliny
+		Odp banner_answer: Przecinam mieczem strzemię przy siodle Pullo.
+			 (soldiers -1) : Pullo ginie
+
+Syt: escape1_encounter
+	Udało ci się uciec. ( syt -> home0_encounter)
+		() : Pewnym uderzeniem miecza przecinam strzemię przyjaciela. Słyszę zaskoczony krzyk, ale nie patrzę za siebie. Byle do przodu, byle z życiem, byle ze sztandarem... W obozie powiem, że zginął w obronie insygniów. Zostanie bohaterem. Wciąż nie oglądam się za siebie. Kiedy umykam w las, za plecami rozlega się krótki odgłos walki, a potem przeciągły wrzask szlachtowanego człowieka...
+		() : Odrzucam sztandar i pędzę dalej. Hańba, ale przynajmniej żyjemy. Może w obozie powiem, że użyli czarów? A może w ogóle nie wrócę do obozu? Nie patrzę na Pullo, wiem, że wolałby zginąć. Może kiedyś mi przebaczy... Gdy umykamy w las, towarzyszy nam tryumfalne wycie goblinów...
+		() : Spanikowałem. Moje ręce są całe roztrzęsione. Jak mogłem dopuścić do śmierci wszystkich moich ludzi i utraty sztandaru. Może się powiesić, zakończyć mój nędzny żywot. Jednak nie, muszę ich pomścić i odkupić swoje winy!
+		Odp escape1_answer1: Dalej
+
+Syt: home0_encounter
+	Te krzyki towarzyszą mi już setną noc. Może lepiej było w ogóle nie wracać do obozu? Ostatni łyk. Rano trzeba będzie skoczyć do kwatermistrza po przydział... ( syt -> home1_encounter)
+		Odp home0_answer1: Spróbuj zasnąć
+
+Syt: home1_encounter
+	Dlaczego sygnał pobudki jest zawsze taki radosny? I dlaczego ten rekrut przed barakiem tak głupkowato się uśmiecha? Baczność, żołnierzu! Wciąż jeszcze masz przed sobą oficera! Dokąd? Do dowódcy? No dobrze, kwatermistrz i butelki mogą chwilę zaczekać... ( syt -> home2_encounter)
+		Odp home1_answer1: Idź do dowódcy
+
+Syt: home2_encounter
+	Rozmowa z dowódcą - jak zawsze niemiły obowiązek. ( syt -> home2a_encounter)
+		() : Ledwo uratowany honor, powiedział. Fircykowaty szlachetka. Poświęcenie dla symboli, powiedział. Ciekawe, czy kiedykolwiek miał w dłoni prawdziwy miecz zamiast tej swojej złotej zabaweczki. Złe decyzje, mówił. Brawura, ocenił. Weteran uczt zafajdany... 
+		() : Hańba! Krzyczał fircykowaty szlachetka. Porażka! Złe decyzje! Brawura! Ciekawe, czy kiedykolwiek miał w dłoni prawdziwy miecz, weteran uczt zafajdany... 
+		() : Hańba! Krzyczał fircykowaty szlachetka. Porażka! Złe decyzje! Brawura! Ciekawe, czy kiedykolwiek miał w dłoni prawdziwy miecz, weteran uczt zafajdany... 
+		Odp home2_answer1: Kontynuuj
+
+Syt: home2a_encounter
+	No nic, przynajmniej znów mam żołnierzy i cel. Strażnica w górach powinna być szybką wyprawą, a górski oddział pewnie zapił i dlatego nie daje znaku życia. Byle tylko zdążyć przed mrozem, bo zima wcześnie objawia się w tym roku. ( syt -> home3_encounter)
+		Odp home2a_answer1: Zobacz swój nowy oddział
+
+Syt: home3_encounter
+	Widać, że nie traktują mnie poważnie. Jeśli tych dziesięciu podrostków ma stanowić przyszłość imperium, to ja jestem mistrzem saperów! Żeby jeszcze obywatele, a nie zbieranina rekrutów ze wszystkich zadupi wokół imperium. Temu w drugim szeregu wystarczy wyjąć pióra z włosów i porządnie umyć, ale jak zrobię legionistę z tego wytatuowanego na twarzy blondyna? ( syt -> march1_encounter)
+		() : Dobrze, że przynajmniej Pullo zachowuje spokój. Gdyby nie on, już dawno straciłbym chęć do tej roboty.
+		Odp home3_answer1: Wyrusz w drogę
+			 (soldiers +9) : Przydział żołnierzy
+			 (morale +2) : Wstępuje we mnie nowa nadzieja!
+
+Syt: march1_encounter
+	I znowu na szlaku. Nareszcie. Jednak wdzięczny jestem dowództwu za ten rozkaz. Lekko zmrożona ziemia chrzęści pod kopytami koni, a pokryte szronem pola skrzą się w długich promieniach porannego słońca. Dobrze znów być w drodze! ( syt -> march2_encounter)
+		() : Dobrze, że Pullo wciąż musztruje młodzików. Może zdążą nauczyć się podstaw zanim wjedziemy pomiędzy groźne szczyty. I tylko ten nasz sztandar... Wciąż nie mam odwagi, by zawiesić tę szmatę na włóczni.
+		Odp march1_answer1: Kontynuuj podróż.
+			 (morale +1) : Twój oddział posila się, mora wzrastają
+
+Syt: march2_encounter
+	Młodzi zużywają więcej prowiantu, niż powinni, ale przez te dwa dni uzupełnimy zaopatrzenie w leżących wzdłuż drogi wioskach. Bardziej boję się gór, ale póki co to tylko czarna wystrzępiona krecha na linii horyzontu. Mam nadzieję, że nie czeka nas tam sroga zima. Tu na nizinach przymrozki łapią wcześniej niż zwykle. ( syt -> village0_encounter)
+		Odp march2_answer1: Kontynuuj podróż
+
+Syt: village0_encounter
+	Jeśli kiedykolwiek widziałeś wioskę przy drodze, to widziałeś już wszystkie: Kilka niskich chałup wzdłuż traktu, na tyłach niewielkie zagony warzyw, czasem równie niepozorna, choć nieco większa od innych budowli - karczma. ( syt -> village1_encounter)
+		Odp village0_answer1: Wjedź do wioski
+
+Syt: village1_encounter
+	Wjeżdżamy pomiędzy pierwsze sioła. Wokół nas dziwnie pusto, choć bliżej zajazdu chyba widać jakieś poruszenie. Pod ścianką pobliskiej obory przemknął jakiś niepozorny cień, za nim wypada gromada chłopów. Złodziej! Łapcie! ŁAPAĆ ZŁOODZIEEJAA!!! ( syt -> village1_escape_encounter)
+		Odp young_thief_capture_answer: Pochwyć złodzieja
+			 (syt -> village2_encounter) : 
+		Odp young_thief_free_answer: Pozwól złodziejowi uciec
+
+Syt: village1_escape_encounter
+	No to o świeżych zapasach możemy zapomnieć. Wiadomo, zbrojnej władzy chłopi nie podskoczą, ale to jednak twardy i uparty naród i kradzieży przeznaczonych na żywność pieniędzy nie odpuszczą. Cóż... Jeszcze kilka miesięcy temu byłem dla nich bohaterem i obrońcą, a teraz nie gonię byle chłystka i już taka uraza? Może trzeba było gonić złodzieja? Z drugiej strony, co mnie to obchodzi. Nie obrodziły pola? Nie poradzę. Nie upilnowali pieniędzy na zimowe zakupy? Nie jestem strażnikiem wioskowych skarbów. ( syt -> village2_encounter)
+		Odp village1_escape_answer1: Opuść wioskę
+			 (syt -> village_leave_encounter) : 
+
+Syt: village2_encounter
+	No to o świeżych zapasach możemy zapomnieć. Wiadomo, chłopi wdzięczni niezmiernie - w końcu gówniarz próbował zawinąć się z pieniędzmi całej osady. Ale jednak... Pola w tym roku nie obrodziły, goblinie najazdy też zrobiły swoje, a zapasy na zimę mają dopiero kupić za złoto, którego prawie przed chwilą nie stracili... ( syt -> interrogation1_encounter)
+		Odp village2_answer1: Przesłuchaj chłopca
+		Odp village2_answer2: Zostawiasz sprawę chłopom
+			 (syt -> judgment2_dead2_encounter) : 
+
+Syt: interrogation1_encounter
+	Dziwię się, ze to chuchro w ogóle mogło unieść ciężką wypchaną sakiewkę. Ile lat on może mieć? 10? 11? Wystające żebra, zmierzwiona szopa szarych włosów, błyszczące od płaczu oczy i otwarta z przerażenia buzia. Chłopi nie musieli ściągać z niego koszuli i krępować aż do krwi. Oto, do czego może doprowadzić głód... ( syt -> interrogation2_encounter)
+		Odp interrogation1_answer1: Czy ukradłeś?
+		Odp interrogation1_answer2: Dlaczego ukradłeś?
+		Odp interrogation1_answer3: Czy żałujesz?
+		Odp interrogation1_answer4: Wydaj wyrok
+			 (syt -> judgment1_encounter) : 
+
+Syt: interrogation2_encounter
+	Chłopak spogląda na ciebie, pełnym przestrachu spojrzeniem ( syt -> judgment1_encounter)
+		() : Nie ukradłem, Panie... Wziąłem, bo leżało... Tyle mają dobra, to co im ten mały woreczek
+		() : Głodny i mama głodna...
+		() : Żałuję, Panie, ale w brzuchu burczy...
+		Odp interrogation2_answer1: Może zapytam o coś jeszcze
+			 (syt -> interrogation1_encounter) : 
+		Odp interrogation2_answer2: Przyjrzyjmy się czy powie coś jeszcze
+			 (syt -> interrogation1_encounter) : 
+		Odp interrogation2_answer3: No dobrze...
+			 (syt -> interrogation1_encounter) : 
+
+Syt: judgment1_encounter
+	Szkoda dzieciaka, ale prawo to prawo - musi być bezwzględne. Jeśli winny, to szubienica lub obcięcie dłoni. Chyba, że akt łaski i wtedy: wolność! ( syt -> judgment2_dead_encounter)
+		Odp judgment1_answer1: Każesz obciąć mu rękę
+			 (syt -> judgment2_hand_encounter) : 
+		Odp judgment1_answer2: Każesz go powiesić
+		Odp judgment1_answer3: Puszczasz go wolno
+			 (syt -> judgment2_free_encounter) : 
+		Odp judgment1_answer4: Zostawiasz sprawę chłopom
+			 (syt -> judgment2_dead2_encounter) : 
+
+Syt: judgment2_dead_encounter
+	Nie lubię szopek, lecz w wiosce jest już niestety szubienica. Na głównym placu, zaraz obok studni. Dzieciakowi na szafotu nogi odmawiają posłuszeństwa i dwóch moich wlecze teraz bezwładną lalkę. Przy zakładaniu pętli chłopiec szczęśliwie mdleje. Dobrej drogi, synku... Chłopi czekają jeszcze chwilę, chcą się upewnić że kara została wymierzona, po czym bez słowa wracają do swoich zajęć. ( syt -> judgment2_hand_encounter)
+		Odp judgment2_dead_answer1: Opuść wioskę
+			 (syt -> village_leave_encounter) : 
+
+Syt: judgment2_hand_encounter
+	Nie lubię szopek, więc i tym razem nie będzie przedstawienia. Prawo to nie jarmark dla gawiedzi. Delikatnie, jakby odejmować rękę rannemu kompanowi: rozgrzane żelazo, bandaże, zagryź ten patyk, synku... ( syt -> judgment2_free_encounter)
+		Odp judgment2_hand_answer1: Opuść wioskę
+			 (syt -> village_leave_encounter) : 
+
+Syt: judgment2_free_encounter
+	Marudzą? Niech się cieszą, że odzyskali złoto, a ja dziecka nie skażę jak recydywisty. I tak przerażony jest bardziej niż krasnolud w elfim lesie. Kuli się, powoli zaczyna biec, jakby jeszcze nie rozumiał, że odzyskał wolność. ( syt -> judgment2_dead2_encounter)
+		Odp judgment2_free_answer1: Opuść wioskę
+			 (syt -> village_leave_encounter) : 
+
+Syt: judgment2_dead2_encounter
+	Odwracam wzrok i zarządzam wymarsz. Moi chłopcy też mają już dosyć, choć może im przydałaby się ta lekcja. Jedziemy, kopyta człapią po rozjeżdżonym błocie. Oddział udaje, że nie słyszy wrzasków prowadzonego na śmierć dziecka. Dobrej drogi, synku... ( syt -> village_leave_encounter)
+		Odp judgment2_dead2_answer1: Opuść wioskę
+
+Syt: village_leave_encounter
+	Następny popas też wypada w wiosce, ale nikt nie ma na to ochoty i chłopcy z wdzięcznością przyjmują rozkaz postoju w przydrożnym lesie. Posiłek, inspekcja ekwipunku i jedziemy dalej. Z każdym krokiem rosną przed nami monumentalne granie i urwiska. Już widzę, że góry okryły się śniegiem. Zimowy dom bogów. Mroźne bramy śmierci. W drogę! ( syt -> <nic>)
+		Odp village_leave_answer1: Jedziesz dalej w siną przestrzeń
+			 (endGame -> win) : Kto wie, co Cię spotka w domu bogów?

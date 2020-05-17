@@ -1,0 +1,1139 @@
+Story szary
+
+Parametry
+	psych zaczynasz mając 7
+	zapasy zaczynasz mając 6
+	bezp zaczynasz mając 7
+
+Syt: 1
+	Przerzucasz karty starego dziennika pociągając przy tym z butelki. Okropnie słodki grog nie smakuje ci za grosz, ale pozwala się uspokoić. Znów zadręczasz się przeszłością. Nie spałeś od paru dni, jesteś doszczętnie zmęczony. ( syt -> 2)
+		Odp 1/1: Pójdę spać.
+			 (psych -1) : Zostawiasz dziennik i niedopity grog. Kładziesz się spać w miarę trzeźwy, przez co przeszłość zdaje się być straszniejsza.
+			 () : Kiedy tylko zamykasz oczy pod powiekami pojawiają się obrazy z dawnych dni. Nie dają ci zasnąć.
+		Odp 1/2: Przeczytam dziennik do końca.
+			 (bezp -1) : Zapisanych w dzienniku słów nie potrafisz przyjąć na trzeźwo. Od alkoholu kręci ci się w głowie, nie możesz być pewny swoich ruchów.
+			 () : Czytając dziennik na nowo przeżywasz przeszłe dzieje. Wspomnienia nie dają ci spokoju.
+
+Syt: 2
+	Nagły podmuch wiatru wstrząsa twoją chałupą. Niepokoisz się, że nadciąga kolejna bezlitosna śnieżyca. Nie wiesz, czy twoja chałupa ją przetrzyma. ( syt -> 3A)
+		() : Rano czeka cię dużo pracy. Powinieneś się przespać.
+		() : Masz wrażenie jakby cały dom poruszał się w rytm burzy.
+		Odp: Zejdę na dół, sprawdzę co się dzieje.
+			 () : Z niechęcią wychodzisz z ciepłego pokoju. W drodze na parter twoje stopy ślizgają się na wąskich drewnianych stopniach.
+		Odp: Spróbuję zasnąć, aby odzyskać nieco sił.
+			 () : Twoje upojenie alkoholowe łagodnie kołysze cię w objęcia snu, jednak dzisiaj coś jest nie tak...
+			 (syt -> 3B) : 
+
+Syt: 3A
+	Główna izba wydaje ci się przerażająco ponura i zimna pomimo ognia trzaskającego w kominku. Wiatr rozbija się o ściany chałupy, z charakterystycznym świstem dostaje się do środka. ( syt -> 3B)
+		Odp: Sprawdzę drzwi.
+			 (bezp +1) : Drzwi są zamknięte na klucz, jednak dodatkowo zasuwasz metalowy rygiel, dzięki któremu trudniej je sforsować.
+			 (syt -> 4A) : 
+		Odp: Sprawdzę okna.
+			 (bezp +1) : Jedno z okien było niedokładnie zamknięte, ktoś mógł wejść przez nie od środka. Zamykasz je.
+			 (syt -> 4A) : 
+
+Syt: 3B
+	Wspomnienia nie dają ci zasnąć. Myślisz o: ( syt -> 4A)
+		Odp: Załodze.
+			 () : Pamiętasz jeszcze te czasy, kiedy wraz z załogą miesiącami nie zawijaliście do portu.
+		Odp: Wyspie.
+			 () : Nigdy wcześniej, ani nigdy później nie widziałeś takich cudów jak na tej przeklętej wyspie. Nigdy nie widziałeś także tyle krwi.
+		Odp: Ładunku.
+			 () : Gdy tylko zobaczyłeś co czeka na ciebie w skarbcu świątyni, wiedziałeś że ładunek musi być twój. Wiedziałeś, że zrobisz dla niego wszystko.
+		Odp: Zatapiam się w bezwładnym koszmarze własnych myśli.
+			 (psych -1) : Oglądasz... nie - czujesz jeszcze raz te wszystkie straszne chwile, krzyki lecącego w dół majtka, czerń nocnego oceanu.
+
+Syt: 4A
+	 ( syt -> 4B)
+		() : Rozglądasz się po głównej izbie. Reszta twojego skromnego wyposażenia zdaje się być na właściwym miejscu. Dla spokoju ducha możesz jednak sprawdzić najważniejsze miejsca.
+		() : Z kolejnym podmuchem wiatru coś wielkiego uderza w twoją chałupę i odbija się od niej z głuchym łoskotem. Hałas wyciąga cię z łóżka. Nie brzmiało to dobrze. Schodzisz na dół, aby sprawdzić stan domu. Główna izba wydaje ci się przerażająco zimna i ponura.
+		Odp: Sprawdzę zapasy w spiżarni.
+			 () : Wejścia do spiżarni bronią grube drzwi, które powinny powstrzymać wszelkich natrętnych gości. Kiedy je otwierasz twoim oczom ukazują się półki i worki jedzenia oraz butelki wypełnione grogiem. Zapasów jest niby dużo, ale przed tobą długa zima.
+			 (syt -> 5) : 
+		Odp: Sprawdzę ładunek.
+			 () : Klapa prowadząca do piwnicy, w której znajduje się ładunek, przykryta jest niedźwiedzim futrem. Sprawdzasz, czy klapa aby na pewno jest zamknięta, klucz do zamka nosisz zawiązany na szyi.
+			 (syt -> 5) : 
+		Odp: Sprawdzę ściany domu.
+			 () : Drewniane belki i deski, z których zbita jest twoja chałupa zdają się być na swoim miejscu. Być może przetrzymają jeszcze parę zim.
+			 (syt -> 5) : 
+
+Syt: 4B
+	Od przypływu wspomnień zakręciło ci się w głowie. Do gardła napłynęła ci żółć, która niezmiennie od lat jest pokłosiem twojego poczucia winy. Nie zaśniesz w takim stanie, musisz przepłukać czymś gardło. ( syt -> 5)
+		Odp: Wypiję grog.
+			 () : Sięgasz po butelkę z brunatnym płynem, ale to co zostało nie wystarcza ci na zabicie goryczy na gardle. Schodzisz na dół na parter, aby wziąć więcej grogu.
+		Odp: Wypiję wodę.
+			 () : Sięgasz po miskę z wodą, ale na jej dnie zostało ledwie parę kropel. Nie zmyjesz tym posmaku goryczy na gardle. Schodzisz na dół na parter, aby napełnić miskę świeżą wodą.
+
+Syt: 5
+	Kolejny podmuch wiatru jest jeszcze silniejszy. Masz wrażenie, że twoja chałupa za chwilę rozleci się na części, na szczęście po chwili wiatr cichnie. Wydaje ci się, że przez ciszę przebijają się dziwne dźwięki dochodzące z zewnątrz. ( syt -> syt6)
+		Odp: Wyjrzę przez okno.
+			 () : Podchodzisz do okna i wyglądasz na zewnątrz. Jedyne co widzisz to wirujące na wietrze płatki śniegu.
+		Odp: Przyłożę ucho do drzwi.
+			 () : W jednej z desek, z których zbite są drzwi, znajduje się dziura po sęku. Przykładasz do niej ucho. Dociera do ciebie świst wiatru, ale słyszysz także odległy ryk niedźwiedzia.
+		jeśli [Kondycja psychiczna < 3]: 
+			Odp: Na pewno coś bardzo złego się stanie, podcinam sobie żyły.
+				 () : Wiatr szarpie drzewami na zewnątrz, okna w izbie stukają. Wchodzisz spokojnym krokiem do głównej izby, siadasz przy fotelu i nożem do patroszenia łososi rozcinasz sobie żyły na rękach.
+				 (endGame -> suicideSlit) : Zgasłeś prędzej niż kominek.
+
+Syt: syt6
+	Wygląda na to, że wszystko jest w porządku. Tylko ci się przesłyszało, zresztą nie pierwszy raz… Twoje myśli wędrują ku butelkom grogu stojącym w spiżarni. Wtedy jednak rozlega się wyraźny krzyk: 'Pomocy! Pomocy!' Ktoś wzywa pomocy. ( syt -> syt7)
+		Odp: Założę futro i wyjdę przed dom.
+			 () : Ubierasz się w grube futro, po czym drżącymi rękoma otwierasz drzwi. Zimne powietrze uderza w ciebie niczym morska fala. Przed tobą jak okiem sięgnąć tylko śnieg i szare kamienie.
+		Odp: Wezmę sztylet i wyjdę przed dom.
+			 (bezp +1) : Doskonale wiesz, jak posługiwać się tą bronią. Zadałeś nią niejedną śmierć.
+			 () : Otwierasz drzwi na zewnątrz. Zimne powietrze uderza w ciebie niczym morska fala. Przed tobą jak okiem sięgnąć tylko śnieg i szare kamienie.
+		Odp: Zostanę w środku i zabarykaduje drzwi.
+			 (bezp +2) : Drzwi zamykasz na klucz, zasuwasz też rygiel. Dodatkowo przesuwasz pod drzwi wielką drewnianą skrzynię. Trudniej będzie się przez nie przebić.
+			 () : Wiesz, że nikt inny nie mógłby tu trafić. To musi być szary pochód. W końcu cię odnalazł.
+			 (syt -> syt8) : 
+
+Syt: syt7
+	'Tam! To niedaleko!' Krzyki naprowadzają twój wzrok na ledwie co widoczne postacie, które zbliżają się do twojej chaty. Co jeśli to szary pochód? ( syt -> syt8)
+		Odp: Schowam się i zabarykaduje drzwi.
+			 (bezp +1) : Drzwi zamykasz na klucz, zasuwasz też rygiel.
+		jeśli [Kondycja psychiczna > 2]: 
+			Odp: Zbiorę zapasy schowane przed domem.
+				 (zapasy +2) : Odkopujesz zakopane w śniegu mięso, nie możesz pozwolić żeby dostało się w obce ręce. Czym prędzej wnosisz je do środka i zamykasz drzwi.
+		Odp: Sprawdzę, czy ładunek na pewno jest bezpieczny.
+			 (psych +1) : Wbiegasz do domu, nie pamiętając nawet o zamknięciu drzwi. Odsuwasz niedźwiedzią skórę i sprawdzasz czy klapa prowadząca do ładunku na pewno jest zamknięta. Dzięki temu uspokajasz się.
+
+Syt: syt8
+	Wydaje Ci się, że słyszysz słowa: 'Tutaj! To tutaj!' ( syt -> 9A)
+		Odp: Otworzę drzwi i wyjdę przed dom.
+			 (bezp -1) : Wychodząc na zewnątrz stajesz się łatwiejszym celem.
+			 (psych +1) : Stawiając czoła swoim strachom czujesz się pewniej..
+			 () : Kiedy otwierasz drzwi twoim oczom ukazują się tylko drzewa i śnieg. Ani śladu po postaciach w oddali.
+		Odp: Uchylę lekko drzwi i wyjrzę na zewnątrz.
+			 () : Wyglądasz przez szparę na zewnątrz, ale przez gęsto padający śnieg nic nie widzisz. Ani śladu po postaciach w oddali.
+			 (syt -> 9B) : 
+		Odp: Zostanę w środku i będę nasłuchiwał.
+			 (bezp +1) : Zostawiasz drzwi zamknięte, dzięki czemu masz większe szanse na obronę.
+			 (psych -1) : Możesz jedynie domyślać się co czyha po drugiej stronie drzwi. Twój umysł podsyła ci niepokojące obrazy.
+			 () : Przyciskasz ucho do drzwi, ale wycie wiatru zagłusza wszelkie inne dźwięki.
+			 (syt -> 9B) : 
+
+Syt: 9A
+	To niemożliwe. Przed chwilą wyraźnie widziałeś postacie zmierzające do twojej chałupy. Przecież nie mogły rozpłynąć się w powietrzu! A może to tylko twój zmęczony umysł znów cię oszukał? ( syt -> 9B)
+		Odp: Upewnię się, że nikogo tam nie ma.
+			 (bezp -2) : Krzycząc zwracasz na siebie uwagę wszystkich zwierząt w okolicy.
+			 () : 'Jest tam ktoś?! Tam na zewnątrz?' Odpowiada ci jedynie wycie wiatru.
+			 (syt -> 10) : 
+		Odp: Obejdę chałupę dookoła.
+			 (psych -2) : Szukanie śladów szarego pochodu powoduje napływ niechcianych wspomnień.
+			 () : Obchodzisz swoją posiadłość, ale nie znajdujesz niczego co mogłoby wzbudzić twoje podejrzenia.
+			 (syt -> 10) : 
+		Odp: Wrócę do środka.
+			 (bezp -1) : Nie sprawdziłeś, a być może coś czai się w pobliżu.
+			 (psych -1) : Nie wiesz, czy możesz zaufać swoim zmysłom.
+			 () : Wracasz do środka i zatrzaskujesz za sobą drzwi. Puste wnętrze wydaje ci się teraz o wiele mniej bezpieczne.
+			 (syt -> 10) : 
+
+Syt: 9B
+	Nic, żadnego znaku, że ktoś jest na zewnątrz. Albo to szary pochód z ciebie drwi, a to ty sam zadrwiłeś z siebie. Ile dziś wypiłeś? Ile to już razy twój zszargany umysł cię oszukał? Jednak dopóki tego nie sprawdzisz, nie będziesz miał pewności. ( syt -> 10)
+		Odp 9B/1: Wyjdę na zewnątrz i sprawdzę okolicę.
+			 (bezp -2) : Wychodząc na zewnątrz stajesz się łatwiejszym celem.
+			 () : Wokół twojej chaty nie znajdujesz niczego podejrzanego.
+		Odp 9B/2: Zostanę w środku.
+			 (psych -2) : Nie masz pewności, czy coś nie czai się na zewnątrz. To wzbudza w tobie niepokój.
+			 () : Upewniasz się, że drzwi na pewno są dobrze zablokowane. Tak na wszelki wypadek.
+
+Syt: 10
+	Na zewnątrz jest pusto. Oprócz ciebie nie ma tu żywej duszy, choćby najmniejszego robaka. Musiało ci się wydawać. Te głosy musiały pochodzić z przeszłości.  ( syt -> 11)
+		() : Wracasz do chałupy, zamykając za sobą drzwi.
+		() : Odsuwasz się od drzwi, rozglądasz po chałupie.
+		() : Przełykasz ślinę. Co się z tobą dzieje?
+		Odp: Zbyt dużo wypiłem.
+			 () : Od paru dni nie rozstawałeś się z butelką. Nic dziwnego, że masz halucynacje.
+		Odp: Przeszłość nie daje mi spokoju.
+			 () : Ostatnie dni poświęcałeś na czytaniu dziennika. Zapisane wspomnienia źle na ciebie wpłynęły.
+		Odp: To tylko zmęczenie.
+			 () : Dnie wypełnia ci pilnowanie ładunku oraz chaty. Codziennie musisz dbać o to, żeby nie zamarznąć. Zima cię wykańcza.
+
+Syt: 11
+	Takie tłumaczenie wydaje ci się lepsze niż myśli o szarym pochodzie. Powinieneś odpocząć, ale wiesz, że nie zaśniesz bez pomocy. ( syt -> 12)
+		Odp: Znieczulę się grogiem.
+			 (zapasy -1) : Ubywa ci kolejna butelka twojego jednocześnie ulubionego i znienawidzonego trunku.
+			 (bezp -2) : Upijasz się, przez co jesteś mniej sprawny.
+			 () : Alkohol znajomo łechta twoje podniebienie, na policzkach wykwitają ci rumieńce. Od razu ci lepiej.
+		Odp: Sięgnę po zioła.
+			 (zapasy -2) : Zioła są cenne, nie zostało ci ich wiele.
+			 (psych -1) : Zioła mają nieprzewidywalne efekty uboczne, będą mieszać ci w głowie.
+			 () : Z ziół przygotowujesz napar, który samym zapachem sprawia, że stajesz się spokojniejszy.
+		Odp: Wypiję gorący miód.
+			 (zapasy -3) : Przygotowanie pitnego miodu pochłania wiele twoich cennych i rzadkich zapasów.
+			 () : Gorący miód roznosi po twoim ciele przyjemne ciepło, czujesz jak uśmierza ból oraz łagodzi nerwy.
+		Odp: Nie mogę sobie pozwolić na marnowanie zapasów, pomimo pękającej z bólu głowy starasz się poradzić bez specyfików.
+			 (psych -2) : Ból głowy się pogłębił.
+
+Syt: 12
+	Leżysz w łóżku, lecz dzisiejsza burza wydaje się być wyjątkowo groźna, nie da się teraz spać. ( syt -> 13)
+		Odp: Upewnię się, że dom jest bezpieczny.
+			 (bezp +1) : Na czas snu zamykasz grube drewniane okiennice.
+			 () : Twoja chałupa nie jest może niezdobytą twierdzą, ale czujesz się w niej w miarę bezpiecznie.
+		Odp: Dokończę oprawianie mięsa.
+			 (zapasy +1) : W końcu peklujesz mięso z ostatniego polowania, które inaczej mogłoby się zepsuć.
+			 () : Ciągnąca się zima nadwyrężyła twoje zapasy. Znowu będziesz musiał wybrać się na polowanie.
+		Odp: Sprawdzę czy ładunek wciąż jest na swoim miejscu.
+			 (psych +1) : Widok ładunku upewnia cię, że to wszystko było tego warte.
+			 () : Ściągasz niedźwiedzią skórę z klapy. Nie ściągając klucza z szyi przekręcasz zamek w klapie. Po uniesieniu jej do góry ładunek razi cię oślepiającym światłem. Zadowolony zamykasz klapę.
+
+Syt: 13
+	Wydaje Ci się, że jest spokojnie…\n\nZupełnie niespodziewanie coś ciężkiego uderza w drzwi wejściowe. Zamierasz w bezruchu.\n\nPo chwili rozlega się słaby i ledwo co zrozumiały, ale jednak słyszalny jęk. 'Pomocy…' ( syt -> 14)
+		Odp: Odpowiem głosowi.
+			 () : 'Kim jesteś i czego chcesz?' Twoje pytanie zawisa w powietrzu. Za odpowiedź musi wystarczyć ci kolejny jęk.
+		Odp: Wyjrzę na zewnątrz.
+			 () : Próbujesz dojrzeć co czai się na zewnątrz przez sęk w drzwiach, ale widzisz jedynie ciemność. Do twoich uszu dociera kolejny jęk.
+
+Syt: 14
+	Masz już łapać za klamkę, gdy ładunek szepcze do ciebie:\n'Nie rób tego, to zbyt niebezpieczne!' ( syt -> 15)
+		Odp: Odpowiem ładunkowi.
+			 () : 'Muszę to sprawdzić, nie mogę tego tak zostawić.' Wiesz, że to słuszna decyzja.
+
+Ładunek przyjmuje twoje słowa, ale dodaje szeptem: 'Uważaj, nie daj się podejść szaremu pochodowi.'
+		Odp: Zignoruję szepty ładunku.
+			 () : Ładunek czasami mówi dobre rzeczy, czasami wodzi na manowce.
+
+Syt: 15
+	'Pomocy…' Jęk nieznajomego jest błagalny i przepełniony bólem. Mocniej zaciskasz dłoń na rękojeści sztyletu. ( syt -> 16)
+		Odp 15/1: Wezmę lampę.
+			 (psych +1) : Światło lampy napełnia Cię spokojem.
+			 () : Odblokowujesz drzwi, po czym ostrożnie je uchylasz. Światło lampy wydobywa z mroku leżące na twoim progu ciało mężczyzny ubranego w lniane, cienkie odzienie.
+		Odp: Wezmę drugi sztylet.
+			 (bezp +1) : Sztukę walki dwiema ostrzami opanowałeś do perfekcji, mało kto może się z tobą równać.
+			 () : Odblokowujesz drzwi, po czym ostrożnie je uchylasz. Wychodząc na zewnątrz potykasz się o leżące na ziemi ciało.
+		Odp: Założę skórzaną kurtę.
+			 (bezp +1) : Skórzana kurta jest w stanie zatrzymać niektóre cięcia.
+			 () : Odblokowujesz drzwi, po czym ostrożnie je uchylasz. Wychodząc na zewnątrz potykasz się o leżące na ziemi ciało.
+
+Syt: 16
+	Pochylasz się nad nieruchomym ciałem. Jedynym znakiem życia, które ono wydaje jest słaby, przerywany oddech oraz sporadyczne pojękiwania. Podnosisz głowę i rozglądasz się wokół. ( syt -> 17)
+		() : Dzięki światłu z lampy widzisz w śniegu ścieżkę, którą przeszedł nieznajomy do twojego progu. Śnieg zabarwiony jest na czerwono.
+		Odp: Badam nieznajomego.
+			 () : Przyglądasz się bliżej ciału leżącemu na progu twojego domu. Mężczyzna jest w kiepskim stanie, krwawi i jest rozpalony gorączką.
+		Odp: Sprawdzam okolice.
+			 () : Szukasz w pobliżu domu śladów innych osób, ale znajdujesz jedynie pojedyncze wgłębienia w śniegu. Nieznajomy w drodze do twojego domu musiał co chwila upadać.
+
+Syt: 17
+	Od północy przychodzi zimny wicher. Twoje członki zaczynają odmarzać, zęby zaczynają obijać się o siebie. Jeśli nie chcesz się wyziębić, musisz wracać do środka. Ale co zrobisz z nieznajomym? ( syt -> 18A)
+		Odp: Zostawię go samemu sobie.
+			 (psych -1) : Dogorywający nieznajomy przypomina ci o twojej załodze, która umierała w męczarniach. Nie są to dobre wspomnienia.
+			 () : Uznajesz, że nie możesz ryzykować. Nie wiesz kim jest nieznajomy, nie możesz doprowadzić go w pobliże ładunku.
+		Odp: Wciągnę go do środka.
+			 (bezp -1) : Od dawna nikt obcy nie znalazł się tak blisko ładunku.
+			 () : Twoje sumienie, jeśli jeszcze w ogóle je masz, nie pozwala ci zostawić potrzebującego na pastwę losu.
+			 (syt -> 18B) : 
+		Odp: Skrócę jego męki.
+			 () : Nie możesz ryzykować, przede wszystkim musisz bronić ładunku. Po za tym nie wydaje ci się, żeby nieznajomy mógł wyjść z tego cało. Robisz więc jedyną rzecz, która wydaje ci się słuszna. Podcinasz mu gardło.
+			 (endGame -> redBlood) : Krew lejąca się z szyi nieznajomego barwi Ci ręce na czerwono. Nieznajomy umiera szybko, bez wstrząsów, bez jęknięć, jakby w pełni zgadzał się z twoją decyzją. Odciągasz go nieco dalej od swojej chałupy, ale zakopać postanawiasz go na drugi dzień. Teraz musisz odpocząć, wreszcie odpocząć.
+
+Kładziesz się spać dziwnie spokojny. Zupełnie jakbyś potrzebował tego nieznajomego, aby przypomnieć sobie o tym dlaczego tu jesteś. Ładunek odwdzięcza ci się za każdą chwilę poświęconą na jego obronę. Wiesz, że jest tego warty. Wiesz, że jest warty wszystkiego.
+
+Budzisz się w raz z pierwszymi promieniami słońca. Schodzisz na dół i pierwsze co robisz, to wlepiasz oczy w blask ładunku. Podoba ci się jego czuły szept. W końcu wychodzisz na zewnątrz, aby uporać się z ciałem nieznajomego. Ciała nie ma jednak w miejscu, w którym go zostawiłeś. Ani nigdzie w pobliżu. Cały dzień mija ci na szukaniu jakichkolwiek śladów.
+
+Nocą zamykasz się w swojej chacie. Umysł podpowiada ci straszne rzeczy. Osuszasz jedną butelkę grogu po drugiej. Nie dziwi cię, kiedy słyszysz potępieńczy śmiech szarego pochodu. Już nigdy nie zaznasz spokoju.
+
+Syt: 18A
+	Odciągasz nieznajomego przybysza dalej od twojej chałupy. Nie chcesz przecież słyszeć ciągłych jęków. Gdy tak ciągniesz bezwładne ciało powracają do ciebie obrazy z przeszłości. Te wszystkie zbrodnie, które popełniłeś, te wszystkie czyny, za które jest ci wstyd. Być może to jest szansa na twoje odkupienie. ( syt -> 18B)
+		Odp: Jednak wciągnę nieznajomego do środka.
+			 () : Twoje sumienie, jeśli w ogóle jeszcze je masz, znowu się odezwało. Masz wrażenie jakbyś spotkał się z kimś po wielu latach rozłąki.
+		Odp: Zostawię nieznajomego w śniegu.
+			 () : Los nieznajomego cię nie dotyczy, ty już wybrałeś swoją drogę. Poświęciłeś wszystko dla ładunku.
+			 (endGame -> leaveBody) : Odchodząc od ciała pozostawionego w śniegu nie pierwszy raz myślisz o tym, ile musiałeś poświęcić dla dobra ładunku. Nie każdy byłby w stanie tego dokonać, ale trafiło na ciebie, a ty stanąłeś na wysokości zadania. Ładunek jest z tobą bezpieczny.
+
+Kładziesz się spać dziwnie spokojny. Zupełnie jakbyś potrzebował tego nieznajomego, aby przypomnieć sobie o tym dlaczego tu jesteś. Ładunek odwdzięcza ci się za każdą chwilę poświęconą na jego obronę. Wiesz, że jest tego warty. Wiesz, że jest warty wszystkiego.
+
+Budzisz się w raz z pierwszymi promieniami słońca. Schodzisz na dół i pierwsze co robisz, to wlepiasz oczy w blask ładunku. Podoba ci się jego czuły szept. W końcu wychodzisz na zewnątrz, aby uporać się z ciałem nieznajomego. Ciała nie ma jednak w miejscu, w którym go zostawiłeś. Ani nigdzie w pobliżu. Cały dzień mija ci na szukaniu jakichkolwiek śladów.
+
+Nocą zamykasz się w swojej chacie. Umysł podpowiada ci straszne rzeczy. Osuszasz jedną butelkę grogu po drugiej. Nie dziwi cię, kiedy słyszysz potępieńczy śmiech szarego pochodu. Już nigdy nie zaznasz spokoju.
+
+Syt: 18B
+	Łapiesz nieznajomego za nadgarstki i wciągasz go do wnętrza chałupy. Kładziesz go przed kominkiem, ale zanim robisz cokolwiek więcej ryglujesz drzwi. \n\nWidok ludzkiego ciała na podłodze tak blisko klapy prowadzącej do ładunku każe ci wątpić w słuszność twoich poczynań. Zastanawiasz się, co powinieneś teraz zrobić.\n\n'On nie może tu zostać! To zagrożenie.' Szept ładunku rozbrzmiewa w twojej głowie. 'Musisz się go pozbyć!' ( syt -> 19)
+		Odp 18B/1: 'Zrobię, co mówisz.'
+			 () : Ładunek ma rację, błędem było zabranie nieznajomego do środka.
+		Odp 18B/2: 'Najpierw dowiem się jak tutaj trafił.'
+			 () : Nieznajomy nie mógł trafić tu przypadkiem, musisz dowiedzieć się o nim czegoś więcej.
+		Odp 18B/3: 'On jest niegroźny. Muszę mu pomóc.'
+			 () : Nieznajomy jest ledwie żywy, nie może ci nic zrobić. Za to ty możesz mu pomóc.
+
+Syt: 19
+	Klękasz nad ciałem nieznajomego, od którego bije chłód. Mężczyzna ubrany jest w cienką koszulę i spodnie, ma gołe stopy. To cud, że nie zamarzł. Kiedy tak na niego patrzysz przypomina ci się Brandyll, twój pierwszy oficer. Jego życie, także spoczywało w twoich rękach… ( syt -> 20A)
+		() : 'Teraz, zrób to póki nie jest za późno!'
+		() : 'Nie możemy ryzykować, zabij go póki nie jest za późno.'
+		() : 'Głupcze, niczego się nie nauczyłeś przez te wszystkie lata? Zabij go!'
+		Odp: Zrobię co konieczne.
+			 (psych -1) : Sam się sobie dziwisz, jak łatwo przychodzi ci odebranie człowiekowi życia. Zaciskasz w ręku sztylet i przykładasz go do gardła nieznajomego.
+		Odp: Zrobię co słuszne.
+			 (bezp -1) : Z nieznajomym w środku będziesz musiał być ostrożniejszy.
+			 () : Odkładasz sztylet na bok, nie chcesz go użyć.
+			 (syt -> 20B) : 
+
+Syt: 20A
+	Wystarczy jedno pociągnięcie i będzie po wszystkim. No dalej, przecież już to robiłeś. ( syt -> 20B)
+		Odp: Podrzynam gardło nieznajomemu.
+			 () : Zaciskasz zęby, bierzesz parę szybkich oddechów i już masz ciąć, gdy nagle nieznajomy otwiera oczy. Przestraszony odsuwasz się od niego.
+		Odp: Odkładam sztylet.
+			 () : Odkładasz sztylet na podłogę i zamykasz oczy. Kiedy ponownie je otwierasz nieznajomy patrzy na ciebie. Przestraszony odsuwasz się od niego.
+
+Syt: 20B
+	Bierzesz głęboki wdech. Nieznajomy jest w ciężkim stanie, ale może zdołasz go jeszcze uratować. ( syt -> 21)
+		Odp: Zbadam jego rany na torsie.
+			 () : Rozrywasz cienką bluzę, pierś nieznajomego poznaczona jest długimi ranami. Nie jesteś pewien, ale wygląda to na ślady niedźwiedzich pazurów. Przenosisz wzrok na twarz, nieznajomy patrzy na ciebie. Zdziwiony odsuwasz się od niego.
+		Odp: Zbadam jego rany na nogach.
+			 () : Rozrywasz nogawki spodni, nogi i stopy mężczyzny są odmrożone. W paru miejscach zauważasz przetarcia oraz ropiejące rany. Nieznajomy musiał czołgać się przez długi czas. Przenosisz wzrok na twarz, nieznajomy patrzy na ciebie. Zdziwiony odsuwasz się od niego.
+
+Syt: 21
+	Nieznajomy podąża za tobą wzrokiem. Z jego ust wydobywa się charkotliwy dźwięk: 'Ratuj… Ratuj…' Ranny mężczyzna nie jest w stanie wydusić nic więcej. Zaczyna się trząść i jęczeć.\n\nNieznajomy jest świadomy, jego brązowe oczy wciąż są w ciebie wlepione. ( syt -> 22A)
+		Odp: Postaram się go uratować.
+			 () : Pierwsze co robisz to zdzierasz z nieznajomego całe ubranie. Mężczyzna próbuje coś jeszcze powiedzieć, ale traci przytomność.
+		Odp: Skrócę jego męki.
+			 () : Bierzesz sztylet i bez chwili zawahania wbijasz go mężczyźnie w pierś. Nieznajomy nie ma nawet sił na krzyk.
+			 (syt -> 22B) : 
+		Odp: Poradzę się ładunku.
+			 () : Odwracasz się do ładunku. Odsłaniasz niedźwiedzią skórę, klękasz przy klapie i pytasz: 'Co powinienem zrobić?!'
+			 (syt -> 22C) : 
+
+Syt: 22A
+	Nieznajomy ma wiele ran, jego ciało jest rozpalone, pewnie ma połamane kości. Uleczenie go nie będzie proste. ( syt -> 23A)
+		Odp: Obmyję jego rany wodą.
+			 (zapasy -1) : Zużywasz wodę, którą pozyskujesz z roztopionego śniegu. Białego puchu masz pod dostatkiem, ale drewno jest ci zdobyć o wiele ciężej.
+			 () : Dopiero po umyciu ciała nieznajomego orientujesz w jak wielu miejscach jest ranny.
+		Odp: Dam mu zioła na gorączkę.
+			 (zapasy -1) : Twoje zapasy ziół wyglądają naprawdę mizernie. Tutaj w górach musisz spędzić długie godziny na poszukiwaniach, żeby znaleźć coś przydatnego.
+			 () : W moździerzu mieszasz odpowiednią mieszankę ziół, po czym wpychasz ją do przełyku nieznajomego.
+		Odp: Zabandażuję jego rany.
+			 (zapasy -2) : Odrywasz kawałki czystego materiału. Do tej pory miałeś szczęście i nie używałeś go zbyt często, ale nieznajomy ma wiele ran.
+			 () : Owijasz materiałem te z ran nieznajomego, które nie wymagają szycia.
+		Odp: Nie mam tyle zapasów, aby utrzymać nas obu przy życiu.
+			 (psych -1) : Dusisz nieznajomego sznurkiem do wieszania wędlin. Mężczyzna otwiera oczy i łapie Cię słabymi rękoma za ramiona. Łzy napływają Ci do oczu.
+			 (syt -> 22B) : 
+
+Syt: 23A
+	Niepokoi cię najszersza rana, która przebiega przez środek klatki piersiowej nieznajomego. Musisz coś z nią zrobić, bo nie zasklepi się sama. ( syt -> 24A)
+		Odp: Spróbuję ją zaszyć.
+			 (psych -1) : Przypomina ci się podobna sytuacja z przeszłości. Wtedy operacja zakończyła się niepowodzeniem, to przyprawia cię o złe samopoczucie.
+			 () : Sięgasz po igły i nić, drżącymi rękoma przebijasz się przez skórę. Na rękach masz krew, znowu.
+		Odp: Nałożę na nią maść.
+			 (zapasy -1) : Maść sporządzona jest na bazie miodu. Nauczył cię ją przyrządzać szaman na jednej z wysp, którą kiedyś odwiedziłeś. Wytworzenie maści wymaga poświęcenia wielu składników.
+			 () : Nakładasz lepką i gęstą breję na ranę. Masz nadzieję, że to wystarczy to jej uleczenia.
+
+Syt: 24A
+	Opatrujesz resztę ran, tak jak potrafisz. Niestety nie jesteś w stanie zrobić nic więcej. Okrywasz więc mężczyznę skórą. Widok krwi i obecność nieznajomego nie wpływa na ciebie najlepiej. Twoje myśli błądzą wokół najgorszych ze wspomnień, czujesz zmęczenie rozchodzące się wzdłuż twojego kręgosłupa. ( syt -> 22B)
+		Odp: Napiję się grogu.
+			 (zapasy -1) : W takim tempie pozbędziesz się całych zapasów grogu do jutra.
+			 () : Twój dobry przyjaciel grog pozwala ci się uspokoić.
+			 (syt -> 25A) : 
+		Odp: Pójdę się przespać.
+			 (bezp -1) : Zostawiasz nieznajomego bez nadzoru, nie wiesz czy nie jest niebezpieczny.
+			 () : Układasz się do snu w pobliżu nieznajomego. Kiedy tylko zamykasz oczy odpływasz.
+			 (syt -> 25A) : 
+		Odp: Będę czuwał przy nieznajomym.
+			 (psych -1) : Jesteś już tak zmęczony, że mylisz jawę ze snem. Dalsze czuwanie jedynie nadwyręży twój umysł.
+			 () : Siadasz w pobliżu nieznajomego, tak żeby z łatwością móc obserwować go i resztę domu.
+			 (syt -> 25A) : 
+
+Syt: 22B
+	Po paru wstrząsach ciało mężczyzny zamiera. Ładunek jest wyraźnie zadowolony. 'Dobrze się spisałeś.' Do ust napływa ci gorycz, przypominasz sobie o porzuconych ciałach twojej załogi. Musisz pozbyć się stąd nieznajomego. \n\n'Złóż ciało we mnie, tak jak wszystkich pozostałych.' ( syt -> 22C)
+		Odp: Spalę ciało w kominku.
+			 (zapasy -1) : Do spalenia ciała zużywasz sporo drewna.
+			 () : Ciało nieznajomego palisz po kawałku, tak by zmieściło się w kominku. Palone ciało wypełnia twój dom słodkim i ciężkim zapachem, który utrzymuje się w twojej chacie jeszcze przez długi czas.
+			 (endGame -> noHorrors) : Po pozbyciu się ciała wreszcie możesz odpocząć. Układasz w łóżku, jesteś na tyle zmęczony że zasypiasz od razu. Noc jest wyjątkowo spokojna, nie masz żadnych koszmarów.
+
+Na drugi dzień wstajesz skoro świt. Czujesz się wypoczęty i spokojny. Zrobiłeś co do ciebie należało, zapewniłeś ładunkowi bezpieczeństwo. Ładunek jest z ciebie zadowolony, gdy schodzisz na dół szepcze ci miłe słówka. Zaprasza cię do siebie, a ty posłusznie otwierasz klapę i schodzisz do niego.Tylko ty jesteś do tego zdolny, tylko ty…
+		Odp: Złożę ciało do ładunku.
+			 (psych -1) : Ulegasz namową ładunku. Towarzystwo trupów znajdujących się pod podłogą często przyprawia cię o mdłości.
+			 (endGame -> storageBodies) : Odsłaniasz niedźwiedzią skórę i otwierasz klapę. Zaciągasz pod nią ciało nieznajomego, po czym wpychasz je do środka. Na razie tak tam zostanie, nie masz siły aby zejść na dół i ułożyć je wraz z pozostałymi. Wracasz do grogu i dziennika. Później zajmiesz się tymi wszystkimi ciałami pod podłogą, wśród całego tego bogactwa. Znikają wszelkie wątpliwości, wyrzuty sumienia nie mają znaczenia. Musiałeś zrobić to wszystko, tylko ty byłeś w stanie tego dokonać. Kto inny zdobyłby się na wyrżnięcie całej wyspy i na zatrucie własnej morskiej rodziny? Kto inny przez tyle lat niestrudzenie broniłby ładunku.
+		Odp: Wyniosę ciało na zewnątrz.
+			 (bezp -1) : Wyjście przed dom w taką pogodę nie jest bezpieczne, szczególnie gdy nie wiesz co jeszcze się tam czai.
+			 (endGame -> leaveSnow) : Otwierasz drzwi wejściowe, wpuszczając do środka chłodne powietrze. Łapiesz ciało nieznajomego za nadgarstki i wyciągasz na zewnątrz. Zostawiasz je na śniegu, nieopodal twojej chaty.
+
+Syt: 22C
+	'Zabij go. Nie możemy ryzykować. Musisz go zabić.' Ładunek niezmiennie chce pozbyć się nieznajomego. Nic dziwnego, dobrze wiesz, że tylko tobie ufa. Ale ty masz wątpliwości. Nieznajomy nie wydaje się groźny, a ratując go może odkupisz część swoich win…\n\n'Nie daj się zwieść! To tylko podstęp szarego pochodu! Pozbądź się go, zanim będzie za późno!' ( syt -> 25A)
+		Odp: Pozbędę się nieznajomego.
+			 () : Bierzesz sztylet i bez chwili zawahania wbijasz go mężczyźnie w pierś. Nieznajomy nie ma nawet sił na krzyk, otworzył oczy i patrzy się błagalnie na Ciebie, nie zdając sobie sprawy, że już nie ma dla niego ratunku.
+			 (syt -> 22B) : 
+		Odp: Uratuję nieznajomego.
+			 () : Klękasz nad nieznajomym i przystępujesz do leczenia. Pierwsze co robisz to zdzierasz z niego ubranie.
+			 (syt -> 22A) : 
+
+Syt: 25A
+	Mijają kolejne dni wypełnione jękami nieznajomego, szalejącą za oknami śnieżycą oraz podszeptywaniem ładunku, który każe ci pozbyć się mężczyzny. Dbasz o to, żeby w środku było ciepło, dajesz nieznajomemu wody oraz leczysz go ziołami. Stan nieznajomego się poprawia, aż w końcu któregoś dnia odzywa się do ciebie.\n\n'Gdzie… Gdzie ja jestem?' Głos nieznajomego jest słaby, ale wyraźny. ( syt -> 26)
+		Odp: W moim domu.
+			 () : 'Jesteś w moim domu. To niewielka drewniana chałupa, ale przynajmniej jest cieplej niż tam na zewnątrz.'
+		Odp: W górach.
+			 () : 'Wysoko w górach, gdzie jest tylko śnieg i niebo nad głowami. Szczyt pod którym stoi moja chata nazywa się Arreat.'
+		Odp: Daleko poza światem.
+			 () : 'Gdzieś, gdzie nikt cię nie znajdzie. W tym miejscu możesz zapomnieć o całym świecie.'
+
+Syt: 26
+	'Kim… Kim jesteś?' Na każde słowo mężczyzna musi wziąć parę oddechów. Jego twarz wykrzywia nieustanny grymas bólu. ( syt -> 27)
+		Odp: Wyjawię prawdę.
+			 () : 'Jestem… Byłem niegdyś kapitanem statku. Teraz ukrywam się tutaj' mówisz. 'Głupcze, nie powinieneś mu tego mówić' szepcze ładunek.
+		Odp: Powiem, że to nieważne.
+			 () : 'Kim jestem, kim byłem… to nie ma znaczenia. Ważne, że przyjąłem cię pod dach.'
+		Odp: Okłamię nieznajomego.
+			 () : 'Jestem zwykłym myśliwym. Poluję na niedźwiedzie' mówisz. 'Dobrze, zwódź i kłam go. Tak jest bezpieczniej' szepcze ładunek.
+
+Syt: 27
+	'Jak masz na imię?' Mężczyzna próbuje przekręcić głowę w twoją stronę, ale przeszkadza mu spazm bólu. ( syt -> 28)
+		Odp: Wyjawię mu moje imię.
+			 () : 'Niegdyś wołali na mnie Eihart, lecz dawno nie słyszałem tego imienia.'
+		Odp: Ukryję przed nim moje imię.
+			 () : 'Nazywam się… Arheim. Tak to moje imię, które pewnie nic ci nie powie.'
+
+Syt: 28
+	'Dziękuję, że mnie urato… wałeś. Ach!' Nieznajomy syczy z bólu, widzisz że chciałby położyć dłoń na klatce piersiowej, ale nie ma na to siły.\n\n'Powinieneś spać. Musisz odzyskać siły.' Mówisz żeby odpoczywał, choć chciałbyś zapytać o tak wiele spraw. Nieznajomy kiwa ci głową i natychmiast z powrotem zapada w letarg. \n\nPomimo tego, że mężczyzna zaczął mówić, nie oznacza to że wyzdrowieje. Nadchodzący czas będzie decydujący. Nieznajomy może albo się obudzić i żyć, albo umrzeć we śnie. Wszystko zależy od niego. Ty nie jesteś w stanie zrobić nic więcej. \n\n'Dajesz się podejść szaremu podchodowi! Nie widzisz, że on tylko wyciąga z ciebie informacje?' Wyrzuty ładunku wyrywają cię z zamyślenia. ( syt -> 29)
+		Odp: To nie szary pochód.
+			 () : 'Niemal każdej nocy widuje szary pochód. Czuję jak jego oślizłe ręce się do mnie zbliżają. Ten mężczyzna nie wygląda jak tamci.'
+		Odp: Nawet jeśli, to dobrze.
+			 () : 'Ten mężczyzna nie wygląda jak tamci. A jeśli… jest niegroźny, możemy dużo się od niego dowiedzieć.'
+
+Syt: 29
+	'Uważaj, uważaj… Szary pochód jest podstępny.' Uśmiechasz się gorzko. 'Doskonale zdaje sobie z tego sprawę!' Na samo wspomnienie trupiego koszmaru krew odpływa ci z twarzy, a w ustach czujesz morską sól.\n\n'Zresztą to może być moja szansa na odkupienie…'\n\n'Odkupienie, czego?' ( syt -> 30)
+		Odp 29/1: Wyspa.
+			 () : 'Choćby rzezi elfów, których wybiliśmy co do jednego. Mężczyźni, kobiety, dzieci, to nie miało znaczenia…'
+		Odp 29/2: Zdrada.
+			 () : 'Choćby otrucia mojej całej załogi. Ci ludzie byli dla mnie jedyną rodziną.'
+		Odp 29/3: Chata.
+			 () : 'Choćby oszukania tych wszystkich ludzi, których ciała spoczywają tutaj, tuż pod moimi stopami.'
+
+Syt: 30
+	'Dopuściłem się tylu zbrodni…' ( syt -> 31)
+		() : 'Ta wyspa była przesiąknięta złem. Byłem tam uwięziony, tamci ludzie mnie przeklęli. Zasłużyli sobie na to. Przypomnij sobie, przypomnij w jaki sposób cię powitali.'
+		() : 'Twoja załoga okazała się niegodna zaufania. Przypomnij sobie, przypomnij co planowali zrobić. Chciwość ich zaślepiła, stracili człowieczeństwo.'
+		() : 'Ofiary są nieuniknione. Nie mogliśmy ryzykować. Ale przypomnij sobie, przypomnij jacy z nich byli ludzie, same szumowiny i oprawcy. Nie warci niczego.'
+		Odp: Ładunek ma rację.
+			 () : 'Masz rację. To było konieczne.' Po tych słowach sięgasz po niedopitą butelkę grogu. Nad nią mija ci reszta nocy.
+		Odp: Ładunek się myli.
+			 () : 'Mylisz się! Mogliśmy ich oszczędzić.' Po tych słowach sięgasz po niedopitą butelkę grogu. Nad nią mija ci reszta nocy.
+
+Syt: 31
+	Kolejny dzień wita cię jeszcze bardziej porywistym wiatrem, od którego trzęsą się ściany twojej chałupy. Co gorsza wzmaga się także opad śniegu. Biały puch sięga już do połowy okien.\n\n'Zimnooo…' dociera do ciebie słaby głos nieznajomego. Obudził się. Jednak przeżył. ( syt -> 32)
+		Odp: Dołożę trochę drewna do kominka.
+			 (zapasy -1) : Bierzesz szczapę drewna z zapasów trzymanych w rządku pod ścianą z zapasami. Jeśli pogoda się nie zmieni, wkrótce może ci zabraknąć opału.
+			 () : Wrzucasz drwa do kominka, tyle żeby podtrzymać ogień. Nieznajomemu będzie trochę cieplej.
+		Odp: Dołożę dużo drewna do kominka.
+			 (zapasy -2) : Bierzesz naręcze drewna z zapasów trzymanych w rządku pod ścianą z zapasami. Jeśli pogoda się nie zmieni, to za parę dni zabraknie ci opału.
+			 () : Wrzucasz drwa do kominka, które natychmiast pochłaniają płomienie. Ogień jest teraz większy, nieznajomemu powinno być ciepło.
+		Odp: Przegrzebię drwa w kominku.
+			 () : Po szybkim spojrzeniu na zapasy drewna trzymanych w rządku pod ścianą z zapasami stwierdzasz, że musisz oszczędzać opał. Jedyne co robisz to podsycasz ogień w kominku, drewno szybciej się spali, ale choć przez chwilę będzie cieplej.
+
+Syt: 32
+	'Dziękuję.' Nieznajomy delikatnie unosi się na łokciach. Na twarzy wróciły mu kolory, już nie jęczy i nie krzywi się przy każdym ruchu. 'Mogę czegoś… do picia?' ( syt -> 33)
+		Odp 32/1: Dam mu tylko wody.
+			 (psych -1) : Dajesz nieznajomemu wody, którą wcześniej ogrzałeś przy ogniu. Poparzyłeś się dotykając wrzącego garnka, jesteś poirytowany.
+			 () : Mężczyzna pije łapczywie. Jest ci bardzo wdzięczny.
+		Odp 32/2: Dam mu naparu herbacianego z melisy i suszonych owoców.
+			 (zapasy -2) : Dajesz nieznajomemu naparu, który szybciej pozwoli mu stanąć na nogi.
+			 () : Mężczyzna pije napar, a z każdym łykiem na jego twarzy maluje się ulga. Jest ci bardzo wdzięczny.
+		Odp 32/3: Dam mu grogu. [Masz go więcej niż ziół.]
+			 (zapasy -1) : Dajesz nieznajomemu grogu, który powinien go rozgrzać.) Mężczyzna krzywi się przy przełykaniu, ale jest ci wdzięczny.
+
+Syt: 33
+	'Zawdzięczam ci życie. Nie wiem jak ci się odpłacę.' Czekałeś na tę chwilę. Siadasz na podłodze w pobliżu nieznajomego. 'Na początek mógłbyś powiedzieć mi trochę o sobie' mówisz do niego. 'Oczywiście, pytaj o co tylko chcesz.' ( syt -> 34)
+		Odp 33/1: Chcę wiedzieć jak tu trafił.
+			 () : 'Znalazłem cię ledwie żywego na moim progu. Jak tutaj trafiłeś?'
+		Odp 33/2: Chcę znać jego imię.
+			 () : 'Uratowałem cię, choć nawet nie znam twojego imienia.'
+		Odp 33/3: Chcę wiedzieć kim jest.
+			 () : 'Uratowałem cię, choć nawet nie wiem kim jesteś.'
+
+Syt: 34
+	Nieznajomy kiwa głową. 'Rozumiem, że nie często znajdujesz prawie trupa na śniegu.' ( syt -> 35)
+		Odp 34/1: Chcę wiedzieć więcej o ataku niedźwiedzia.
+			 () : 'Niedźwiedź powiadasz? To pewnie stąd te rany na twojej klatce piersiowej. W jaki sposób udało ci się ujść z życiem?'
+		Odp 34/2: Chcę znać jego imię.
+			 (bezp +1) : 'Uratowałem cię, choć nawet nie znam twojego imienia.' Znać imię swojego gościa, to większe bezpieczeństwo.
+		Odp 34/3: Chcę wiedzieć kim jest.
+			 () : 'Uratowałem cię, choć nawet nie wiem kim jesteś.'
+			 (psych +1) : Na twarzy chorego odmalowuje się wdzięczność. Być może będziesz mógł ją później wykorzystać
+		() : 'W lesie trafiłem na wyjątkowo wrednego niedźwiedzia. Cudem uszedłem z życiem. Pamiętam, że próbowałem znaleźć kompanów, ale zabłądziłem w lesie. Zamroczony szedłem przed siebie, szczęście chciało, że trafiłem na twoją chatę.'
+		Odp 34/4: Chcę wiedzieć jak tu trafił.
+			 () : 'Znalazłem cię ledwie żywego na moim progu. Jak tutaj trafiłeś?'
+		() : 'Nazywam się Tom, po prostu Tom. Od zawsze tak do mnie mówili i tak zostało.'
+		Odp 34/5: Chcę wiedzieć więcej o jego życiu.
+			 () : 'Nie każdemu w życiu wiedzie się tak samo. Skąd pochodzisz? Masz jakąś rodzinę?'
+		() : 'Jestem… tak właściwie to jestem nikim odkąd straciłem rodzinę. Ostatnio zaciągnąłem się do drużyny myśliwskiej. Łapię się wszystkiego co przyniesie jakiś grosz.'
+		Odp: O nic się nie pytam
+
+Syt: 35
+	Nieznajomy bierze głęboki oddech. ( syt -> 36)
+		() : 'Było nas sześciu. W normalnych warunkach mielibyśmy szansę, ale niedźwiedź podszedł nas nocą. Obudziły mnie wrzaski kompanów. Nim się zorientowałem o co chodzi, bestia powaliła mnie na ziemię. Inni próbowali walczyć, ale padali jeden po drugim… Próbowałem uciekać, ale niedźwiedź poszedł moim tropem. Udało mi tylko dlatego, że spadłem w jakąś przepaść. To zwierzę, to był istny demon.'
+		() : 'Nazywam się Tom, po prostu Tom. Od zawsze tak do mnie mówili i tak zostało.'
+		() : 'Jestem… tak właściwie to jestem nikim odkąd straciłem rodzinę. Ostatnio zaciągnąłem się do drużyny myśliwskiej. Łapię się wszystkiego co przyniesie jakiś grosz.'
+		() : 'W lesie trafiłem na wyjątkowo wrednego niedźwiedzia. Cudem uszedłem z życiem. Pamiętam, że próbowałem znaleźć kompanów, ale zabłądziłem w lesie. Zamroczony szedłem przed siebie, szczęście chciało, że trafiłem na twoją chatę.'
+		() : 'Młodość spędziłem na statkach handlowych. Podobno ktoś podrzucił mnie na jedną łajbę, a kapitan nie miał serca mnie wyrzucić. Moją rodziną była załoga. Kiedy ją straciłem, zostałem sam jak palec niewprawnego strzelca.'
+		Odp: Zostawię jego historię bez komentarza.
+			 (psych -1) : Kiwasz głową, ale nic nie mówisz. Nie chcesz żeby Tom wiedział co o nim myślisz. Dużo Cię kosztuje utrzymanie pokerowej twarzy.
+		Odp: Nalewając grogu, powiem Tomowi, że sporo przeszedł.
+			 (zapasy -1) : Niezbyt szczęśliwe masz życie. Nie zazdroszczę ci.
+		Odp: Powiem Tomowi, że to jeszcze nic.
+			 () : 'Nie mówię, że było ci łatwo. Ale inni przeszli o wiele więcej...'
+
+Syt: 36
+	'Ech... sam widzisz, nie uratowałeś nikogo wartościowego, tylko zwykłego i nic nie wartego Toma. Może lepiej byłoby, gdybyś mnie tam zostawił…' Nieznajomy cichnie. Na jego twarzy maluje się wstyd zmieszany z wdzięcznością.\n\n'On wie więcej niż ci mówi.' Ładunek odzywa się do ciebie po dłuższej przerwie. Ale ty nie odwracasz na niego wzroku, nie chcesz żeby Tom to zauważył. ( syt -> 37)
+		Odp 36/1: Zapytam o wyspę.
+			 () : 'Czy słyszałeś kiedyś o Eyflen?'
+		Odp 36/2: Zapytam o szary pochód.
+			 () : 'Zmierzając tu, widziałeś po drodze… coś dziwnego?'
+		Odp 36/3: Zapytam o jego kompanów.
+			 () : 'Twoi kompani, co z nimi?'
+		Odp 36/4: Zapytam o polowanie.
+			 () : 'Polowaliście w tak wysokich górach, na co?'
+
+Syt: 37
+	Nieznajomy marszczy brwi. ( syt -> 38)
+		() : 'Kiedy pływałem jeszcze po morzach wszyscy o tym mówili. Przerażająca historia. Cały najazd na królestwo elfów to jedno wielkie barbarzyństwo, jeśli mnie spytasz.'
+		() : 'Nie mogę sobie przypomnieć. Wędrowałem przez wiele dni, nie potrafię odróżnić co było czym. Wydało mi się, że widziałem wiele rzeczy'.
+		() : 'Nie wydaje mi się, żeby ktokolwiek uszedł z życiem… Gdybyś tylko widział tę bestię…'
+		() : 'Zaciągnąłem się do drużyny polującej na śnieżne lamparty. Niebezpieczna robota, ale płacili żywym złotem. Potrzebowałem pieniędzy…'
+		() : 'Czemu pytasz?'
+		Odp: Nie wiem co powiedzieć.
+
+Syt: 38
+	'Nie nic… Tak dawno nie rozmawiałeś z nikim żywym. Nikomu nigdy nie opowiedziałeś swojej historii. Nie miałeś szansy się wytłumaczyć…'\n\nNagle, znikąd rozlega się potężny huk. Nie wiesz co to było, ale brzmiało jakby coś wielkiego uderzyło w twoją chatę.\n\n'Co to było?' Tom niepewnie rozgląda się wokoło. Powinieneś to sprawdzić, ale zostawienie obcego samego może być niebezpieczne. ( syt -> 39A)
+		Odp: Wyjdę to sprawdzić i zostawię Toma samego.
+			 (bezp -1) : Choć Tom wydaje się ranny, to nie wiesz czy tak naprawdę nie jest z szarego pochodu. Pod twoją nieobecność będzie mógł zrobić cokolwiek.
+			 () : Mówisz, że musisz to sprawdzić, po czym nakładasz futro bierzesz sztylet i wychodzisz na zewnątrz.
+		Odp: Wyjdę to sprawdzić, ale zostawię otwarte drzwi.
+			 () : Przez otwarte drzwi do środka naleci lodowate powietrze.
+			 () : Mówisz, że musisz to sprawdzić, po czym nakładasz futro i wychodzisz na zewnątrz.
+		Odp: Tylko wyjrzę na zewnątrz.
+			 (psych -1) : Myśli o tym, co to mogło być, będą cię dręczyć jeszcze długo.
+			 () : Podchodzisz do okien i próbujesz dojrzeć przez nie co dzieje się na zewnątrz. Ale nic nie widzisz. Postanawiasz sprawdzić więc okna na górze.
+			 (syt -> 39B) : 
+
+Syt: 39A
+	Okolice twojego domu wydają się puste i spokojne jak zawsze. Śnieg pada tak gęsto, że widzisz ledwie na długość ręki wyciągniętej przed siebie. Od frontu twój dom jest nienaruszony, ale dla pewności powinieneś sprawdzić najbliższy teren. ( syt -> 39B)
+		Odp: Sprawdzę tyły chałupy.
+			 () : Przedzierając się przez zamieć obchodzisz dom dookoła, ale nie znajdujesz niczego podejrzanego. Nie masz co dłużej marznąć, wracasz do środka.
+		Odp: Sprawdzę okolicę chałupy.
+			 () : Przedzierając się przez zamieć szukasz jakichkolwiek śladów obecności obcych, ale nic nie znajdujesz. Nie masz co dłużej marznąć, wracasz do środka.
+		Odp: Wrócę do środka.
+			 () : Uznajesz, że w tej śnieżycy i tak niczego nie zobaczysz. Wracasz do wnętrza chałupy.
+
+Syt: 39B
+	Wdrapujesz się po schodach do góry. Wchodzisz do swojego gabinetu, który pogrążony jest w mroku. Podchodzisz do małego okna i wyglądasz na zewnątrz. Stąd nie widzisz niczego więcej. Wiesz, że nie masz sensu sprawdzać innych okien. W ten sposób nic nie zobaczysz. Ale skoro jesteś na górze masz chwilę dla siebie. ( syt -> 40)
+		Odp: Napiję się grogu.
+			 (psych +1) : Sięgasz po niedokończoną butelkę, która zawsze gości na twoim biurku. Parę łyków pomaga ci się uspokoić.
+			 () : Schodzisz na dół.
+		Odp: Sprawdzę, czy moje osobiste rzeczy są bezpieczne.
+			 () : Najcenniejsze rzeczy trzymasz w zamkniętej skrzyni. Są w niej kapitańska czapka, korale, które dostałeś w prezencie od pewnej kobiety i mapa, która doprowadziła cię do ładunku. Pamiątki są bezpieczne, wracasz na dół.
+		Odp: Zejdę od razu na dół.
+			 () : Nie powinieneś zostawiać Toma samego na dłużej. Schodzisz od razu na dół.
+
+Syt: 40
+	Tom leży w tym samym miejscu w którym go zostawiłeś. 'I co to było?' pyta. No właśnie, czym był ten huk? Na pewno nie były to wyłącznie omamy, skoro Tom również go słyszał. Ale z drugiej strony nie znalazłeś żadnych śladów… ( syt -> 41)
+		Odp 40/1: Powiem, że to złudzenie.
+			 () : 'Nic, zupełnie nic. Musiało się nam tylko przesłyszeć.'
+		Odp 40/2: Powiem, że to tylko wiatr.
+			 () : 'Nic nie znalazłem. To musiał być tylko wiatr.'
+		Odp 40/3: Powiem, że to szary pochód.
+			jeśli psych>2 () : 'To nic… Ech, nie będę cię oszukiwał. To pewnie byli oni. Są coraz bliżej.'
+			jeśli psych<3 () : 'To byli oni, są już tak blisko. Przyjdą po mnie, to kwestia dni…'
+
+Syt: 41
+	Tom z widocznym wysiłkiem podnosi się na łokciach. Wlepia w ciebie spojrzenie brązowych oczu. ( syt -> 42A)
+		() : 'Złudzenie? To niemożliwe. Ten huk był tak głośny… Słuchaj, wiem, że ledwo mnie znasz, ale możesz mi zaufać. Co tak naprawdę się tu dzieje?'
+		() : 'Wiatr? Jesteś pewien? Nie brzmiało to jak wiatr… Słuchaj, wiem, że ledwo mnie znasz, ale możesz mi zaufać. Co tak naprawdę się tu dzieje?.'
+		() : 'Oni? Jacy oni? Jest tu ktoś jeszcze, w tym odludnym miejscu? Słuchaj, wiem, że ledwo mnie znasz, ale możesz mi zaufać. Co tak naprawdę się tu dzieje?'
+		jeśli [Bezpieczeństwo > 2]: 
+			Odp: Opowiem mu moją historię.
+				 () : 'Jeśli chcesz znać prawdę, to niech tak będzie. Ale to nie będzie przyjemna historia.'
+		Odp: Nic mu nie powiem.
+			 (syt -> 42B) : 'Nie twoja sprawa. Moją historię zostawię dla siebie. I tak nie chciałbyś jej poznać.'
+
+Syt: 42A
+	'Te wszystkie odgłosy, te wszystkie cienie… To szary pochód. Każdej nocy zbliża się do mojej kryjówki, chce zabrać ładunek'.\n\n'Szary pochód…' Tom przeszywa cię wzrokiem. W jego spojrzeniu kryje się jedynie ciekawość, bez cienia uprzedzenia. 'Czym jest szary pochód?' ( syt -> 43A)
+		Odp: Moim przekleństwem.
+			 (psych -1) : Opowiadanie o szarym pochodzie każe ci wrócić do niechcianych wspomnień.
+			 () : 'Szary pochód to moja dawna załoga, mieszkańcy Eyflen, wszyscy ci ludzie zabici dla dobra ładunku.'
+		Odp: Plugastwem tego świata.
+			 (psych -1) : Opowiadanie o szarym pochodzie każe ci wrócić do niechcianych wspomnień. 
+			 () : 'Szary pochód to najgorsze co stąpa po ziemi, postacie z najgłębszej otchłani zła.'
+		Odp: Zachłannym strażnikiem.
+			 (psych -1) : Opowiadanie o szarym pochodzie każe ci wrócić do niechcianych wspomnień.
+			 () : 'Szary pochód to samozwańczy właściciel ładunku. Przyjdzie tu i znowu go uwięzi.'
+
+Syt: 43A
+	'Szary pochód co noc wychodzi z morza i szuka mojej chaty, szuka ładunku.' Twój wzrok odruchowo pada na niedźwiedzią skórę, pod którą znajduje się klapa prowadzą co piwnicy.\n\n'Ładunek… nie rozumiem. Czym jest ładunek?'\n\n'Nic mu nie mów!' Szept ładunku jest głośny niczym krzyk. ( syt -> 44A)
+		Odp 43A/1: Powiem Tomowi prawdę.
+			 (bezp -1) : Zauważasz błysk w oku Toma. Bogactwo ładunku nie jednego sprowadziło na złą drogę. I w Tomie może obudzić się chciwość.
+			 () : 'Ładunek to skarb, niewyobrażalne i niepowtarzalne bogactwo. Trudno objąć je rozumem.'
+		Odp 43A/2: Ukryję przed Tomem prawdę.
+			 (psych -1) : Ciągle się okłamujesz, poczucie winy tylko w tobie narasta.
+			 () : 'Ładunek to cenne… znalezisko. Cenne dla mnie i cenne dla szarego pochodu.'
+		Odp: Uniknę odpowiedzi. Powiem, że muszę zdjąć grzyby w wędzarni.
+			 (zapasy +1) : Poszedłeś do wędzarni zdjąć grzyby z dymu, inaczej by się zamieniły w skwarki.
+			 (bezp -1) : Tom patrzy na Ciebie podejrzliwie przez szparę w drzwiach.
+
+Syt: 44A
+	'Gdzie on jest? Ten ładunek?' ( syt -> 45A)
+		() : 'Nie zdradzaj nic więcej!'
+		() : 'Zwodź go dalej.'
+		jeśli [Bezpieczeństwo > 3]: 
+			Odp: Pod podłogą.
+				 () : 'Pod nami rozciąga się szeroka piwnica. W niej jest ładunek.'
+		Odp: Tutaj.
+			 () : 'Ładunek jest w mojej chacie. Ale nie zdradzę ci, gdzie dokładnie.'
+		Odp: W pobliżu.
+			 () : 'Jest wystarczająco blisko żebym mógł go strzec.'
+		Odp: W innym miejscu.
+			 () : 'Nie ma go tutaj. Tylko ja wiem, gdzie go znaleźć.'
+
+Syt: 45A
+	Tom powoli kiwa głową. 'Widzę, że mówienie o tym sprawia ci ból. Jeśli chcesz nie będę pytał o nic więcej… Ale z chęcią wysłucham całej twojej historii. Wybacz, że to powiem… ale jest fascynująca.'\n\nI tak powiedziałeś Tomowi już zbyt wiele. Zwierzanie się nie podoba się ładunkowi i może oznaczać twoją zgubę. Jednak to może być twoja jedyna szansa na uzewnętrznienie. ( syt -> 46A)
+		Odp: Opowiadam dalej.
+			 (bezp -1) : Tom dowie się prawdy. Zasłona dymna pada, zostajesz z nagą prawdą.) Ostrzegasz Toma, że dalej będzie tylko gorzej.
+		Odp: Chcę przerwać.
+			 (psych -1) : Chcesz zakończyć opowieść, ale twoja głowa rozbrzmiewa wspomnieniami, które chcą się wydostać.) Lepiej będzie jak skończę… mówisz bez przekonania, ale spojrzenie Toma każe ci kontynuować opowiadanie.
+
+Syt: 46A
+	'Wszystko zaczęło się wraz z wybuchem wojny z elfami. Mój statek wcielono wówczas do armii, choć w gruncie rzeczy była to raczej handlowa łajba.'\n\n'Więc poparłeś decyzje króla? Uważałeś, że ta wojna była potrzebna…' ( syt -> 47A)
+		Odp: Tak.
+			 () : 'Wojny nie dało się uniknąć. Mogliśmy zostać albo my, albo oni. Dołączyłem do królewskiej floty w pierwszym poborze.'
+		Odp: Nie.
+			 () : 'Wojna była niepotrzebna. Wiele naszych zginęło, tylko po to, aby zgładzić inną rasę. Siłą wcielono mój statek do królewskiej floty.'
+		Odp: Neutralność.
+			 () : 'Mogłem albo dołączyć do floty, albo pójść na dno. Jednak bardziej zależało mi na własnej skórze. Wojna… wojny były i będą, nic się nie zmienia.'
+
+Syt: 47A
+	'Na początku moja łajba służyła do przerzutu zaopatrzenia. Pływaliśmy najszybciej w całej flocie. Z czasem, kiedy zaczęło się robić gorzej, wysyłali nas na mniejsze wyspy. Mieliśmy utrzymywać na nich porządek.\n\n'Działaliście po wschodniej, czy zachodniej stronie archipelagu?' ( syt -> 48A)
+		Odp: Wschodniej.
+			 () : 'Trafiliśmy się na wyspy wydobywcze. Górnicy okazali się twardsi, niż ktokolwiek przypuszczał. Ale złamaliśmy ich.'
+		Odp: Zachodniej.
+			 () : 'Trafiliśmy na wyspy rybackie. Rybacy dali się nam we znaki na morzu, nigdy wcześniej nie stoczyłem bitwy z ławicą małych łódek.'
+
+Syt: 48A
+	'Po tak zwanym rozejmie podpisanym krwią, zaczęła się dla nas prawdziwa wojna. Od tamtej pory pływaliśmy burtę w burtę z fregatami wojennymi. Kiedy jednak główna flota szła prosta na stolicę elfów nas wysłano na jedną z wysp świątynnych. Miało być łatwo, ale okazało się to szlakiem przez mielizny.''Dlaczego?' ( syt -> 49A)
+		Odp: Silna ochrona.
+			 () : 'Wyspy broniły trzy statki i cała batalia żołnierzy. My mieliśmy tylko dwie łajby, oprócz mojej jeszcze królewska korweta. Nie mieliśmy szans.'
+		Odp: Zdradliwe wybrzeże.
+			 () : 'Wyspa była skalista o poszarpanym brzegu. Żeby na nią wpłynąć potrzeba było spokoju, a nas nękali liczni obrońcy wyspy.'
+		Odp: Stan statku.
+			 () : 'Mój statek ciężko zniósł trudy wojny, był w opłakanym stanie. Tak samo korweta, która nam towarzyszyła. Nie mieliśmy szans w otwartym starciu ze statkami broniącymi wyspy.'
+
+Syt: 49A
+	'Mogliśmy zostawić tę wyspę, popłynąć na inną. Ale było w niej coś, co kazało mi przy niej zostać. Chciałem ją zdobyć bez względu na koszty.'\n\n'Jak tego dokonałeś?' ( syt -> 50A)
+		Odp: Podstępem.
+			 () : 'Upozorowaliśmy odwrót. Wystarczyło ściągnąć królewską banderę, a głupie elfy pomyślały, że zostawiliśmy korwetę samą. Połakomili się na ten łatwy kąsek, nie spodziewając się ataku z drugiej strony.'
+		Odp: Poświęceniem.
+			 () : 'Zarządziłem atak frontalny. Straciliśmy korwetę, a mój statek o mało co nie skończył na dnie. Jednak obrońcy nie spodziewali się tak porywczego ataku, nie zdążyli nawet ruszyć z portu.'
+		jeśli [Kondycja psychiczna < 3]: 
+			Odp: Zdradą.
+				 () : 'Dobiłem targu z elfami, którzy ochoczo przystali na moją propozycję. Zatopiliśmy dla nich korwetę, a kiedy przyjęli nas na wyspę, utopiliśmy ich w krwi.'
+
+Syt: 50A
+	'Udało się nam wejść na wyspę, ale dalej nie było łatwo. Straż świątynna była zacięta i dobrze wyposażona. Na szczęście to my mieliśmy armaty. Świątynia stanęła przed nami otworem.'\n\n'Co to było za miejsce?' ( syt -> 51A)
+		Odp: Nie wiem.
+			 () : 'Nie znam się na elfickich wierzeniach. Mury świątyni pokryte były malowidłami słońca, jeśli cokolwiek ci to powie.'
+		Odp: Nieważne.
+			 () : 'A co za różnica? Wszystkie świątynie elfów są takie same, kamień na kamieniu i bazgroły.'
+		Odp: Kult ognia.
+			 () : 'Pierwszy oficer powiedział, że to był kult ognia. Wszędzie płonęły ogniska, więc mogła być to prawda.'
+
+Syt: 51A
+	'Gdy tylko przekroczyłem próg świątyni usłyszałem szept… Nie był to nikt z mojej załogi, ani nikt z elfów. Jednak ten głos był tak wyraźny, tak czysty, tak mądry.'\n\n'Co do ciebie mówił?' ( syt -> 52A)
+		Odp: Zdradził mi tajemnicę.
+			jeśli psych>3 () : 'Powiedział mi czym jest.'
+			jeśli psych<4 () : 'Powiedział mi, że jest jądrem tego świata.'
+		Odp: Prosił o pomoc.
+			 () : 'Powiedział, że tylko ja mogę mu pomóc.'
+
+Syt: 52A
+	'Głos doprowadził mnie do tajemnych pomieszczeń, gdzie go znalazłem. Znalazłem ładunek. Nie powinienem był go ruszać, ale ten szept mnie przekonał. Musiałem go stamtąd uwolnić.'”\n\n'To wtedy dokonałeś rzezi mieszkańców wyspy? Dlaczego to zrobiłeś?' ( syt -> 53A)
+		jeśli [Kondycja psychiczna < 3]: 
+			Odp: Stawiali opór.
+				 () : 'Chciałem ich oszczędzić, ale nie chcieli pozwolić nam zabrać ładunku. Nie miałem innego wyjścia.'
+		Odp: Byli źli.
+			 () : 'Te elfy uwięziły ładunek. Z jego pomocą dokonywały strasznych rzeczy. To była wyspa śmierci, należało ją wybić.'
+		Odp: Stanowili zagrożenie.
+			 () : 'Wiedzieli o ładunku. Któregoś dnia mogli się o niego upomnieć, a ja nie mogłem pozwolić sobie na ryzyko.'
+
+Syt: 53A
+	'Ładunek wypełnił całą ładownie statku i jeszcze część pokładu. Wpływając na wyspę byliśmy obdartusami, wypływając z niej byliśmy obrzydliwie bogaci. Moja załoga już świętowała jakby wojna się skończyła, ale ja wiedziałem, że ładunek nie przyniesie nam nic dobrego.'\n\n'Co z nim jest nie tak?' ( syt -> 54A)
+		Odp: Jest przeklęty.
+			 () : 'Ładunek jest przeklęty, sprowadza na ludzi nieszczęścia, tworzy konflikty, na samo jego wspomnienie dzieją się złe rzeczy.'
+		Odp: Korumpuje ludzi.
+			 () : 'Ładunek zmienia dobrych ludzi w niemoralne potwory, obnaża ich najgorsze żądze, sprawia że obracają się przeciwko innym.'
+		Odp: Ma zbyt wielką moc.
+			 () : 'Ładunek zbyt wiele zmienia. Ktokolwiek by go nie posiadł mógłby zmienić zbyt wiele. Pomyśl co by się z nim stało w rękach obłąkanego władcy.'
+
+Syt: 54A
+	'Dlatego musiałem go ukryć. Tylko ja byłem w stanie to zrobić, ładunek wybrał właśnie mnie.'\n\n'I to dla ładunku zabiłeś własną załogę?' ( syt -> 55A)
+		Odp: Oni nie rozumieli.
+			jeśli psych>3 () : 'Załoga była moja rodziną… ale ładunek zdążył ich skorumpować. W ich duszach zapanowała chciwość. Musiałem ich otruć, choć zrobiłem to z największym trudem.'
+			jeśli psych<4 () : 'Załoga… znałem tych mężczyzn, lepiej niż ich własne matki. Wiedziałem, że byli za słabi, nie byli gotowi… Wyeliminowanie ich było konieczne.'
+		Odp: Tak kazał ładunek.
+			 () : 'Ładunek uznał to za koniecznie. Oni zbyt dużo wiedzieli, stanowili zagrożenie. Musiałem ich otruć, choć zrobiłem to z największym trudem.'
+
+Syt: 55A
+	'To był dla mnie najcięższy krok… Bez załogi zostałem całkiem sam z tym brzemieniem.” Bierzesz głęboki oddech. 'Od tamtej pory zabijałem, oszukiwałem, robiłem wiele strasznych rzeczy żeby sprowadzić ładunek tutaj. W bezpieczne miejsce.'”\n\n'To wszystko dla skarbu… Było warto?' ( syt -> 56A)
+		Odp: Tak.
+			 () : 'Musiałem poświęcić całe swoje życie i życie wielu osób, ale dzięki temu uratowałem wiele więcej istnień.'
+		Odp: Taka dola.
+			 () : 'Tylko ja byłem na tyle silny i odporny na ładunek. Nie miałem innego wyjścia, musiałem poświecić się dla dobra ogółu.'
+		jeśli [Kondycja psychiczna > 3]: 
+			Odp: Nie.
+				 () : 'Ładunek zniszczył mi życie, zostałem całkiem sam, stałem się mordercą. Straciłem wszystko, lecz nie miałem wyboru…'
+
+Syt: 56A
+	Tom przypatruje ci się z największą uwagą. 'A szary pochód, dlaczego tak bardzo się go obawiasz?' ( syt -> 57A)
+		Odp: Kiedyś do niego dołączę.
+			 () : 'Szary pochód to skorumpowane przez ładunek dusze, które jedyne czego pragną to odzyskać swoją własność. Uważają, że ładunek się im należy. Ten los czeka i mnie.'
+		Odp: Kiedyś mnie znajdzie.
+			 () : 'Szary pochód jest nieustępliwy niczym przypływ, zachłanny niczym odpływ. Przyjdzie po mnie, żeby mnie pochłonąć.'
+		jeśli [Bezpieczeństwo > 3]: 
+			Odp: Kiedyś stoczę z nim walkę.
+				 () : 'Szary pochód przyjdzie po mnie prędzej czy później. Nie mogę z nim wygrać, ale stawię im opór.'
+				 (psych +1) : Wypowiedzenie Tych słów uzmysławia Ci, że może dałoby się tą walkę wygrać.
+
+Syt: 57A
+	'Szary pochód co noc wychodzi z morza i podąża w moim kierunku, a przyciąga ich ładunek. To dlatego wyniosłem się w góry, tak daleko od morza jak to możliwe.'”\n\n'Ciężko uwierzyć w twoją historię. Czy to wszystko prawda?' ( syt -> 58A)
+		Odp: Tak.
+			 (psych -1) : Cały skrywany ból i żal odżył na nowo. Czujesz się tak, jakbyś nie zabijał innych, tylko siebie, kawałek po kawałku. Nieważne jak bardzo chciałbyś się tego wyprzeć, każde twoje słowo było prawdą.
+		Odp: Tak!
+			 (psych -1) : Cały skrywany ból i żal odżył na nowo. Czujesz się tak, jakbyś nie zabijał innych, tylko siebie, kawałek po kawałku. Nieważne jak bardzo chciałbyś się tego wyprzeć, każde twoje słowo było prawdą.
+		Odp: Tak!!
+			 (psych -1) : Cały skrywany ból i żal odżył na nowo. Czujesz się tak, jakbyś nie zabijał innych, tylko siebie, kawałek po kawałku. Nieważne jak bardzo chciałbyś się tego wyprzeć, każde twoje słowo było prawdą.
+		Odp: Tak!!!
+			 (psych -1) : Cały skrywany ból i żal odżył na nowo. Czujesz się tak, jakbyś nie zabijał innych, tylko siebie, kawałek po kawałku. Nieważne jak bardzo chciałbyś się tego wyprzeć, każde twoje słowo było prawdą.
+
+Syt: 58A
+	'Brak mi słów… Rozumiem, że to dla ciebie bolesne wspomnienia. Zrozumiem, jeśli chcesz zostać teraz sam.' Tom kładzie się plackiem na ziemi. Pewnie zmęczyła go twoja opowieść.\n\n'Wiesz, że teraz musisz się go pozbyć.' Szept ładunku rozbrzmiewa łagodnie. ( syt -> 59C)
+		jeśli [Kondycja psychiczna < 2]: 
+			Odp: Pozbędę się Toma.
+				 () : Ładunek ma rację, Tom wie zbyt dużo i stanowi zagrożenie. Bez chwili zwłoki łapiesz za sztylet i ruszasz się na Toma.
+		Odp: Dam mu jeszcze chwilę.
+			 () : Tom wie zbyt dużo i będziesz musiał się go pozbyć. Ale jeszcze nie teraz, dasz mu jeszcze trochę pożyć.
+		jeśli [Bezpieczeństwo > 3]: 
+			Odp: Zostawię go w spokoju.
+				 () : Tom nie jest niczemu winien. Nie masz zamiaru pozbawiać życia kolejnej osoby.
+				 (syt -> 43B) : 
+
+Syt: 59C
+	Tom próbuje się bronić i idzie mu to całkiem nieźle biorąc pod uwagę jego stan. Ty jednak dźgasz go z zabójczą precyzją, nie zostawiasz mu cienia szansy. Krew leje się z szyi Toma, na jego klatce piersiowej rośnie czerwony wykwit. Po chwili jest już po wszystkim. \n\nNie masz sił, aby zająć się jego ciałem od razu. Zostawiasz to na jutro, a sam udajesz się spać. Tej nocy usypia się spokojny szept ładunku. ( syt -> 42B)
+		Odp: Postąpiłeś słusznie, tak jak należało.
+			 (endGame -> deathTom) : Nazajutrz ciało Toma znosisz do piwnicy, gdzie kładziesz je wraz z innymi trupami. Ładunek jest więcej niż zadowolony, a ty… ty czujesz dziwną pustkę i znużenie. Wiesz, że czekają cię jeszcze długie lata samotnego stróżowania. I jedyne co może cię od tego uwolnić to szary pochód, którego tak bardzo się lękasz.
+
+Syt: 42B
+	'Wybacz, ale dość mam opowiadania. Muszę odpocząć.'\n\n'Oczywiście, rozumiem. Mógłbyś zostawić mi coś do picia?' ( syt -> 43B)
+		Odp zapasy: Zostawię Tomowi grog.
+			 () : Pozbywasz się kolejnej butelki ze swoim cennych zapasów.) Dajesz Tomowi całą butelkę grogu, na lepszy sen. W jego stanie sen jest niezbędny.
+		jeśli [Zapasy > 2]: 
+			Odp: Zostawię Tomowi zioła.
+				 (zapasy -2) : Pozbywasz się resztki swoich ziół.
+				 (bezp +1) : Po ziołach Tom będzie senny i nie będzie się kręcił po twoim domu. Dajesz Tomowi mieszankę ziół, pomoże mu ona na jego rany.
+		Odp: Nie zostawię Tomowi picia.
+			 () : Przykro mi, ale muszę oszczędzać zapasy.” Mówisz Tomowi, a on ze zrozumieniem kiwa głową.
+
+Syt: 43B
+	Zostawiasz Toma i wchodzisz na górę. Twój gabinet pogrążony jest w ciemnościach, ale nie zamierzasz rozpalać lampy, ciemność cię uspokaja. Wyglądasz przez okno w poszukiwaniu szarego pochodu. Zastanawiasz się, czy to naprawdę był on i czy naprawdę był tak blisko.\n\nSzary pochód, czy w ogóle pamiętasz czym jest szary pochód? ( syt -> 44B)
+		Odp: Moim przekleństwem.
+			 (psych -1) : Wspomnienia o szarym pochodzie każą ci wrócić do niechcianych myśli. Szary pochód to twoja dawna załoga, mieszkańcy Eyflen, wszyscy ci ludzie zabici dla dobra ładunku.
+		Odp: Plugastwem tego świata.
+			 (psych -1) : Wspomnienia o szarym pochodzie każą ci wrócić do niechcianych myśli.)) Szary pochód to najgorsze co stąpa po ziemi, postacie z najgłębszej otchłani zła.
+		Odp: Zachłannym strażnikiem.
+			 (psych -1) : Wspomnienia o szarym pochodzie każą ci wrócić do niechcianych myśli.) Szary pochód to samozwańczy właściciel ładunku. Przyjdzie tu i znowu go uwięzi.
+
+Syt: 44B
+	Wzdrygasz się na wspomnienie widoku szarego pochodu, który co noc wychodzi z morza i szuka twojej chaty, szuka ładunku. Twoje myśli wędrują ku niedźwiedziej skórze, pod którą znajduje się klapa prowadzą do piwnicy.\n\nŁadunek… jego szept pcha się do twojej głowy. Czy chcesz go wpuścić? ( syt -> 45B)
+		jeśli [Kondycja psychiczna > 4]: 
+			Odp: Nie chcę słyszeć szeptu ładunku.
+				 () : Próbujesz się skoncentrować i powstrzymać szept ładunku, ale on jest od ciebie silniejszy.
+		Odp: Chcę słyszeć szept ładunku.
+			 () : Otwierasz się na podszeptywania ładunku, jego głos jest taki kojący.
+
+Syt: 45B
+	'Tom stanowi zagrożenie. Wiesz o tym. Wiesz, że musisz się go pozbyć. Zbyt wiele wie, zbyt wiele się domyśla.' ( syt -> 46B)
+		jeśli [Bezpieczeństwo > 4]: 
+			Odp: Tom jest niegroźny.
+				 () : 'Tom niczego nie może zrobić, jest ranny i otumaniony ziołami. Mogę się go pozbyć w każdej chwili.'
+		Odp: Nie chcę pozbywać się Toma.
+			 () : 'Tom to jedyny człowiek z jakim rozmawiałem od wielu lat. Nie mogę się go po prostu pozbyć.'
+		Odp: Wiem, co muszę zrobić.
+			 () : 'Nie bój się, znam swoją rolę. Ale jeszcze nie teraz, dajmy mu jeszcze trochę czasu…'
+
+Syt: 46B
+	Ogarnia cię słabość, ogarnia cię zwątpienie. Przypomnij sobie wyspę, przypomnij załogę, przypomnij tragarzy. Już zapomniałeś? Przypomnę ci. ( syt -> 47B)
+		Odp: Niech będzie.
+			 () : Poddajesz się ładunkowi, wiesz że i tak byś z nim nie wygrał.
+		Odp: Nie chcę.
+			 () : Próbujesz się bronić, ale ładunek napiera zbyt mocno. Musisz się mu poddać.
+
+Syt: 47B
+	Wszystko zaczęło się wraz z wybuchem wojny z elfami. Twój statek wcielono wówczas do armii, choć w gruncie rzeczy była to raczej handlowa łajba.\n\nCzy jeszcze to pamiętasz? Popierałeś wtedy decyzje króla o wypowiedzeniu wojny? ( syt -> 48B)
+		Odp: Tak.
+			 () : Wojna była niepotrzebna. Wiele waszych zginęło, tylko po to, aby zgładzić inną rasę. Siłą wcielono twój statek do królewskiej floty.
+		Odp: Nie.
+			 () : Próbujesz się bronić, ale ładunek napiera zbyt mocno. Musisz się mu poddać.
+		Odp: Neutralność.
+			 () : Mogłeś albo dołączyć do floty, albo pójść na dno. Jednak bardziej zależało ci na własnej skórze. Wojna… wojny były i będą, nic się nie zmienia.
+
+Syt: 48B
+	Na początku twoja łajba służyła do przerzutu zaopatrzenia. Pływaliście najszybciej w całej flocie. Z czasem, kiedy zaczęło się robić gorzej, wysyłali was na mniejsze wyspy. Mieliście utrzymywać na nich porządek.\n\nDziałaliście po wschodniej, czy zachodniej stronie archipelagu? Pamiętasz? ( syt -> 49B)
+		Odp: Wschodniej.
+			 () : Trafiliście się na wyspy wydobywcze. Górnicy okazali się twardsi, niż ktokolwiek przypuszczał. Ale złamaliście ich.
+		Odp: Zachodniej.
+			 () : Trafiliście na wyspy rybackie. Rybacy dali się wam we znaki na morzu, nigdy wcześniej nie stoczyłeś bitwy z ławicą małych łódek.
+
+Syt: 49B
+	Po tak zwanym rozejmie podpisanym krwią, zaczęła się dla was prawdziwa wojna. Od tamtej pory pływaliście burtę w burtę z fregatami wojennymi. Kiedy jednak główna flota szła prosta na stolicę elfów was wysłano na jedną z wysp świątynnych. Miało być łatwo, ale okazało się to szlakiem przez mielizny.\n\nDlaczego tak było? ( syt -> 50B)
+		Odp: Silna ochrona.
+			 () : Wyspy broniły trzy statki i cała batalia żołnierzy. Wy mieliście tylko dwie łajby, oprócz twojej jeszcze królewska korweta. Nie mieliście szans.
+		Odp: Zdradliwe wybrzeże.
+			 () : Wyspa była skalista o poszarpanym brzegu. Żeby na nią wpłynąć potrzeba było spokoju, a was nękali liczni obrońcy wyspy.
+		Odp: Stan statku.
+			 () : Twój statek ciężko zniósł trudy wojny, był w opłakanym stanie. Tak samo korweta, która wam towarzyszyła. Nie mieliście szans w otwartym starciu ze statkami broniącymi wyspy.
+
+Syt: 50B
+	Mogliście zostawić tę wyspę, popłynąć na inną. Ale było w niej coś, co kazało ci przy niej zostać. Chciałeś ją zdobyć bez względu na koszty.”\n\nAle jak tego dokonałeś? ( syt -> 51B)
+		Odp: Podstępem.
+			 () : Upozorowaliście odwrót. Wystarczyło ściągnąć królewską banderę, a głupie elfy pomyślały, że zostawiliście korwetę samą. Połakomili się na ten łatwy kąsek, nie spodziewając się ataku z drugiej strony.
+		Odp: Poświęceniem.
+			 () : Zarządziłeś atak frontalny. Straciliście korwetę, a twój statek o mało co nie skończył na dnie. Jednak obrońcy nie spodziewali się tak porywczego ataku, nie zdążyli nawet ruszyć z portu.
+		jeśli [Kondycja psychiczna < 3]: 
+			Odp: Zdradą.
+				 () : Dobiłeś targu z elfami, którzy ochoczo przystali na twoją propozycję. Zatopiliście dla nich korwetę, a kiedy przyjęli was na wyspę, utopiliście ich w krwi.
+
+Syt: 51B
+	Udało się wam wejść na wyspę, ale dalej nie było łatwo. Straż świątynna była zacięta i dobrze wyposażona. Na szczęście to wy mieliście armaty. Świątynia stanęła przed wami otworem.” \n\nCzy pamiętasz co to było za miejsce? ( syt -> 52B)
+		Odp: Nie wiem.
+			 () : Nie znasz się na elfickich wierzeniach. Mury świątyni pokryte były malowidłami słońca, ale nie wiele to dla ciebie znaczy.
+		Odp: Nieważne.
+			 () : A co za różnica? Wszystkie świątynie elfów są takie same, kamień na kamieniu i bazgroły.
+		Odp: Kult ognia.
+			 () : Twój pierwszy oficer powiedział, że to była świątynia kultu ognia. Wszędzie płonęły ogniska, więc mogła być to prawda.
+
+Syt: 52B
+	Gdy tylko przekroczyłeś próg świątyni usłyszałeś szept… Nie był to nikt z twojej załogi, ani nikt z elfów. Jednak ten głos był tak wyraźny, tak czysty, tak mądry.\n\nCzy pamiętasz co do ciebie mówił? ( syt -> 53B)
+		Odp: Zdradził tobie tajemnicę.
+			jeśli psych>3 () : Powiedział ci czym jest.
+			jeśli psych<4 () : Powiedział ci, że jest jądrem tego świata.
+		Odp: Prosił o pomoc.
+			 () : Powiedział, że tylko ty możesz mu pomóc.
+
+Syt: 53B
+	Głos doprowadził cię do tajemnych pomieszczeń, gdzie go znalazłeś. Znalazłeś ładunek. Nie powinieneś był go ruszać, ale ten szept cię przekonał. Musiałeś go stamtąd uwolnić.\n\nTo wtedy dokonałeś rzezi mieszkańców wyspy? Pamiętasz dlaczego to zrobiłeś? ( syt -> 54B)
+		jeśli [Kondycja psychiczna < 3]: 
+			Odp: Stawiali opór.
+				 () : Chciałeś ich oszczędzić, ale nie chcieli pozwolić nam zabrać ładunku. Nie miałeś innego wyjścia.
+		Odp: Byli źli.
+			 () : Te elfy uwięziły ładunek. Z jego pomocą dokonywały strasznych rzeczy. To była wyspa śmierci, należało ją wybić.
+		Odp: Stanowili zagrożenie.
+			 () : Wiedzieli o ładunku. Któregoś dnia mogli się o niego upomnieć, a ty nie mogłeś pozwolić sobie na ryzyko.”
+
+Syt: 54B
+	Ładunek wypełnił całą ładownie statku i jeszcze część pokładu. Wpływając na wyspę byliście obdartusami, wypływając z niej byliście obrzydliwie bogaci. Twoja załoga już świętowała jakby wojna się skończyła, ale ty wiedziałeś, że ładunek nie przyniesie wam nic dobrego.\n\nDlaczego, co jest nie tak z ładunkiem? ( syt -> 55B)
+		Odp: Jest przeklęty.
+			 () : Ładunek jest przeklęty, sprowadza na ludzi nieszczęścia, tworzy konflikty, na samo jego wspomnienie dzieją się złe rzeczy.
+		Odp: Korumpuje ludzi.
+			 () : Ładunek zmienia dobrych ludzi w niemoralne potwory, obnaża ich najgorsze żądze, sprawia że obracają się przeciwko innym.
+		Odp: Ma zbyt wielką moc.
+			 () : Ładunek zbyt wiele zmienia. Ktokolwiek by go nie posiadł mógłby zmienić zbyt wiele. Nie chcesz nawet myśleć, co by się z nim stało w rękach obłąkanego władcy.
+
+Syt: 55B
+	Dlatego musiałeś go ukryć. Tylko ty byłeś w stanie to zrobić, ładunek wybrał właśnie ciebie.\n\nI to przez ładunek musiałeś pozbyć się załogi, prawda? ( syt -> 56B)
+		Odp: Oni nie rozumieli.
+			jeśli psych>3 () : Załoga była twoja rodziną… ale ładunek zdążył ich skorumpować. W ich duszach zapanowała chciwość. Musiałeś ich otruć, choć zrobiłeś to z największym trudem.”
+			jeśli psych<4 () : 'Załoga… znałeś tych mężczyzn, lepiej niż ich własne matki. Wiedziałeś, że byli za słabi, nie byli gotowi… Wyeliminowanie ich było konieczne.”
+		Odp: Tak kazał ładunek.
+			 () : Ładunek uznał to za koniecznie. Oni zbyt dużo wiedzieli, stanowili zagrożenie. Musiałeś ich otruć, choć zrobiłeś to z największym trudem.
+
+Syt: 56B
+	To był dla ciebie najcięższy krok… Bez załogi zostałeś całkiem sam z tym brzemieniem. Od tamtej pory zabijałeś, oszukiwałeś, robiłeś wiele strasznych rzeczy żeby sprowadzić ładunek tutaj. W bezpieczne miejsce.\n\nTo wszystko dla tego przeklętego skarbu… Czy było warto? ( syt -> 57B)
+		Odp: Tak.
+			 () : Musiałeś poświęcić całe swoje życie i życie wielu osób, ale dzięki temu uratowałeś wiele więcej istnień.
+		Odp: Taka dola.
+			 () : Tylko ty byłeś na tyle silny i odporny na ładunek. Nie miałeś innego wyjścia, musiałeś poświecić się dla dobra ogółu.
+		jeśli [Kondycja psychiczna > 3]: 
+			Odp: Nie.
+				 () : Ładunek zniszczył ci życie, zostałeś całkiem sam, stałeś się mordercą. Straciłem wszystko, lecz jaki miałeś wybór?
+
+Syt: 57B
+	Ale przez to wszystko ściga cię szary pochód. Czujesz jego oddech na swoim karku. Pamiętasz dla czego tak się go obawiasz? ( syt -> 58B)
+		Odp: Kiedyś do niego dołączę.
+			 () : Szary pochód to skorumpowane przez ładunek dusze, które jedyne czego pragną to odzyskać swoją własność. Uważają, że ładunek się im należy. Ten los czeka i ciebie.
+		Odp: Kiedyś mnie znajdzie.
+			 () : Szary pochód jest nieustępliwy niczym przypływ, zachłanny niczym odpływ. Przyjdzie po ciebie, żeby cię pochłonąć.
+		jeśli [Bezpieczeństwo > 3]: 
+			Odp: Kiedyś stoczę z nim walkę.
+				 () : Szary pochód przyjdzie po ciebie prędzej czy później. Nie możesz z nim wygrać, ale stawisz im opór.
+
+Syt: 58B
+	Szary pochód co noc wychodzi z morza i podąża w twoim kierunku, a przyciąga ich ładunek. To dlatego wyniosłeś się w góry, tak daleko od morza jak to możliwe.\n\n'Teraz pamiętasz, teraz rozumiesz. Wiesz co musi się stać?' ( syt -> 59B)
+		Odp: Tak.
+			 (psych -1) : Cały skrywany ból i żal odżył na nowo. Czujesz się tak, jakbyś nie zabijał innych, tylko siebie, kawałek po kawałku. Nieważne jak bardzo chciałbyś temu zaprzeczyć, wiesz że twój los jest już przesądzony. Powierzyłeś siebie ładunkowi.
+		Odp: Tak!
+			 (psych -1) : Cały skrywany ból i żal odżył na nowo. Czujesz się tak, jakbyś nie zabijał innych, tylko siebie, kawałek po kawałku. Nieważne jak bardzo chciałbyś temu zaprzeczyć, wiesz że twój los jest już przesądzony. Powierzyłeś siebie ładunkowi.
+		Odp: Tak!!
+			 (psych -1) : Cały skrywany ból i żal odżył na nowo. Czujesz się tak, jakbyś nie zabijał innych, tylko siebie, kawałek po kawałku. Nieważne jak bardzo chciałbyś temu zaprzeczyć, wiesz że twój los jest już przesądzony. Powierzyłeś siebie ładunkowi.
+		Odp: Tak!!!
+			 (psych -1) : Cały skrywany ból i żal odżył na nowo. Czujesz się tak, jakbyś nie zabijał innych, tylko siebie, kawałek po kawałku. Nieważne jak bardzo chciałbyś temu zaprzeczyć, wiesz że twój los jest już przesądzony. Powierzyłeś siebie ładunkowi.
+
+Syt: 59B
+	Szept ładunku cichnie, ładunek zostawia cię samego. Wspomnienia cię wyczerpały, ale wiesz że masz robotę do wykonania. Ładunek wymaga pozbycia się Toma. ( syt -> 59A)
+		jeśli [Kondycja psychiczna < 2]: 
+			Odp: Pozbędę się Toma.
+				 () : Ładunek ma rację, Tom wie zbyt dużo i stanowi zagrożenie. Bez chwili zwłoki łapiesz za sztylet i ruszasz się na Toma.”
+				 (syt -> 59C) : 
+		Odp: Dam mu jeszcze chwilę.
+			 () : Tom wie zbyt dużo i będziesz musiał się go pozbyć. Ale jeszcze nie teraz, dasz mu jeszcze trochę pożyć.
+			 (syt -> 60B) : 
+		jeśli [Bezpieczeństwo > 3]: 
+			Odp: Zostawię go w spokoju.
+				 () : Tom nie jest niczemu winien. Nie masz zamiaru pozbawiać życia kolejną osobę.
+				 (syt -> 60B) : 
+
+Syt: 59A
+	'Tak chciałbym zostać sam. Pójdę się przespać. Dasz sobie radę?'\n\n'Oczywiście.' Wstajesz z podłogi i wchodzisz po schodach na górę, nie patrząc ani razu w stronę Toma. Wyprawienie prawdy przyniosło ci ulgę, co nie znaczy, że czujesz się dobrze ze sobą. Jesteś także okropnie zmęczony, oczy same ci się zamykają. Gdy tylko kładziesz się na łóżku, od razu zapadasz w sen.\n\nWłaściwie nie wiesz, czy to co widzisz jest tylko sennym koszmarem, czy też może koszmar rozgrywa się na jawie. Ledwie kilkunastoletni majtek, sierota którego wziąłeś na statek, błaga o litość. Ty jednak musisz bronić ładunku. Twoja załoga musi zginąć. ( syt -> 60B)
+		Odp: Zasztyletuję chłopaka.
+			 () : Chłopak z przerażeniem w oczach odsuwa się od ciebie, ale ty łapiesz go za kark i wbijasz sztylet w brzuch. Chłopak zatacza się jak pijany, potyka o linę i wypada za burtę. Skończy jako pokarm dla ryb.
+			 (syt -> 60A) : 
+		Odp: Wyrzucę chłopaka za burtę.
+			 () : Chłopak próbuje przed tobą uciec, ale doganiasz go i zamykasz w żelaznym uścisku. Chłopak miota kończynami jak oszalały, kiedy wyrzucasz go za burtę. Pochłaniają go ciemno granatowe fale.
+			 (syt -> 60A) : 
+		Odp: Otruję chłopaka.
+			 () : Chłopak próbuje ci się wyrwać, ale ty trzymasz go w żelaznym uścisku. Ignorujesz jego krzyki i prośby o litość. Przemocą otwierasz mu usta i wlewasz w nie truciznę. Chłopak dławi się, zatacza i wypada za burtę.
+			 (syt -> 60A) : 
+
+Syt: 60B
+	Tom… Musisz wymyślić co z nim zrobić. Ale nie teraz, najpierw musisz odpocząć. Kładziesz się na łóżku, oczy same ci się zamykają. Wiesz, że tej nocy szary pochód będzie wściekły. Przecież sam go przywołałeś… Pomimo zmartwień zapadasz w sen.\n\nWłaściwie nie wiesz, czy to co widzisz jest tylko sennym koszmarem, czy też może koszmar rozgrywa się na jawie. Ledwie kilkunastoletni majtek, sierota którego wziąłeś na statek błaga o litość. Ty jednak musisz bronić ładunku. Twoja załoga musi zginąć. ( syt -> 60A)
+		Odp: Zasztyletuję chłopaka.
+			 () : Chłopak z przerażeniem w oczach odsuwa się od ciebie, ale ty łapiesz go za kark i wbijasz sztylet w brzuch. Chłopak zatacza się jak pijany, potyka o linę i wypada za burtę. Skończy jako pokarm dla ryb.
+		Odp: Wyrzucę chłopaka za burtę.
+			 () : Chłopak próbuje przed tobą uciec, ale doganiasz go i zamykasz w żelaznym uścisku. Chłopak miota kończynami jak oszalały, kiedy wyrzucasz go za burtę. Pochłaniają go ciemno granatowe fale.
+		Odp: Otruję chłopaka.
+			 () : Chłopak próbuje ci się wyrwać, ale ty trzymasz go w żelaznym uścisku. Ignorujesz jego krzyki i prośby o litość. Przemocą otwierasz mu usta i wlewasz w nie truciznę. Chłopak dławi się, zatacza i wypada za burtę.
+
+Syt: 60A
+	Chłopak próbuje krzyczeć, ale jego krzyki dławi morska woda. Zresztą i tak nie mógłbyś mu pomóc, zostałeś sam na statku pełnym trupów. Musisz dobić do brzegu. Tylko gdzie będzie na tyle bezpiecznie, aby dobić tam z ładunkiem? ( syt -> 61)
+		Odp: Na ukrytej wyspie.
+			 () : Przekręcasz ster mocno w prawo obierając kurs na wyspę, na której wraz z załogą ukryłeś nie jeden skarb. To będzie dobre miejsce na pochówek załogi. Potem wymyślisz co robić dalej.
+		Odp: W pirackim porcie.
+			 () : Utrzymujesz ster prosto obierając kurs na Torgutę, przystań piratów, dom kurtyzan i schronienie dla typów spod ciemnej gwiazdy. Na niej będziesz mógł nająć ludzi, którzy nie będą o nic pytali.
+		Odp: Na dalekim lądzie.
+			 () : Przekręcasz ster mocno w lewo obierając kurs na niezbadane lądy, na które rzadko kto się zapuszcza. Ciał załogi oddasz morzu, sam przeczekasz jakiś czas. Aż wszyscy zdążą o tobie zapomnieć.
+
+Syt: 61
+	Trzeciego dnia żeglugi ledwo co stoisz przy sterze. Chciałbyś choć na chwilę się zdrzemnąć, ale zostałeś całkiem sam, nie ma cię kto zastąpić…\n\n'Nie jesteś sam.”\n\nNie możesz uwierzyć własnym oczom, oto przed tobą stoi chłopak, którego przecież wyrzuciłeś za burtę, który przecież powinien utonąć.\n\n'Powiedz mi, czy obawiasz się szarego pochodu, czy obawiasz się mnie?” ( syt -> 62)
+		Odp: Tak.
+			 () : 'Każdego dnia wypatruje waszego przyjścia. Drżę na każdy podejrzany dźwięk, kulę się gdy słyszę szum. Boje się, bo wiem że nie spoczniecie póki mnie nie dorwiecie.'
+		Odp: Nie.
+			 () : 'Zabraliście mi sen, zabraliście mi towarzyszy, zabraliście mi zmysły. Zniszczyliście mi życie, co jeszcze możecie mi zabrać?'
+
+Syt: 62
+	'Dobrze, dobrze, bo właśnie szary pochód jest w twoim domu…' Statek i morze znika, zupełnie jakby nigdy nie istniał. Budzisz się z koszmaru, leżysz na podłodze. Z dołu dociera do ciebie rozpaczliwy krzyk:\n\n'Oni tu są! Oni tu są!' ( syt -> 63)
+		Odp: Wezmę lampę i zbiegnę na dół.
+			 (psych +1) : Chwytasz lampę leżącą na biurku i drżącymi rękoma ją odpalasz. Z małą plamą światła pośród mroku czujesz się nieco pewniej. Zbiegasz po schodach na parter, gdzie czeka cię niepokojący widok. Tom zniknął, a drzwi wejściowe są otwarte.
+		Odp: Wezmę sztylet i zbiegnę na dół.
+			 (bezp +1) : Chwytasz sztylet, który pewnie leży ci w dłoni. Zbiegasz po schodach na parter, gdzie czeka cię niepokojący widok. Tom zniknął, a drzwi wejściowe są otwarte.
+		jeśli [Bezpieczeństwo > 3]: 
+			Odp: Powoli i bezgłośnie zejdę na dół.
+				 () : Dom był zamknięty, to niemożliwe żeby ktoś dostał się do środka. Stąpając na palcach wychodzisz z gabinetu i schodzisz na dół, gdzie czeka cię niepokojący widok. Tom zniknął, a drzwi wejściowe są otwarte.
+
+Syt: 63
+	Przez otwarte na oścież drzwi do twojego domu wraz z mroźnym powietrzem wlatują płatki śniegu. Wydaje ci się, że w każdym cieniu czyha na ciebie trupia postać szarego pochodu. ( syt -> 64)
+		Odp: Zapalę więcej świateł.
+			 (bezp +1) : Widzisz teraz każdy kąt swojego domu, nie zaskoczy cię atak znienacka.
+			 (zapasy -1) : Nie żałujesz oleju do lamp, ani drewna do kominka. Odpalasz każdą lampę jaką posiadasz, podsycasz płomień w kominku. Twoje oczy odwykły od takiej jasności, przez co główna izba wydaje ci się odrealniona.
+		Odp: Sprawdzę ładunek.
+			 (bezp -1) : Pochylasz się nad klapą, tym samym narażasz się na atak z tyłu.
+			 (psych +1) : Sprawdzenie ładunku zmniejsza twoje obawy. Odrzucasz niedźwiedzią skórę i sprawdzasz klapę, jest nietknięta. Ładunek milczy.
+		Odp: Zbadam miejsce, w którym leżał Tom.
+			 () : W miejscu, w którym spoczywał Tom leży cześć bandaży, na podłodze odbił się ślad jego potu, dostrzegasz także plamy krwi. Nie znajdujesz jednak żadnych śladów walki.
+
+Syt: 64
+	'Pomocy! Pomocy!' Głos Toma rozbrzmiewa na zewnątrz. Zabarwiony jest tą samą błagalną nutą, którą miał chłopak na statku. Los daje ci szansę na odkupienie, ale czy ją wykorzystasz? ( syt -> 65A)
+		Odp 64/1: Wybiegnę na zewnątrz, by uratować Toma.
+			 () : Tym razem postąpisz słusznie, uratujesz Toma bez względu na wszystko. Ściskasz sztylet w dłoni i wybiegasz na zewnątrz, prosto w objęcia paraliżującego mrozu.
+		Odp 64/2: Zostawię Toma i zamknę się w środku.
+			jeśli psych<3 (syt -> 65B) : Szary pochód jest zbyt liczny, nie przeciwstawisz się mu w pojedynkę. Jedyną twoją szansą jest zamknięcie się w domu. Tom musi sobie radzić sam… 
+			jeśli psych>2 () : Chciałbyś zostawić Toma na pastwę losu, ale wiesz że wtedy wyrzuty sumienia zjadłby cię do reszty. Z ociąganiem, ale jednak, wybiegasz na zewnątrz, prosto w objęcia paraliżującego mrozu. Uratujesz Toma.
+		Odp 64/3: Poradzę się ładunku.
+			 () : Klękasz przy klapie. 'Co mam robić?' pytasz ładunku. Jego szept zawsze ci towarzyszył i doradzał. Lecz tym razem ładunek milczy jak grób.
+			 (syt -> 65B) : 
+
+Syt: 65A
+	Spodziewasz się, że na zewnątrz będą czekać na ciebie szare postacie. Oczami wyobraźni widzisz ich wyciągnięte ku tobie ręce, słyszysz ich opętańczy śmiech, czujesz smród ich rozkładających się ciał. Jednak na zewnątrz wita cię jedynie siarczysty mróz i pustka. Od razu wiesz, że coś tu jest nie tak. ( syt -> 65B)
+		Odp: Wrócę do środka.
+			 () : Upewniasz się jeszcze, że niczego nie przegapiłeś. Po czym wycofujesz się do wnętrza domu i zamykasz drzwi.
+			 (syt -> 66) : 
+		jeśli [Kondycja psychiczna < 2]: 
+			Odp: Ucieknę w dal.
+				 () : Nie możesz ufać swoim zmysłom. Czujesz się otumaniony jak po zmieszaniu grzybów z grogiem. Masz tego dość, masz dość strachu. Ruszasz przed siebie, najpierw po śniegu przez otwartą polanę, potem między drzewami.
+				 (syt -> 65C) : 
+
+Syt: 65B
+	I znów zostałeś sam. Główna izba, spiżarnia, gabinet, to wszystko co masz. Te nagie drewniane ściany, ten ledwo trzymający się dach, ta zimna podłoga, to twój dom. Toczysz tutaj nędzne życie, pełne trudów i wyrzeczeń. Każdy dzień jest dla ciebie walką. Ale przecież masz ładunek, dla niego warto tak żyć, prawda? ( syt -> 65C)
+		Odp: Prawda.
+			 () : Wiesz jak ważny jest ładunek. I choć poświęciłeś dla niego całe życie, to nie żałujesz. Słodki szept ładunku wszystko ci wynagradza.
+			 (syt -> 66) : 
+		Odp: Nieprawda.
+			 () : Wolałbyś, aby ładunek wybrał kogoś innego. Poświęciłeś dla niego całe swoje życie i życia wielu innych osób. Gdybyś tylko mógł wybrać inaczej…
+			 (syt -> 66) : 
+		Odp: Nie wiem.
+			 () : Dla ładunku poświęciłeś swoje życie i zgodziłeś się na marny żywot. Ale gdyby nie to, to ładunek mógłby wpaść w nieodpowiednie ręce. Nie masz pojęcia czy postąpiłeś słusznie, zwyczajnie zaadaptowałeś się sytuacji.
+			 (syt -> 66) : 
+
+Syt: 65C
+	Idziesz coraz szybciej, na tyle prędko na ile pozwala ci zapadający się pod stopami śnieg. Starasz się wyprzedzić zwątpienie, nawoływanie ładunku zagłuszasz szantą, którą zawsze śpiewałeś na rejsach. Chcesz uciec jak najdalej od ładunku, chcesz znowu stać się wolny…\n\nZniknięcie Toma, a potem ten spokój gór otaczających twoją chatę. To sprawiło, że przelała się czara goryczy. Nagle zdałeś sobie sprawę, że choć w tobie szaleje sztorm wyrzutów sumienia, niepewności oraz zwątpienia, to świat zupełnie się tym nie przejmuje. Tu w górach życie zawsze wygląda tak samo. Coś się rodzi, coś umiera, zawsze pod czujnym okiem niewzruszonych szczytów. ( syt -> 66)
+		Odp: Właśnie tam pójdziesz szukać ukojenia…
+			 (endGame -> frozen) : Minie wiele lat zanim zbłąkani myśliwi odnajdą twoje zamarznięte ciało. Lecz nie odważą się ruszyć cię z miejsca. Powstrzyma ich od tego zastygły na twojej twarzy wyraz pełen szaleństwa i grozy, tak przerażający że jeszcze długo będzie się śnił myśliwym po nocach. Myśliwi nazwą cię szarym strażnikiem…
+
+Nie będzie to najgorszy koniec jaki mógł cię spotkać. Przynajmniej odszedłeś na własnych zasadach, choć na chwilę odzyskałeś władzę na swoim losem.
+
+Syt: 66
+	'Panie Eihart, nie wygląda pan najlepiej.' Odzywa się Tom, jego głos wydaje ci się nagle znajomy…\n\nTom wychodzi ze spiżarni, nawet nie zauważyłeś że drzwi do niej były otwarte. ( syt -> 67)
+		() : 'Wybiegłeś żeby mnie ratować, więc jednak zostało w tobie choć trochę dobroci.'
+		() : 'Nie ruszyłeś mi z pomocą, zostawiając mnie na pewną śmierć. Nie ma już w tobie krzty dobroci.'
+		Odp: Zapytam o co tu chodzi.
+			 () : To niemożliwe, Tom wygląda na w pełni zdrowego, a jeszcze przed chwilą był ledwo żywy. 'Co się tu wyprawia, jak to możliwe?” pytasz. Tom patrzy na ciebie niemalże litościwie. 'Nic nie pamiętasz.”
+		Odp: Zapytam, skąd Tom wziął się w spiżarni.
+			 () : Nie rozumiesz jak Tom znalazł się w twojej spiżarni, przecież wyraźnie słyszałeś jego głos na zewnątrz. 'W jaki sposób dostałeś się do środka?” pytasz. Tom patrzy na ciebie niemalże litościwie. 'Cały czas tu byłem.”
+		Odp: Zapytam co z szarym pochodem.
+			 () : Tom wołał pomocy, myślałem że pochłonął go szary sposób. Przecież Tom nie mógł go pokonać. 'Jak dałeś sobie rady z szarym pochodem?” pytasz. Tom patrzy na ciebie niemalże litościwie. 'Szarego pochodu nie ma.”
+
+Syt: 67
+	'Nie potrafisz odróżnić jawy od snu, kapitanie. Co tak patrzysz, nie pamiętasz mnie?” ( syt -> 68)
+		Odp: Nie pamiętam.
+			 (bezp -1) : To oczywiste kłamstwo, jak mógłbyś nie pamiętać majtka którego przyjąłeś na statek, którego wyrzuciłeś za burtę. Tom, Tom, Tom… jak mogłeś go od razu nie poznać?
+		Odp: Staram się sobie przypomnieć.
+			jeśli psych>4 (bezp +1) : Pamiętasz, teraz to wydaje się takie oczywiste. Tom, Tom, Tom… to chłopak którego przyjąłeś na statek i którego posłałeś za burtę. Jak mogłeś go od razu nie poznać?
+			jeśli psych<5 (psych -1) : Nie możesz sobie przypomnieć. Tom widzi Twoją minę i zaczyna się uśmiechać.
+
+Syt: 68
+	'Nie zdziwi cię pewnie wieść o tym, że przeżyłem. A może jestem tylko trupem, który wylazł z morza.' - Tom uśmiecha się gorzko. - 'Jak myślisz, po co tu przyszedłem?' ( syt -> 69)
+		Odp: Po ładunek.
+			 () : Jest dla ciebie oczywiste, że Tom przyszedł po ładunek. Kto raz widział jego bogactwo, ten nigdy o nim nie zapomni.
+		Odp: Po zemstę.
+			 () : Jest dla ciebie oczywiste, że Tom chcę cię zabić. Ty na jego miejscu wszedłbyś do samego piekła, aby zaznać zadośćuczynienia.
+
+Syt: 69
+	'Mylisz się, kapitanie. Przyszedłem tu bo chciałem poznać prawdę. Chciałem wiedzieć co tobą kierowało, jak ta historia wyglądała z twojej perspektywy.”\n\nTom oblizuje usta, patrzy na ciebie oczami pełnymi żalu i smutku. ( syt -> 70)
+		Odp: Zapytam jak mnie znalazł.
+			 () : Tom zastanawia się chwilę, jakby wahał się czy warto ci odpowiedzieć. 'Wymagało to ode mnie poświęcenia trzech lat życia, ale w końcu wpadłem na trop bogatego mężczyzny, który wynajął pięćdziesięciu tragarzy na wyprawę w góry.”
+		Odp: Zapytam czy mnie rozumie.
+			 () : Tom zastanawia się chwilę, jakby wahał się czy warto ci odpowiedzieć. 'Rozumiem tylko tyle, że oszalałeś do reszty. Stałeś się jedynie cieniem człowieka. Samo patrzenie na ciebie przyprawia o dreszcze, lecz twoja historia jest jeszcze gorsza.”
+		Odp: Zapytam jak udało mu się przeżyć.
+			 () : Tom zastanawia się chwilę, jakby wahał się czy warto ci odpowiedzieć. 'Fale zniosły mnie na niepozorną wyspę. Kryła się na niej elficka rodzina szamanów. Oni mnie wyleczyli, nie zważając na to, że nasza rasa podbiła ichniejszą. To elfom zawdzięczam życie.”
+
+Syt: 70
+	'Chciałem żebyś mi się wyspowiadał, chciałem wysłuchać całej twojej historii.' ( syt -> 71)
+		() : 'A ty mi ją opowiedziałeś, kapitanie. Jednak nie zmieniła ona mojego myślenia.'
+		() : 'Ale ty ukryłeś przede mną całość historii, kapitanie. Mniemam, że jest jeszcze straszniejsza niż przypuszczam.'
+		Odp: Nie obchodzi mnie ocena Toma.
+			 () : 'Moja historia jest historią, której i tak byś nie zrozumiał. Daruj sobie wydumane przemowy.'
+		Odp: Dziwie się, że Tom nie rozumie.
+			 () : 'Opowiedziałem ci wystarczająco, abyś mógł zrozumieć. Lecz nie wielu tego dokonało.'
+
+Syt: 71
+	'Przybywając tutaj ujrzałem ciebie, człowieka w którego spojrzeniu czai się pustka. Chciałeś więc sprawdzić, czy znajduje się w tobie choć trochę dobra i współczucia. Czy zostało choć trochę z tego człowieka, który niegdyś przyjął mnie na statek.' ( syt -> 72)
+		() : 'Przyjąłeś mnie do domu, ale dałeś mi tylko wody, gdy miałem gorączkę.'
+		() : 'Przyjąłeś mnie do domu dałeś mi najcenniejszą herbatę, gdy byłem spragniony.'
+		() : 'Przyjąłeś mnie do domu i dałeś mi grog, który wiem jak jest dla Ciebie ważny. Spogląda na mój rumiany nos.'
+		Odp: Dbałem o niego jak mogłem.
+			 () : Mówisz Tomowi, że zrobiłeś wszystko co w twojej mocy, aby go uratować. Tom kwituje to krzywym uśmiechem.
+		Odp: Zapasy są cenne.
+			 () : Mówisz Tomowi, że i tak poświęciłeś na niego zbyt wiele zapasów. Tom kwituje to nerwowym śmiechem.
+		Odp: Nic nie powiem.
+			 () : Milczysz pozwalając Tomowi wiercić cię spojrzeniem.
+
+Syt: 72
+	'Ale to i tak nie ma teraz znaczenia.' Tom oblizuje wargi. 'Przeczytałem twój dziennik, kapitanie. Teraz wiem już wszystko.' Tom unosi w ręku kordelas, macha nim na próbę. 'Daję ci ostatnią szansę, kapitanie. Przekonaj mnie, że nie powinienem cię zabić.' ( syt -> 73A)
+		Odp 72/1: Atakuję Toma.
+			jeśli bezp>2 (syt -> 73C) : Masz sztylet w ręku, a na sobie grubą kurtę. Po za tym wciąż potrafisz dobrze władać bronią. Ruszasz na Toma z znienacka co daje ci przewagę.
+			jeśli bezp<3 () : Chcesz zaatakować jako pierwszy z zaskoczenia, ale twoje ruchy są wolne, To ma czas żeby się przygotować. Teraz to on ma nad tobą przewagę. Nawet nie zauważyłeś jego błyskawicznego ruchu koło Twojej szyi.
+		jeśli [Kondycja psychiczna < 2]: 
+			Odp: Poddaję się.
+				 () : Mógłbyś stawić czoła Tomowi, może byś wygrał i dale mógłbyś bronić ładunku. Ale czy naprawdę tego chcesz, czy nie łatwiej byłoby odejść? Podnosisz sztylet, ale zamiast rzucić się do ataku, podcinasz sobie gardło..
+		jeśli [Zapasy > 1]: 
+			Odp 72/3: Zaproponuję Tomowi miejsce w chacie.
+				 () : Proponujesz Tomowi żeby został z tobą i żebyście razem pilnowali ładunku. Tom jedynie patrzy na ciebie z niedowierzaniem.
+				 (syt -> 73B) : 
+
+Syt: 73A
+	Padasz na podłogę, krew z bulgotem leje ci się z szyi. Wzrok zachodzi mgłą, brakuje ci powietrza. Tom stoi nad tobą, obserwuje cię swoimi smutnymi oczyma. ( syt -> 73B)
+		Odp: Ładunek wciąż milczy.
+			 (endGame -> suicide1) : Spodziewałeś się podziękowań, spodziewałeś się, że ukołyszę cię do snu. Widocznie na to nie zasłużyłeś. Nie wiesz co teraz z nim będzie. Czy Tom stanie się nowym strażnikiem, czy po prostu go tu zostawi? Teraz to już nie twoje zmartwienie.
+		Odp: Zapadasz się coraz głębiej.
+			 (endGame -> suicide2) : Masz wrażenie, że otacza cię morska woda. Smakujesz sól na języku, dochodzi do ciebie łagodny śpiew mew. 'Nareszcie do nas dołączyłeś, kapitanie.' Wiesz, że to głos szarego pochodu, twojej dawnej załogi, a także tych wszystkich którzy stracili życie przez ładunek.
+		Odp: Czujesz jak zimne ręce unoszą twoje ciało.
+			 (endGame -> suicide3) : Wyczuwasz podniecenie niosących cię osób. Tak długo na ciebie czekali, tak długo… Szary pochód w końcu cię odnalazł.
+
+Syt: 73B
+	 ( syt -> 73C)
+		() : 'Miałbym zostać z tobą w tej norze? Miałbym bronić tego przeklętego skarbu? Przecież tutaj nawet nie możesz go wykorzystać. Do reszty odebrało ci rozum, kapitanie.'
+		() : Tom rusza na ciebie z atakiem, wymachuje kordelasem. To doskonały szermierz, pełen zdeterminowania. Ledwo co bronisz się przed kolejnymi ciosami. Kiedy myślisz już, że jest po tobie, Tom potyka się o niedźwiedzią skórę i pada na podłogę.
+		Odp: Zarżnę go.
+			jeśli psych>0 () : Dopadasz do Toma i bez chwili zwłoki wbijasz mu sztylet w ciało. Dźgasz Toma dopóki dopóty nie zostaje z niego podziurawione jak sito truchło.
+			jeśli psych<1 (syt -> 73A) : Za myślą nie podążył żaden ruch. Sparaliżował Cię strach, obserwujesz jak Tom przewraca się po sztylek i rzuca Ci nim w szyję.
+		Odp: Poczekam aż wstanie.
+			 () : W przebłysku honoru czekasz aż Tom zbiera się z podłogi.
+			jeśli psych<3 (syt -> 73A) : Jendak w ostatniej chwili nie wytrzymujesz psychicznie i rzucasz się z nożem na Toma, który już wstał. Podpisujesz tym wyrok śmierci na siebie. Tom bez skrupułów naciera na ciebie z jeszcze większą werwą. Wkrótce jeden z ciosów przecina ci szyję.
+			jeśli psych>2 (syt -> 721) : Widzisz, że Tom nie ma zamiaru się poddać, sięga po upuszczoną broń. Łatwo Ci dźgnąć leżącego w rękę, później w ramię i głowę.
+			 (syt -> 73A) : 
+		Odp: Wykorzystuję moment, aby uciec z domu
+			 (endGame -> runaway) : Odwracasz się i biegniesz w stronę wyjścia. Kątem oka widzisz jak Tom wstaje. Nerwowo rozsuwasz rygiel, lecz ten się klinuje. Ostry metal przebija Twoje plecy i wychodzi Ci przez brzuch. Nie odwracasz się, czekasz aż on z Tobą skończy. Drugie, mniejsze ostrze przecina Ci gardło. Padasz do tyłu wbijając sobie rękojeść w plecy. Nic już nie czujesz. Już nigdy.
+
+Syt: 73C
+	Tom nie jest przygotowany na twój atak. Udaje ci się go ranić w rękę, prawie dosięgasz jego szyi. Ale mężczyzna nie poddaje się łatwo, tnie raz z prawej, raz z lewej. Ty jednak panujesz nad sytuacją, wycofujesz się i bronisz, a kiedy zauważasz okazję podcinasz Toma, która pada na podłogę. ( syt -> 721)
+		Odp: Zarżnę go.
+			 () : Dopadasz do Toma i bez chwili zwłoki wbijasz mu sztylet w ciało. Dźgasz Toma dopóki dopóty nie zostaje z niego podziurawione jak sito truchło.
+		Odp: Poczekam aż wstanie.
+			 () : W przebłysku honoru czekasz aż Tom zbiera się z podłogi.
+			jeśli psych<3 (syt -> 73A) : Jendak w ostatniej chwili nie wytrzymujesz psychicznie i rzucasz się z nożem na Toma, który już wstał. Podpisujesz tym wyrok śmierci na siebie. Tom bez skrupułów naciera na ciebie z jeszcze większą werwą. Wkrótce jeden z ciosów przecina ci szyję.
+			jeśli psych>2 (syt -> 74) : Widzisz, że Tom nie ma zamiaru się poddać, sięga po upuszczoną broń. Łatwo Ci dźgnąć leżącego w rękę, później w ramię i głowę.
+			 (syt -> 73A) : 
+
+Syt: 721
+	Stoisz z zakrwawionym sztyletem nad ciałem Toma. Powoli uspokajasz oddech, adrenalina odpływa z twoich żył. \n\n'Dobrze się spisałeś.' Szept ładunku powrócił, jest jeszcze słodszy niż przedtem. 'Teraz nic nam już nie grozi, już zawsze będziemy razem.' ( syt -> 74)
+		Odp: 'Tak, będziemy razem.'
+			 () : Upuszczasz sztylet, podchodzisz do klapy i ją otwierasz. Na widok ładunku uśmiechasz się.
+		Odp: 'Mam cię dość.'
+			 () : Upuszczasz sztylet i padasz na kolana. Chowasz twarz w dłoniach. W głowie masz istny sztorm myśli.
+			 (syt -> 741) : 
+
+Syt: 74
+	Ładunek jest pewny co będzie dalej, mówi tak jakbyś przed chwilą nie zabił Toma, ostatniego członka swojej załogi. Jakbyś nie zabił właśnie ostatniego połączenia z dawnym światem. Lecz co innego ci zostało, jeśli nie służba ładunkowi? ( syt -> 741)
+		Odp: Będę dalej bronił ładunku.
+			 (endGame -> defendBezpStrong) : Walka z Tomem wykończyła cię i zostawiła rannego. Zrządzeniem losu tydzień później twój dom zaatakował olbrzymi niedźwiedź. 
+
+Byłeś dobrze przygotowany na atak - rygiel w drzwiach nie puścił. Z niejednej rany się już wylizałeś. Słodki szept ładunku pomógł ci w dojściu do siebie. Ciało Toma oddałeś ładunkowi i wkrótce o nim zapomniałeś. 
+
+Późną wiosną, kiedy w końcu stopniał śnieg, do twojego domu zawitała grupka myśliwych. Tym razem jednak nie bawiłeś się w dobrego gospodarza, przy pierwszej okazji pozbyłeś się tego kłopotu. Spotkanie z Tomem wiele cię nauczyło. Pewnie przyjdzie zadać ci jeszcze niejedną śmierć, ale ładunek jest tego wart, prawda?
+			 (syt -> 74) : 
+		Odp: Zostanę przy ładunku..
+			 () : Przez kolejne tygodnie zima nie odpuszczała, a tobie kończyły się zapasy. Nie miałeś czym uleczyć ran po walce z Tomem. Nie mogłeś wyruszyć na polowanie z powodu śnieżycy. Na domiar złego skończył ci się grog. Gdy już zjadłeś ostatni okruch suchego chleba, wiedziałeś że nie masz innego wyjścia.
+			jeśli zapasy<1 () : Musiałeś wyjść z domu, by zdobyć pożywienie. Niestety zbłądziłeś w śnieżycy.
+			jeśli zapasy<1 (endGame -> defendZapasyWeak) : Twoje ciało zasypał śnieg, a potem przykryły liście. I tak skończyła się dobroć okazana Tomowi. Nie wiesz co stanie się z ładunkiem, nie wiesz w czyje ręce trafi. Być może nikt go nie znajdzie i zostanie bezpieczny w twojej chacie. Być może odnajdą go górscy myśliwi i twoje poświęcenie pójdzie na marne. Sam musisz odpowiedzieć sobie na pytanie, czy było warto?
+			jeśli zapasy>0 () : Pociąłeś ciało Toma na kawałki, a następnie oddzieliłeś mięśnie od kości. Słodki szept ładunki pozwalał ci zagłuszyć myśli, kiedy spożywałeś ludzkie mięso. To pozwoliło ci przetrwać. Wraz z roztopami do twojej chatki zawitała grupka myśliwych. Zbłądzili i szukali schronienia. Oczywiście przywitałeś ich, a oni z ochotą zasilili twoją spiżarnię.
+			jeśli zapasy>0 (endGame -> defendZapasyStrong) : Jeszcze długo mogłeś trwać przy ładunku. 
+			 (syt -> 74) : 
+		Odp: Przemyślę moje życie.
+			 (endGame -> defendPsychStrong) : Spotkanie z Tomem umocniło cię. Przypomniałeś sobie dlaczego zrobiłeś te wszystkie okropności. Dlaczego ukryłeś ładunek z dala od wszystkich. Świat bez niego i tak przepełniony był okrucieństwem i skurwysyństwem. Teraz wiesz już na pewno, że tylko jesteś w stanie bronić ładunku, że nigdy nie wykorzystasz go do niecnych celów. Wyrzuty sumienia odeszły w zapomnienie. Od tamtej pory czułeś się o wiele lepiej, koszmary nie nawiedzały cię tak często. Nie lękałeś się już tak bardzo szarego pochodu. Słodki szept ładunku wynagradzał ci wszystkie poświęcenia. I tak skończyłeś, trwając przy ładunku do końca. Spotkało cię jeszcze wiele rzeczy, lecz żadna cię nie złamała. Po śmierci, twoje zaschnięte zwłoki długo jeszcze broniły ładunku.
+			 (syt -> 74) : 
+
+Syt: 741
+	'Musisz się uspokoić. Nie możesz pozwolić, aby szary pochód zamieszał ci w głowie. Zostaliśmy tylko my. I będzie tak do końca.' \n\nŁadunek ma rację, przed chwilą zabiłeś właśnie ostatnie co łączyło cię z dawnym życiem. Teraz zostały ci jedynie wyrzuty sumienia. Przecież nie zostawisz ładunku, prawda? ( syt -> <nic>)
+		Odp: Dalsze bronienie ładunku.
+			 (endGame -> defendBezpWeak) : Walka z Tomem wykończyła cię i zostawiła rannego. Zrządzeniem losu tydzień później twój dom zaatakował olbrzymi niedźwiedź. Nie byłeś w stanie się przed nim obronić.
+			 (syt -> 741) : 
+		Odp: Pozostanie przy ładunku.
+			 (endGame -> defendPsychWeak) : Spotkanie z Tomem było jak koszmar na jawie. Od momentu w którym zniosłeś jego ciało do ładunku cały czas słyszałeś jego głos, który powtarzał: “Czy było warto? Czy było warto? Czy było warto?”  
+
+Głos Toma był głośniejszy niż szept ładunku, nie pozwalał ci spać, nie pozwalał ci zebrać myśli. Przestałeś opuszczać chatę, ledwo co jadłeś, tkwiłeś w jednym miejscu z pustym spojrzeniem. Zabicie Toma było jak pozbycie się resztek dawnego siebie, jak porzucenie statku na mieliźnie. 
+
+Któregoś dnia głos Toma przybrał na sile, nie potrafiłeś go wytrzymać. Podciełeś sobie gardło i wtedy w końcu krew zagłuszyła ten niechciany głos. Tak poległeś, z własnej ręki. Szry pochód wcale nie musiał do ciebie przychodzić. 
+
+Nie wiesz co stanie się z ładunkiem, nie wiesz w czyje ręce trafi. Być może nikt go nie znajdzie i zostanie bezpieczny w twojej chacie. Być może odnajdą go górscy myśliwi i twoje poświęcenie pójdzie na marne. 
+
+Sam musisz odpowiedzieć sobie na pytanie, czy było warto?
+			 (syt -> 741) : 
+		Odp: Odejście w śnieg.
+			 (endGame -> SnowWhite) : Nie możesz już dłużej tego wytrzymać. Zabicie Toma przeważyło szalę. Przez tyle lat poświęcałeś się dla ładunku, a sam stałeś się cieniem dawnego siebie. Stałeś się potępieńcem, który jest w stanie dokonać najokropniejszych rzeczy. 
+
+Podnosisz się z kolan i kierujesz się ku wyjściu. “Co robisz? Stój!” szept ładunku brzmi groźnie, ale ty go nie słuchasz. Wiesz, że nie przyniesie ci on nic dobrego. Gdybyś tylko nie wszedł do tej przeklętej świątyni…
+
+Wychodzisz na zewnątrz w objęcia mrozu. Świst wiatru zagłusza szept ładunku oraz nawoływania szarego pochodu. Idziesz przed siebie nie zważając na to co cię otacza. Wkrótce docierasz do miejsca, gdzie ze wszystkich stron otacza cię biel. Dopiero tutaj odnajdujesz względny spokój.
+			 (syt -> 741) : 

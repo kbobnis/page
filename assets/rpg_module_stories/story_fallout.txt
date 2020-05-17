@@ -1,0 +1,256 @@
+Story fallout
+
+Parametry
+	monety zaczynasz mając 5
+	przetrwanie zaczynasz mając 1
+	woda zaczynasz mając 1
+	atak zaczynasz mając 1
+	UKRYTY gaja zaczynasz mając 0
+	UKRYTY wspolpraca zaczynasz mając 0
+
+Syt: pre1
+	Masz 10 lat, właśnie idziesz korytarzem na lekcje przetrwania. Widzisz szczura biegnącego pod ścianą. ( syt -> pre2)
+		Odp: Ignoruję go, idę dalej.
+			 (przetrwanie +1) : Zdążyłeś na lekcję, dzięki czemu naczyłeś się dzisiaj jak rozbijać obozowisko w dziczy.
+		Odp pre1/2: Staram się zabić szczura.
+			 (atak +1) : Udało Ci się zabić zwierzę butami. Wiesz, jak na przyszłośc sobie z nimi radzić. Nie zdążyłeś jednak na dzisiejszą lekcję przetrwania.
+
+Syt: pre2
+	Minęło pięć lat. Niewiele się zmieniło. Nadal gnieździcie się w tych podziemnych korytarzach, pełnych kurzu i wilgoci. Starsi odeszli i zastąpili ich młodsi, którzy już jak przez mgłę pamiętają czasy sprzed apokalipsy neutronowej. Przed lekcjami sprzedajesz ściągi na rogu i widzisz jak inni chłopcy zaczepiają Gaię - dziewczynę, którą lubisz... Nawet bardzo... ( syt -> pre3)
+		Odp pre2/1: Są większi ode mnie, sprzedaję dalej.
+			 (monety +5) : Dziś sprzedałeś dużo ściąg. Chowasz zarobione pieniądze do skrytki w waszej kwaterze, gdzie mieszkasz z rodzicami.
+			 (przetrwanie +1) : Nauczyłeś się, że czasami lepiej unikać konfrontacji. 
+		Odp gaja: Zostawcie ją. Idźcie swoją drogą, a nikomu nie stanie się krzywda.
+			 (atak +1) : Wyśmiali Cię, po czym pobili, ale sami też oberwali. A najważniejsze, że Gaia jest ci wdzięczna. Patrzyła na Ciebie tak inaczej niż zwykle.
+
+Syt: pre3
+	Trzy lata później. Twój ojciec oznajmił Ci, że decyzją starszych zostałeś wybrany na wędrówkę. Masz odnaleźć nowe źródło wody na pustkowiu. ( syt -> pre4)
+		Odp pre3/1: Zabieram się za książki, muszę wiedzieć więcej o sztuce przetrwania.
+			 (przetrwanie +1) : Będzie ci cieplej, gdy nie uda się znaleźć schronienia na noc.
+		Odp pre3/2: Idę na strzelnicę nauczyć się strzelać.
+			 (atak +2) : Potrafisz obsługiwać broń palną.
+		Odp pre3/3: Zaczynam organizować zapasy przed wyprawą.
+			 (woda +3) : Wykorzystywałeś oszczędnie swoje dzienne racje wody. Zbierałeś nadmiar do pustych bukłaków.
+			 (monety +5) : Sprawdzając stan swojego licznika wody w maszynowni znalazłeś kilka monet.
+
+Syt: pre4
+	Minął rok. Które to już urodziny? ( syt -> 0_1)
+		Odp: 21.
+			 () : Zupełnie źle.
+		Odp: 19.
+			 (monety +5) : Dobrze!
+		Odp: 20.
+			 (monety +1) : Źle, ale blisko.
+		jeśli [Przetrwanie > 2]: 
+			Odp: Daję łapówkę – 5 monet.
+				 (monety -5) : Wydałeś monety na łapówkę.
+				 (przetrwanie +1) : Wiesz jak się zachować, aby uzyskać to, czego aktualnie potrzebujesz.
+
+Syt: 0_1
+	Stoisz przed wejściem do waszego schronu. Starszy gromady życzy Ci powodzenia. Przed odejściem wybierasz jeden przedmiot na drogę. ( syt -> 0_0)
+		Odp pistolet: Pistolet
+			 (atak +3) : Pistolet bardzo dobrze leży w ręce. Magazynek jest pełny. Pora ruszać w drogę!
+		Odp: Przed odprawą starszy gromady zabrał Cię na strzelnicę. Ponieważ równy z niego gość i pomógł Ci nieraz, dajesz mu wygrać pojedynek strzelców. Uśmiechnął się i przyniósł Ci jeszcze dwie racje wody.
+			 (woda +5) : Dostałeś dwa bukłaki z wodą pitną.
+			 (monety +2) : Dodatkowo dostałeś kilka monet, może przydadzą się na pustkowiu.
+		Odp geiger: Licznik Geigera
+			 (przetrwanie +2) : Będziesz mógł zbadać radioaktywność obszarów.
+		Odp goldWatch: Stary miedziany zegarek. Widać na nim nieznane tobie inicjały - 'LR'.
+			 (przetrwanie +1) : Jesteś pewien, że ten zegarek jakoś Ci się przyda na pustkowiu. Sama pewność siebie już dużo daje.
+		Odp: Gaia koniecznie chce z Tobą porozmawiać przed wyjściem. Aby się z nią spotkać, rezygnujesz z dłuższej rozmowy ze starszym gromady i nie otrzymujesz żadnego przedmiotu na drogę.
+			 (gaja +10) : Nigdy nie zapomniała, że wtedy jej pomogłeś. Oferuje swoje towarzystwo w trudnej wyprawie.
+
+Syt: 0_0
+	Ciężkie drzwi do schronu zamknęły się za wami. Co teraz? Wiesz, że musicie znaleźć źródło wody dla waszej społeczności. ( syt -> 0_0_1)
+		() : Gaia chwyta cię mocno za rękę i pytająco wpatruje się w Ciebie. Po chwili uśmiecha się krzepiąco.
+		jeśli [Przetrwanie > 2]: 
+			Odp: W oddali widzę coś błyszczącego. Może to rzeka? Droga jest daleka, ale chyba damy radę zanim skończą się zapasy.
+				 () : Wpół drogi napadło was stado zmutowanych dzikich kotów. Ohydne kreatury z dużymi kłami, wielkie na pół metra w niczym nie przypominają domowych kotów, o których kiedyś opowiadał Ci starszy gromady.
+				jeśli atak>1 (atak +1) : Celnymi ciosami okaleczyłeś szybko wszystkie. Nie powinny być więcej problemem w tej okolicy.
+				jeśli atak<2 (woda -1) : Zabrakło Ci umiejętności w walce i kocury dotkliwie pokąsały Cię po nogach. Uciekając na drzewo z Gaią zgubiłeś bukłak z wodą... Co za pech!
+				 (woda -2) : Droga z daleka wyglądała na krótszą. Zmęczeni marszem wypiliście bardzo dużo wody.
+				 (syt -> 0_2) : 
+		Odp: Pukasz do schronu, aby uzupełnić zapas wody.
+			 (woda +2) : Twój ojciec oddał Ci połowę swoich miesięcznych racji. Prosi, żebyś wracał jak najszybciej, cały i zdrowy. Zebrani przed wyjściem mieszkańcy osady patrzą niepewnie na Ciebie. Czy aby na pewno wybrali właściwą osobę do znalezienia źródła wody?...
+			 (monety -4) : Dałeś mu swoje monety, aby spróbował odkupić trochę wody od innych.
+			jeśli gaja>0 (woda +1) : Matka Gai też wspomogła was pitną wodą. Ze łzami w oczach żegnała się z córką, widać wyraźnie, że wolałaby nie ryzykować życia jedynego dziecka w tak trudnej misji...
+			jeśli gaja<1 () : Na progu schronu stała Gaia. Pomachała Ci smutno na pożegnanie. Jej oczy błyszczały bardziej niż zwykle, chyba płakała... Czy jeszcze kiedyś ją ujrzysz?
+			 (syt -> 0_0) : 
+		jeśli [Przetrwanie > 5]: 
+			Odp: Zauważam po drodze las pełen uschniętych drzew, powinienem znaleźć tam wodę, bo niedawno padał deszcz - tak rzadki pod rozpalonym słońcem niebem.
+				 (woda +2) : Znalazłeś po drodze bukłak pełny wody - kto go mógł tu zostawić? I kiedy?
+		Odp: Idę przed siebie.
+			 (syt -> 0_2) : 
+
+Syt: 0_0_1
+	Las daje odrobinę cienia i chroni nieco przed palącym słońcem, wędruje się tu lepiej niż po równinie. ( syt -> 0_2)
+		Odp: Idę dalej, w kierunku błyszczącej rzeki. Przynajmniej wygląda to jak rzeka...
+		Odp: Może tu jest woda? Przeszukuję las pod kątem żył wodnych i ukrytych źródełek.
+			 (woda -1) : Szukanie zajęło ci cały dzień. Wypiłeś trochę wody.
+			 (monety +2) : Znalazłeś małą sakiewkę ze starymi monetami.
+
+Syt: 0_2
+	Zatrzymałeś się w połowie drogi do rzeki. Jest już noc, nie spodziewałeś się, że wędrówka będzie tak długa. Nigdzie po drodze nie znalazłeś dogodnego miejsca na nocleg. ( syt -> 0_2/3B)
+		jeśli [Przetrwanie > 3]: 
+			() : Widzisz ślady po obozowisku - popiół z ogniska i kości ogryzione z mięsa. Ktoś tu chyba nocował przed Tobą.
+		() : Gaia dostrzega ślady koczowników, które prowadzą na zachód.
+		jeśli [Przetrwanie > 2]: 
+			Odp 0_2/1: W wielkim drzewie niedaleko piorun albo szkodniki utworzyły obszerną dziurę. Przenocujesz tam.
+				 (woda -1) : Było wygodniej niż przewidywałeś. Wewnątrz pnia znalazłeś drabinę prowadzącą na szczyt. Zasnąłeś w starym gnieździe jakichś ptaków. Z lekcji przyrody pamiętałeś, że w takich gniazdach nocowały bociany. Kiedyś, kiedy jeszcze było inaczej... Przed pójściem spać wypiłeś wieczorną rację wody.
+				 (syt -> 0_3) : 
+		Odp 0_2/2: Przy drodze widać gęste ciernie. Zrobię w nich wyłom nożem i takim gniazdku umoszczę sobie legowisko bezpieczne od drapieżników.
+			 (woda -2) : Mocno się pociąłeś i namęczyłeś, zanim wyciąłeś dosyć cierni i przygotowałeś nocleg. Musiałeś przemyć rany i zużyłeś część zapasów wody.
+			 (syt -> 0_3) : 
+		jeśli [Przetrwanie > 3]: 
+			Odp 0_2/3: Tropię koczowników po ich śladach. Może zgubili jakieś wartościowe przedmioty? A może wodę?
+				 (woda +1) : Znalazłeś trochę wody.
+				jeśli atak>2 (monety +2) : Coś znalazłeś! Zalutowana blaszana puszka! Udało ci się ją otworzyć przy użyciu siły - w środku było kilka monet i dziwny kawałek metalu.
+				jeśli atak<3 () : Znalazłeś puszkę, ale była zbyt dobrze zamknięta, aby ją otworzyć siłą. Wziąłeś ją ze sobą.
+		Odp poszukiwanie01: Idziemy po śladach poszukując obozowiska innych ludzi.
+			 (woda -3) : Szukaliście bardzo długo i zmęczeni wypiliście dużo wody.
+			 (syt -> en01) : 
+
+Syt: 0_2/3B
+	 ( syt -> 0_3)
+		() : Poszukiwania zabrały Ci cały dzień. Nawet nie spostrzegłeś, jak się ściemniło.
+		() : Tak się skupiliście na poszukiwaniach, że nie zauważyliście, jak szybko się ściemniło.
+		Odp: Nie ma wiele czasu na przygotowanie porządnego miejsca do spania. Wejdę na to drzewo, tam będę bezpieczny, chociaż noc będzie ciężka...
+			 (woda -4) : Ta noc nie przyniosła snu. Przez cały czas musiałeś być czujny, żeby nie spaść. Do tego pod drzewem co jakiś czas słyszałeś wycie i ujadanie wygłodniałych szczuropsów.
+		jeśli [Przetrwanie > 6]: 
+			Odp: Buduję szałas z tego, co pozostało po koczownikach. Rozpalam ognisko, by odstraszyć szczuropsy.
+				 (woda -2) : Udało ci się przetrwać noc bez szwanku. Wyspałeś się, a rano przed drogą obmyłeś twarz i wypiłeś nieco wody.
+
+Syt: 0_3
+	 ( syt -> rzeka)
+		Odp: Szybkim ruchem noża podcinam żyły na przedramieniu i czekam, aż szczuropsy dokończą dzieła.
+			 (endGame -> wolfesRip) : Kiedy ociągając się podeszły powoli, z bliska okazało się, że ich czerwone ślepia to tylko kropki na sierści. Te mutanty nie miały oczu i orientowały się tylko za pomocą węchu i słuchu. Zaczęły obwąchiwać, potem zlizywać krew z moich żył, po czym szybko rozerwały całe moje ciało na strzępy, byłem świadomy aż do ostatniej chwili.
+		Odp: Zanim pójdziemy dalej próbuję ją pocałować - będzie co ma być, później pójdziemy nad rzekę.
+			 (woda -1) : Ona odchyla głowę, mówiąc, że nie czas na to. Zbieracie wasze rzeczy. Wybieracie drogę naokoło.
+		() : Wracałeś z dziką dziewczyną pół nocy. Miała na imię Flamma. Jej oczy błyszczały w świetle księżyca. Pachniała gorącym wiatrem i słońcem. W jakiś dziwny sposób rozpalała w Tobie żądzę... Nawet nie wiesz, czemu... Może to było coś w jej ruchach, a może to w jaki sposób rozchylały się podczas rozmowy jej pełne usta.
+		() : Jest poranek. Zebrałeś swoje rzeczy. Widzisz na swojej drodze grupę szczuropsów. Jeszcze tego tylko brakowało.
+		Odp: Obchodzę bandę szerokim łukiem nadrabiając sporo drogi.
+			 (woda -2) : Droga zajęła Ci więcej czasu. Musiałeś podczas niej wypić dużo wody.
+		jeśli [Przetrwanie > 6]: 
+			Odp: Widzę, że szczuropsy są zajęte posiłkiem, więc nie będą polować. Przemykam obok nich ostrożnie, uważnie stawiając kroki.
+				 () : Ominąłeś bandę chowając się między krzakami i trzymając się strony, od której wiał wiatr. Udało Ci się pozostać niewykrytym.
+		Odp: Próbuję przegonić stado bronią.
+			jeśli atak<4 (woda -2) : Zabiłeś kilka szczuropsów, reszta się na ciebie rzuciła. Pogryziony uciekłeś na drzewo. Trzeba obmyć rany.
+			jeśli atak>3 () : Zabiłeś kilka szczuropsów, reszta uciekła. Udało ci się przejść bez szwanku.
+		Odp: Nie ma co zwlekać, idę drogą naokoło.
+			 (woda -3) : Marsz zajął kilka godzin, wypiłeś dużo wody.
+
+Syt: rzeka
+	Wreszcie dotarłeś nad brzeg rzeki. Woda jest przeźroczysta i czuć od niej przyjemny chłód. Wokoło nie ma drzew, jedynie niskie martwe pnie i skarlałe krzewy. To dobrze, bo dzięki temu łatwiej dostrzeżesz zagrożenie. ( syt -> rzeka_nast)
+		() : Robi się już ciemno.
+		Odp: Piję wodę.
+			 (woda +1) : Napiłeś się, aby ugasić pragnienie. Uzupełniłeś też jeden bukłak tej niepewnej wody.
+			jeśli geiger (woda +2) : Zbadałeś wodę licznikiem Geigera, okazała się czysta. Uzupełniłeś wszystkie bukłaki.
+			 (syt -> rzeka) : 
+		Odp rzeka_3: Tutaj ludzie z twojego schronu będą mogli stworzyć obóz, a w przyszłości może i nowy schron. Układasz się do snu.
+			jeśli atak<4 (woda -3) : W nocy napadły na Ciebie wygłodniałe zmutowane koty. Podczas walki z bukłaków wylała się woda.
+			jeśli atak>3 (atak +1) : W nocy napadły na Ciebie wygłodniałe zmutowane koty. Zabiłeś wszystkie bez większego problemu. Gdyby tylko takie zagrożenia czekały Cię dalej...
+
+Syt: rzeka_nast
+	Poranek przy rzece. Słońce jeszcze nie zawędrowało na środek nieba. Wyczuwasz powiew świeżego, wilgotnego powietrza od strony wody. ( syt -> rzeka_nast1)
+		Odp rzeka_nast_2: Pora już wracać do bunkra. Misja zakończona.
+
+Syt: rzeka_nast1
+	Do bunkra jest jeszcze daleko. Ściemnia się, z okolicznych drzew słyszysz szelest i odłgłosy nocnych ptaków. Nazywają się chyba sowy... ( syt -> powrotna1)
+		jeśli [Przetrwanie > 6]: 
+			() : Niedaleko widzisz pozostałości po obozowisku jakichś ludzi: zagaszony ogień, kilka starych szmat, resztki jedzenia.
+		Odp: Wchodzę na drzewo, żeby przeczekać do rana, choć wiem, że to będzie ciężka noc.
+			 (woda -2) : Przez całą noc musiałeś czuwać, aby nie spaść. Pod drzewem co rusz kręciły się wygłodniałe istoty. W ciemności trudno było nawet stwierdzić, czy były to szczuropsy czy zmutowane koty, czy może jeszcze coś gorszego...
+			 (syt -> 0_3) : 
+		jeśli [Przetrwanie > 6]: 
+			Odp: uduję sobie szałas z tego, co pozostało po obozie koczowników. Rozpalam też ognisko - to odstraszy szczuropsy i inne kreatury.
+				 (woda -1) : Udało ci się przetrwać noc bez szwanku. Rano napiłeś się wody i przemyłeś twarz i ręce.
+		Odp: Flamma znajduje jakąś jaskinię. Wewnątrz obłożona jest drewnem, jest sucha i w miarę bezpieczna - tam spędzimy noc.
+			 (woda +4) : W pomieszczeniu znaleźliście dwa bukłaki wody.
+
+Syt: powrotna1
+	Zatrzymałeś się pod zniszczonym mostem. Nikt cię tu nie zobaczy, powinno być bezpiecznie. ( syt -> powrotnySchron)
+		Odp powrotna1_1: Idę całą noc. Jeśli dobrze pójdzie i nie zabłądzę, już rano będę u wrót naszego schronu.
+			 (woda -3) : Trasa jest bardzo męcząca. Idziesz z trudem, musiałeś wypić dużo wody.
+		Odp: Wybieram szybszą, ale bardziej niebezpieczną trasę.
+			jeśli atak>4 (woda -1) : Po drodze zaatakowało cię jakieś bardzo duże, wychudzone zwierzę(?) Wypadło spomiędzy krzaków bełkocząc coś. Wyglądało jak wysoki owłosiony humanoid. Wściekle warczało i starało się zabić ciebie gołymi rękoma, a może to były łapy? Po chwili wahania wbiłeś nóż prosto w jego gardło, potem jeszcze w pierś, aż skowycząc padło do Twoich stóp, brocząc krwią. Co to za obrzydliwe stworzenie... Czy to jeszcze człowiek?
+			jeśli atak<5 (woda -5) : W ciemnościach zaatakowało Cię jakieś czarne duże zwierzę. Atak był tak niespodziewany, że ze strachu rzuciłeś wszystko i uciekłeś w panice.
+			 () : Szedłeś więc dalej.
+
+Syt: powrotnySchron
+	Stoisz u drzwi swojego schronu. ( syt -> en01)
+		() : Jest piękny poranek.
+		() : Flamma z zainteresowaniem, ale i wahaniem przygląda się wejściu do bunkra.
+		() : Docieracie wreszcie do bunkra.
+		Odp: Gdy już przywitałem się ze starszymi gromady i rodzicami, opowiadam o niebezpiecznej wyprawie. Trochę dodaję od siebie i w uznaniu moich zasług gromada postanawia mnie nagrodzić. Proszę więc o własną kwaterę, w której mógłbym zamieszkać z Flammą.
+			 () : Współmieszkańcy bunkra z zainteresowaniem przyglądają się Twojej towarzyszce.
+			 (endGame -> togetherCoop) : Pokazaliście wspólnocie, że jest szansa na ratunek i współpracę z ludźmi z zewnątrz. Czy będzie to początek nowej rzeczywistości? Czy da się jeszcze odtworzyć to, co kiedyś było?
+		Odp: Pukam do drzwi.
+			 () : Wszyscy ucieszyli się na Twój widok i przyjęli Cię z otwartymi ramionami. W końcu powrót z tak niebezpiecznej wyprawy, a do tego sukces - to nie lada wyczyn!
+			jeśli gaja>-1 () : Wróciłeś ze swojej wędrówki bezpiecznie.
+			jeśli gaja>-1 (endGame -> win) : Teraz ludzie z waszej gromady będą mogli opuścić ciasny, duszny schron i wyjść na zewnątrz, aby osiedlić się tam.
+			jeśli gaja<0 () : Podczas jednego z wieczornych spotkań z mieszkańcami gromady, do sali wbiegła matka Gai. Nie mogła zrozumieć, że nie byłeś do końca winien jej śmierci. Straciła jedyne dziecko, tylko to się liczyło dla niej. Oszalała z rozpaczy kobieta zbliżyła się do Ciebie i wbiła nóż w Twoje oko.
+			jeśli gaja<0 (endGame -> endWithoutGaja) : Od ciosu brudnym ostrzem wdało się zakażenie. Powoli straciłeś wzrok i słuch. Nie wiedziałeś, co się wokoło ciebie dzieje.  W gorączce i okropnym bólu, z poczuciem winy, ale i nagłego żalu za Gaią, umierałeś przez kilka dni.
+
+Syt: en01
+	Jest już wieczór, zauważacie w dali łunę światła z obozowiska innych ludzi. Kładziecie się na krawędzi wzgórza i obserwujecie z dali iskry z ogniska unoszące się wysoko do nieba. Słyszycie bębny i śpiewy mężczyzn z osady. ( syt -> en02)
+		jeśli [Przetrwanie > 2]: 
+			() : Niektórzy z mężczyzn ostrzą i ozdabiają wzorami długie włócznie błyskające w świetle ogniska. W zręcznym ręku taka broń mogłaby być rzucona nawet na 30 metrów.
+		jeśli [Przetrwanie > 4]: 
+			() : Widzicie kilka kobiet i dzieci krzątających się wokół, poznajecie, że ich dialekt jest nieco podobny do tego, którym wy się posługujecie.
+		Odp 01A: Przenocujemy po cichu w pobliskiej dziurze pozostałej po korzeniach przewróconego drzewa i rano wracamy na ścieżkę omijając koczowników z daleka.
+			 (woda -2) : Wypiliście nieco wody.
+			 (syt -> 0_3) : 
+		Odp 01B: Wychodzimy z ukrycia - trzeba porozmawiać z koczownikami. To być może szansa dla naszej społeczności...
+
+Syt: en02
+	Jedno z dzieci zauważyło wasze twarze jakieś 10 metrów od ogniska. Zatrzymujecie się, oni wszyscy wstają, mężczyźni podnoszą groźnie włócznie. Widzicie teraz wyraźnie kobiety chowające się za mężczyznami. Wszyscy są wychudzeni, ubrani w postrzępione szmaty, ozdobione przypadkowymi przedmiotami, które udało im się znaleźć. ( syt -> en02gaja)
+		jeśli [Przetrwanie > 2]: 
+			() : Dostrzegasz, że jeden z niższych mężczyzn trzyma w dłoni karabin maszynowy celując w waszą stronę.
+		Odp: Wykorzystujemy zaskoczenie, aby szybko odskoczyć w pobliskie krzaki i uciec jak najprędzej.
+			 () : Skoczyliście w krzaki i pędziliście co sił w kierunku gęstego buszu oddalonego kilkaset metrów od koczowiska.
+			jeśli przetrwanie<4 () : Nie odwracaliście się, by sprawdzić czy koczownicy nadal was ścigają. Podczas przedzierania się przez gąszcz, suche gałęzie w buszu poraniły waszą skórę i rozdarły ubrania. Gaia ugrzęzła w gęstym krzewie. Usłyszałeś jej rozpaczliwy krzyk!
+			jeśli przetrwanie>3 () : Biegliście co sił w nogach przez rów, bardzo szybko się oddaliliście od goniących was tubylców.
+			 (syt -> 0_3) : 
+		Odp en02/2: Widząc, że z zaciekawieniem patrzą na was - rzucasz przed siebie kilka monet.
+			 (monety -4) : Brzdęk monet upadających na kamienie przerwał ciszę. Przez chwilę obie strony stoją bez ruchu. Oni mierzą was wzrokiem. W ciemnościach trudno dostrzec, czy patrzą życzliwie, czy może wrogo... Najniższy mężczyzna obniża swój karabin maszynowy i podchodzi do kredytów, podnosi je, po czym chowa za podartą przepaskę.
+			 () : Do czego potrzebne im są kredyty na tym pustkowiu, czyżby gdzieś było jakieś miasto? A może są handlarzami?
+			 (syt -> en02b) : 
+
+Syt: en02gaja
+	Obcy po chwili skracają dystans i szybko dobiegiają do spanikowanej Gai, która gorączkowo miota się wśród gałęzi. ( syt -> en02b)
+		Odp: Nie wiem co robić. Gaia woła: 'Uciekaj! Beze mnie masz wiekszą szansę!' Ale wiem, że oni zgotują jej piekło. Podbiegam do Gai, zasłaniam jedną ręką jej oczy, drugą podcinam jej gardło, aby zapewnić jej szybką śmierć. Tylko tyle mogę dla niej zrobić. Sam ucieknę.
+			jeśli atak>2 (gaja -11) : Zanim Gaia zdążyła się zorientować co robisz, ciepła krew z szyi zalała jej szyję, pierś i ręce. Cicho westchnęła, po czym osunęła się na ziemię. Popatrzyłeś na swoje ręce całe w jej krwi... Zrobiło Ci się niedobrze, ale nie mogłeś zbyt długo tkwić przy jej stygnącym ciele. Zniknąłeś po chwili w gąszczu.
+			jeśli atak>2 (syt -> 0_3) : Uciekałeś pół nocy, w końcu padłeś ledwo żywy na ziemię i zasnąłeś. Śniłeś ciągle o Gai, o tym, co mogłeś zrobić, aby ją uratować. Budziłeś się kilkukrotnie zlany potem. Wciąż czułeś na swoich dłoniach zapach jej krwi.
+			jeśli atak<3 () : Gaia w ostatniej chwili przeraziła się tego, co możesz zrobić - może po prostu bardzo bała się umrzeć? Podczas szamotaniny nóż zjechał z jej szyi i tylko drasnął ją w obojczyk. Gdy chciałeś poprawić cięcie, ona już się zaczęła bronić z całej siły. Niski człowiek z karabinem dobiegł do was i sprawnym gestem, jakby robił to już wiele razy, odblokował swój karabin i zaczął strzelać w waszym kierunku.
+			jeśli atak<3 (endGame -> runwayKill) : Jedna z kul trafiła Cię w plecy. Upadłeś na ziemię ciężko oddychając. Ostatnią rzeczą, którą poczułeś był ucisk buta na plecach...
+		Odp: Zostawiam ją na pastwę koczowików i uciekam dalej sam. Czuję się podle, wiem, że stchórzyłem i zawiodłem Gaię. Boję się śmierci, to jest silniejsze ode mnie...
+			 (gaja -11) : 
+			 () : Uciekałeś pół nocy, w końcu padłeś ledwo żywy na ziemię i zasnąłeś. Śniłeś ciągle o Gai, o tym, co mogłeś zrobić, aby ją uratować. Budziłeś się kilkukrotnie zlany potem. Co powiesz jej matce? Co powiesz innym? Czemu tak to wszystko sie potoczyło?
+			 (syt -> 0_3) : 
+
+Syt: en02b
+	Po podniesieniu wszystkich monet, mężczyzna przedstawia się w łamanym dialekcie. To chyba ich przywódca. Przechodzi do konkretów i pyta czego chcemy. ( syt -> dogadanie)
+		Odp: Waszej pomocy.
+			 () : Gdy wyjaśniasz mu, po co wysłano Cie w drogę, wódz koczowników chwilę myśli. W końcu mówi, wskazując na Gaię: 'Dobrze, ale musisz zostawić ją u nas, to nasza gwarancja, że nas nie oszukasz...' Po chwili dodaje z uśmiechem: 'Nie martw się, damy Ci w zamian jedną z naszych' - wskazuje na młodą, szczupłą kobietę o szerokich biodrach i pełnych piersiach.'
+		Odp: Potrzebujemy wody.
+			 (woda +3) : Wystarczył jeden gest mężczyzny, aby do waszych stóp zostały dostarczone dwa bukłaki wody. Powiedział: 'Oto wasza woda w zamian za monety, odejdźcie teraz.' Odeszliście.
+			 (syt -> 0_3) : 
+
+Syt: dogadanie
+	Patrzysz uważnie na herszta koczowników. Przestał już mierzyć w Ciebie swoim przestarzałym podrdzewiałym karabinem. Trwa milczące oczekiwanie na Twoją decyzję. Nocny niespodziewany wiatr owiewa twoje spięte i spocone ciało. Musisz coś powiedzieć...  ( syt -> <nic>)
+		Odp: Podaję mu rękę by przypieczętować umowę.
+			 (wspolpraca +10) : Gdy herszt ściska twoją dłoń, patrzysz mu w oczy. Jego twarz jest nieprzenikniona, nie wyraża żadnych emocji.
+			 (gaja -11) : Gaia już rozumie, co ją czeka. Łzy błyskają w jej oczach. Patrzy zrozpaczona na Ciebie i nagle chce uciekać, ale łapiesz ją za rękę i, wyrywającą się, przekazujesz hersztowi. On przywołuje gestem dłoni pokazaną wcześniej dziewczynę, która podchodzi. Czy wydawało Ci się, czy spojrzała Ci wyzywająco w oczy, kiedy lekkim krokiem podeszła, aby stanąć obok?
+			 (syt -> 0_3) : 
+		Odp: Skłaniasz się głęboko i przykładasz rękę do serca, ale kręcisz przecząco głową - odmawiasz nawiązania współpracy.
+			 () : Przywódca nie patrzył Ci na ręce, ale w oczy.
+			jeśli atak>3 () : Na jego twarzy wymalował się wyraz zdumienia. Oddaliliście się. Nikt za wami nie szedł.
+			jeśli atak<4 () : Przywódca ponownie spogląda Ci w oczy. Nagle podchodzi blisko i z odległości paru kroków puszcza serię z karabinu prosto w Twoją pierś.
+			jeśli atak<4 (endGame -> deathFromMachinegun) : Nogi odmówiają Ci posłuszeństwa i upadasz głową na kamień. Krew zalewa Ci oczy. Rozpaczliwy krzyk Gai to ostatni dźwięk, który usłyszałeś w swoim życiu. Wszystko gaśnie, ciemnieje i cichnie.
+			 (syt -> 0_3) : 
+		Odp: Bezczelnie wyśmiewam propozycję herszta.
+			 () : Herszt zamiera bez ruchu osłupiony Twoją arogancją. Nie spodziewał się chyba, że nieznajomy o jasnym kolorze skóry śmie sprzeciwić się jego propozycji.
+			jeśli atak>4 (wspolpraca -10) : Wykorzystałeś ten moment, by wyrwać karabin z ręki herszta i silnym, ale krótkim uderzeniem kolby w gardło sprowadzasz go na ziemię. Potem jeden celny strzał w jego czerniejącą na ziemi głowę. Wycofujesz się trzymając w jednej ręce jego broń, a w drugiej dłoń Gai. Przerażeni tubylcy stoją jakby skamieniali. Żaden z nich nie zaczyna Cię ścigać. Twarzą do zgromadzonych i z obezpieczoną bronią w ręku odchodzisz ostrożnie cofając się. Gdy odchodzicie na bezpieczną odległość, odwracacie się i puszczacie biegiem przed siebie.
+			jeśli atak<5 () : Przywódca podszedł do Ciebie i wbił Ci w brzuch nóż aż po rękojeść.
+			jeśli atak<5 (endGame -> arogance) : Powoli traciłeś jasność umysłu. W ostatnim przebłysku świadomości pulsuje pod Twoją czaszką lęk przed tym, co stanie się z Gają.
+			 (syt -> 0_3) : 

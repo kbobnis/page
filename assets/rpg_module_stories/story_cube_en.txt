@@ -1,0 +1,508 @@
+Story cube
+
+Parameter
+	zdr starts with 3
+	spr starts with 2
+	wyt starts with 0
+	samo starts with 0
+
+Syt: pok1
+	The walls seem wet to the touch, but it might be just an impression. You take a good look at their surface. On the opposite wall you notice a curved rectangular shape. Without a sound, the shape moves up revealing a passage marked with the digit “1”. ( syt -> pok1.stay)
+		if [Self-awareness = 0]: 
+			Answer: Where am I?
+				 () : You take a look around. Flat metal walls and translucent light fixtures do not really indicate much. You take a long look at the glowing digit “1” placed on one of the walls. You come closer and touch it. The “1” digit is just as flat as the wall, but it feels different.
+				 (syt -> pok1) : 
+		if [Self-awareness = 0]: 
+		if [Self-awareness = 1]: 
+			Answer: Who am I?
+				 () : For a brief moment you feel presence of someone else inside your mind. A separate being that makes itself known to you. You rub your temples to reduce the headache and refocus.
+				 (syt -> pok1) : 
+		if [Self-awareness = 1]: 
+		if [Self-awareness = 2]: 
+			Answer: Why am I here?
+				 () : You were just a common... Who were you exactly? There is almost nothing you remember from your past. It seems to be shrouded in mist, hidden behind a fence you cannot breach.
+				 (syt -> pok1) : 
+		if [Self-awareness = 2]: 
+			() : You jog your memory determined to find out what happened to you. Unfortunately, you cannot penetrate the dark void inside your head. It is as if your memories have been blocked.
+		if [Self-awareness > 0]: 
+			Answer: I commit suicide.
+				 (endGame -> SpotEnd) : You select one of the walls, take a deep breath, accelerate and, with all your strength, drive your head into the flat metal surface. Your forehead is alight with pain, but you suddenly feel relieved. It seems as if one of the blockades was removed. You get up and run towards the wall. The second time seems easier. And several times more. When you had no more strength to try again, you could almost see your soul abandoning your body.
+		Answer: I enter the passage.
+			 () : You go in, with one hand outstretched. The door automatically recedes into the upper wall. A blinding white light floods the room. You walk through.
+			jeśli samo>0 () : When you enter the light, you hear a scraping noise of large surfaces inside the room you just left. You turn back to find out what is going on, but the door is locked.
+			jeśli samo<1 () : Once you enter the light, the door closes behind you.
+			 (syt -> pok2) : 
+		Answer: I am going nowhere.
+			 () : You take a step back and stop in the centre of the room. You sit down on the floor.
+
+Syt: pok1.stay
+	Whilst sitting on the floor, you are sensing weak vibrations. You put your hands on the floor and realise that vibrations are getting stronger and stronger with every second. You get up, but the trembling is so strong you cannot stand straight. In addition to vibrations, you can hear a muffled sound coming from behind the walls. You can’t figure out what it is. Something inside you begs to leave. ( syt -> pok1.stay.2)
+		Odp: I enter the passage marked with “1”.
+			 () : You run to the door that automatically recedes into the upper wall. You are flooded with white light, which you enter.
+			 (syt -> pok2) : 
+		Odp: I stay where I am.
+			 () : You sit down in the middle of the room so that the trembling does not knock you over. The vibrations make your teeth chatter and your head is exploding with pain once again. You are struggling not to throw up. When you think you can’t take it any longer, the trembling stops.
+			jeśli samo=0 () : You breathe a sigh of relief, but just then you are hit by a massive electric shock. Your muscles contract involuntarily. Everything goes black for you.
+			jeśli samo=0 (endGame -> ShockEnd) : Then comes another shock, much stronger than the previous one. It throws you against the wall covered with travelling blue lightnings. What comes next is pure pain and darkness.
+			jeśli samo>0 () : You feel bounded to the labyrinth.
+
+Syt: pok1.stay.2
+	Your head is full of thoughts you did not come up with. You realise now that there was something guiding your steps before, but only now you can detect its presence.\n\nThe strange thoughts urge you to move on. They are strong enough to force you to get up and make you approach the door. The vibrations in the room are getting stronger again. ( syt -> pok1.stay.3)
+		Odp: I let myself be guided.
+			 (spr +2) : I am taken closer to the door. You feel safe, as if you found a shelter inside your body, while something else is taking care of your survival.
+			 (syt -> pok2) : 
+		Odp: I oppose the urges - and stand still!
+			 () : That’s the first time ever you see your arms and legs acting against your will.
+			jeśli samo>1 (spr +1) : You force yourself to perform movements in the opposite direction so that your hand stops moving. You are becoming increasingly aware of the rules of the labyrinth.
+			jeśli samo>1 () : After a while your body calms down and you keep standing in the same place.
+			jeśli samo<2 (syt -> pok2.return) : You were unable to resist the command. Your body leaves the room.
+		Odp pok1.stay.2.key: I pull out a gizmo.
+			 (wyt -1) : The metal cube transforms itself into a rubber suit.  You immediately put it on and carefully fasten it up.
+
+Syt: pok1.stay.3
+	The vibrations reach their peak and then abruptly disappear. Suddenly blue lightnings appear on the walls, travelling all over the room. ( syt -> pok2)
+		() : You hear cracking sounds and humming of electricity, but the rubber suit keeps you safe. You wait until the discharges stop and then take off the suit.
+
+The air in the room smells of ozone. Lights get dimmer for a brief moment. An opening appears in one of the walls and a mechanical arm comes out of it. The arm is trying to grab you with its huge metal tongs.
+		Odp: I run of the room.
+			 () : You run to the door, which immediately opens in front of you. Seconds before you leave the room, the tongs come together in the place you are at.
+			 (endGame -> pok1.stay.crane) : The cold metal crushes your bones, cuts through intensities, and tears your skin into pieces. You are still alive when the arm stops, but no words come out of your mouth.
+			jeśli samo>1 () : What you can see is a translucent amoeba that flies out of your head. Its surface is covered with reflections of stars. The shape is growing in size, but at the same time it is consuming itself. The view of distant stars and planets is now spread across the entire horizon. You lose consciousness
+			jeśli samo<2 () : You notice a shape flying out of your head.
+			jeśli samo<2 (endGame -> observer) : Amidst the agony, the headache is so sharp you feel tears, or maybe blood, trickling down your cheek. You lower your head to give your final breath.
+		Odp: I escape through the hole from which the arm has come out.
+			 () : You stop for a moment. The arm is heading towards you, but when it gets close, you jump to the side. You try to slide under the metal arm and jump into the hole. The arm immediately goes down and...
+			jeśli spr<2 () : ...pins you to the floor.
+			jeśli spr<2 (endGame -> CakeEnd) : Your bones crack one by one. Your lungs and then mouth fill up with fresh blood. You pass out.
+			jeśli spr>1 (syt -> CiemnyPokoj) : ...you manage to roll to the side. Running on all fours, you are hurrying to reach the black hole.
+		jeśli [Self-awareness > 1]: 
+			Odp: I frantically pull out a gizmo.
+				 (wyt -1) : Out of your pocket you pull out a metal ball that immediately transforms into a ball of light. The ball goes up in the air and penetrates the metal arm. The deadly metal arm suddenly freezes. You approach the hole in the wall, from which the arm has come. Inside, there is empty, dark space. You enter the hole and are suddenly engulfed by darkness.
+				 (syt -> CiemnyPokoj) : 
+
+Syt: pok2
+	You enter a room - identical to the one you just left. Before you there are to two doors. Next to the one marked with “2”, there is a panel with numbers. The passage marked with “1” is open. Behind you, next to the passage you have come through, there is a panel with numbers. ( syt -> pok1.return)
+		Odp pok2.key: I pull out one of the heavy objects to take a good look at it.
+			 (wyt -1) : You reach out with your arm and feel a cold cube in your hand. Immediately after you pulled it out of your pocket, it transforms into a piece of paper with a number composed of 4 digits.
+			 (syt -> pok2) : 
+		() : You are holding a piece of paper with four digits.
+		jeśli [Self-awareness > 0]: 
+		jeśli [Self-awareness > 1]: 
+		Odp: I enter the code on the panel next to the door marked with “2”.
+			 () : You enter the numbers you found on the piece of paper on the panel. A green light turns on, and the door opens. You enter a tunnel.
+			 () : As you go through the tunnel, you notice light in the wall. You come up to a crack in the wall. In the distance you notice a panel with numbers - the same type you used to open the door.
+			 (syt -> 1B) : 
+		Odp: I enter the code on the panel behind me.
+			 () : Wpisujesz numery z kartki do panelu z kodem za sobą, zapala się zielona lampka i przejście za tobą się otwieraja. Przechodzisz.
+		Odp: I enter the door marked with “1”.
+			 () : You approach the door, which open right before you. You come into another room.
+			 (syt -> 1A) : 
+		Odp: I try to enter random numbers on the panel next to the door with “2”.
+			 () : As you press the buttons on the panel, you hear clicking noises, but nothing happens.
+			 (syt -> pok2) : 
+
+Syt: pok1.return
+	The darkness in the room makes it impossible to take a look at the ceiling, but the floor and the walls look the same as before. ( syt -> pok2.return)
+		jeśli [Self-awareness = 1]: 
+			() : You listen to the apparent silence inside the room. But then a barely audible rustling sound reaches your ears. Something like a whizz or an air fan. The sound is continuous, but easy to muffle. Even your breathing is louder.
+		Odp pok1.key: I pull out a gizmo.
+			 (wyt -1) : Out of your pocket, you pull out a cube that immediately turns into an ultraviolet torch.
+			 (syt -> pok1.return) : 
+		Odp: I cast a beam of light onto the floor.
+			 () : You can see footprints - yours and many others.
+			 (syt -> pok1.return) : 
+		Odp: I cast a beam of light onto the ceiling.
+			 () : There is something up there! The ceiling, when lit with ultraviolet light, shows some information. You suddenly experience a strong headache...
+			jeśli samo<1 () : ...you are unable to make any sense of the drawing on the ceiling.
+			jeśli samo>0 () : ... you conquer the pain and focus on the code: 
+
+‘.. / .- -- / - .... . / .- .-. -.-. .... .. - . -.-. - --..-- / .. - / .. ... / -- . / .-- .... --- / -... ..- .. .-.. - / - .... . / -.-. ..- -... . .-.-.- / -.-- --- ..- / -.-. .- -. / . ... -.-. .- .--. . / .. - .-.-.- / --. .. --.. -- --- ... / .- .-. . / - .... . / -.- . -.-- --..-- / ..- ... . / - .... . -- / - --- / --. . - / - --- / - .... . / ... . -.-. .-. . - / .-. --- --- -- .-.-.- / .. / .- -- / ... --- .-. .-. -.-- --..-- / .. - / .-- .- ... / - .... . / --- -. .-.. -.-- / .-- .- -.-- / .. / -.-. --- ..- .-.. -.. / .... . .-.. .--. / -.-- --- ..- .-.-.-’
+			 (syt -> pok1.return) : 
+		Odp: I light the walls.
+			 () : There are thousands of fingerprints all over them. Not only yours.
+			 (syt -> pok1.return) : 
+		Odp: I go back through the passage.
+			 () : You go in, with one hand outstretched. The door automatically recedes into the upper wall. A blinding white light floods the room. You walk through. Again.
+
+Syt: pok2.return
+	Before you there are two doors marked with “1” and “2”. Next to the one marked with “2”, there is a panel with numbers. ( syt -> 1A)
+		Odp: I enter the door marked with “1”.
+			 () : You approach the door, which open right before you. You come into another room.
+		Odp: I try to enter random numbers on the panel next to the door with “2”.
+			 () : As you press the buttons on the panel, you hear clicking noises, but nothing happens.
+			 (syt -> pok2.return) : 
+
+Syt: 1A
+	You are in a different room. In it, there is a table with four vials on it. Each of them is filled with liquids in different colours. There is just one door in the room. The door does not open when you approach it. You have no clue what is inside the vials, and there is no smell. Their consistency does not suggest what ingredients they could be made of. ( syt -> 1A.2)
+		Odp 1A.green: I drink the green liquid.
+			 (zdr -1) : It is tasteless, just like water. Initially nothing happens after you drank it, but then you suddenly feel weak and blood begins to drip from your nose. You sit down to rest, but you feel drained of energy.
+			 () : As you are sitting on the floor, the door at the other end of the room opens.  You put the empty vial into your pocket – it may come in handy at some point.
+		Odp: I drink the yellow liquid.
+			 (spr -1) : It tastes like a strawberry juice.  Initially it seems nothing has changed, but suddenly your limbs go numb. The numbness gradually disappears, but you feel piercing pain in your feet as you walk.
+		Odp: I drink the purple liquid.
+			 () : At the beginning, the liquid has no taste, but when it has warmed up inside your mouth, it begins to smell like denatured alcohol.  It suddenly burns your tongue and...
+			jeśli wyt>1 (spr +1) : …knowing you still have a few gizmos that could save you, you resist the urge to spit the liquid out and you swallow it.  You feel a nice warmth inside your stomach and your mind seems clearer.
+			jeśli wyt<2 () : …overtaken with panic, you spit the liquid out. It evaporates instantaneously and completely, without even reaching the floor. You seem fine, still alive. You are standing there surprised, unable to move your hands, head, or legs… And yet your body…
+			jeśli wyt<2 (endGame -> violetDeath) : …begins to move by itself. Your mind turns foggy, you seem trapped inside your head with someone behind the steering wheel. You cry inside and slip into unconsciousness.
+		Odp: I drink the red liquid.
+			 (endGame -> HotEnd) : The vial is cold to the touch. A quick gulp and you feel it foaming inside your mouth. After a second, you feel an excruciating pain that brings you to your knees. The strong acid travels down your body, driven by the unstoppable force of gravitation. Each breath is a battle and you do not intend to lose any of them. But your heart surrenders first. You did not realise you continuously felt its beating - until it stopped. The darkness was engulfing you slowly and the last thing you saw was the empty vial slowly rolling on the floor.
+		Odp 1A.key: I get the gizmo out.
+			 (wyt -1) : Out of your pocket you pull out a metal cube, which gradually turns into a red pill.
+			 (syt -> 1A) : 
+		Odp: I swallow the pill and drink the content of any of the vials.
+			 () : You swallow the pill and then you grab the vial standing the closest to you.  The liquid tastes like water. There seems to be no difference after you drank it.
+		Odp: I drop the pill into any of the vials and I quickly drink it.
+			 (endGame -> violetKeyDeath) : The pill immediately dissolves in the vial without even changing the colour of the solution. You reach for the vial and drink it all in one gulp. Initially it seems nothing has changed, but suddenly your limbs go numb. The numbness expands until it reaches your head. It is as if cold needles were piercing your head. Tears of pain flow down your cheeks. You wipe them and look at your hand, which has turned red. You drop to the floor and pass out.
+		jeśli [Self-awareness > 0]: 
+			Odp: I drink all of them.
+				 () : You take the vial closest to you. However, rather than drink it, you pour its content into the next vial. You do the same with the remaining two vials. You stir the content of the last vial, observing how the liquids mix into a greyish slush. You bring the vial to your lips and drink it. Its consistency and taste remind you of the porridge you used to eat as a child. After you drank it all, you seem fine. Not much has changed.
+				 (endGame -> MixedEnd) : [Suddenly, with zero warning, consciousness drops down to zero – no-one will ever know what happened to our character.]
+
+Syt: 1A.2
+	The door that has remained closed until now opens, revealing a wall with two more doors. They are marked with shiny symbols rather than lines. ( syt -> 2A)
+		Odp: I choose the door with the heart symbol.
+			 () : The door opens before you and you move on.
+		Odp: I choose the door with the window symbol.
+			 () : The door opens before you and you move on.
+			 (syt -> 3A) : 
+
+Syt: 2A
+	There is a lion sleeping in the room.  The animal is huge, and its massive chest is gently moving to the rhythm of slow breathing. ( syt -> 2A.2)
+		Odp 2A.key: I get the gizmo out.
+			 (wyt -1) : 2A.ans1.change1.text.
+			 (syt -> 2A) : 
+		() : You are holding a syringe in your hand.
+		Odp 2A.pastLion: I will quietly sneak around the lion.
+			 () : Taking furtive steps, you pass by the sleeping beast.
+			jeśli spr>1 () : When you are next to it, its breathing stops for a moment, but it does not wake up.  You manage to reach the other side of the room.
+			jeśli spr<2 () : You see the lion’s mouth moving while you are passing by. Huge fangs can be seen between its lips.  The sight is tantalising.   However, as you keep staring at the teeth, you do not notice the animal’s tail on the floor. You trample on it.
+			jeśli spr<2 (endGame -> LionEnd) : The lion jumps to its feet, roaring. Before you even manage to get scared, its jaws clench on your leg.  As the animal is shaking its head, your body is being torn into pieces and your blood splatters the entire room. You feel excruciating pain wherever the lion’s fangs and claws have pierced your body. The lion does not waste much time on you - it tears your throat apart.
+		Odp: I inject myself with the content of the syringe.
+			 () : You stick the needle into your stomach and press the piston.  You immediately lose feeling in your legs and drop to the floor.
+			 (endGame -> paralyze.lion.death) : The lion opens its eyes. It notices you. Its pupils grow wider. Carefully and silently it rises from the floor, as if it was afraid that it would frighten you. You, however, are unable to move a limb. You close your eyes and after a moment you hear the brushing of fur near you. You felt sudden pain in your neck and everything ended.
+		Odp: I inject the content of syringe into the lion.
+			 () : You work up your courage and slowly approach the beast, and then inject the content of the syringe into the lion’s neck. It raises its head, gives a snarl, and falls as if paralyzed. And there you have it: lying on the floor, breathing calmly, and looking at you with its eyes wide open.
+		Odp: I attack the lion.
+			 (endGame -> EatenEnd) : You try to crush the lion’s muzzle against the floor with a powerful stump of the shoe. The lion wakes up, whimpering, and throws itself at you, with blood trickling down its muzzle. You try to avoid the massive paws, but soon enough the giant cat clamps its teeth on your neck. You are still alive when the lion immerses its muzzle into your guts to eat out your stomach.
+
+Syt: 2A.2
+	There are two passages ahead of you. ( syt -> 3A)
+		jeśli [Self-awareness > 0]: 
+			() : In the place where the lion is lying the floor has a different colour. You also notice a semi-circular gap. Somewhere at the back of your head you hear a whisper telling you that it’s safer to pick one of the doors and move on.
+		Odp 2A.2.lionPasskey: I push the lion aside.
+			 () : You approach the lion and place your hands on its body. You can feel the soft fur under your fingers. At first, you push carefully, almost gently, so that the beast does not wake up. But...
+			jeśli samo>0 () : ...it won’t move an inch. You put your back against the lion’s side, block your arms and legs, and then push with all your might. Bit by bit, you manage to move the heavy body of the beast.
+			jeśli samo<1 () : ...it opens its eyes and sees you.
+			jeśli samo<1 (endGame -> lionMoveDie) : You tried to escape, put up a fight. Later you just wished for quick death.
+			 (syt -> 2A.2) : 
+		Odp 2A.2.key: I pull out a gizmo.
+			 (wyt -1) : Out of your pocket you pull out a metal cube that immediately transforms into a ball of light. The ball goes up in the air...
+			jeśli samo=1 () : ....and it penetrates the hatch, which opens after a short while.
+			jeśli samo>1 () : ...a tear flowed from your eye. It fell on the white ball and absorbed it.
+			jeśli samo>1 (endGame -> notGood) : You feel an excruciating headache. More and more tears are flowing from your eyes. You lose consciousness when your body gets up by itself and moves towards the door.
+			 (syt -> 2A.2) : 
+		() : The lion is lying next to you as you are standing over a round piece of metal in the floor. The thing is made of a slightly different material than the rest of the room walls. There are no holes or signs in it.
+		Odp: I enter the passage in the floor.
+			 () : You are now looking at the entrance to a metal pipe, the end of which is lost in the dark. You hesitate only for a moment. You get into the pipe, pushing against its walls. You are moving down, noticing the interior of the maze.
+			 (zdr -1) : During your descent, you slipped and fell into the darkness.
+			 (syt -> CiemnyPokoj) : 
+		() : The crack in the floor is open, you feel a slight breeze coming from it.
+		Odp: I choose the door with the light bulb symbol.
+			 () : The door opens before you and you move on.
+			 (syt -> 1B) : 
+		Odp: I choose the door with the window symbol.
+			 () : The door opens before you and you move on.
+
+Syt: 3A
+	You get inside a room, the floor of which is covered with broken glass. The glass layer is at least a dozen centimetre thick, you cannot go round it in any way. To reach the door you have to go through the glass. You look at your feet - they are bare. ( syt -> 3A.2)
+		Odp: I run through the glass.
+			 (zdr -1) : You make long steps, so you reach the door in a flash. However, since you set your feet hard, your soles are all cut and you lose much blood.
+		Odp: I walk slowly on the glass.
+			 (spr -1) : You slowly transfer body weight from one foot to the other, choosing the places where the glass has the least sharp edges. In the end you reach the door. You have managed to avoid deep cuts, but there are many glass pieces stuck in your feet.
+		Odp: I use the gizmo.
+			 (wyt -1) : Out of your pocket, you pull out a cube that immediately turns into slippers with thick leather soles. You put on the slippers. You walk to the other side untroubled, listening to the sounds of crashing glass.
+		jeśli [Self-awareness > 0]: 
+			Odp: I kill myself!
+				 (endGame -> LightOutEnd) : You bend over and pick up a sharp piece. You cut your veins with it, first on the left, and then on the right wrist. You sit down against the wall and wait. You feel your life is slowly evaporating. You have the impression that the strange force residing inside you pushed you towards the door. It wants you to go on. When you start losing strength, you feel that your body gets up and walks through the glass. You lose your consciousness while walking.
+
+Syt: 3A.2
+	On the other side of the broken glass area, a door is waiting for you, with various symbols shining bright. ( syt -> 1B)
+		Odp: I go through the door with the light bulb symbol.
+			 () : The door opens before you and you move on.
+		Odp: I go through the door with the hand symbol.
+			 () : The door opens before you and you move on.
+			 (syt -> 2B) : 
+
+Syt: 1B
+	You enter a completely dark room. The darkness is so absolute you can’t see your own hand touching your nose. In the distance you can see weak light of the door ( syt -> 1B.2)
+		jeśli [Self-awareness > 0]: 
+			() : You can feel delicate warmth on the face radiating from the side of the room.
+		Odp 1B.key: I pull out a gizmo.
+			 (wyt -1) : From your pocket, you pull out a piece of metal that immediately turns into a torch.
+			 () : On the walls you can see panels where the air is waving and puffs of smoke in the middle of the room.
+			 (syt -> 1B) : 
+		Odp: Using the torch, I pass through the room.
+			 () : You press on, keeping a safe distance from both the cloud of smoke and the side walls. You walk to the other end of the room.
+		Odp: I walk ahead.
+			 (zdr -1) : You move straight on, reaching your hands out. You tread slowly, checking with your feet for any spikes, traps, or other threats in your way. You seem to be doing quite well, until the moment you smell something sour in the air. You step back... but to no avail. You choke and cough for a long moment. You cannot get rid of the burning sensation in your throat.
+		Odp: I walk along the walls.
+			 (spr -1) : You reach behind your back until you can feel the wall. You put your hands on it and move along it. You hope this way you will avoid the potential traps in the middle of the room. You reach, more or less, the mid-section of the wall when your hands touch a hot surface. It is so scalding that the skin on your hands get burnt.
+		Odp: I’ll wait 5 minutes.
+			 (endGame -> TostEnd) : You wait. Soon you can smell something sour and acrid in the air.  Your throat clenches and you cannot catch your breath. You are opening your mouth desperately, bouncing around the room. You get weak in your knees and you land on your hands. You bump into something hot, and you can smell burnt skin and flesh. You try to get up, move away from the heat, but with your hand you lean against the hot panel and immediately let go. You curl up in a ball, overtaken with pain.
+
+Syt: 1B.2
+	Suddenly the light is turned on in the room. You have two doors in front of you. ( syt -> 2B)
+		jeśli [Self-awareness > 1]: 
+			() : You are about to go through one of the doors, but you take a look at the ceiling. You notice a message written across it: ‘You can keep the torch - A’.
+		Odp: I choose the door with the hand symbol.
+			 () : The door opens before you and you move on.
+		Odp: I choose the door with the house symbol.
+			 () : The door opens before you and you move on.
+			 (syt -> 3B) : 
+
+Syt: 2B
+	You enter a room where you find a strange man standing. Before you utter a word, something hits you in the back of your head. You turn around just in time to stop a woman from executing another blow. Fighting an unknown woman, you feverishly wonder why she attacked you. From the corner of your eye you see that the man is walking towards you. ( syt -> 2B.2)
+		Odp: I fight the man.
+			 (zdr -2) : You push the woman away. You evade the man’s blow and punch him in the side. The man fights back and he lunges at you, knocking you down to the floor. You start fighting savagely like caged animals. You try to take over control. You manage to wrap your arms around his neck. You tighten the grip and hold until the man stops moving. You get up quickly to take care of the woman. She holds a knife in her hand and stabs you on the shoulder, but soon falls dead on the floor.
+		Odp 2B.killWoman: I attack the woman.
+			 (spr -1) : You push the woman away. You evade the man’s blow and punch him in the side. You jump quickly to the woman who is holding a knife in her hand. You twist her hand and take away the weapon. Without hesitation you slit her throat and move on to the man. He’s faster than you are: his fist catches your face, right by your eye. You nearly drop the blade, but somehow you manage to hold on to it. You shove it into the man’s chest.
+		Odp 2B.chicken: I try to escape.
+			jeśli zdr>2 () : You push the woman away. You turn your back on the man and try to leave through the door...
+			jeśli zdr>2 (zdr +1) : ...something hits you on the head and you lose consciousness. When you regain it, you notice the motionless and injured bodies. The man’s belly was pierced with the knife, and the woman’s skull was crushed. You feel somewhat refreshed.
+			jeśli zdr<3 () : The door will not open, and the man punches you with his fist, hitting the back of your head.
+			jeśli zdr<3 (endGame -> ChickenEnd) : The blow is forceful enough to bring you down to your knees, and everything goes black. The man does not stop - he keep punching you and soon your face is covered in blood. The last thing you see is the women approaching the man from behind and slitting his throat.
+		Odp 2B.crushKeys: I pull out a gizmo.
+			 (wyt -1) : You push the woman away. Out of your pocket you pull out a metal cube that turns into a baseball bat. The bat is solid and heavy. You see a shadow of doubt in the man’s eyes, but it is already too late for him. You hit him straight on his temple. The man falls to the ground. A thin trickle of blood is coming from his head. You turn to the woman who is holding a knife. The woman is trying to stab you, but your bat gives you an advantage. The first blow removes the knife out of her hand and breaks her wrist, with the second - you aim at her head. The woman goes down like a rag doll.
+
+Syt: 2B.2
+	You breathe heavily standing over the bodies of two complete strangers. You struggle not to throw up, your eyes well up. ( syt -> 3B)
+		jeśli [Self-awareness > 0]: 
+			Odp: You search the body of the woman.
+				 () : You bend over the body of the woman you killed. You try not to look at her injured face and broken arms. You remove her clothes. You do not know why you did it. It is as if some force was pushing you.
+				 () : In her mouth you find...
+				jeśli 2B.crushKeys () : ...bits of crushed metal.
+				jeśli 2B.killWoman (wyt +2) : ...two metal cubes that fell out of her cheeks. You slip the cubes into your pocket.
+				jeśli 2B.chicken () : ...nothing. You cannot bring yourself to explore the contents of the poor woman’s mouth.
+				 (syt -> 2B.2) : 
+		jeśli [Self-awareness > 0]: 
+			Odp: I search the man.
+				 () : You bend over the body of the man you killed.
+				 (endGame -> sawGlue) : In his splintered head, you see a moving, transparent, gelatinous amoeba. A liquid is flowing out of the amoeba. Inside the creature you see green lights. Suddenly, the amoeba ceases to move. It slowly takes the shape of a spearhead turned your way. Water suddenly comes out of your nose and freezes, forming a crust. However, it did not manage to freeze fast enough because the spearhead flew in your direction and pierced your neck. You cover the wound with your hand, but you can feel the life’s escaping you. You pass out.
+				 (syt -> 2B.2) : 
+		Odp: I go through the door with the tree symbol.
+			 () : The door opens before you and you move on.
+			 (syt -> 1C) : 
+		Odp: I go through the door with the house symbol.
+			 () : The door opens before you and you move on.
+		Odp: I cannot stand it anymore.
+			 (endGame -> SuicideEnd) : You approach the woman's corpse and pick up the dagger lying next to her. You take the last deep breath and cut your own throat in a single move. Blood flows into your oesophagus and lungs, you begin to drown. You try to stop the bleeding with your hands, but the wound is too wide and deep. Trying to catch your breath, you collapse on the people you killed.
+
+Syt: 3B
+	You enter a room with a swarm of wasps. The wasps are swirling all over the room. The buzzing sound they generate sends shivers down your spine. Through the swarm of insects you can barely see the door on the other side of the room. To reach the door you have to get through the insects. ( syt -> 3B.2)
+		jeśli [Self-awareness = 1]: 
+			() : You take a closer look at the wasps. The longer you look at them the more you think that they do not move randomly, but according to a fixed pattern. You are convinced you have almost figured out the pattern of their movement, but suddenly the thought is lost and you are left alone with the swarm of wasps.
+		jeśli [Self-awareness > 1]: 
+			() : You look at the wasps closely.  They seem different than the insects you remember. You can’t really say, but there’s something wrong with them.
+		Odp: I will run fast through the cloud of wasps.
+			 (zdr -1) : You cover your eyes with your arm and breathe in deeply. You run into the cloud of insects that immediately sting you into every naked spot on the body. Each subsequent sting inflicts horrible pain. Finally, you reach the opposite wall, where the wasps leave you alone.
+		Odp: I will walk slowly through the cloud of wasps.
+			 () : You cover your face with your hands and look through your fingers to see the road ahead. You breathe deeply and move slowly, step by step, through the swarm of insects. The wasps are sitting on your skin and their little legs are tickling you. It’s hard for you not to burst out laughing nervously, but you know that you have to be still like a statue.
+			jeśli spr>1 () : It’s hardest to endure the first stings, but you clench your teeth and reach the opposite wall. This is where the wasps leave you alone.
+			jeśli spr>2 () : You're doing well, but when a couple of wasps decide to sting you, you panic and try to chase them away.
+			jeśli spr>2 (endGame -> VenomEnd) : The wasps go berserk and come at you from every direction. They push their stings into your skin leaving blisters. You can’t bear any more stings, you panic and run ahead, but they keep attacking. You pass out.
+		Odp 3B.key: I pull out a gizmo.
+			 (wyt -1) : You reach into your pocket to get a metal cube that immediately turns into a smoking ball. The smoke does not have any distinctive smell, so you breathe it in.
+			 (syt -> 3B) : 
+		Odp: I throw the ball into the swarm of wasps.
+			 () : You throw the ball into the swarm of wasps and they all die, one after another. Soon all the insects are dead on the floor and you can walk safely to the other side of the room.
+		Odp: I swallow the smoking ball.
+			 (endGame -> smoke) : You quickly swallow the ball, which smoothly goes down your throat. Within seconds, the smoke starts to burn your stomach from the inside. You see wisps of smoke coming through your belly button. Then the last thing you remember is a strong blow on your head.
+		Odp: I try to chase the wasps away.
+			 () : You take your T-shirt off and spin it as if it was a propelling blade to chase away the wasps. You hope you will be able to reach the other side of the room. You have chased away the first row of wasps, so you make a bold step forwards.
+			jeśli zdr>1 () : Some wasps sting you, but you clench your teeth and endure the pain.  Step by step you walk on, relentlessly waving your T-shirt. You reach the other side, but you can feel the venom working inside your body.
+			jeśli zdr<2 () : The subsequent rows of insects are harder to deal with.  The wasps gather around you and sting ferociously.  You hiss with pain and try to chase them away. You want to run to the door, but you lose your sense of orientation in the swarm of wasps.
+			jeśli zdr<2 (endGame -> HelicopterEnd) : Every bit of your body is being stung. One wasp stings you in your eye. You want to scream, but the insects fly into your mouth and sting you from the inside. You don’t remember anything else.
+
+Syt: 3B.2
+	You are at the door, the wasps are behind you. Which door do you choose? ( syt -> 1C)
+		Odp: I go through the door with the tree symbol.
+			 () : The door opens before you and you move on.
+		Odp: I go through the door with the cheese symbol.
+			 () : The door opens before you and you move on.
+			 (syt -> 2C) : 
+
+Syt: 1C
+	You enter a room filled with buzz saws. The blades have wide and long teeth, which rotate with enormous speed, making a loud whistle. Metal plates come together, producing sparks and clattering. They are attached to jibs that keep moving forwards, backwards, sideways.\n\nYou think you may be able to walk between the saws unhurt. How do you want to walk through them? ( syt -> 1C.2)
+		Odp: Slowly.
+			 () : First you observe the way the saw jibs move. Then, once you’re familiar with the pattern, you decide to make a move. You move slowly, carefully, avoiding the spinning blades by millimetres.
+			jeśli spr>1 () : At times your limbs get very close to the saws, but you manage to go across to the other side.
+			jeśli spr<2 () : At some point, you’re not flexible enough and one of the saws cuts your back - you lose your balance and you run into another saw.
+			jeśli spr<2 (endGame -> MeatEnd) : The spinning blade slashes your face.
+		Odp: Fast.
+			 () : You take one last look to figure out the system in which the saws move. You move quickly hoping that you’ll manage to evade the moving blades. You manage to dodge them at the very last moment. The saws are swirling over your head. One of them cuts a streak of your hair off, but you’re doing pretty well. As you approach the door, you carelessly place your foot and...
+			jeśli samo>1 () : ... in your imagination you watched the saw cutting off all of your toes on the right foot. However, at the last moment, the sharp tool stopped and did not do you any harm.
+			jeśli samo<2 (zdr -1) : ... the saw cuts off all of your toes on the right foot.
+		Odp: I use the gizmo.
+			 (wyt -1) : Out of your pocket you take a metal cube that changes into a remote control with one button. When you press the button, the saws stop spinning.  Without the ominous buzz, the blades do not seem that horrible.  And although you are still worried that the blades will move again, you walk on. You reach the other side of the room intact.
+
+Syt: 1C.2
+	A pair of doors is in front of you. ( syt -> 2C)
+		jeśli [Self-awareness > 0]: 
+			Odp: I climb to the wheel on the ceiling.
+				 () : You approach the jigs with buzz saws attached to them. You carefully climb up the jibs, avoiding sharp teeth of the saws. Suddenly you hand slips off from the grip...
+				jeśli spr>0 (wyt -1) : ...you managed to keep your balance. The hatch is within your reach, but it does not want to open. You pull a metal cube out of your pocket that turns into a ball of light. The ball rises from your hand and falls into the hatch. The hatch opens and you climb up to the dark tunnel over it. You move through a narrow pipe in total darkness. Then you crawl out onto a wide flat surface.
+				jeśli spr<1 () : ... you did not manage to keep your balance and you fell down.
+				jeśli spr<1 (endGame -> climbSaw) : You landed with your belly on the sharp side of the saw, which penetrated your body deep. Not wanting to lose too much blood - you do not move. However, once the adrenaline level began to fall, you experienced an incredible pain and lost consciousness.
+				 (syt -> CiemnyPokoj) : 
+		jeśli [Self-awareness > 0]: 
+			() : You turn around and notice a wheel made from different metal, attached to the ceiling.
+		Odp: I go through the door with the right angle symbol.
+			 () : The door opens before you and you move on.
+			 (syt -> 3C) : 
+		Odp: I go through the door with the cheese symbol.
+			 () : The door opens before you and you move on.
+
+Syt: 2C
+	You find yourself in a room full of rodents. Their squeaks are deafening. Hundreds of thousands of eyes glow in red. Grey bodies are swarming in a tank spreading across the whole room. You are standing at the threshold. ( syt -> 2C.2)
+		Odp: I will run fast through the room.
+			 (zdr -1) : You start running through the pit filled with rats. The rodents painfully bite your feet. You reach the other side of the room.
+		Odp: I will jump across the room.
+			 (spr -1) : You make a deep squat and you bounce straight into the pit of rats. You crush several rodents under your feet and then jump again. This time, however, you slip when jumping up and you fall on your back. The rats immediately get to you and bite you hard.
+			jeśli spr>0 () : You get up fast.
+			jeśli spr<1 (zdr -1) : It’s difficult for you to get up, as you feel painful bites of little teeth all over your body.
+			 () : You reach the door.
+		Odp: I use the gizmo.
+			 (wyt -1) : Out of your pocket you take a metal cube, which turns into a large chunk of mouldy green cheese. Instinctively, you drop the cheese in a gesture of disgust and the rats gather around it. You run away from the place and without problems reach the other side of the room.
+		jeśli [Self-awareness > 0]: 
+			Odp: I will kill the rats.
+				 (endGame -> RatEnd) : You approach the pit of rats and crash the one nearest to you with your foot. Bodily liquids ooze from the small grey body and other rats throw themselves at the corpse and at your foot. One of the grey rats bites you on the leg. You crash the creature, as well as several others, with your other foot. Rat’s intestines stick to your sole. The rats fight back - they bite your feet, one of them clings to your calf. You drop down only after one of them bites your testicles. You fall straight into the pit of grey bodies. You try to get up, but the rats are faster. They eat you bit by bit.
+
+Syt: 2C.2
+	The rats keep squeaking behind your back. You have doors to choose from. ( syt -> 3C)
+		Odp: I go through the door with the right angle symbol.
+			 () : The door opens before you and you move on.
+		Odp: I go through the door with the “no entry” symbol.
+			 () : The door opens before you and you move on.
+			 () : You recall your childhood. The image of your bedroom gives you some comfort.
+			 (syt -> ExitRoom) : 
+
+Syt: 3C
+	You enter an empty room. There is a huge writing engraved on the floor:\n\n‘Three rooms have the value of thirty. The room and two bodies have the value of eighteen. A body minus a knife has the value of two. What is the value of one room plus one body plus one knife?’ Three doors in front of you have numbers written on them. Which door do you choose? ( syt -> ExitRoom)
+		Odp: The door with the number ‘16’.
+			 () : You approach the door, which open right before you. You move on.
+		Odp: The door with the number ‘15’.
+			 (endGame -> DrownEnd) : You approach the door, which open right before you. A wave of ice cold water hits you. The water gets into your mouth and nose, you are choking, but you manage to lean against the wall and get up. However, it does not help much. Soon enough the water fills up the whole room. You dive, but there’s no exit. You feel the water pressing your lungs. You fight until you’re short of breath. A moment before you die, when the remains of oxygen fill out your veins, you feel ecstatic. You die happy.
+		Odp 3C.14: The door with number ‘14’.
+			jeśli samo>0 () : You approach the door, which open right before you. From the passage behind the door, a long mental bar is hurled, aiming straight at your face. You manage to bow your head and the bar only brushes against your cheek.
+			jeśli samo>0 () : You wipe the blood streak from your cheek.  Or go through the open door from which the bar burst out? Behind it, there’s only darkness and you cannot see what is inside. What do you do?
+			jeśli samo<1 () : You approach the door, which open right before you. From the passage behind the door, a shiny streak comes at you.
+			jeśli samo<1 (endGame -> ShotEnd) : You felt a sharp pain on your face, and then there was nothing.
+			 (syt -> 3C) : 
+		Odp: Opened door with the number ‘14’.
+			 () : You walk through the open door and enter complete darkness.
+			 (syt -> CiemnyPokoj) : 
+		Odp: I use a gizmo.
+			 (wyt -1) : You take the metal cube out of your pocket. It changes into a piece of paper with ‘16’ on written on it.
+			 (syt -> 3C) : 
+
+Syt: ExitRoom
+	In the room, the walls are white, while the light is warm. At the other end, there is a white passage. ( syt -> CiemnyPokoj)
+		jeśli [Self-awareness = 0]: 
+			() : You cannot shake off a feeling that there must be another exit.
+		jeśli [Self-awareness > 0]: 
+			() : A barely audible buzz reaches your ears - it reminds you of working machines.
+		jeśli [Self-awareness = 2]: 
+			Odp ExitRoom.key: I pull out a gizmo.
+				 (wyt -1) : Out of your pocket you pull a metal cube  that turns into a ball of light. The ball leaves your hand and hits one of the walls. A dark hole appears in, with the size of a large dog.
+				 (wyt +1) : The ball bounces off of the wall and returns to your pocket, turning back into a cold metal object.
+				 (syt -> ExitRoom) : 
+		Odp: I enter the dark hole.
+			 () : The hole is low, so you proceed on your knees.
+			 () : Moving on all fours, you felt pieces of glass under your hands; you panicked...
+			jeśli spr>0 () : ...you quickly stopped and feeling around, gently brushed aside the larger pieces.
+			jeśli spr<1 (zdr -1) : ...and jumped suddenly - hitting the low ceiling with your head. As you landed down, the glass dug deep into your knees.
+		Odp ExitRoom.key2: I get the gizmo out once again.
+			 (wyt -1) : You reach into your pocket and pull out the metal cube. It immediately transforms into a ball made of greenish light.  It hits the wall revealing another entrance, with green mist pouring from the inside.
+			 (syt -> ExitRoom) : 
+		Odp: I go through the entrance of green fog.
+		Odp: I go through the entrance of white light.
+			 () : You enter the patch of white light. Suddenly, you feel weightless. You dissolve amidst the whiteness.
+			 (samo +1) : You feel you have a better understanding of the labyrinth.
+			 (endGame -> white) : You are free, but your questions remain unanswered.
+
+Syt: CiemnyPokoj
+	The humidity level here seems different than in any of the other rooms. The floor is not so dusty either.  Your legs seem to be heading somewhere of their own free will.  There is a sense of annoyance - you feel a powerful urge to get out of this rooms. ( syt -> CiemnyPokoj.2)
+		Odp ciemny.key: I pull out a gizmo.
+			 (wyt -1) : You take the metal cube out of your pocket. It changes into a torch.
+			 () : With the torch, you can light up the room a little. You notice metal arms equipped with circular saws. You see huge black spikes suspended from the ceiling.  At the eye level, by the wall, there is a crystal ball. It seems to collect the light coming from your torch. You reach the opposite wall and the beam of light reveals a panel with some buttons.
+			 (syt -> CiemnyPokoj) : 
+		() : It is completely dark inside the room.
+		() : Behind you back, you notice metal arms equipped with circular saws, black spikes hanging from the ceiling. Somewhere by the wall, there is a crystal ball. A beam of light from your torch reveals a panel with some buttons.
+		Odp: I approach the panel.
+		Odp ciemny.explore: I examine the room, feeling my way in the dark.
+			 () : You reach out and slowly take a few steps. The skin on you hand tingles because you seem to be passing by some shapes. Cautiously, you examine the shapes with you hands. They seem metallic to the touch. Then your finger finds a button.
+			 (syt -> CiemnyPokoj) : 
+		Odp: I press the button.
+			 (endGame -> HalfEnd) : The silence is interrupted by a scraping sound, which resembles you of something you have heard. You immediately feel cold metal on your face. It slices through your head, effortlessly, removing a patch of your skin.
+		Odp CiemnyPokoj.back: CiemnyPokoj.ans6.text.
+			 () : Your body seems to be rushing to leave the room through the entrance.
+			 (syt -> ExitRoom) : 
+		Odp: I turn back.
+			 () : Your body seems to be rushing to leave the room through the entrance.
+			 (syt -> ExitRoom) : 
+
+Syt: CiemnyPokoj.2
+	You are standing in front of the panel. It has got four buttons and a hole. You starting to feel a headache. More and more fearful, you really want to leave this room. ( syt -> OkraglyPokoj)
+		Odp: I move away from the panel.
+			 (syt -> CiemnyPokoj) : 
+		Odp: I press any button.
+			 (endGame -> infractEnd) : The panel produces a series of sounds. Then electric discharges appear on its surface. Before you manage to move away from the panel, electric current passes through your body. You heart suddenly stops. You die - just before you found the answer.
+		Odp ciemnyPokoj.2.key: I pull out a gizmo.
+			 (wyt -1) : I pull out the metal ball, which changes into a small key.
+			 (syt -> CiemnyPokoj.2) : 
+		Odp: I insert the key inside the hole in the panel.
+			 () : You insert the key into the hole in the panel and turn it. You hold your breath. The buttons on the panel begin to blink, but not randomly. There is a sequence to it. You watch them for a second and then push them in the same order. Once you pressed the last one, a door opens in one of the walls. You go through it.
+		jeśli [Self-awareness > 0]: 
+			Odp CiemnyPokoj.2.pattern: I press the button following the sequence.
+				 () : The arrangement of the buttons on the panel reminds you of something. You can’t remember what it was, but you have the impression you have seen it before. You have already pressed the same button. You let your fingers figure out which button to press and when. Once you have pushed the last one…
+				 () : …a door opens in one of the walls.
+				jeśli samo>1 () : This must be it. But the sheer thought of going through the door gives you a stronger headache.
+				jeśli samo<2 () : The sheer thought of going through the door gives you a stronger headache.
+				 (syt -> CiemnyPokoj.2) : 
+		Odp: I go through the open door.
+			 () : You enter the door. As you stand there, blinded with light, you notice a few smudges coming at you. All you can do is close your eyes.
+			jeśli samo>1 () : A few drops of water are launched from your head. They annihilate the smudges. You move on.
+			jeśli samo<2 () : The smudges pierce your body.
+			jeśli samo<2 (endGame -> Okragly.Smooth) : You feel hot liquid on your face, on your shirt. You fell down on your knees.
+			jeśli samo<2 (samo +1) : You seem to know better how this labyrinth works.
+
+Syt: OkraglyPokoj
+	You enter a room shaped like a circle. Or a sphere, to be precise. The strange part is that all the walls are transparent. Your forehead explodes with sharp pain. You go down on your knees and close your head in your arms. You do everything you can to reduce the pain. Something is trying to kill you right now - with far more determination than before. ( syt -> OkraglyPokoj.2)
+		Odp: You have no more strength left.
+			 (endGame -> flesh) : You realise you have come here too early. Your thoughts are all jumbled up. You literally watch your whole life flash in front of your eyes. The headache is unbearable. Your skull seems to be caving in under pressure. That's the last thought you ever had.
+		jeśli [Self-awareness = 2]: 
+			Odp: I think about getting out.
+				 (endGame -> NearEnd) : You hold on to your will to get out of here.  You focus all your energy on that single thought, but the pain is unbearable. It is just too much.  You can't think straight. You yield to it and your skull literally explodes.
+		jeśli [Self-awareness = 2]: 
+			Odp: I think about the labyrinth.
+				 () : You focus all your thoughts on the labyrinth. It suddenly seems different that you had previously imagined it. You can imagine rooms you have yet not seen before. This thought is not really yours, but you hold on to it nonetheless. The pain is getting stronger, but you manage to stand on your feet.
+
+Syt: OkraglyPokoj.2
+	 ( syt -> <nic>)
+		Odp okragly.key: I pull out a gizmo.
+			 (wyt -1) : You take out metal cubicles, which transform into balls of light. They enter your head. Suddenly, a translucent amoeba flies out of it. You give it a good look. What you see behind it is not the walls of the room, but stars. You move around the levitating amoeba.
+			 (syt -> OkraglyPokoj.2) : 
+		() : You hear a scream growing inside you, a flood of thoughts that belong to someone else. In your mind's eye, you see a hypercube. You see silver veins stretched between planets, each millions of kilometres long. You see the labyrinth drifting across the space. This awareness seems increasingly distant from your thoughts. You manage to regain control over the right side of your head. You do know, however, it is displeased, maybe even frightened. The pressure is not getting any weaker and you know you can't resist it much longer.
+		() : The transparent creature is levitating in the middle of the room. There is a star burning bright inside its body, and you feel its heat on your skin.
+		Odp okragly.key.2: You pull out another gizmo.
+			 (wyt -1) : Out of your pocket, you pull out...
+			jeśli 1A.green (wyt +1) : ...the vial you had previously collected from the room. The amoeba shutters the object in you hand and it begins to grow in size.
+			jeśli 1A.green () : ...a gizmo. The amoeba shoots a drop at you. It consumes the cube before it manages to transform into anything.
+			jeśli 1A.green (endGame -> amebaKill) : The jelly-like creature begins to expand until it fills out the entire room. You are no longer able to see the labyrinth. It is as if you were standing on an invisible floor in the middle of the universe. You feel neither cold nor heat… You stand there, dreaming and looking at the burning star. When you take a breath… But you can't breathe and start to gasp in panic. You slowly pass out - right there, surrounded by the most magnificent landscape of cosmos.
+			 (syt -> OkraglyPokoj.2) : 
+		Odp: You try to quickly grab a gizmo.
+			 () : With your wounded hand, you quickly reach out for the real gizmo. The upset amoeba has too little time to react.
+			 (wyt -1) : The gizmo transforms into the shiny letter “A”. The letter penetrates the amoeba, vibrating and shining with increasing intensity. A frightening whizzing sound can be heard in the room - as if the entire labyrinth was rushing thought the galaxy at an incredible speed. The room begins to shake, the walls are moving closer to one another. Cracking noises are coming from the outside - like a swarm of bees, or whimpering of rats. The walls begin to fall apart showing the breath-taking vista of the universe. The entire labyrinth was located inside the very centre of a different universe. Immediately you feel frozen to the bone. The internal pressure forces your eyes out of their sockets. You begin to swell like a balloon. You leave your body. You float across the darkness and watch a man being torn apart, surrounded by millions of lentiform amoebas. The labyrinth is crumbling into pieces that are hurdled across the entire nebula. All that remains of your body is a cloud of red mist.
+			 (endGame -> win) : You blink with your non-existent eyes. Did it really happen?
+		Odp: You go down on your knees, crying.
+			 (endGame -> okragly.lose) : Your body has suffered to much. You feel your life seeping out of you.  You go down on your knees and then fell face down. This is the end of you.

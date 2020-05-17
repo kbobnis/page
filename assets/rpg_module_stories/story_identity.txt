@@ -1,0 +1,158 @@
+Story identity
+
+Parametry
+	kredyty zaczynasz mając 0
+	trop zaczynasz mając 6
+	skil zaczynasz mając 0
+
+Syt: 0
+	Wybierz charakter swojej postaci. ( syt -> 1)
+		Odp: Przezorny zawsze ubezpieczony, będziesz startował z większą ilością kredytów.
+			 (kredyty +2) : Zawsze w kieszeni nosiłeś kilka wolnych kredytów na różnych kartach bankowych.
+		Odp: Spokój ducha, będziesz startował z większym bezpieczeństwem.
+			 (trop +2) : Po prostu masz większy bufor bezpieczeństwa, nie martwisz się tak bardzo rzeczami.
+		Odp: Samotnik naukowiec, będziesz startował z wyższym początkowym skilem.
+			 (skil +2) : Wieczory spędzałeś na próbach hakowania swoich sąsiadów, masz wiedzę na temat sieci komputerowych.
+
+Syt: 1
+	Siedzisz w barze. Twój chemicznie ustawiony dobry nastrój zaczyna odpuszczać, chcesz zapłacić za kolejną dawkę opium w kroplówce. Karta na kredyty nie przechodzi. Błąd, brak środków. ( syt -> 1.1)
+		Odp 1/1: Uciekam z baru, aby uniknąć zapłaty.
+			 (trop -2) : Długo uciekałeś, ciągle wydawało Ci się, że ktoś Cię goni. Wróciłeś ostatecznie pod bar.
+			 (skil +1) : Udało Ci się uciec barmanowi, pierwsza rzecz, która się udała dzisiaj.
+		Odp: Płacę za opium kredytami z kieszeni i opuszczam bar.
+			 (kredyty -1) : Ostatnia dawka była tania.
+			 (trop +2) : Czujesz, że wszystko może być pod kontrolą.
+		Odp: Obiecuję umyć naczynia w ramach zapłaty.
+			 (kredyty +2) : Za swoją robotę otrzymałeś dodatkowe kredyty.
+			 (trop -2) : Praca trwała kilka godzin, jesteś bardzo zmęczony, wydaje Ci się, że ktoś Cię obserwował, ale może to tylko zmęczenie.
+
+Syt: 1.1
+	Stoisz pod drzwiami baru. Siwy dym wędruje po ulicy, jest chłodno. Zastanawiasz się dlaczego nie było środków na koncie, na pewno jeszcze było na wiele wstrzyknięć. ( syt -> bulwar.1)
+		() : Pilnujesz, żeby barman wyrzucając na ulicę zużyte opakowania Cię nie zauważył.
+		Odp: Idź do terminala komputerowego na bulwarze. Jest na kredyty, ale tam nie zabraknie prądu.
+			 (kredyty +1) : Po drodze znalazłeś jeden kredyt, to starczy na kilka pierwszych minut korzystania z terminala.
+		Odp: Spróbuj coś sprawdzić za darmo w domu. To nie będzie długi spacer. (Brak prądu, masz tylko naładowaną baterię w laptopie).
+			 (syt -> dom.1) : 
+		Odp: Wróć do domu taksówką, będzie cieplej, zawsze to więcej siły na później, a czas jest ważny.
+			 (kredyty -1) : W taksówce było ciepło i miło.
+			 (trop +2) : Na pewno nikt Cię nie śledził.
+			 (syt -> dom.1) : 
+
+Syt: bulwar.1
+	Koło terminala na bulwarze kręci się kilku bezdomnych. Stoisz w budce z terminalem. Sesja jest uruchomiona. ( syt -> bulwar.koniec)
+		Odp: Sprawdź ogólne wiadomości z kraju, może będzie jakiś trop?
+			 (kredyty -1) : Minęło pięć minut, jeden kredyt wciągnięty.
+			 (skil +1) : Wiesz, że tylko Ty byłeś celem ataku, to zawęża możliwości i poszukiwania.
+			 (trop -1) : W wiadomościach nie ma nic o masowej kradzieży. Nie czujesz się bezpieczniej.
+		Odp: Wejdź na swój kanał IRC porozmawiać ze znajomymi z sieci.
+			 (kredyty -1) : Minęło pięć minut, jeden kredyt wciągnięty.
+			 (skil +1) : Nie możesz się zalogować. Ktoś skasował Twoje konto. Jeśli wiedział o tym koncie, to zawęża ilość osób podejrzanych o kradzież Twojej tożsamości.
+		Odp: Wyjdź z budki
+
+Syt: bulwar.koniec
+	Skończył się Twój czas w terminalu, musiałeś oddać miejsce następnej osobie. Stoisz przy budce trzęsąc się z zimna. Znasz jeden bar, który jeszcze będzie otwarty. Wiesz, że tam będzie gdzie podłączyć laptopa. ( syt -> dom.1)
+		Odp: Idziesz do baru pieszo, stracisz nieco sił w takim mrozie.
+			 (trop -1) : Zmarzłeś porządnie w długiej drodze do baru.
+			 (syt -> bar.2) : 
+		Odp: Jedź do baru taksówką, w ciepłym milej.
+			 (kredyty -1) : Dojechałeś wygodnie do celu.
+			 (syt -> bar.2) : 
+
+Syt: dom.1
+	Już od kilku miesięcy nie opłacałeś rachunków, od dzisiejszego poranka nie ma prądu. Internet jeszcze działa oraz laptop ma naładowaną baterię. ( syt -> dom.2)
+		Odp: Sprawdź na które konta możesz się zalogować.
+			 (skil +1) : Usunięte zostały wszystkie konta pocztowe, portale społecznościowe i bankowe.
+
+Syt: dom.2
+	Jest Ci zimno. Światło latarń z ulicy generuje przygnębiający nastrój w Twoim salonie. Niedaleko jest jeszcze otwarty bar, wiesz, że tam będzie gdzie podłączyć laptopa. ( syt -> bar.2)
+		Odp: Idź do baru już teraz, kupisz coś do jedzenia, są jeszcze happy hours.
+			 (kredyty -1) : Zamówiłeś dobre danie w niskiej cenie.
+			 (trop +1) : Poczułeś się pokrzepiony pysznymi frytkami.
+		Odp: Póki jeszcze masz baterię w laptopie, poszukaj w internecie, czy komukolwiek się coś takiego zdarzyło. Później udaj się do baru.
+			 (trop -2) : Twój komputer dziwnie mrugnął i zapaliło się światełko przy kamerze. Oczywiście kamerę zakleiłeś od razu taśmą, ale co z mikrofonem? Przydałoby się nowe urządzenie albo inny system operacyjny.
+			 (skil +1) : Coś takiego się komuś zdarzyło. Możesz skontaktować się ze swoim bankiem i dopytać o szczegóły.
+			 (kredyty -2) : W barze zamówiłeś najtańsze jedzenie, happy hours już się skończyło.
+		Odp: Idź od baru, nie kupuj tam jedzenia, pomimo, że jesteś głodny.
+			 (trop -1) : Jesteś bardzo głodny, patrzyłeś się z żalem jak wylewali resztki zupy białkowej do rury odpływowej
+
+Syt: bar.2
+	W barze jest dość pusto. Z otwartych drzwi wieje chłodem. Niedługo będą zamykać, ale nie ma problemu, żeby usiąść i skorzystać z komputera. ( syt -> bar.3)
+		Odp: Spróbuj odzyskać kontrolę nad swoim kontem mailowym.
+			 (skil +2) : Odzyskałeś kontrolę nad swoim kontem mailowym. Masz dostęp do informacji jaki IP i kiedy się logował na Twoją pocztę. To było tej nocy, gdy byłeś w barze!
+			 (trop -1) : Odzyskując kontrolę nad swoim kontem dajesz znać swojemu prześladowcy jak dobrze Ci idzie, może go to zaalarmować.
+		Odp: Zaproponuj posprzątanie swojego stolika za pieniądze. To zajmie tylko kilka minut, będziesz mógł jeszcze potem trochę posprawdzać internet.
+			 (kredyty +4) : Pomogłeś zebrać, umyć naczynia, od razu dostałeś pieniądze.
+			 (trop -1) : Wydaje Ci się, że czas nie na gra na Twoją korzyść, ślady się zacierają, logi znikają.
+
+Syt: bar.3
+	Obsługa zaczyna zamykać bar, wyłączyli muzykę. Zamiatają i kładą krzesła na stołach. Zostało Ci kilka minut na skorzystanie z komputera. ( syt -> kima.1)
+		Odp bar.3/1: Zadzwoń do obsługi klienta i spytaj się z jakiego miejsca było nielegalne logowanie na Twoją pocztę. Trochę się boisz o swoje bezpieczeństwo.
+			 (skil +2) : Odzyskałeś kontrolę nad swoim kontem mailowym. Masz dostęp do informacji jaki IP i kiedy się logował na Twoją pocztę. To było tej nocy, gdy byłeś w barze!
+			 (trop -1) : Odzyskując kontrolę nad swoim kontem dajesz znać swojemu prześladowcy jak dobrze Ci idzie, może go to zaalarmować.
+			 (syt -> ulica.1) : 
+		Odp: Szukaj w telefonie, czy jakiś znajomy Ci nie pomoże. Zadzwonisz z płatnej budki, bo telefon już dawno ma zablokowane rozmowy wychodzące.
+			 (skil +1) : Znalazłeś numer do starego znajomego Kima Taro, który przechwalał się, że zna się na komputerach. Rozmowa będzie kosztować kilka kredytów.
+			 (trop -1) : Nie wiesz, czy nie będziesz podsłuchiwany.
+		Odp: Wyjdź z baru i spróbuj się schować w ciemnej uliczce czekając na jakąkolwiek osobę, która miałaby Cię śledzić.
+			 (trop -1) : Nie czujesz się zbyt bezpieczne. Nasunąłeś kaptur na głowę i starasz się nie rzucać w oczy.
+			 (syt -> ulica.1) : 
+
+Syt: kima.1
+	Rozmowa z Kima Taro: ( syt -> kima.2)
+		Odp: Przejdź od razu do rzeczy: Spytaj się, czy mógłby Ci pomóc w Twojej sprawie.
+			 (kredyty -1) : Minęło trochę czasu, pobrało jeden kredyt.
+		Odp: Spytaj się co u niego słychać i powspominaj stare czasy i później się spytaj czy mógłby Ci pomóc.
+			 (kredyty -2) : Kima wyraźnie zadowolony, że da niego dzwonisz opowiada co u niego. Nic ciekawego, słuchasz z grzeczności. Minęło trochę czasu, pobrało kilka kredytów.
+		Odp: Zakończ rozmowę
+			 (syt -> ulica.1) : 
+
+Syt: kima.2
+	Kima mówi, że mógłby Ci pomóc w Twojej sprawie. Zależnie od tego, ile masz kredytów, mówi Ci odpowiednio dużo technicznych szczegółów jak swojego prześladowcę namierzyć. ( syt -> kima.end)
+		Odp: Szkoda kredytów, zakończ rozmowę.
+		Odp: Opowiadaj!
+			 (kredyty -1) : Krótka porada.
+			 (skil +1) : Kima opowiedział Ci o koniach trojańskich.
+		Odp: Nie spiesz się.
+			 (kredyty -2) : Dłuższa rozmowa.
+			 (skil +3) : Kima opowiedział Ci o koniach trojańskich - jak się przed nimi bronić i jak otwierać internetowo zamki do mieszkań.
+		Odp: Opowiadaj długo!
+			 (kredyty -3) : Dłuższa porada.
+			 (skil +4) : Kima powiedział Ci wszystko co wiedział o komputerach. Rozmowa trwała dość długo, w głowie masz mętlik, ale na pewno wiele z tych informacji CI się niedługo przyda.
+
+Syt: kima.end
+	Stoisz w starej budce telefonicznej, ale nie wychodzisz na razie na zewnątrz, bo mocno wieje. ( syt -> ulica.1)
+		Odp: Idziesz do domu. Droga jest daleka i nieprzyjemna, czujesz, że marsz da Ci w kość.
+			 (trop -2) : Bardzo zmarzłeś i ktoś w przejeżdżającym aucie zrobił Ci zdjęcie. Do czego może to być użyte, już teraz się martwisz.
+			 (syt -> dom.3) : 
+		Odp: Jedziesz do domu taksówką.
+			 (kredyty -1) : Zapłaciłeś za podwiezienie. W taksówce było ciepło i wygodnie.
+			 (syt -> dom.3) : 
+
+Syt: ulica.1
+	Stoisz w ciemnej bramie przy zamykającym się barze bacznie obserwując auta i przechodniów. Denerwujesz się. ( syt -> ulica.2)
+		() : Wyrzucono Cię z baru.
+		Odp: Wracaj do domu.
+			 (syt -> dom.3) : 
+		Odp: Oglądaj przechodniów dalej.
+			 (trop -1) : Kosztuje Cię to trochę nerwów, bo nie wiesz, czy jesteś dobrze schowany.
+			 (skil +1) : Nikogo podejrzanego nie ma, pomimo nerwów czujesz, że odzyskujesz kontrolę nad sytuacją.
+
+Syt: ulica.2
+	Dalej stoisz w ciemnej bramie przy barze. ( syt -> dom.3)
+		Odp: Schowaj się lepiej, poczekaj jeszcze godzinę. Zziębniesz i zgłodniejesz. Potem do domu.
+			 (trop -1) : Zziębłeś i zgłodniałeś.
+			 (skil +1) : Nauczyłeś się cierpliwości, łatwiej będziesz teraz znosił trudy.
+		Odp: Wracaj do domu, tu nic się nie zdarzy.
+			 (kredyty +1) : Droga do domu była niedaleka, znalazłeś jeden kredyt na chodniku przy ścieku.
+
+Syt: dom.3
+	Znowu w domu. Ciągle nie ma prądu i jest chłodno. Światło ulicy i przejeżdżających samochodów daje naprawdę niewiele światła. Potykasz się o stare butelki i kartony. Coś tu nie gra, one nie leżały w tym miejscu ( syt -> dom.4)
+		Odp: Podnosisz wzrok ku sufitowi.
+			jeśli skil>6 () : Kropelka wody kapnęła Ci prosto w oko.
+			jeśli skil<7 () : Nie udało Ci się zebrać 7 skila do tej pory.
+			jeśli skil<7 (endGame -> notEnough) : Co by było, gdybyś miał teraz 7 skila? 
+
+Syt: dom.4
+	Dopiero teraz zauważyłeś, że z sufitu leje się woda. Nad tobą nikt nie mieszka, co tam mogło się stać? ( syt -> <nic>)
+		Odp: Idę na wyższe piętro zobaczyć pustostan. Jest elektronicznie zabezpieczony przez policję, ale jakoś się przedrę.
+			 (endGame -> toBeContinued) : Ciąg dalszy nastąpi.
